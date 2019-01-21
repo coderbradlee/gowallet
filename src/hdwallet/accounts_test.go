@@ -109,9 +109,10 @@ func TestImport(t *testing.T) {
 	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
 	encryptedmk, err := CreateWalletByMnnicAndPwd("crisp bus ordinary fossil cliff inmate night program song patient elevator shallow", "123password")
 	if err != nil {
-		fmt.Println("encryptedmk:", encryptedmk)
+		fmt.Println("encryptedmk:", err)
 		return
 	}
+	fmt.Println("encryptedmk:", encryptedmk)
 	mk, err := decryptMasterkey(encryptedmk)
 	if err != nil {
 		fmt.Println("decryptMasterkey:", encryptedmk)
@@ -121,7 +122,7 @@ func TestImport(t *testing.T) {
 	// GenerateBIP44AccountWallet(masterKey string, coinType string, account, change, index int) (address string, err error)
 	addr, err := GenerateBIP44AccountWallet(mk, "ETH", 0, 0, 0)
 	if err != nil {
-		fmt.Println("generate addr:", mk)
+		fmt.Println("generate addr:", err)
 		return
 	}
 	fmt.Println(addr)
