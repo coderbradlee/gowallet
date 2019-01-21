@@ -113,7 +113,7 @@ func TestImport(t *testing.T) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Printf("The mnemonic word list to byte is: #v%", mnemonicSeed)
+	fmt.Println("The mnemonic word list to byte is: #v%", mnemonicSeed)
 	masterKeyStr, err := generateMasterkey(mnemonicSeed)
 	if err != nil {
 		fmt.Println(err)
