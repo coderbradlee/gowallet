@@ -6,13 +6,6 @@ import (
 	"fmt"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"hdwallet/nuls"
-	"io"
-	"io/ioutil"
-	"math/big"
-	"net/http"
-	"strconv"
-	"strings"
-	"time"
 )
 
 //Nuls转账
