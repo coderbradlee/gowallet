@@ -642,3 +642,13 @@ func GetDecAddress(qtumAddress string) string {
 	buf := base58.Encode([]byte(qtumAddress))
 	return buf
 }
+func messageToHex(msg wire.Message) (string, error) {
+	var buf bytes.Buffer
+	// maxProtocolVersion is the max protocol version the server supports.
+	var maxProtocolVersion uint32 = 0 //70002
+	if err := msg.BtcEncode(&buf, maxProtocolVersion, wire.WitnessEncoding); err != nil {
+		context := fmt.Sprintf("Failed to encode msg of type %T", msg)
+		return "", errors.New(context)
+	}
+	return hex.EncodeToString(buf.Bytes()), nil
+}

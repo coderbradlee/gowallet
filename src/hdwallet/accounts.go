@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/btcsuite/btcd/btcec"
+	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/debian-go/golang-github-nebulouslabs-entropy-mnemonics"
 	"github.com/tyler-smith/go-bip39"
