@@ -115,37 +115,37 @@ func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey stri
 	return encryptMasterkey, err
 }
 
-func newWalletAccount(secret, salt []byte) (addressWithPrivateKey string, err error) {
-	//wa = new(WalletAccount)
-	var seed []byte
-	seed, err = generateSeed(secret, salt)
-	fmt.Println("The Real seed to byte is: #v%", seed)
-	if err != nil {
-		return
-	}
-	//Create Mnemonic
-	mnemonic, err := generateMnemonic(seed)
-	if err != nil {
-		return "", err
-	}
-	fmt.Println("The mnemonic word list is ", mnemonic)
+// func newWalletAccount(secret, salt []byte) (addressWithPrivateKey string, err error) {
+// 	//wa = new(WalletAccount)
+// 	var seed []byte
+// 	seed, err = generateSeed(secret, salt)
+// 	fmt.Println("The Real seed to byte is: #v%", seed)
+// 	if err != nil {
+// 		return
+// 	}
+// 	//Create Mnemonic
+// 	mnemonic, err := generateMnemonic(seed)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	fmt.Println("The mnemonic word list is ", mnemonic)
 
-	//Import Mnemonic
-	mnemonicSeed, err := importMnemonic(mnemonic)
-	if err != nil {
-		return "", err
-	}
-	fmt.Println("The mnemonic word list to byte is: #v%", mnemonicSeed)
-	masterKeyStr, err := generateMasterkey(seed)
-	//master_key, err := hdkeychain.NewMaster(seed, &AddressNetParams)
-	if err != nil {
-		return "", err
-	}
-	//err = wa.generateAccount(master_key.String(), 0)
-	//err = wa.GenerateBIP44AccountPath(master_key.String(), "BTC", 0, 0, 0)
-	return GenerateBIP44AccountWallet(masterKeyStr, "ETC", 0, 0, 0)
+// 	//Import Mnemonic
+// 	mnemonicSeed, err := importMnemonic(mnemonic)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	fmt.Println("The mnemonic word list to byte is: #v%", mnemonicSeed)
+// 	masterKeyStr, err := generateMasterkey(seed)
+// 	//master_key, err := hdkeychain.NewMaster(seed, &AddressNetParams)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	//err = wa.generateAccount(master_key.String(), 0)
+// 	//err = wa.GenerateBIP44AccountPath(master_key.String(), "BTC", 0, 0, 0)
+// 	return GenerateBIP44AccountWallet(masterKeyStr, "ETC", 0, 0, 0)
 
-}
+// }
 
 // Generate wallet seed from secret and salt
 func generateSeed(secret, salt []byte) (seed []byte, err error) {
