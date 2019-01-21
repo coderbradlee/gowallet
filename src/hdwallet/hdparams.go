@@ -2,8 +2,91 @@ package hdwallet
 
 import (
 	"github.com/btcsuite/btcd/chaincfg"
-	"time"
 	"github.com/btcsuite/btcd/wire"
+	"time"
+)
+
+type WalletAccount struct {
+	MasterKey string
+	Mnemonic  string
+}
+
+type addressToKey struct {
+	key        *btcec.PrivateKey
+	compressed bool
+}
+
+// AuthoredTx holds the state of a newly-created transaction and the change
+// output (if one was added).
+type AuthoredTx struct {
+	Tx          *wire.MsgTx
+	PrevScripts []string
+}
+
+//Get BTC balance Info
+type ChainBalanceInfo struct {
+	Status string           `json:"status"`
+	Data   ChainBalanceData `json:"data"`
+}
+
+type ChainBalanceData struct {
+	Network             string `json:"network"`
+	Address             string `json:"address"`
+	Confirmed_balance   string `json:"confirmed_balance"`
+	Unconfirmed_balance string `json:"unconfirmed_balance"`
+}
+
+// VinPrevOut is like Vin except it includes PrevOut.  It is used by searchrawtransaction
+type ChainUnspentInfo struct {
+	Status string           `json:"status"`
+	Data   ChainUnspentData `json:"data"`
+}
+type ChainUnspentData struct {
+	Network string            `json:"network"`
+	Address string            `json:"address"`
+	Txs     []TxChainDataInfo `json:"txs"`
+}
+
+type QutmDataInfo struct {
+	Address       string  `json:"address"`
+	Txid          string  `json:"txid"`
+	Vout          int64   `json:"vout"`
+	ScriptPubKey  string  `json:"scriptPubKey"`
+	Amount        float64 `json:"amount"`
+	Satoshis      int64   `json:"satoshis"`
+	IsStake       bool    `json:"isStake"`
+	Height        int64   `json:"height"`
+	Confirmations int64   `json:"confirmations"`
+}
+
+type TxChainDataInfo struct {
+	Txid          string `json:"txid"`
+	Vout          int64  `json:"output_no"`
+	Script_asm    string `json:"script_asm"`
+	Script_hex    string `json:"script_hex"`
+	Value         string `json:"value"`
+	Confirmations int64  `json:"confirmations"`
+	Time          int64  `json:"time"`
+}
+
+var (
+	//如果获取所有的账户余额，使用将AccountName用*代替
+	accountName = "*"
+	minCfm      = 1
+
+	btcAddressNetParams = chaincfg.MainNetParams
+
+	ltcAddressNetParams = LtcNetParams
+
+	dogeAddressNetParams = DogeNetParams
+
+	qtumAddressNetParams = QtumNetParams
+
+	//var hcashNetParams = chaincfg.HCASHMainNetParams
+
+	//var AddressNetParams = chaincfg.TestNet3Params
+
+	seedLen = 24
 )
 
 const (
@@ -13,12 +96,24 @@ const (
 	// MainNet represents the main litecoin network.
 	DOGEMainNet wire.BitcoinNet = 0x4081889
 
-
 	// MainNet represents the main litecoin network.
 	QTUMMainNet wire.BitcoinNet = 0xb081889
 
 	// MainNet represents the main litecoin network.
 	HCASHMainNet wire.BitcoinNet = 0xb091989
+
+	requestTimeout = 60 * time.Second
+	btcTxVersion   = 2
+	//MIN_DUST_AMOUNT = 10000     //最小有效交易金额,单位satoshi，即0.00000001 BTC
+	//MIN_TRANSACTION_FEE = 10000 //矿工费用的最小金额，单位satoshi
+
+	hardened = 0x80000000
+
+	alphabet = "A9BCDEF8GHJKLMNPQRST3UV7WXY2Zabcdef6ghijkm5nopqrstu4vwxyz1"
+
+	maxInt = int(^uint(0) >> 1)
+
+	constEncKeyStr = "K3d9R9oDAj9j1PkbWuUkqi4TT2RgWqTTvgmahbNW9cxccRhEWS"
 )
 
 var BtcNetParams = chaincfg.MainNetParams
@@ -47,7 +142,6 @@ var LtcNetParams = chaincfg.Params{
 	ReduceMinDifficulty:      false,
 	MinDiffReductionTime:     0,
 	GenerateSupported:        false,
-
 
 	// Consensus rule change deployments.
 	//
@@ -148,7 +242,6 @@ var QtumNetParams = chaincfg.Params{
 	// address generation.
 	HDCoinType: 2,
 }
-
 
 func mustRegister(params *chaincfg.Params) {
 	if err := chaincfg.Register(params); err != nil {

@@ -13,7 +13,7 @@ func TestNewMasterKey(t *testing.T) {
 
 	//1.创建masterkey
 	masterKey, err := CreateWalletByteRandAndPwd("", "123")
-	fmt.Printf("masterkey and 助记词:%,err=%s", masterKey, err)
+	fmt.Printf("masterkey and 助记词:%s,err=%s\n", masterKey, err)
 }
 
 //导入助记词钱包"some params is empty
