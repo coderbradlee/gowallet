@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gowallet/wallet"
+	wallet "hdwallet"
 	"math/big"
 )
 

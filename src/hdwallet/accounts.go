@@ -17,11 +17,11 @@ import (
 	"io/ioutil"
 	"math/big"
 
+	"encoding/binary"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
-	"encoding/binary"
 
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/btcjson"
@@ -40,7 +40,7 @@ import (
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/crypto/scrypt"
-	"goWallet/hdwallet/nuls"
+	"hdwallet/nuls"
 )
 
 const hardened = 0x80000000
@@ -1297,7 +1297,7 @@ func createRawTransactionNew(fromAddress string, toAddress string, amount float6
 
 	var sum_amount float64 = 0.0
 	var inputsNum = 0
-	total,_:= strconv.ParseFloat(big.NewFloat(0).Add(big.NewFloat(amount),big.NewFloat(minTxFee)).String(),64)
+	total, _ := strconv.ParseFloat(big.NewFloat(0).Add(big.NewFloat(amount), big.NewFloat(minTxFee)).String(), 64)
 	for uu := 0; uu < len(listunspents); uu++ {
 		unspent_record := listunspents[uu]
 		if (unspent_record.Amount > 0) && (unspent_record.Confirmations > 0) {
@@ -1310,7 +1310,6 @@ func createRawTransactionNew(fromAddress string, toAddress string, amount float6
 			scriptAdd, _ := txscript.PayToAddrScript(addr)
 			array_prevPkScripts[uu] = string(scriptAdd)
 			inputsNum++
-
 
 			if sum_amount >= total { //*100000000
 				break
@@ -1343,8 +1342,8 @@ func createRawTransactionNew(fromAddress string, toAddress string, amount float6
 		toAddress:   amount,       //目标转账地址和金额
 		fromAddress: changeAmount, //(sum_amount - amount - minTxFee),找零地址和金额，默认用发送者地址
 	}
-	if changeAmount==0{
-		delete(addAmoutsMap,fromAddress)
+	if changeAmount == 0 {
+		delete(addAmoutsMap, fromAddress)
 	}
 	// Add all transaction inputs to a new transaction after performing some validity checks.
 	var lockTime int64
@@ -1445,7 +1444,7 @@ func createRawTransactionWithChangeAddr(fromAddress string, changeAddress string
 	authTx := AuthoredTx{}
 	params := btcAddressNetParams
 	//金额校验
-	if (amount <= 0) {
+	if amount <= 0 {
 		return authTx, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCType,
 			Message: "Invalid amount",
@@ -2088,7 +2087,7 @@ func GetQTUMBalanceByAddr(address string) (balance string, err error) {
 		return
 	}
 	fmt.Println("The get Balance info is ", string(bs))
-	if (resp.StatusCode != 200) {
+	if resp.StatusCode != 200 {
 		return "0.00", errors.New(string(bs))
 	}
 	balanceValue, err := strconv.ParseFloat(string(bs), 10)
@@ -2404,7 +2403,7 @@ func createDogeRawTransactionNew(fromAddress string, toAddress string, amount fl
 	authTx := AuthoredTx{}
 	params := dogeAddressNetParams
 	//金额校验
-	if (amount <= 0) {
+	if amount <= 0 {
 		return authTx, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCType,
 			Message: "Invalid amount",
@@ -2472,7 +2471,7 @@ func createDogeRawTransactionNew(fromAddress string, toAddress string, amount fl
 	}
 	fmt.Println("Transaction_in:", inputs)
 	var tempAmount float64
-	if (toAddress == fromAddress) {
+	if toAddress == fromAddress {
 		tempAmount = sum_amount - minTxFee
 	} else {
 		tempAmount = sum_amount - amount - minTxFee
@@ -2735,7 +2734,7 @@ func SendQTUMRawTxSizeByPrivateKey(privateKey string, toAddress string, amount s
 //The QTUM Create Raw Transaction
 func createQtumRawTransactionNew(fromAddress string, toAddress string, amount float64, minTxFee float64) (returnauthTx AuthoredTx, err error) {
 	authTx := AuthoredTx{}
-	if (amount < 0.002184) {
+	if amount < 0.002184 {
 		return authTx, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCType,
 			Message: "The payment must be greater than 0.002184",
@@ -2744,7 +2743,7 @@ func createQtumRawTransactionNew(fromAddress string, toAddress string, amount fl
 	//Some Variant
 	params := qtumAddressNetParams
 	//金额校验
-	if (amount <= 0) {
+	if amount <= 0 {
 		return authTx, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCType,
 			Message: "Invalid amount",
@@ -2763,7 +2762,7 @@ func createQtumRawTransactionNew(fromAddress string, toAddress string, amount fl
 	}
 	var isStake int = 0
 	for index := 0; index < unspentlen; index++ {
-		if (qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501) {
+		if qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501 {
 			isStake++
 		}
 	}
@@ -2771,7 +2770,7 @@ func createQtumRawTransactionNew(fromAddress string, toAddress string, amount fl
 	var listunspents = make([]btcjson.ListUnspentResult, unspentlen-isStake)
 
 	for index := 0; index < unspentlen; index++ {
-		if (qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501) {
+		if qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501 {
 			continue
 		}
 		unspentTx := qtumUnspent[index]
@@ -2828,7 +2827,7 @@ func createQtumRawTransactionNew(fromAddress string, toAddress string, amount fl
 	}
 	fmt.Println("Transaction_in:", inputs)
 	var tempAmount float64
-	if (toAddress == fromAddress) {
+	if toAddress == fromAddress {
 		tempAmount = sum_amount - minTxFee
 	} else {
 		tempAmount = sum_amount - amount - minTxFee
@@ -2875,7 +2874,7 @@ func createQtumRawTransactionNew(fromAddress string, toAddress string, amount fl
 			}
 		}
 
-		if (amount < 0.002184) {
+		if amount < 0.002184 {
 			continue
 		}
 		// Decode the provided address.
@@ -2945,7 +2944,7 @@ func createQtumRawTransactionNew(fromAddress string, toAddress string, amount fl
 //The QTUM Create Raw Transaction
 func createQtumTokenRawTransactionNew(fromAddress string, toAddress string, balance float64, amount float64, minTxFee float64, gasLimit int64, gasPrice int64, data string) (returnauthTx AuthoredTx, err error) {
 	authTx := AuthoredTx{}
-	if (amount < 0.002184) {
+	if amount < 0.002184 {
 		return authTx, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCType,
 			Message: "The payment must be greater than 0.001873",
@@ -2954,7 +2953,7 @@ func createQtumTokenRawTransactionNew(fromAddress string, toAddress string, bala
 	//Some Variant
 	params := qtumAddressNetParams
 	//金额校验
-	if (amount <= 0) {
+	if amount <= 0 {
 		return authTx, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCType,
 			Message: "Invalid amount",
@@ -2974,7 +2973,7 @@ func createQtumTokenRawTransactionNew(fromAddress string, toAddress string, bala
 
 	var isStake int = 0
 	for index := 0; index < unspentlen; index++ {
-		if (qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501) {
+		if qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501 {
 			isStake++
 		}
 	}
@@ -2982,7 +2981,7 @@ func createQtumTokenRawTransactionNew(fromAddress string, toAddress string, bala
 	var listunspents = make([]btcjson.ListUnspentResult, unspentlen-isStake)
 
 	for index := 0; index < unspentlen; index++ {
-		if (qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501) {
+		if qtumUnspent[index].IsStake == true && qtumUnspent[index].Confirmations < 501 {
 			continue
 		}
 		unspentTx := qtumUnspent[index]
@@ -3102,7 +3101,7 @@ func createQtumTokenRawTransactionNew(fromAddress string, toAddress string, bala
 			}
 		}
 		//量子链有限制小于这个金额不能交易
-		if (amount < 0.002184) {
+		if amount < 0.002184 {
 			continue
 		}
 		// Decode the provided address.
@@ -3355,10 +3354,10 @@ func NulsBroadcast(txHex string) (string, error) {
 
 func NulsBalance(address string) (balance string, err error) {
 	tempAmount, err := nuls.GetBalance(address)
-	if err !=nil{
+	if err != nil {
 		return
 	}
-	balanceByte,err:=json.Marshal(tempAmount)
-	balance=string(balanceByte)
-	return balance,err
+	balanceByte, err := json.Marshal(tempAmount)
+	balance = string(balanceByte)
+	return balance, err
 }
