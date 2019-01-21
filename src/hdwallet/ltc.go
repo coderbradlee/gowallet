@@ -1,8 +1,6 @@
 package hdwallet
 
 import (
-	"bytes"
-	"crypto/aes"
 	"crypto/cipher"
 	"crypto/ecdsa"
 	"crypto/rand"
