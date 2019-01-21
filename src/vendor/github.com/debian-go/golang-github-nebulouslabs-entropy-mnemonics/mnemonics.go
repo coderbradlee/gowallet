@@ -37,7 +37,8 @@ const (
 	// the mnemonics package. All dictionaries are the same length so that the
 	// same []byte can be encoded into multiple languages and all results will
 	// resemble eachother.
-	DictionarySize = 1626
+	// DictionarySize = 1626
+	DictionarySize = 2048
 )
 
 var (
@@ -127,7 +128,8 @@ func phraseToInt(p Phrase, did DictionaryID) (*big.Int, error) {
 		return nil, errUnknownDictionary
 	}
 
-	base := big.NewInt(1626)
+	// base := big.NewInt(1626)
+	base := big.NewInt(2048)
 	exp := big.NewInt(1)
 	result := big.NewInt(-1)
 	for _, word := range p {
