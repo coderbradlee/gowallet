@@ -39,7 +39,7 @@ const (
 	// EnglishUniquePrefixLen indicates the number of letters needed to achieve
 	// unique prefixes throughout the english dictionary. No two words in the
 	// dictionary have the same prefix of len EnglishUniquePrefixLen.
-	EnglishUniquePrefixLen = 3
+	EnglishUniquePrefixLen = 4
 )
 
 var (
