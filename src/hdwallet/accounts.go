@@ -25,7 +25,12 @@ func importMnemonic(mnemonic string) ([]byte, error) {
 // Mnemonic Generation
 func generateMnemonic(entropy []byte) (string, error) {
 	if len(entropy) < 0 {
-		entropy, _ = bip39.NewEntropy(192)
+		// |  128  |  4 |   132  |  12  |
+		// |  160  |  5 |   165  |  15  |
+		// |  192  |  6 |   198  |  18  |
+		// |  224  |  7 |   231  |  21  |
+		// |  256  |  8 |   264  |  24  |
+		entropy, _ = bip39.NewEntropy(128)
 	}
 	mnemonic, err := mnemonics.ToPhrase(entropy, mnemonics.English)
 	return mnemonic.String(), err

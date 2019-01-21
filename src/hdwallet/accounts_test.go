@@ -103,3 +103,9 @@ func TestEos(t *testing.T) {
 	fmt.Println(pri.PublicKey().String())
 
 }
+func TestImport(t *testing.T) {
+	//imtoken 助记词 测试例子
+	//crisp bus ordinary fossil cliff inmate night program song patient elevator shallow
+	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
+
+}
