@@ -1,0 +1,13 @@
+golang-github-nebulouslabs-entropy-mnemonics (0.0~git20170316.0.7b01a64-1) unstable; urgency=medium
+
+  * New upstream version 0.0~git20170316.0.7b01a64
+  * Bump debian policy
+  * Change priority from extra to optional
+
+ -- Free Ekanayaka <freee@debian.org>  Tue, 31 Oct 2017 22:32:02 +0000
+
+golang-github-nebulouslabs-entropy-mnemonics (0.0~git20150811.0.6afa27f-1) unstable; urgency=medium
+
+  * Initial release (Closes: #850062)
+
+ -- Free Ekanayaka <freee@debian.org>  Sun, 30 Oct 2016 15:03:33 +0000
