@@ -107,23 +107,23 @@ func TestImport(t *testing.T) {
 	//imtoken 助记词 测试例子
 	//crisp bus ordinary fossil cliff inmate night program song patient elevator shallow
 	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
-	encryptedmk, err := CreateWalletByMnnicAndPwd("crisp bus ordinary fossil cliff inmate night program song patient elevator shallow", "123password")
+	// encryptedmk, err := CreateWalletByMnnicAndPwd("crisp bus ordinary fossil cliff inmate night program song patient elevator shallow", "123password")
+	mnemonicSeed, err := importMnemonic("crisp bus ordinary fossil cliff inmate night program song patient elevator shallow")
 	if err != nil {
-		fmt.Println("encryptedmk:", err)
+		fmt.Println(err)
 		return
 	}
-	fmt.Println("encryptedmk:", encryptedmk)
-	mk, err := decryptMasterkey(encryptedmk)
+	fmt.Printf("The mnemonic word list to byte is: #v%", mnemonicSeed)
+	masterKeyStr, err := generateMasterkey(mnemonicSeed)
 	if err != nil {
-		fmt.Println("decryptMasterkey:", encryptedmk)
+		fmt.Println(err)
 		return
 	}
-	fmt.Println("real master key:", mk)
-	// GenerateBIP44AccountWallet(masterKey string, coinType string, account, change, index int) (address string, err error)
-	addr, err := GenerateBIP44AccountWallet(mk, "ETH", 0, 0, 0)
+	fmt.Println("masterKeyStr", masterKeyStr)
+	addr, err := GenerateBIP44AccountWallet(masterKeyStr, "ETH", 0, 0, 0)
 	if err != nil {
-		fmt.Println("generate addr:", err)
+		fmt.Println(err)
 		return
 	}
-	fmt.Println(addr)
+	fmt.Println("addr", addr)
 }
