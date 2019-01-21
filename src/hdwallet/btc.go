@@ -10,7 +10,6 @@ import (
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	"github.com/debian-go/golang-github-nebulouslabs-entropy-mnemonics"
 	"io/ioutil"
 	"math/big"
 	"net/http"
