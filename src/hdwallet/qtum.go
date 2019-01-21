@@ -13,19 +13,9 @@ import (
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/tyler-smith/go-bip39"
-	"golang.org/x/crypto/pbkdf2"
-	"golang.org/x/crypto/scrypt"
-	"hdwallet/nuls"
-	"io"
-	"io/ioutil"
-	"math/big"
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 )
 
 ///Send QTUM RawTransaction

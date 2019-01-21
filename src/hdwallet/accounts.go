@@ -16,40 +16,6 @@ import (
 	"hdwallet/nuls"
 )
 
-// Key derives a key from the password, salt, and cost parameters, returning
-// a byte slice of length keyLen that can be used as cryptographic key.
-//
-// N is a CPU/memory cost parameter, which must be a power of two greater than 1.
-// r and p must satisfy r * p < 2³⁰. If the parameters do not satisfy the
-// limits, the function returns a nil byte slice and an error.
-//
-// For example, you can get a derived key for e.g. AES-256 (which needs a
-// 32-byte key) by doing:
-//
-//      dk, err := scrypt.Key([]byte("some password"), salt, 16384, 8, 1, 32)
-//
-// The recommended parameters for interactive logins as of 2009 are N=16384,
-// r=8, p=1. They should be increased as memory latency and CPU parallelism
-// increases. Remember to get a good random salt.
-func Key(password, salt []byte, N, r, p, keyLen int) ([]byte, error) {
-	if N <= 1 || N&(N-1) != 0 {
-		return nil, errors.New("scrypt: N must be > 1 and a power of 2")
-	}
-	if uint64(r)*uint64(p) >= 1<<30 || r > maxInt/128/p || r > maxInt/256 || N > maxInt/128/r {
-		return nil, errors.New("scrypt: parameters are too large")
-	}
-
-	xy := make([]uint32, 64*r)
-	v := make([]uint32, 32*N*r)
-	b := pbkdf2.Key(password, salt, 1, p*128*r, sha256.New)
-
-	for i := 0; i < p; i++ {
-		smix(b[i*128*r:], r, N, v, xy)
-	}
-
-	return pbkdf2.Key(password, b, 1, keyLen, sha256.New), nil
-}
-
 // Mnemonic Import
 func importMnemonic(mnemonic string) ([]byte, error) {
 	return mnemonics.FromString(mnemonic, mnemonics.English)

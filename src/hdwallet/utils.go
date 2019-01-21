@@ -43,28 +43,6 @@ import (
 	"hdwallet/nuls"
 )
 
-const hardened = 0x80000000
-
-const alphabet = "A9BCDEF8GHJKLMNPQRST3UV7WXY2Zabcdef6ghijkm5nopqrstu4vwxyz1"
-
-var btcAddressNetParams = chaincfg.MainNetParams
-
-var ltcAddressNetParams = LtcNetParams
-
-var dogeAddressNetParams = DogeNetParams
-
-var qtumAddressNetParams = QtumNetParams
-
-//var hcashNetParams = chaincfg.HCASHMainNetParams
-
-//var AddressNetParams = chaincfg.TestNet3Params
-
-var seedLen = 24
-
-const maxInt = int(^uint(0) >> 1)
-
-const constEncKeyStr string = "K3d9R9oDAj9j1PkbWuUkqi4TT2RgWqTTvgmahbNW9cxccRhEWS"
-
 type WalletAccount struct {
 	MasterKey string
 	Mnemonic  string
@@ -127,19 +105,6 @@ type TxChainDataInfo struct {
 	Confirmations int64  `json:"confirmations"`
 	Time          int64  `json:"time"`
 }
-
-var (
-	//如果获取所有的账户余额，使用将AccountName用*代替
-	accountName = "*"
-	minCfm      = 1
-)
-
-const (
-	requestTimeout = 60 * time.Second
-	btcTxVersion   = 2
-	//MIN_DUST_AMOUNT = 10000     //最小有效交易金额,单位satoshi，即0.00000001 BTC
-	//MIN_TRANSACTION_FEE = 10000 //矿工费用的最小金额，单位satoshi
-)
 
 func flashBackInt(data []byte) []byte {
 	len := len(data)
