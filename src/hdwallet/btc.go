@@ -1,12 +1,6 @@
 package hdwallet
 
 import (
-	"bytes"
-	"crypto/aes"
-	"crypto/cipher"
-	"crypto/ecdsa"
-	"crypto/rand"
-	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
