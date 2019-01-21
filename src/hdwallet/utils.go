@@ -652,3 +652,13 @@ func messageToHex(msg wire.Message) (string, error) {
 	}
 	return hex.EncodeToString(buf.Bytes()), nil
 }
+func messageToHexLen(msg wire.Message) (int, error) {
+	var buf bytes.Buffer
+	// maxProtocolVersion is the max protocol version the server supports.
+	var maxProtocolVersion uint32 = 0 //70002
+	if err := msg.BtcEncode(&buf, maxProtocolVersion, wire.WitnessEncoding); err != nil {
+		context := fmt.Sprintf("Failed to encode msg of type %T", msg)
+		return 0, errors.New(context)
+	}
+	return len(buf.Bytes()), nil
+}

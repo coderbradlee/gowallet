@@ -1,6 +1,7 @@
 package hdwallet
 
 import (
+	"crypto/ecdsa"
 	"encoding/hex"
 	"errors"
 	"fmt"
