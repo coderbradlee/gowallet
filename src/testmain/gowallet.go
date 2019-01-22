@@ -20,8 +20,8 @@ func main() {
 	// 	println(err.Error())
 	// 	return
 	// }
-	test()
 	test2()
+	test()
 }
 func test() {
 	// entropy, _ := bip39.NewEntropy(256)
