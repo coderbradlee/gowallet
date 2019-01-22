@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	wallet "hdwallet"
-	"math/big"
+	// "math/big"
 )
 
 var (
@@ -51,5 +51,5 @@ func GenerateWallets(number uint32) (err error) {
 	// testAddr := "0x4661dbc978fd123e2250a33c9eedcfeec3746ec5"
 	// signedData, _ := wallet.SendETHRawTxByPrivateKey(privateKey, nonece+3, testAddr, big.NewInt(1000000000), big.NewInt(21000), big.NewInt(18000000000), nil)
 	// fmt.Println("The real signed hex string is ", signedData)
-	// return
+	return err
 }
