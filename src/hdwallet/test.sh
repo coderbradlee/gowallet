@@ -1,4 +1,4 @@
 export GOPATH=$GOPATH:`pwd`/../../
 echo $GOPATH
 #go build -o coin-proxy .
-go test -v -test.run TestImport
+go test -v -test.run TestImport -x
