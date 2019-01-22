@@ -29,8 +29,7 @@ func init() {
 
 // Language-specific wordlists
 var EnglishWordList = strings.Split(strings.TrimSpace(englishWordList), "\n")
-var englishWordList = `
-abandon
+var englishWordList = `abandon
 ability
 able
 about
