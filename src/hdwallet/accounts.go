@@ -23,15 +23,20 @@ func importMnemonic(mnemonic string) ([]byte, error) {
 }
 
 // Mnemonic Generation
-func generateMnemonic(entropy []byte) (string, error) {
+func generateMnemonic(entropy []byte) (ret string, err error) {
 	if len(entropy) < 0 {
 		// |  128  |  4 |   132  |  12  |
 		// |  160  |  5 |   165  |  15  |
 		// |  192  |  6 |   198  |  18  |
 		// |  224  |  7 |   231  |  21  |
 		// |  256  |  8 |   264  |  24  |
-		entropy, _ = bip39.NewEntropy(128)
+		entropy, err = bip39.NewEntropy(128)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
+	fmt.Println("len(entropy):", len(entropy))
 	mnemonic, err := mnemonics.ToPhrase(entropy, mnemonics.English)
 	return mnemonic.String(), err
 }
@@ -102,7 +107,7 @@ func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey stri
 	if err != nil {
 		return "", err
 	}
-	//fmt.Println("The origianl masterky is---->", masterKeyStr)
+	fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
 	masterKeyStr = masterKeyStr + string(mnemonicSeed)
 
@@ -212,7 +217,7 @@ func GenerateBIP44AccountWallet(masterKey string, coinType string, account, chan
 	if err != nil {
 		return "", err
 	}
-	//fmt.Println("The decrypt masterky is---->", decMasterkey)
+	fmt.Println("The decrypt masterky is---->", decMasterkey)
 	master_key, err := hdkeychain.NewKeyFromString(decMasterkey)
 	var drivedCoinType *hdkeychain.ExtendedKey
 	if err != nil {

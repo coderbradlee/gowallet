@@ -37,12 +37,12 @@ func GenerateWallets(number uint32) (err error) {
 	fmt.Println("addr", addr)
 
 	{
-		masterKeyWithmnemonic, err := wallet.CreateWalletByteRandAndPwd("test", "test")
-		if err != nil {
-			fmt.Println(err)
-			return err
-		}
-		fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
+		// masterKeyWithmnemonic, err := wallet.CreateWalletByteRandAndPwd("test", "test")
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return err
+		// }
+		// fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
 	}
 	// var secret, salt string
 	// secret = "ShowSplashViewShowSplashViewShowSplashViewShowSplashView"
