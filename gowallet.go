@@ -4,6 +4,8 @@ import (
 	"fmt"
 	wallet "hdwallet"
 	// "math/big"
+	"github.com/tyler-smith/go-bip32"
+	"github.com/tyler-smith/go-bip39"
 )
 
 var (
@@ -12,14 +14,36 @@ var (
 
 //Just for test
 func main() {
-	number := 1
-	err := GenerateWallets(uint32(number))
+	// number := 1
+	// err := GenerateWallets(uint32(number))
+	// if err != nil {
+	// 	println(err.Error())
+	// 	return
+	// }
+	test()
+}
+func test() {
+	// entropy, _ := bip39.NewEntropy(256)
+	// mnemonic, _ := bip39.NewMnemonic(entropy)
+
+	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
+	mnemonic := "velvet bid mask thank joke educate edit business advance valley book surround"
+	seed := bip39.NewSeed(mnemonic, "Secret Passphrase")
+
+	masterKey, _ := bip32.NewMasterKey(seed)
+	publicKey := masterKey.PublicKey()
+
+	// Display mnemonic and keys
+	fmt.Println("Mnemonic: ", mnemonic)
+	fmt.Println("Master private key: ", masterKey)
+	fmt.Println("Master public key: ", publicKey)
+	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(masterKey.String(), "ETH", 0, 0, 0)
 	if err != nil {
-		println(err.Error())
+		fmt.Println(err)
 		return
 	}
+	fmt.Println("addr", addr)
 }
-
 func GenerateWallets(number uint32) (err error) {
 
 	// velvet bid mask thank joke educate edit business advance valley book surround

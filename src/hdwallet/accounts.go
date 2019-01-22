@@ -280,7 +280,70 @@ func GenerateBIP44AccountWallet(masterKey string, coinType string, account, chan
 	return address, err
 
 }
+func GenerateBIP44AccountWalletWithOriMk(masterKey string, coinType string, account, change, index int) (address string, err error) {
 
+	master_key, err := hdkeychain.NewKeyFromString(masterKey)
+	var drivedCoinType *hdkeychain.ExtendedKey
+	if err != nil {
+		return "", err
+	}
+
+	purpose, err := master_key.Child(hardened + 44)
+	if err != nil {
+		return "", err
+	}
+
+	var flag int
+	//Coin type: maybe changed by different coin type
+	if coinType == "BTC" {
+		drivedCoinType, err = purpose.Child(hardened + 0)
+		flag = 0
+	} else if coinType == "ETH" {
+		drivedCoinType, err = purpose.Child(hardened + 60)
+		flag = 1
+	} else if coinType == "ETC" {
+		drivedCoinType, err = purpose.Child(hardened + 61)
+		flag = 1
+	} else if coinType == "ETF" {
+		drivedCoinType, err = purpose.Child(hardened + 62)
+		flag = 1
+	} else if coinType == "LTC" {
+		drivedCoinType, err = purpose.Child(hardened + 2)
+		flag = 2
+	} else if coinType == "DOGE" {
+		drivedCoinType, err = purpose.Child(hardened + 3)
+		flag = 3
+	} else if coinType == "QTUM" {
+		drivedCoinType, err = purpose.Child(hardened + 4)
+		flag = 4
+	} else if coinType == "NULSM" {
+		drivedCoinType, err = purpose.Child(hardened + 6)
+		flag = 5
+	} else {
+		return "", errors.New("The Coin Type is not support!!!")
+	}
+	if err != nil {
+		return "", err
+	}
+	//account
+	drivedAccount, err := drivedCoinType.Child(hardened + (uint32)(account))
+	if err != nil {
+		return "", err
+	}
+
+	//Change(T/F:1,0)
+	//change = 0
+	drivedChange, err := drivedAccount.Child((uint32)(change))
+	if err != nil {
+		return "", err
+	}
+	//create change Index
+	//index = 0
+	address, _, err = createChangeIndex(drivedChange, index, flag)
+
+	return address, err
+
+}
 func createChangeIndex(change *hdkeychain.ExtendedKey, index int, flag int) (address, privateKey string, err error) {
 	var addressStr string
 	child, err := change.Child((uint32)(index))
