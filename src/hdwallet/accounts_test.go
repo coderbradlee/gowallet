@@ -131,4 +131,12 @@ func TestImport(t *testing.T) {
 		}
 		fmt.Println("addr", addr)
 	}
+	{
+		masterKeyWithmnemonic, err := CreateWalletByteRandAndPwd("test", "test")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
+	}
 }
