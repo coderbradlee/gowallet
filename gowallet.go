@@ -22,20 +22,34 @@ func main() {
 
 func GenerateWallets(number uint32) (err error) {
 
-	var secret, salt string
-	secret = "ShowSplashViewShowSplashViewShowSplashViewShowSplashView"
-	salt = "1234567890"
-	var byteSecret []byte = []byte(secret)
-	var byteSalt []byte = []byte(salt)
-	//wa, err := wallet.NewWalletAccount(wp.SecretBytes(), wp.SaltBytes())
-	addr, privateKey, err := wallet.NewWalletAccount(byteSecret, byteSalt)
+	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd("much vacant moral dumb marble now require radio later there broccoli vapor", "123password")
+
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
-	fmt.Println("The Private key is  " + privateKey)
-	fmt.Println(" The Address is  " + addr)
-	testAddr := "0x4661dbc978fd123e2250a33c9eedcfeec3746ec5"
-	signedData, _ := wallet.SendETHRawTxByPrivateKey(privateKey, nonece+3, testAddr, big.NewInt(1000000000), big.NewInt(21000), big.NewInt(18000000000), nil)
-	fmt.Println("The real signed hex string is ", signedData)
-	return
+	fmt.Println("encryptedmk", encryptedmk)
+	addr, err := wallet.GenerateBIP44AccountWallet(encryptedmk, "ETH", 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("addr", addr)
+
+	// var secret, salt string
+	// secret = "ShowSplashViewShowSplashViewShowSplashViewShowSplashView"
+	// salt = "1234567890"
+	// var byteSecret []byte = []byte(secret)
+	// var byteSalt []byte = []byte(salt)
+	// //wa, err := wallet.NewWalletAccount(wp.SecretBytes(), wp.SaltBytes())
+	// addr, privateKey, err := wallet.NewWalletAccount(byteSecret, byteSalt)
+	// if err != nil {
+	// 	return
+	// }
+	// fmt.Println("The Private key is  " + privateKey)
+	// fmt.Println(" The Address is  " + addr)
+	// testAddr := "0x4661dbc978fd123e2250a33c9eedcfeec3746ec5"
+	// signedData, _ := wallet.SendETHRawTxByPrivateKey(privateKey, nonece+3, testAddr, big.NewInt(1000000000), big.NewInt(21000), big.NewInt(18000000000), nil)
+	// fmt.Println("The real signed hex string is ", signedData)
+	// return
 }
