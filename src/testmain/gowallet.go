@@ -27,7 +27,12 @@ func test() {
 	// mnemonic, _ := bip39.NewMnemonic(entropy)
 
 	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
-	mnemonic := "velvet bid mask thank joke educate edit business advance valley book surround"
+	// mnemonic := "velvet bid mask thank joke educate edit business advance valley book surround"
+
+	// imtoken
+	// crisp bus ordinary fossil cliff inmate night program song patient elevator shallow
+	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
+	mnemonic := "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
 	seed := bip39.NewSeed(mnemonic, "Secret Passphrase")
 
 	masterKey, _ := bip32.NewMasterKey(seed)
