@@ -312,7 +312,7 @@ func createChangeIndex(change *hdkeychain.ExtendedKey, index int, flag int) (add
 			return "", "", err
 		}
 		addressStr = hex.EncodeToString(ethaddress_key)
-		fmt.Println("The ETH/ETC/ETF address is ", addressStr)
+		// fmt.Println("The ETH/ETC/ETF address is ", addressStr)
 	} else if flag == 2 {
 		//LTC
 		private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
