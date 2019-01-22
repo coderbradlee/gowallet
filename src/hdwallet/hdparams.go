@@ -48,7 +48,8 @@ const (
 	hardened = 0x80000000
 	// hardened = 0
 
-	alphabet = "A9BCDEF8GHJKLMNPQRST3UV7WXY2Zabcdef6ghijkm5nopqrstu4vwxyz1"
+	// alphabet = "A9BCDEF8GHJKLMNPQRST3UV7WXY2Zabcdef6ghijkm5nopqrstu4vwxyz1"
+	alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 
 	maxInt = int(^uint(0) >> 1)
 
