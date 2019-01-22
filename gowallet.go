@@ -40,7 +40,7 @@ func GenerateWallets(number uint32) (err error) {
 		masterKeyWithmnemonic, err := wallet.CreateWalletByteRandAndPwd("test", "test")
 		if err != nil {
 			fmt.Println(err)
-			return
+			return err
 		}
 		fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
 	}
