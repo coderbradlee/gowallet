@@ -34,7 +34,7 @@ func test() {
 	publicKey := masterKey.PublicKey()
 
 	// Display mnemonic and keys
-	fmt.Println("Mnemonic: ", mnemonic)
+	// fmt.Println("Mnemonic: ", mnemonic)
 	fmt.Println("Master private key: ", masterKey)
 	fmt.Println("Master public key: ", publicKey)
 	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(masterKey.String(), "ETH", 0, 0, 0)
