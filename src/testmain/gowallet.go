@@ -21,6 +21,8 @@ func main() {
 	// 	return
 	// }
 	test2()
+	fmt.Println("")
+	fmt.Println("")
 	test()
 }
 func test() {
@@ -34,7 +36,7 @@ func test() {
 	// crisp bus ordinary fossil cliff inmate night program song patient elevator shallow
 	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
 	mnemonic := "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
-	seed := bip39.NewSeed(mnemonic, "Secret Passphrase")
+	seed := bip39.NewSeed(mnemonic, "123password")
 
 	masterKey, _ := bip32.NewMasterKey(seed)
 	publicKey := masterKey.PublicKey()
