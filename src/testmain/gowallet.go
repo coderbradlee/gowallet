@@ -24,6 +24,19 @@ func main() {
 	fmt.Println("")
 	fmt.Println("")
 	test2()
+	fmt.Println("")
+	fmt.Println("")
+	test3()
+}
+func test3() {
+	// NewKeyFromMnemonic(mnemonic string, coin, account, chain, address uint32) (*bip32.Key, error)
+	mnemonic := "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
+	key, err := wallet.NewKeyFromMnemonic(mnemonic, 60, 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("key:", key.String())
 }
 func test() {
 	// entropy, _ := bip39.NewEntropy(256)
