@@ -21,6 +21,7 @@ func init() {
 	// $ crc32 english.txt
 	// c1dbd296
 	checksum := crc32.ChecksumIEEE([]byte(englishWordList))
+	fmt.Printf("checksum:%x\n", checksum)
 	if fmt.Sprintf("%x", checksum) != "c1dbd296" {
 		panic("englishWordList checksum invalid")
 	}
