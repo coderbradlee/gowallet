@@ -20,10 +20,10 @@ func main() {
 	// 	println(err.Error())
 	// 	return
 	// }
-	test2()
-	fmt.Println("")
-	fmt.Println("")
 	test()
+	fmt.Println("")
+	fmt.Println("")
+	test2()
 }
 func test() {
 	// entropy, _ := bip39.NewEntropy(256)
