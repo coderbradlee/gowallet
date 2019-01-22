@@ -44,8 +44,8 @@ const (
 	//MIN_DUST_AMOUNT = 10000     //最小有效交易金额,单位satoshi，即0.00000001 BTC
 	//MIN_TRANSACTION_FEE = 10000 //矿工费用的最小金额，单位satoshi
 
-	// hardened = 0x80000000
-	hardened = 0
+	hardened = 0x80000000
+	// hardened = 0
 
 	alphabet = "A9BCDEF8GHJKLMNPQRST3UV7WXY2Zabcdef6ghijkm5nopqrstu4vwxyz1"
 

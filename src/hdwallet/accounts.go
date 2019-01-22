@@ -45,7 +45,7 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	//var seed []byte
 	random := []byte(rand)
 	if len(random) <= 0 {
-		random, _ = bip39.NewEntropy(192)
+		random, _ = bip39.NewEntropy(128)
 	}
 
 	seed, err := generateSeed(random, []byte(password))
