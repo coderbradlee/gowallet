@@ -1,8 +1,9 @@
 package hdwallet
 
 import (
-	"crypto/sha1"
+	// "crypto/sha1"
 	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
@@ -181,14 +182,14 @@ func generateSeed(secret, salt []byte) (seed []byte, err error) {
 		salt2[i] = byte(v | 0x02)
 	}
 
-	// s1, err := scrypt.Key(secret1, salt1, 16384, 8, 1, 32)
-	s1, err := scrypt.Key(secret1, salt1, 8192, 8, 1, 32)
+	s1, err := scrypt.Key(secret1, salt1, 16384, 8, 1, 32)
+	// s1, err := scrypt.Key(secret1, salt1, 8192, 8, 1, 32)
 	if err != nil {
 		return
 	}
 	// s2 := pbkdf2.Key(secret2, salt2, 4096, 32, sha1.New)
 	// s2 := pbkdf2.Key(secret2, salt2, 10240, 32, sha1.New)
-	s2 := pbkdf2.Key(secret2, salt2, 2048, 64, sha1.New)
+	s2 := pbkdf2.Key(secret2, salt2, 2048, 64, sha512.New)
 
 	pk1, _ := btcec.PrivKeyFromBytes(btcec.S256(), s1)
 	pk2, _ := btcec.PrivKeyFromBytes(btcec.S256(), s2)
