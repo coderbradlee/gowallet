@@ -36,51 +36,16 @@ func main() {
 	fmt.Println("\n")
 	fmt.Println("using ori gopack:")
 	test2()
-	fmt.Println("\n")
-	fmt.Println("using changed gopack:")
-	test3()
+	// fmt.Println("\n")
+	// fmt.Println("using changed gopack:")
+	// test3()
 
 	// fmt.Println("\n")
 	// fmt.Println("using ori gopack generate:")
 	// test4()
 }
-func test4() {
-	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("mnemonic", mnemonic)
-	addr, err := wallet.GenerateBIP44AccountWallet(encryptedMk, "ETH", 0, 0, 0)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("addr", addr)
-}
-func test3() {
-	key, err := wallet.NewKeyFromMnemonic(mnemonic, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("key:", key.String())
-	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(key.String(), "ETH", 0, 0, 0)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("addr", addr)
-	// publickey, _ := k.ECPubKey()
-	// var p *ecdsa.PublicKey
-	// p = (*ecdsa.PublicKey)(publickey)
-	// pubBytes := crypto.FromECDSAPub(p)
-	// pkPrv := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
-	// pkHash := pkPrv[:]
-	// addressStr = hex.EncodeToString(pkHash)
-}
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "123password")
+	seed, err := bip39.NewSeed(mnemonic, "123password")
 	if err != nil {
 		panic(err)
 	}
@@ -90,6 +55,7 @@ func test() {
 		panic(err)
 	}
 	// xprv9s21ZrQH143K4KVGqwL2o3yT3k56aRoHWXGUpUM6kBLkWpQXzeRGEFpU4mDsHm8eRTNWwHqPR8LTEVsxx5yuwJQahMpNjHr7z1dJ7xKiMGd without password
+	// xprv9s21ZrQH143K31mXzT5oAmainfzG8RwSYKECqWHHHqszzyiSL7XfAheLnQ9Q7pEZxtzWvAsGRtDZmwS8D9BJcBonUvXm39GqYH5w5GkEQUo
 	fmt.Println("bip3239 masterkey:", masterKey.String())
 	fKey, err := wallet.NewKeyFromMasterKey(masterKey, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
 	if err != nil {
@@ -98,21 +64,7 @@ func test() {
 	// xprvA2jys8yxv5buGtpeArYskYqruFA8BUEiUhxVxCWZfJcYGmXYVd4AUnZcSJ7ky8MwfDVbdnJfsD81WVBxNVTmSJJZ52JWT1bWvguQdss5teQ with password
 	// xprvA4HXYSegfFKX12du28AyWfrr6dfhhvb2NYcK5oYH6EhPx2VMcBfTMLDMArzczUCQtCd4WfV4siLiYHrdGD2Kfh7NeoSc9kTkY3y3Fcs4hth
 	fmt.Println("bip3239 eth private key:", fKey.String())
-	// seed := bip39.NewSeed(mnemonic, "123password")
 
-	// masterKey, _ := bip32.NewMasterKey(seed)
-	// publicKey := masterKey.PublicKey()
-
-	// Display mnemonic and keys
-	// fmt.Println("Mnemonic: ", mnemonic)
-	// fmt.Println("Master private key: ", masterKey)
-	// fmt.Println("Master public key: ", publicKey)
-	// addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(masterKey.String(), "ETH", 0, 0, 0)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	// fmt.Println("addr", addr)
 }
 func test2() (err error) {
 
@@ -171,3 +123,40 @@ func test2() (err error) {
 	// fmt.Println("The real signed hex string is ", signedData)
 	return err
 }
+
+// func test4() {
+// 	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	fmt.Println("mnemonic", mnemonic)
+// 	addr, err := wallet.GenerateBIP44AccountWallet(encryptedMk, "ETH", 0, 0, 0)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	fmt.Println("addr", addr)
+// }
+
+// func test3() {
+// 	key, err := wallet.NewKeyFromMnemonic(mnemonic, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	fmt.Println("key:", key.String())
+// 	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(key.String(), "ETH", 0, 0, 0)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	fmt.Println("addr", addr)
+// 	// publickey, _ := k.ECPubKey()
+// 	// var p *ecdsa.PublicKey
+// 	// p = (*ecdsa.PublicKey)(publickey)
+// 	// pubBytes := crypto.FromECDSAPub(p)
+// 	// pkPrv := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
+// 	// pkHash := pkPrv[:]
+// 	// addressStr = hex.EncodeToString(pkHash)
+// }
