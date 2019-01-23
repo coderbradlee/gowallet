@@ -49,7 +49,7 @@ func test() {
 	// if err != nil {
 	// 	panic(err)
 	// }
-	seed, err := bip39.bip39.MnemonicToByteArray(mnemonic)
+	seed, err := bip39.MnemonicToByteArray(mnemonic)
 	if err != nil {
 		panic(err)
 	}
