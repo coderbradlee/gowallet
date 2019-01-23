@@ -50,8 +50,7 @@ func test4() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)=
-
+	fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
 }
 func test3() {
 	key, err := wallet.NewKeyFromMnemonic(mnemonic, 60, 0, 0, 0)
