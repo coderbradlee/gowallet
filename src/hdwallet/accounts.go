@@ -20,8 +20,9 @@ import (
 
 // Mnemonic Import
 func importMnemonic(mnemonic string) ([]byte, error) {
-	return mnemonics.FromString(mnemonic, mnemonics.English)
+	// return mnemonics.FromString(mnemonic, mnemonics.English)
 	// return bip39.MnemonicToByteArray(mnemonic)
+	return bip39.NewSeedWithErrorChecking(mnemonic, "")
 }
 
 // Mnemonic Generation
