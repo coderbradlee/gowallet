@@ -31,7 +31,8 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 		// |  192  |  6 |   198  |  18  |
 		// |  224  |  7 |   231  |  21  |
 		// |  256  |  8 |   264  |  24  |
-		entropy, err = bip39.NewEntropy(128)
+		// entropy, err = bip39.NewEntropy(128)
+		entropy, err = bip39.NewEntropy(256)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -52,7 +53,7 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	//var seed []byte
 	random := []byte(rand)
 	if len(random) <= 0 {
-		random, _ = bip39.NewEntropy(128)
+		random, _ = bip39.NewEntropy(256)
 	}
 
 	seed, err := generateSeed(random, []byte(password))
@@ -94,7 +95,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	//var seed []byte
 	random := []byte(rand)
 	if len(random) <= 0 {
-		random, _ = bip39.NewEntropy(128)
+		random, _ = bip39.NewEntropy(256)
 	}
 
 	seed, err := generateSeed(random, []byte(password))
