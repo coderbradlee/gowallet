@@ -90,6 +90,49 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	temp, err := json.Marshal(waAccount)
 	return string(temp), err
 }
+func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk string, err error) {
+	//var seed []byte
+	random := []byte(rand)
+	if len(random) <= 0 {
+		random, _ = bip39.NewEntropy(128)
+	}
+
+	seed, err := generateSeed(random, []byte(password))
+	seedLen = len(seed)
+	//fmt.Println("The Real seed len is :", seedLen)
+	//fmt.Println("The Real seed to byte is: #v%", seed)
+	if err != nil {
+		return
+	}
+	//Create Mnemonic
+	mnemonic, err = generateMnemonic(seed)
+	if err != nil {
+		return
+	}
+	fmt.Println("The mnemonic word list is:", mnemonic)
+
+	masterKeyStr, err := generateMasterkey(seed)
+	if err != nil {
+		return "", err
+	}
+	//fmt.Println("The origianl masterky is---->", masterKeyStr)
+	//Add the MasterKeyWith the seed
+	masterKeyStr = masterKeyStr + string(seed)
+
+	//Encrpt the masterKey with password
+	mk, err = encryptMastkeyWithPwd(masterKeyStr, password)
+	if err != nil {
+		return
+	}
+	return
+	//fmt.Println("According by the seed ,The encrypt masterkey is", encryptMasterkey)
+	//Convert to JSON
+	// var waAccount WalletAccount
+	// waAccount.MasterKey = encryptMasterkey
+	// waAccount.Mnemonic = mnemonic
+	// temp, err := json.Marshal(waAccount)
+	// return string(temp), err
+}
 
 //CreateWallet or ImportWallet by  mnemonic
 func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey string, err error) {
@@ -206,6 +249,7 @@ func generateSeed(secret, salt []byte) (seed []byte, err error) {
 	seed = seed_hash[:]
 	seed_hash = sha256.Sum256(seed_hash[:])
 	// seed = seed_hash[:24]
+	//改为16则会有12个助记词
 	seed = seed_hash[:16]
 	return
 }

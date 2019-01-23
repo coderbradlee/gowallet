@@ -45,12 +45,18 @@ func main() {
 	test4()
 }
 func test4() {
-	masterKeyWithmnemonic, err := wallet.CreateWalletByteRandAndPwd("test", "test")
+	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
+	fmt.Println("mnemonic", mnemonic)
+	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(encryptedMk, "ETH", 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("addr", addr)
 }
 func test3() {
 	key, err := wallet.NewKeyFromMnemonic(mnemonic, 60, 0, 0, 0)
