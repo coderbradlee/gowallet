@@ -37,7 +37,12 @@ func test3() {
 		return
 	}
 	fmt.Println("key:", key.String())
-
+	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(key.String(), "ETH", 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("addr", addr)
 	// publickey, _ := k.ECPubKey()
 	// var p *ecdsa.PublicKey
 	// p = (*ecdsa.PublicKey)(publickey)
