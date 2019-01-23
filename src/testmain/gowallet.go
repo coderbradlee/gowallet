@@ -30,13 +30,29 @@ func main() {
 	// 	return
 	// }
 	fmt.Println("imtoken address:", ethaddress)
+	fmt.Println("\n")
+	fmt.Println("bip3239:")
 	test()
-	fmt.Println("")
-	fmt.Println("")
+	fmt.Println("\n")
+	fmt.Println("using ori gopack:")
 	test2()
-	fmt.Println("")
-	fmt.Println("")
+	fmt.Println("\n")
+	fmt.Println("using changed gopack:")
 	test3()
+
+	fmt.Println("\n")
+	fmt.Println("using changed gopack:")
+	test4()
+}
+func test4() {
+	masterKeyWithmnemonic, err := wallet.CreateWalletByteRandAndPwd("test", "test")
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
+	var waAccount WalletAccount
+
 }
 func test3() {
 	key, err := wallet.NewKeyFromMnemonic(mnemonic, 60, 0, 0, 0)
