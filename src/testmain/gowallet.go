@@ -45,11 +45,14 @@ func main() {
 	// test4()
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
+	// seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	seed, err := bip39.bip39.MnemonicToByteArray(mnemonic)
 	if err != nil {
 		panic(err)
 	}
-
 	masterKey, err := bip32.NewMasterKey(seed)
 	if err != nil {
 		panic(err)
