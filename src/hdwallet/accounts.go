@@ -45,10 +45,10 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 	// return mnemonic.String(), err
 }
 func generateMasterkey(masterSeed []byte) (string, error) {
-	// masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
-	// return masterKey.String(), err
-	masterKey, err := bip32.NewMasterKey(masterSeed)
+	masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
 	return masterKey.String(), err
+	// masterKey, err := bip32.NewMasterKey(masterSeed)
+	// return masterKey.String(), err
 }
 
 //func CreateWalletByteRandAndPwd(random []byte, password string) (masterKey, mnemonic string, err error))
