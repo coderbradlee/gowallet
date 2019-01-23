@@ -10,7 +10,7 @@ import (
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	// "github.com/debian-go/golang-github-nebulouslabs-entropy-mnemonics"
+	"github.com/debian-go/golang-github-nebulouslabs-entropy-mnemonics"
 	// "github.com/tyler-smith/go-bip32"
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/crypto/pbkdf2"
@@ -20,8 +20,8 @@ import (
 
 // Mnemonic Import
 func importMnemonic(mnemonic string) ([]byte, error) {
-	// return mnemonics.FromString(mnemonic, mnemonics.English)
-	return bip39.MnemonicToByteArray(mnemonic)
+	return mnemonics.FromString(mnemonic, mnemonics.English)
+	// return bip39.MnemonicToByteArray(mnemonic)
 }
 
 // Mnemonic Generation
