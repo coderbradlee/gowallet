@@ -2,18 +2,18 @@ package hdwallet
 
 import (
 	// "crypto/sha1"
-	"crypto/sha256"
-	"crypto/sha512"
+	// "crypto/sha256"
+	// "crypto/sha512"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/btcsuite/btcd/btcec"
+	// "github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/tyler-smith/go-bip39"
-	"golang.org/x/crypto/pbkdf2"
-	"golang.org/x/crypto/scrypt"
+	// "golang.org/x/crypto/pbkdf2"
+	// "golang.org/x/crypto/scrypt"
 	"hdwallet/nuls"
 )
 
