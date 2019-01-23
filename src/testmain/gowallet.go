@@ -9,7 +9,16 @@ import (
 )
 
 var (
-	nonece uint64 = 0
+	// imtoken
+	// crisp bus ordinary fossil cliff inmate night program song patient elevator shallow
+	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
+	mnemonic   = "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
+	ethaddress = "0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28"
+
+	//metamask
+	// velvet bid mask thank joke educate edit business advance valley book surround
+	//0d4d9b248110257c575ef2e8d93dd53471d9178984482817dcbd6edb607f8cc5
+	//0x6356908ACe09268130DEE2b7de643314BBeb3683
 )
 
 //Just for test
@@ -20,6 +29,7 @@ func main() {
 	// 	println(err.Error())
 	// 	return
 	// }
+	fmt.Println("imtoken address:", ethaddress)
 	test()
 	fmt.Println("")
 	fmt.Println("")
@@ -29,8 +39,6 @@ func main() {
 	test3()
 }
 func test3() {
-	// NewKeyFromMnemonic(mnemonic string, coin, account, chain, address uint32) (*bip32.Key, error)
-	mnemonic := "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
 	key, err := wallet.NewKeyFromMnemonic(mnemonic, 60, 0, 0, 0)
 	if err != nil {
 		fmt.Println(err)
@@ -52,16 +60,6 @@ func test3() {
 	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
-	// entropy, _ := bip39.NewEntropy(256)
-	// mnemonic, _ := bip39.NewMnemonic(entropy)
-
-	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
-	// mnemonic := "velvet bid mask thank joke educate edit business advance valley book surround"
-
-	// imtoken
-	// crisp bus ordinary fossil cliff inmate night program song patient elevator shallow
-	//eth 地址0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28
-	mnemonic := "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
 	seed := bip39.NewSeed(mnemonic, "123password")
 
 	masterKey, _ := bip32.NewMasterKey(seed)
@@ -80,10 +78,7 @@ func test() {
 }
 func test2() (err error) {
 
-	// velvet bid mask thank joke educate edit business advance valley book surround
-	//0d4d9b248110257c575ef2e8d93dd53471d9178984482817dcbd6edb607f8cc5
-	//0x6356908ACe09268130DEE2b7de643314BBeb3683
-	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd("crisp bus ordinary fossil cliff inmate night program song patient elevator shallow", "123password")
+	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd(mnemonic, "123password")
 
 	if err != nil {
 		fmt.Println(err)
