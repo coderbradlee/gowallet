@@ -51,7 +51,7 @@ func test4() {
 		return
 	}
 	fmt.Println("mnemonic", mnemonic)
-	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(encryptedMk, "ETH", 0, 0, 0)
+	addr, err := wallet.GenerateBIP44AccountWallet(encryptedMk, "ETH", 0, 0, 0)
 	if err != nil {
 		fmt.Println(err)
 		return
