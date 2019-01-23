@@ -130,20 +130,20 @@ func test2() (err error) {
 	return err
 }
 
-// func test4() {
-// 	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
-// 	if err != nil {
-// 		fmt.Println(err)
-// 		return
-// 	}
-// 	fmt.Println("mnemonic", mnemonic)
-// 	addr, err := wallet.GenerateBIP44AccountWallet(encryptedMk, "ETH", 0, 0, 0)
-// 	if err != nil {
-// 		fmt.Println(err)
-// 		return
-// 	}
-// 	fmt.Println("addr", addr)
-// }
+func test4() {
+	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("mnemonic", mnemonic)
+	addr, err := wallet.GenerateBIP44AccountWallet(encryptedMk, "ETH", 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("addr", addr)
+}
 
 // func test3() {
 // 	key, err := wallet.NewKeyFromMnemonic(mnemonic, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
