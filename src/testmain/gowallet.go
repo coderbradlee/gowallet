@@ -80,7 +80,7 @@ func test3() {
 	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking("yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow", "")
+	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "123password")
 	if err != nil {
 		panic(err)
 	}
@@ -90,11 +90,11 @@ func test() {
 		panic(err)
 	}
 	fmt.Println("bip3239 masterkey:", masterKey.String())
-	fKey, err := wallet.NewKeyFromMasterKey(masterKey, wallet.TypeFactomFactoids, bip32.FirstHardenedChild, 0, 0)
+	fKey, err := wallet.NewKeyFromMasterKey(masterKey, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(fKey.String())
+	fmt.Println("bip3239 eth private key:", fKey.String())
 	// seed := bip39.NewSeed(mnemonic, "123password")
 
 	// masterKey, _ := bip32.NewMasterKey(seed)
