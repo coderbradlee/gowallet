@@ -11,7 +11,7 @@ import (
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	// "github.com/debian-go/golang-github-nebulouslabs-entropy-mnemonics"
-	"github.com/tyler-smith/go-bip32"
+	// "github.com/tyler-smith/go-bip32"
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/crypto/scrypt"
