@@ -4,8 +4,8 @@ import (
 	"fmt"
 	wallet "hdwallet"
 	// "math/big"
-	"github.com/tyler-smith/go-bip32"
-	"github.com/tyler-smith/go-bip39"
+	// "github.com/tyler-smith/go-bip32"
+	// "github.com/tyler-smith/go-bip39"
 )
 
 var (
