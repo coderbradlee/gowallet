@@ -45,7 +45,7 @@ func main() {
 	// test4()
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "Bitcoin seed")
+	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
 	if err != nil {
 		panic(err)
 	}
@@ -68,7 +68,7 @@ func test() {
 }
 func test2() (err error) {
 
-	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd(mnemonic, "1")
+	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd(mnemonic, "12")
 
 	if err != nil {
 		fmt.Println(err)
