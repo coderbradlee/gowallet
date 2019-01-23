@@ -11,6 +11,7 @@ import (
 	// "github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
+	"github.com/tyler-smith/go-bip32"
 	"github.com/tyler-smith/go-bip39"
 	// "golang.org/x/crypto/pbkdf2"
 	// "golang.org/x/crypto/scrypt"
@@ -35,7 +36,9 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 	return bip39.NewMnemonic(entropy)
 }
 func generateMasterkey(masterSeed []byte) (string, error) {
-	masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
+	// masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
+
+	masterKey, err := bip32.NewMasterKey(masterSeed)
 	return masterKey.String(), err
 }
 
