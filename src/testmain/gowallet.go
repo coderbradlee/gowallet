@@ -42,9 +42,9 @@ func main() {
 	// fmt.Println("using changed gopack:")
 	// test3()
 
-	// fmt.Println("\n")
-	// fmt.Println("using ori gopack generate:")
-	// test4()
+	fmt.Println("\n")
+	fmt.Println("using ori gopack generate:")
+	test4()
 }
 
 // func test() {
