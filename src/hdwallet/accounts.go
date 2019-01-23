@@ -25,7 +25,7 @@ func importMnemonic(mnemonic string) ([]byte, error) {
 // Mnemonic Generation
 func generateMnemonic(entropy []byte) (ret string, err error) {
 	if len(entropy) < 0 {
-		entropy, err = bip39.NewEntropy(128)
+		entropy, err = bip39.NewEntropy(256)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -56,7 +56,7 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	// }
 	//Create Mnemonic
 	// seed := random
-	seed, err := bip39.NewEntropy(128)
+	seed, err := bip39.NewEntropy(256)
 	if err != nil {
 		return
 	}
@@ -100,7 +100,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	//fmt.Println("The Real seed to byte is: #v%", seed)
 
 	// seed := random
-	seed, err := bip39.NewEntropy(128)
+	seed, err := bip39.NewEntropy(256)
 	if err != nil {
 		return
 	}
@@ -156,64 +156,6 @@ func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey stri
 	}
 	//fmt.Println("According by the mnemonic ,The encrypt masterkey is", encryptMasterkey)
 	return encryptMasterkey, err
-}
-
-// Generate wallet seed from secret and salt
-func generateSeed(secret, salt []byte) (seed []byte, err error) {
-	// WarpWallet encryption:
-	// 1. s1 ← scrypt(key=passphrase||0x1, salt=salt||0x1, N=218, r=8, p=1, dkLen=32)
-	// 2. s2 ← PBKDF2(key=passphrase||0x2, salt=salt||0x2, c=216, dkLen=32)
-	// 3. private_key ← s1 ⊕ s2
-	// 4. Generate public_key from private_key using standard Bitcoin EC crypto
-	// 5. Output (private_key, public_key)
-
-	if len(secret) == 0 {
-		err = errors.New("empty secret")
-		return
-	}
-	if len(salt) == 0 {
-		err = errors.New("empty salt")
-		return
-	}
-
-	secret1 := make([]byte, len(secret))
-	secret2 := make([]byte, len(secret))
-	for i, v := range secret {
-		secret1[i] = byte(v | 0x01)
-		secret2[i] = byte(v | 0x02)
-	}
-
-	salt1 := make([]byte, len(salt))
-	salt2 := make([]byte, len(salt))
-	for i, v := range salt {
-		salt1[i] = byte(v | 0x01)
-		salt2[i] = byte(v | 0x02)
-	}
-
-	s1, err := scrypt.Key(secret1, salt1, 16384, 8, 1, 32)
-	// s1, err := scrypt.Key(secret1, salt1, 8192, 8, 1, 32)
-	if err != nil {
-		return
-	}
-	// s2 := pbkdf2.Key(secret2, salt2, 4096, 32, sha1.New)
-	// s2 := pbkdf2.Key(secret2, salt2, 10240, 32, sha1.New)
-	s2 := pbkdf2.Key(secret2, salt2, 2048, 64, sha512.New)
-
-	pk1, _ := btcec.PrivKeyFromBytes(btcec.S256(), s1)
-	pk2, _ := btcec.PrivKeyFromBytes(btcec.S256(), s2)
-	x, y := btcec.S256().Add(pk1.X, pk1.Y, pk2.X, pk2.Y)
-
-	seed = []byte{0x04}
-	seed = append(seed, x.Bytes()...)
-	seed = append(seed, y.Bytes()...)
-
-	seed_hash := sha256.Sum256(seed)
-	seed = seed_hash[:]
-	seed_hash = sha256.Sum256(seed_hash[:])
-	// seed = seed_hash[:24]
-	//改为16则会有12个助记词
-	seed = seed_hash[:16]
-	return
 }
 
 func GenerateBIP44AccountWallet(masterKey string, coinType string, account, change, index int) (address string, err error) {
