@@ -153,7 +153,7 @@ func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey stri
 	if err != nil {
 		return "", err
 	}
-	fmt.Println("The origianl masterky is---->", masterKeyStr)
+	// fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
 	masterKeyStr = masterKeyStr + string(mnemonicSeed)
 
