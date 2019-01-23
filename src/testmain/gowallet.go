@@ -45,7 +45,7 @@ func main() {
 	// test4()
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "123password")
+	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "Bitcoin seed")
 	if err != nil {
 		panic(err)
 	}
