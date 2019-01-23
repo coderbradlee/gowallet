@@ -187,10 +187,12 @@ func generateSeed(secret, salt []byte) (seed []byte, err error) {
 	}
 
 	s1, err := scrypt.Key(secret1, salt1, 16384, 8, 1, 32)
+	// s1, err := scrypt.Key(secret1, salt1, 8192, 8, 1, 32)
 	if err != nil {
 		return
 	}
-	s2 := pbkdf2.Key(secret2, salt2, 4096, 32, sha1.New)
+	// s2 := pbkdf2.Key(secret2, salt2, 4096, 32, sha1.New)
+	s2 := pbkdf2.Key(secret2, salt2, 8192, 32, sha1.New)
 
 	pk1, _ := btcec.PrivKeyFromBytes(btcec.S256(), s1)
 	pk2, _ := btcec.PrivKeyFromBytes(btcec.S256(), s2)
