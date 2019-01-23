@@ -38,13 +38,13 @@ func test3() {
 	}
 	fmt.Println("key:", key.String())
 
-	publickey, _ := k.ECPubKey()
-	var p *ecdsa.PublicKey
-	p = (*ecdsa.PublicKey)(publickey)
-	pubBytes := crypto.FromECDSAPub(p)
-	pkPrv := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
-	pkHash := pkPrv[:]
-	addressStr = hex.EncodeToString(pkHash)
+	// publickey, _ := k.ECPubKey()
+	// var p *ecdsa.PublicKey
+	// p = (*ecdsa.PublicKey)(publickey)
+	// pubBytes := crypto.FromECDSAPub(p)
+	// pkPrv := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
+	// pkHash := pkPrv[:]
+	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
 	// entropy, _ := bip39.NewEntropy(256)
