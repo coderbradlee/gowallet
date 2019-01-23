@@ -80,21 +80,36 @@ func test3() {
 	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
-	seed := bip39.NewSeed(mnemonic, "123password")
+	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
+	if err != nil {
+		panic(err)
+	}
 
-	masterKey, _ := bip32.NewMasterKey(seed)
+	masterKey, err := bip32.NewMasterKey(seed)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("bip3239 masterkey:", masterKey.String())
+	fKey, err := wallet.NewKeyFromMasterKey(masterKey, wallet.TypeFactomFactoids, bip32.FirstHardenedChild, 0, 0)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(fKey.String())
+	// seed := bip39.NewSeed(mnemonic, "123password")
+
+	// masterKey, _ := bip32.NewMasterKey(seed)
 	// publicKey := masterKey.PublicKey()
 
 	// Display mnemonic and keys
 	// fmt.Println("Mnemonic: ", mnemonic)
 	// fmt.Println("Master private key: ", masterKey)
 	// fmt.Println("Master public key: ", publicKey)
-	addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(masterKey.String(), "ETH", 0, 0, 0)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("addr", addr)
+	// addr, err := wallet.GenerateBIP44AccountWalletWithOriMk(masterKey.String(), "ETH", 0, 0, 0)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println("addr", addr)
 }
 func test2() (err error) {
 
