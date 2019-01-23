@@ -113,7 +113,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 
 	masterKeyStr, err := generateMasterkey(seed)
 	if err != nil {
-		return "", err
+		return
 	}
 	//fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
