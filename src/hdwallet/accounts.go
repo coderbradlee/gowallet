@@ -26,7 +26,7 @@ func importMnemonic(mnemonic string) ([]byte, error) {
 // Mnemonic Generation
 func generateMnemonic(entropy []byte) (ret string, err error) {
 	if len(entropy) < 0 {
-		entropy, err = bip39.NewEntropy(256)
+		entropy, err = bip39.NewEntropy(128)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -47,7 +47,7 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	//var seed []byte
 	// random := []byte(rand)
 	// if len(random) <= 0 {
-	// 	random, _ = bip39.NewEntropy(256)
+	// 	random, _ = bip39.NewEntropy(128)
 	// }
 
 	// seed, err := generateSeed(random, []byte(password))
@@ -59,7 +59,7 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	// }
 	//Create Mnemonic
 	// seed := random
-	seed, err := bip39.NewEntropy(256)
+	seed, err := bip39.NewEntropy(128)
 	if err != nil {
 		return
 	}
@@ -94,7 +94,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	//var seed []byte
 	// random := []byte(rand)
 	// if len(random) <= 0 {
-	// 	random, _ = bip39.NewEntropy(256)
+	// 	random, _ = bip39.NewEntropy(128)
 	// }
 
 	// seed, err := generateSeed(random, []byte(password))
@@ -103,7 +103,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	//fmt.Println("The Real seed to byte is: #v%", seed)
 
 	// seed := random
-	seed, err := bip39.NewEntropy(256)
+	seed, err := bip39.NewEntropy(128)
 	if err != nil {
 		return
 	}
