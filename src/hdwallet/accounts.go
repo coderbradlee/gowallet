@@ -10,8 +10,7 @@ import (
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	// "github.com/debian-go/golang-github-nebulouslabs-entropy-mnemonics"
-	// "github.com/tyler-smith/go-bip32"
+	"github.com/tyler-smith/go-bip32"
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/crypto/scrypt"
@@ -20,20 +19,12 @@ import (
 
 // Mnemonic Import
 func importMnemonic(mnemonic string) ([]byte, error) {
-	// return mnemonics.FromString(mnemonic, mnemonics.English)
-	// return bip39.MnemonicToByteArray(mnemonic)
 	return bip39.NewSeedWithErrorChecking(mnemonic, "")
 }
 
 // Mnemonic Generation
 func generateMnemonic(entropy []byte) (ret string, err error) {
 	if len(entropy) < 0 {
-		// |  128  |  4 |   132  |  12  |
-		// |  160  |  5 |   165  |  15  |
-		// |  192  |  6 |   198  |  18  |
-		// |  224  |  7 |   231  |  21  |
-		// |  256  |  8 |   264  |  24  |
-		// entropy, err = bip39.NewEntropy(128)
 		entropy, err = bip39.NewEntropy(256)
 		if err != nil {
 			fmt.Println(err)
@@ -46,10 +37,10 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 	// return mnemonic.String(), err
 }
 func generateMasterkey(masterSeed []byte) (string, error) {
-	masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
-	return masterKey.String(), err
-	// masterKey, err := bip32.NewMasterKey(masterSeed)
+	// masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
 	// return masterKey.String(), err
+	masterKey, err := bip32.NewMasterKey(masterSeed)
+	return masterKey.String(), err
 }
 
 //func CreateWalletByteRandAndPwd(random []byte, password string) (masterKey, mnemonic string, err error))
