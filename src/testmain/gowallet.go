@@ -80,7 +80,7 @@ func test3() {
 	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
+	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "123password")
 	if err != nil {
 		panic(err)
 	}
@@ -89,12 +89,14 @@ func test() {
 	if err != nil {
 		panic(err)
 	}
+	// xprv9s21ZrQH143K4KVGqwL2o3yT3k56aRoHWXGUpUM6kBLkWpQXzeRGEFpU4mDsHm8eRTNWwHqPR8LTEVsxx5yuwJQahMpNjHr7z1dJ7xKiMGd without password
 	fmt.Println("bip3239 masterkey:", masterKey.String())
 	fKey, err := wallet.NewKeyFromMasterKey(masterKey, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
 	if err != nil {
 		panic(err)
 	}
-	// xprvA2vH8KdcBBKhMxhENJpJdbwiU5cUXSkaHR7QVTpBmusgYMR8NsZ4BFTNyRLUiaPHg7UYP8u92FJkSEAmmgu3PDQCoY7gBsdvpB7msWGCpXG
+	// xprvA2jys8yxv5buGtpeArYskYqruFA8BUEiUhxVxCWZfJcYGmXYVd4AUnZcSJ7ky8MwfDVbdnJfsD81WVBxNVTmSJJZ52JWT1bWvguQdss5teQ with password
+	// xprvA4HXYSegfFKX12du28AyWfrr6dfhhvb2NYcK5oYH6EhPx2VMcBfTMLDMArzczUCQtCd4WfV4siLiYHrdGD2Kfh7NeoSc9kTkY3y3Fcs4hth
 	fmt.Println("bip3239 eth private key:", fKey.String())
 	// seed := bip39.NewSeed(mnemonic, "123password")
 
