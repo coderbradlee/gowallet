@@ -31,15 +31,11 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 			return
 		}
 	}
-	fmt.Println("len(entropy):", len(entropy))
-	// mnemonic, err := mnemonics.ToPhrase(entropy, mnemonics.English)
+	// fmt.Println("len(entropy):", len(entropy))
 	return bip39.NewMnemonic(entropy)
-	// return mnemonic.String(), err
 }
 func generateMasterkey(masterSeed []byte) (string, error) {
-	// masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
-	// return masterKey.String(), err
-	masterKey, err := bip32.NewMasterKey(masterSeed)
+	masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
 	return masterKey.String(), err
 }
 
@@ -121,13 +117,6 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 		return
 	}
 	return
-	//fmt.Println("According by the seed ,The encrypt masterkey is", encryptMasterkey)
-	//Convert to JSON
-	// var waAccount WalletAccount
-	// waAccount.MasterKey = encryptMasterkey
-	// waAccount.Mnemonic = mnemonic
-	// temp, err := json.Marshal(waAccount)
-	// return string(temp), err
 }
 
 //CreateWallet or ImportWallet by  mnemonic
@@ -160,38 +149,6 @@ func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey stri
 	//fmt.Println("According by the mnemonic ,The encrypt masterkey is", encryptMasterkey)
 	return encryptMasterkey, err
 }
-
-// func newWalletAccount(secret, salt []byte) (addressWithPrivateKey string, err error) {
-// 	//wa = new(WalletAccount)
-// 	var seed []byte
-// 	seed, err = generateSeed(secret, salt)
-// 	fmt.Println("The Real seed to byte is: #v%", seed)
-// 	if err != nil {
-// 		return
-// 	}
-// 	//Create Mnemonic
-// 	mnemonic, err := generateMnemonic(seed)
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	fmt.Println("The mnemonic word list is ", mnemonic)
-
-// 	//Import Mnemonic
-// 	mnemonicSeed, err := importMnemonic(mnemonic)
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	fmt.Println("The mnemonic word list to byte is: #v%", mnemonicSeed)
-// 	masterKeyStr, err := generateMasterkey(seed)
-// 	//master_key, err := hdkeychain.NewMaster(seed, &AddressNetParams)
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	//err = wa.generateAccount(master_key.String(), 0)
-// 	//err = wa.GenerateBIP44AccountPath(master_key.String(), "BTC", 0, 0, 0)
-// 	return GenerateBIP44AccountWallet(masterKeyStr, "ETC", 0, 0, 0)
-
-// }
 
 // Generate wallet seed from secret and salt
 func generateSeed(secret, salt []byte) (seed []byte, err error) {
@@ -251,9 +208,6 @@ func generateSeed(secret, salt []byte) (seed []byte, err error) {
 	return
 }
 
-// Generate BIP44 account extended private key and extended public key by the path.
-//(wa *WalletAccount) generateAccount(masterKey string, k uint32)
-//func GenerateBIP44AccountWallet(masterKey string, coinType string, account, change, index int) (address, privateKey string, err error)
 func GenerateBIP44AccountWallet(masterKey string, coinType string, account, change, index int) (address string, err error) {
 	if (len(masterKey) == 0) || (len(coinType) == 0) {
 		return "", errors.New("some params is empty!!!")
@@ -265,70 +219,6 @@ func GenerateBIP44AccountWallet(masterKey string, coinType string, account, chan
 	}
 	fmt.Println("The decrypt masterky is---->", decMasterkey)
 	master_key, err := hdkeychain.NewKeyFromString(decMasterkey)
-	var drivedCoinType *hdkeychain.ExtendedKey
-	if err != nil {
-		return "", err
-	}
-
-	purpose, err := master_key.Child(hardened + 44)
-	if err != nil {
-		return "", err
-	}
-
-	var flag int
-	//Coin type: maybe changed by different coin type
-	if coinType == "BTC" {
-		drivedCoinType, err = purpose.Child(hardened + 0)
-		flag = 0
-	} else if coinType == "ETH" {
-		drivedCoinType, err = purpose.Child(hardened + 60)
-		flag = 1
-	} else if coinType == "ETC" {
-		drivedCoinType, err = purpose.Child(hardened + 61)
-		flag = 1
-	} else if coinType == "ETF" {
-		drivedCoinType, err = purpose.Child(hardened + 62)
-		flag = 1
-	} else if coinType == "LTC" {
-		drivedCoinType, err = purpose.Child(hardened + 2)
-		flag = 2
-	} else if coinType == "DOGE" {
-		drivedCoinType, err = purpose.Child(hardened + 3)
-		flag = 3
-	} else if coinType == "QTUM" {
-		drivedCoinType, err = purpose.Child(hardened + 4)
-		flag = 4
-	} else if coinType == "NULSM" {
-		drivedCoinType, err = purpose.Child(hardened + 6)
-		flag = 5
-	} else {
-		return "", errors.New("The Coin Type is not support!!!")
-	}
-	if err != nil {
-		return "", err
-	}
-	//account
-	drivedAccount, err := drivedCoinType.Child(hardened + (uint32)(account))
-	if err != nil {
-		return "", err
-	}
-
-	//Change(T/F:1,0)
-	//change = 0
-	drivedChange, err := drivedAccount.Child((uint32)(change))
-	if err != nil {
-		return "", err
-	}
-	//create change Index
-	//index = 0
-	address, _, err = createChangeIndex(drivedChange, index, flag)
-
-	return address, err
-
-}
-func GenerateBIP44AccountWalletWithOriMk(masterKey string, coinType string, account, change, index int) (address string, err error) {
-
-	master_key, err := hdkeychain.NewKeyFromString(masterKey)
 	var drivedCoinType *hdkeychain.ExtendedKey
 	if err != nil {
 		return "", err
