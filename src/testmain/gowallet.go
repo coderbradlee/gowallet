@@ -68,7 +68,7 @@ func test() {
 }
 func test2() (err error) {
 
-	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd(mnemonic, "")
+	encryptedmk, err := wallet.CreateWalletByMnnicAndPwd(mnemonic, "1")
 
 	if err != nil {
 		fmt.Println(err)
