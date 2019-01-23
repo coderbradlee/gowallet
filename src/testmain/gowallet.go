@@ -80,7 +80,7 @@ func test3() {
 	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "123password")
+	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
 	if err != nil {
 		panic(err)
 	}
@@ -94,6 +94,7 @@ func test() {
 	if err != nil {
 		panic(err)
 	}
+	// xprvA2vH8KdcBBKhMxhENJpJdbwiU5cUXSkaHR7QVTpBmusgYMR8NsZ4BFTNyRLUiaPHg7UYP8u92FJkSEAmmgu3PDQCoY7gBsdvpB7msWGCpXG
 	fmt.Println("bip3239 eth private key:", fKey.String())
 	// seed := bip39.NewSeed(mnemonic, "123password")
 
