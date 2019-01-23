@@ -48,10 +48,9 @@ func test4() {
 	masterKeyWithmnemonic, err := wallet.CreateWalletByteRandAndPwd("test", "test")
 	if err != nil {
 		fmt.Println(err)
-		return err
+		return
 	}
-	fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)
-	var waAccount WalletAccount
+	fmt.Println("masterKeyWithmnemonic", masterKeyWithmnemonic)=
 
 }
 func test3() {
