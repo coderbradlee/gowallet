@@ -205,7 +205,8 @@ func generateSeed(secret, salt []byte) (seed []byte, err error) {
 	seed_hash := sha256.Sum256(seed)
 	seed = seed_hash[:]
 	seed_hash = sha256.Sum256(seed_hash[:])
-	seed = seed_hash[:24]
+	// seed = seed_hash[:24]
+	seed = seed_hash[:16]
 	return
 }
 
