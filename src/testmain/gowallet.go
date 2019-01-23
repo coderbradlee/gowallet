@@ -80,7 +80,7 @@ func test3() {
 	// addressStr = hex.EncodeToString(pkHash)
 }
 func test() {
-	seed, err := bip39.NewSeedWithErrorChecking(mnemonic, "")
+	seed, err := bip39.NewSeedWithErrorChecking("yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow", "")
 	if err != nil {
 		panic(err)
 	}
