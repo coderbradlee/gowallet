@@ -59,7 +59,7 @@ func test4() {
 	fmt.Println("addr", addr)
 }
 func test3() {
-	key, err := wallet.NewKeyFromMnemonic(mnemonic, TypeEther, bip32.FirstHardenedChild, 0, 0)
+	key, err := wallet.NewKeyFromMnemonic(mnemonic, wallet.TypeEther, bip32.FirstHardenedChild, 0, 0)
 	if err != nil {
 		fmt.Println(err)
 		return
