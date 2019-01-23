@@ -19,7 +19,8 @@ var (
 	// velvet bid mask thank joke educate edit business advance valley book surround
 	//0d4d9b248110257c575ef2e8d93dd53471d9178984482817dcbd6edb607f8cc5
 	//0x6356908ACe09268130DEE2b7de643314BBeb3683
-	mnemonic   = "velvet bid mask thank joke educate edit business advance valley book surround"
+	// mnemonic   = "velvet bid mask thank joke educate edit business advance valley book surround"
+	mnemonic   = "cargo blouse daughter intact film suit dune immense shrug health account mixed"
 	ethaddress = "0x6356908ACe09268130DEE2b7de643314BBeb3683"
 )
 
