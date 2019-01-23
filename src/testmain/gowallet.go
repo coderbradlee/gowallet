@@ -83,7 +83,7 @@ func test() {
 	seed := bip39.NewSeed(mnemonic, "123password")
 
 	masterKey, _ := bip32.NewMasterKey(seed)
-	publicKey := masterKey.PublicKey()
+	// publicKey := masterKey.PublicKey()
 
 	// Display mnemonic and keys
 	// fmt.Println("Mnemonic: ", mnemonic)
