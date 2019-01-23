@@ -187,8 +187,8 @@ func generateSeed(secret, salt []byte) (seed []byte, err error) {
 		return
 	}
 	// s2 := pbkdf2.Key(secret2, salt2, 4096, 32, sha1.New)
-	s2 := pbkdf2.Key(secret2, salt2, 10240, 32, sha1.New)
-	// s2 := pbkdf2.Key(secret2, salt2, 2048, 64, sha1.New)
+	// s2 := pbkdf2.Key(secret2, salt2, 10240, 32, sha1.New)
+	s2 := pbkdf2.Key(secret2, salt2, 2048, 64, sha1.New)
 
 	pk1, _ := btcec.PrivKeyFromBytes(btcec.S256(), s1)
 	pk2, _ := btcec.PrivKeyFromBytes(btcec.S256(), s2)
