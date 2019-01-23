@@ -40,9 +40,9 @@ func main() {
 	fmt.Println("using changed gopack:")
 	test3()
 
-	fmt.Println("\n")
-	fmt.Println("using ori gopack generate:")
-	test4()
+	// fmt.Println("\n")
+	// fmt.Println("using ori gopack generate:")
+	// test4()
 }
 func test4() {
 	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
@@ -59,7 +59,7 @@ func test4() {
 	fmt.Println("addr", addr)
 }
 func test3() {
-	key, err := wallet.NewKeyFromMnemonic(mnemonic, 60, 0, 0, 0)
+	key, err := wallet.NewKeyFromMnemonic(mnemonic, TypeEther, bip32.FirstHardenedChild, 0, 0)
 	if err != nil {
 		fmt.Println(err)
 		return
