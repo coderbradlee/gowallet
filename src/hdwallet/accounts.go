@@ -154,9 +154,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		}
 		address = addressret.String()
 		fmt.Println("The BTC address is ", address)
-	case 60:
-	case 61:
-	case 63:
+	case 60, 61, 63:
 		//Private key
 		fmt.Println("xx")
 		address, err = hd.ethAddress(child)
