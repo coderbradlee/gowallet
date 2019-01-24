@@ -139,7 +139,9 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		return
 	}
 	private_key, err := child.ECPrivKey()
-
+	privateKeyBytes := privateKey.Serialize()
+	private_str := hex.EncodeToString(privateKeyBytes)
+	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
 	if err != nil {
 		return
 	}
@@ -206,10 +208,8 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	privateKeyStr := child.String()
 	return address, privateKeyStr, nil
 }
-func (hd *Hdwallet) ethAddress(privateKey *btcec.PrivateKey) (address string, err error) {
-	privateKeyBytes := privateKey.Serialize()
-	private_str := hex.EncodeToString(privateKeyBytes)
-	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
+func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
+
 	ethaddress_key, err := addressforEth(child) //child.AddressforEth()
 	if err != nil {
 		return
