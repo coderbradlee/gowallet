@@ -209,12 +209,12 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	return address, privateKeyStr, nil
 }
 func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
-
+	fmt.Println("xx")
 	ethaddress_key, err := addressforEth(child) //child.AddressforEth()
 	if err != nil {
 		return
 	}
-	fmt.Println("xx")
+
 	address = hex.EncodeToString(ethaddress_key)
 	return
 }
