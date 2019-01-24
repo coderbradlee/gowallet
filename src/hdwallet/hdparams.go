@@ -23,7 +23,7 @@ var (
 
 	//var AddressNetParams = chaincfg.TestNet3Params
 
-	seedLen = 24
+	// seedLen = 24
 	// seedLen = 64
 )
 
