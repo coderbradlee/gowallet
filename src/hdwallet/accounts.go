@@ -100,7 +100,7 @@ func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (addre
 	if err != nil {
 		return
 	}
-	if (len(hd.masterKey) == 0)) {
+	if len(hd.masterKey) == 0 {
 		err = errors.New("some params is empty!!!")
 		return
 	}
