@@ -20,8 +20,8 @@ var (
 	//0d4d9b248110257c575ef2e8d93dd53471d9178984482817dcbd6edb607f8cc5
 	//0x6356908ACe09268130DEE2b7de643314BBeb3683
 	// mnemonic   = "velvet bid mask thank joke educate edit business advance valley book surround"
-	imtokenmnemonic = "position vault much flock powder whale liquid citizen duty spin topple learn"
-	ethaddress      = "0x6356908ACe09268130DEE2b7de643314BBeb3683"
+	imtokenmnemonic = "crisp bus ordinary fossil cliff inmate night program song patient elevator shallow"
+	ethaddress      = "0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28"
 )
 
 //Just for test
