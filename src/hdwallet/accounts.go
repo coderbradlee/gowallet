@@ -168,9 +168,9 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		if err != nil {
 			return "", "", err
 		}
-		addressStr = address_str.String()
+		address = address_str.String()
 		fmt.Println("The LTC private wif key is ", private_str)
-		fmt.Println("The LTC address is ", addressStr)
+		fmt.Println("The LTC address is ", address)
 	case 3:
 		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
 		private_str := private_wif.String()
@@ -178,9 +178,9 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		if err != nil {
 			return "", "", err
 		}
-		addressStr = address_str.String()
+		address = address_str.String()
 		fmt.Println("The DOGE private wif key is ", private_str)
-		fmt.Println("The DOGE address is ", addressStr)
+		fmt.Println("The DOGE address is ", address)
 	case 4:
 		//private_wif, err := btcutil.NewWIF(private_key, &qtumAddressNetParams, true)
 		//private_str := private_wif.String()
@@ -188,15 +188,15 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		if err != nil {
 			return "", "", err
 		}
-		addressStr = address_str.String()
+		address = address_str.String()
 		//fmt.Println("The QTUM private wif key is ", private_str)
-		fmt.Println("The QTUM address is ", addressStr)
+		fmt.Println("The QTUM address is ", address)
 	case 6:
-		addressStr = nuls.Address(child)
-		if len(addressStr) <= 0 {
+		address = nuls.Address(child)
+		if len(address) <= 0 {
 			return "", "", err
 		}
-		fmt.Println("The Nuls address is ", addressStr)
+		fmt.Println("The Nuls address is ", address)
 	default:
 		err = errors.New("not support")
 	}
@@ -204,7 +204,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		return
 	}
 	privateKeyStr := child.String()
-	return addressStr, privateKeyStr, nil
+	return address, privateKeyStr, nil
 }
 func (hd *Hdwallet) ethAddress(privateKey *btcec.PrivateKey) (address string, err error) {
 	privateKeyBytes := private_key.Serialize()
@@ -214,5 +214,5 @@ func (hd *Hdwallet) ethAddress(privateKey *btcec.PrivateKey) (address string, er
 	if err != nil {
 		return "", "", err
 	}
-	addressStr = hex.EncodeToString(ethaddress_key)
+	address = hex.EncodeToString(ethaddress_key)
 }
