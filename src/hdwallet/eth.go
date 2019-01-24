@@ -18,7 +18,7 @@ import (
 
 func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
 	private_key, err := child.ECPrivKey()
-	fmt.Printf("%x", private_key.PrivateKey.D.Bytes())
+	fmt.Printf("%x", private_key.D.Bytes())
 	if err != nil {
 		return
 	}
