@@ -18,8 +18,17 @@ import (
 	"hdwallet/nuls"
 )
 
-// Mnemonic Generation
-func generateMnemonic(entropy []byte) (ret string, err error) {
+type Hdwallet struct {
+	mnemonic  string
+	masterKey string
+	seed      []byte
+}
+
+func NewHdwallet() *Hdwallet {
+	return &Hdwallet{}
+}
+
+func (hd *Hdwallet) generateMnemonic(entropy []byte) (err error) {
 	if len(entropy) < 0 {
 		entropy, err = bip39.NewEntropy(128)
 		if err != nil {
@@ -27,48 +36,38 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 			return
 		}
 	}
-	// fmt.Println("len(entropy):", len(entropy))
-	return bip39.NewMnemonic(entropy)
+	hd.mnemonic, err = bip39.NewMnemonic(entropy)
+	return
 }
 
-func importMnemonic(mnemonic string) ([]byte, error) {
-	return bip39.NewSeedWithErrorChecking(mnemonic, "")
+func (hd *Hdwallet) mnemonicToSeed() (err error) {
+	hd.seed, err = bip39.NewSeedWithErrorChecking(hd.mnemonic, "")
+	return
 }
 
-func generateMasterkey(masterSeed []byte) (string, error) {
-	masterKey, err := bip32.NewMasterKey(masterSeed)
-	return masterKey.String(), err
+func (hd *Hdwallet) generateMasterkey() (err error) {
+	hd.masterKey, err = bip32.NewMasterKey(hd.seed)
+	return
 }
 
-func CreateMasterKeyWithmnemonic(rand string, password string) (masterKeyWithmnemonic string, err error) {
-	mnemonic, encryptMasterkey, err := CreateNewMnemonicAndMasterKey(rand, password)
+func (hd *Hdwallet) GenerateMnemonicAndMasterKey() (err error) {
+	entropy, err := bip39.NewEntropy(128)
 	if err != nil {
 		return
 	}
-	var waAccount WalletAccount
-	waAccount.MasterKey = encryptMasterkey
-	waAccount.Mnemonic = mnemonic
-	temp, err := json.Marshal(waAccount)
-	return string(temp), err
-}
-func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk string, err error) {
-	entropy, _ := bip39.NewEntropy(128)
-	mnemonic, _ = bip39.NewMnemonic(entropy)
-	mnemonicSeed, err := importMnemonic(mnemonic)
+	hd.mnemonic, err = bip39.NewMnemonic(entropy)
 	if err != nil {
 		return
 	}
-	if len(mnemonicSeed) < 2 {
+	err = hd.mnemonicToSeed()
+	if err != nil {
+		return
+	}
+	if len(hd.seed) < 2 {
 		err = errors.New("The mnemonicSeed byte len is two low!!")
 		return
 	}
-	seedLen = len(mnemonicSeed)
-	masterKeyStr, err := generateMasterkey(mnemonicSeed)
-	if err != nil {
-		return
-	}
-	masterKeyStr = masterKeyStr + string(mnemonicSeed)
-	mk, err = encryptMastkeyWithPwd(masterKeyStr, password)
+	err := hd.generateMasterkey()
 	if err != nil {
 		return
 	}
@@ -76,142 +75,87 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 }
 
 //CreateWallet or ImportWallet by  mnemonic
-func ImportMnemonic(mnemonic string, password string) (encryptMasterkey string, err error) {
-	if (len(mnemonic) == 0) || (len(password) == 0) {
+func (hd *Hdwallet) ImportMnemonic(mnemonic string) (err error) {
+	if (len(mnemonic) == 0)) {
 		err = errors.New("some params is empty!!!")
 		return
 	}
-	//Import Mnemonic
-	mnemonicSeed, err := importMnemonic(mnemonic)
-	if err != nil {
-		return
-	}
-	if len(mnemonicSeed) < 2 {
+	hd.mnemonic = mnemonic
+	err = hd.mnemonicToSeed()
+
+	if len(hd.seed) < 2 {
 		err = errors.New("The mnemonicSeed byte len is two low!!")
 		return
 	}
-	seedLen = len(mnemonicSeed)
-	masterKeyStr, err := generateMasterkey(mnemonicSeed)
-	if err != nil {
-		return
-	}
-	// fmt.Println("The origianl masterky is---->", masterKeyStr)
-	//Add the MasterKeyWith the seed
-	masterKeyStr = masterKeyStr + string(mnemonicSeed)
-
-	//Encrpt the masterKey with password
-	encryptMasterkey, err = encryptMastkeyWithPwd(masterKeyStr, password)
+	err = hd.generateMasterkey()
 	if err != nil {
 		return
 	}
 	return
 }
 
-func GenerateAddress(masterKey string, coinType string, account, change, index int) (address string, err error) {
-	if (len(masterKey) == 0) || (len(coinType) == 0) {
-		return "", errors.New("some params is empty!!!")
-	}
-	//Decrypt the masterkey
-	decMasterkey, err := decryptMasterkey(masterKey)
+func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (address string, err error) {
+	err = hd.GenerateMnemonicAndMasterKey()
 	if err != nil {
-		return "", err
+		return
 	}
-	fmt.Println("The decrypt masterky is---->", decMasterkey)
-	master_key, err := hdkeychain.NewKeyFromString(decMasterkey)
-	var drivedCoinType *hdkeychain.ExtendedKey
+	if (len(hd.masterKey) == 0) || (len(coinType) == 0) {
+		err = errors.New("some params is empty!!!")
+		return
+	}
+	master_key, err := hdkeychain.NewKeyFromString(hd.masterKey)
+	// var drivedCoinType *hdkeychain.ExtendedKey
 	if err != nil {
-		return "", err
+		return
 	}
-
 	purpose, err := master_key.Child(hardened + 44)
 	if err != nil {
-		return "", err
+		return
 	}
-
-	var flag int
-	//Coin type: maybe changed by different coin type
-	if coinType == "BTC" {
-		drivedCoinType, err = purpose.Child(hardened + 0)
-		flag = 0
-	} else if coinType == "ETH" {
-		drivedCoinType, err = purpose.Child(hardened + 60)
-		flag = 1
-	} else if coinType == "ETC" {
-		drivedCoinType, err = purpose.Child(hardened + 61)
-		flag = 1
-	} else if coinType == "ETF" {
-		drivedCoinType, err = purpose.Child(hardened + 62)
-		flag = 1
-	} else if coinType == "LTC" {
-		drivedCoinType, err = purpose.Child(hardened + 2)
-		flag = 2
-	} else if coinType == "DOGE" {
-		drivedCoinType, err = purpose.Child(hardened + 3)
-		flag = 3
-	} else if coinType == "QTUM" {
-		drivedCoinType, err = purpose.Child(hardened + 4)
-		flag = 4
-	} else if coinType == "NULSM" {
-		drivedCoinType, err = purpose.Child(hardened + 6)
-		flag = 5
-	} else {
-		return "", errors.New("The Coin Type is not support!!!")
-	}
+	drivedCoinType, err := purpose.Child(hardened + coinType)
 	if err != nil {
-		return "", err
+		return
 	}
 	//account
 	drivedAccount, err := drivedCoinType.Child(hardened + (uint32)(account))
 	if err != nil {
-		return "", err
+		return
 	}
-
 	//Change(T/F:1,0)
 	//change = 0
 	drivedChange, err := drivedAccount.Child((uint32)(change))
 	if err != nil {
-		return "", err
+		return
 	}
 	//create change Index
 	//index = 0
-	address, _, err = createChangeIndex(drivedChange, index, flag)
-
-	return address, err
-
+	address, _, err = hd.createChangeIndex(drivedChange, index, coinType)
+	return
 }
-func createChangeIndex(change *hdkeychain.ExtendedKey, index int, flag int) (address, privateKey string, err error) {
-	var addressStr string
+func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int, coinType int) (address, privateKey string, err error) {
 	child, err := change.Child((uint32)(index))
 	if err != nil {
-		return "", "", err
+		return
 	}
-	private_key, err := child.ECPrivKey()
+	private_key, err = child.ECPrivKey()
 
 	if err != nil {
-		return "", "", err
+		return
 	}
-
-	if flag == 0 { //BTC
-		//private_wif, err := btcutil.NewWIF(private_key, &AddressNetParams, true)
-		//private_str := private_wif.String()
-		address_str, err := child.Address(&btcAddressNetParams)
+	switch coinType {
+	case 0:
+		addressret, err := child.Address(&btcAddressNetParams)
 		if err != nil {
-			return "", "", err
+			return
 		}
-		addressStr = address_str.String()
+		address = addressret.String()
 		fmt.Println("The BTC address is ", addressStr)
-	} else if flag == 1 { //ETC ETH ETF
+	case 60:
+	case 61:
+	case 63:
 		//Private key
-		privateKeyBytes := private_key.Serialize()
-		private_str := hex.EncodeToString(privateKeyBytes)
-		fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
-		ethaddress_key, err := addressforEth(child) //child.AddressforEth()
-		if err != nil {
-			return "", "", err
-		}
-		addressStr = hex.EncodeToString(ethaddress_key)
-		// fmt.Println("The ETH/ETC/ETF address is ", addressStr)
-	} else if flag == 2 {
+		address, err = hd.ethAddress(private_key)
+	case 2:
 		//LTC
 		private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
 		if err != nil {
@@ -225,7 +169,7 @@ func createChangeIndex(change *hdkeychain.ExtendedKey, index int, flag int) (add
 		addressStr = address_str.String()
 		fmt.Println("The LTC private wif key is ", private_str)
 		fmt.Println("The LTC address is ", addressStr)
-	} else if flag == 3 {
+	case 3:
 		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
 		private_str := private_wif.String()
 		address_str, err := child.Address(&dogeAddressNetParams)
@@ -235,7 +179,7 @@ func createChangeIndex(change *hdkeychain.ExtendedKey, index int, flag int) (add
 		addressStr = address_str.String()
 		fmt.Println("The DOGE private wif key is ", private_str)
 		fmt.Println("The DOGE address is ", addressStr)
-	} else if flag == 4 {
+	case 4:
 		//private_wif, err := btcutil.NewWIF(private_key, &qtumAddressNetParams, true)
 		//private_str := private_wif.String()
 		address_str, err := child.Address(&qtumAddressNetParams)
@@ -245,17 +189,28 @@ func createChangeIndex(change *hdkeychain.ExtendedKey, index int, flag int) (add
 		addressStr = address_str.String()
 		//fmt.Println("The QTUM private wif key is ", private_str)
 		fmt.Println("The QTUM address is ", addressStr)
-	} else if flag == 5 {
+	case 6:
 		addressStr = nuls.Address(child)
 		if len(addressStr) <= 0 {
 			return "", "", err
 		}
 		fmt.Println("The Nuls address is ", addressStr)
-		//fmt.Printf("The Nuls priKey：%x ", private_key.Serialize())
-	} else {
-		//not support
-		return "", "", errors.New("The CoinType is not supported!!")
+	default:
+		err = errors.New("not support")
+	}
+	if err != nil {
+		return
 	}
 	privateKeyStr := child.String()
 	return addressStr, privateKeyStr, nil
+}
+func (hd *Hdwallet) ethAddress(privateKey *hdkeychain.ExtendedKey) (address string, err error) {
+	privateKeyBytes := private_key.Serialize()
+	private_str := hex.EncodeToString(privateKeyBytes)
+	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
+	ethaddress_key, err := addressforEth(child) //child.AddressforEth()
+	if err != nil {
+		return "", "", err
+	}
+	addressStr = hex.EncodeToString(ethaddress_key)
 }

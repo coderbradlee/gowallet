@@ -32,31 +32,27 @@ func main() {
 }
 
 func test() {
-	// CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk string, err error)
-	mnemonic, encryptedMk, err := wallet.CreateNewMnemonicAndMasterKey("test", "test")
-	if err != nil {
-		fmt.Println("CreateNewMnemonicAndMasterKey:", err)
-		return
+	{
+		hd := wallet.NewHdwallet()
+		address, err := hd.GenerateAddress(60, 0, 0, 0)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(address)
 	}
-	fmt.Println("new mnemonic:", mnemonic)
-	// GenerateAddress(masterKey string, coinType string, account, change, index int) (address string, err error)
-	address, err := wallet.GenerateAddress(encryptedMk, "ETH", 0, 0, 0)
-	if err != nil {
-		fmt.Println("GenerateAddress:", err)
-		return
+	{
+		hd := wallet.NewHdwallet()
+		err := hd.ImportMnemonic(imtokenmnemonic)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		address, err := hd.GenerateAddress(60, 0, 0, 0)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(address)
 	}
-	fmt.Println("address:", address)
-	fmt.Println("\n")
-	// ImportMnemonic(mnemonic string, password string) (encryptMasterkey string, err error)
-	encryptMasterkey, err := wallet.ImportMnemonic(imtokenmnemonic, "xxxx")
-	if err != nil {
-		fmt.Println("GenerateAddress:", err)
-		return
-	}
-	address, err = wallet.GenerateAddress(encryptMasterkey, "ETH", 0, 0, 0)
-	if err != nil {
-		fmt.Println("GenerateAddress:", err)
-		return
-	}
-	fmt.Println("address:", address)
 }
