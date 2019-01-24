@@ -67,7 +67,7 @@ func (hd *Hdwallet) GenerateMnemonicAndMasterKey() (err error) {
 		err = errors.New("The mnemonicSeed byte len is two low!!")
 		return
 	}
-	err := hd.generateMasterkey()
+	err = hd.generateMasterkey()
 	if err != nil {
 		return
 	}
@@ -76,7 +76,7 @@ func (hd *Hdwallet) GenerateMnemonicAndMasterKey() (err error) {
 
 //CreateWallet or ImportWallet by  mnemonic
 func (hd *Hdwallet) ImportMnemonic(mnemonic string) (err error) {
-	if (len(mnemonic) == 0)) {
+	if len(mnemonic) == 0 {
 		err = errors.New("some params is empty!!!")
 		return
 	}
@@ -144,8 +144,9 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	}
 	switch coinType {
 	case 0:
-		addressret, err := child.Address(&btcAddressNetParams)
-		if err != nil {
+		addressret, errIn := child.Address(&btcAddressNetParams)
+		if errIn != nil {
+			err = errIn
 			return
 		}
 		address = addressret.String()
