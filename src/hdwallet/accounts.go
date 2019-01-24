@@ -18,11 +18,6 @@ import (
 	"hdwallet/nuls"
 )
 
-// Mnemonic Import
-func importMnemonic(mnemonic string) ([]byte, error) {
-	return bip39.NewSeedWithErrorChecking(mnemonic, "")
-}
-
 // Mnemonic Generation
 func generateMnemonic(entropy []byte) (ret string, err error) {
 	if len(entropy) < 0 {
@@ -35,69 +30,21 @@ func generateMnemonic(entropy []byte) (ret string, err error) {
 	// fmt.Println("len(entropy):", len(entropy))
 	return bip39.NewMnemonic(entropy)
 }
-func generateMasterkey(masterSeed []byte) (string, error) {
-	// masterKey, err := hdkeychain.NewMaster(masterSeed, &btcAddressNetParams)
 
+func importMnemonic(mnemonic string) ([]byte, error) {
+	return bip39.NewSeedWithErrorChecking(mnemonic, "")
+}
+
+func generateMasterkey(masterSeed []byte) (string, error) {
 	masterKey, err := bip32.NewMasterKey(masterSeed)
 	return masterKey.String(), err
 }
 
-//func CreateWalletByteRandAndPwd(random []byte, password string) (masterKey, mnemonic string, err error))
-func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnemonic string, err error) {
-	//var seed []byte
-	// random := []byte(rand)
-	// if len(random) <= 0 {
-	// 	random, _ = bip39.NewEntropy(128)
-	// }
-
-	// seed, err := generateSeed(random, []byte(password))
-	// seedLen = len(seed)
-	//fmt.Println("The Real seed len is :", seedLen)
-	//fmt.Println("The Real seed to byte is: #v%", seed)
-	// if err != nil {
-	// 	return "", err
-	// }
-	//Create Mnemonic
-	// seed := random
-	// seed, err := bip39.NewEntropy(128)
-	// if err != nil {
-	// 	return
-	// }
-	// seed, err := bip39.NewSeed
-	// mnemonic, err := generateMnemonic(seed)
-	// if err != nil {
-	// 	return "", err
-	// }
-	// fmt.Println("The mnemonic word list is:", mnemonic)
-
-	// masterKeyStr, err := generateMasterkey(seed)
-	// if err != nil {
-	// 	return "", err
-	// }
-	//fmt.Println("The origianl masterky is---->", masterKeyStr)
-	//Add the MasterKeyWith the seed
-	entropy, _ := bip39.NewEntropy(128)
-	mnemonic, _ := bip39.NewMnemonic(entropy)
-
-	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
-	seed := bip39.NewSeed(mnemonic, password)
-
-	masterKey, _ := bip32.NewMasterKey(seed)
-	// publicKey := masterKey.PublicKey()
-	masterKeyStr := masterKey.String()
-	// Display mnemonic and keys
-	fmt.Println("Mnemonic: ", mnemonic)
-	fmt.Println("Master private key: ", masterKeyStr)
-	// fmt.Println("Master public key: ", publicKey)
-	masterKeyStr = masterKeyStr + string(seed)
-
-	//Encrpt the masterKey with password
-	encryptMasterkey, err := encryptMastkeyWithPwd(masterKeyStr, password)
+func CreateMasterKeyWithmnemonic(rand string, password string) (masterKeyWithmnemonic string, err error) {
+	mnemonic, encryptMasterkey, err := CreateNewMnemonicAndMasterKey(rand, password)
 	if err != nil {
-		return "", err
+		return
 	}
-	//fmt.Println("According by the seed ,The encrypt masterkey is", encryptMasterkey)
-	//Convert to JSON
 	var waAccount WalletAccount
 	waAccount.MasterKey = encryptMasterkey
 	waAccount.Mnemonic = mnemonic
@@ -105,50 +52,22 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	return string(temp), err
 }
 func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk string, err error) {
-	//var seed []byte
-	// random := []byte(rand)
-	// if len(random) <= 0 {
-	// 	random, _ = bip39.NewEntropy(128)
-	// }
-
-	// seed, err := generateSeed(random, []byte(password))
-	// seedLen = len(seed)
-	//fmt.Println("The Real seed len is :", seedLen)
-	//fmt.Println("The Real seed to byte is: #v%", seed)
-
-	// seed := random
-	// seed, err := bip39.NewEntropy(128)
-	// if err != nil {
-	// 	return
-	// }
-	// //Create Mnemonic
-	// mnemonic, err = generateMnemonic(seed)
-	// if err != nil {
-	// 	return
-	// }
-	// fmt.Println("The mnemonic word list is:", mnemonic)
-
-	// masterKeyStr, err := generateMasterkey(seed)
-	// if err != nil {
-	// 	return
-	// }
-	//fmt.Println("The origianl masterky is---->", masterKeyStr)
-	//Add the MasterKeyWith the seed
 	entropy, _ := bip39.NewEntropy(128)
 	mnemonic, _ = bip39.NewMnemonic(entropy)
-
-	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
-	seed := bip39.NewSeed(mnemonic, password)
-
-	masterKey, _ := bip32.NewMasterKey(seed)
-	// publicKey := masterKey.PublicKey()
-	masterKeyStr := masterKey.String()
-	// Display mnemonic and keys
-	fmt.Println("Mnemonic: ", mnemonic)
-	fmt.Println("Master private key: ", masterKeyStr)
+	mnemonicSeed, err := importMnemonic(mnemonic)
+	if err != nil {
+		return
+	}
+	if len(mnemonicSeed) < 2 {
+		err = errors.New("The mnemonicSeed byte len is two low!!")
+		return
+	}
+	seedLen = len(mnemonicSeed)
+	masterKeyStr, err := generateMasterkey(mnemonicSeed)
+	if err != nil {
+		return
+	}
 	masterKeyStr = masterKeyStr + string(seed)
-
-	//Encrpt the masterKey with password
 	mk, err = encryptMastkeyWithPwd(masterKeyStr, password)
 	if err != nil {
 		return
@@ -157,37 +76,38 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 }
 
 //CreateWallet or ImportWallet by  mnemonic
-func CreateWalletByMnnicAndPwd(mnemonic string, password string) (masterKey string, err error) {
+func ImportMnemonic(mnemonic string, password string) (encryptMasterkey string, err error) {
 	if (len(mnemonic) == 0) || (len(password) == 0) {
-		return "", errors.New("some params is empty!!!")
+		err = errors.New("some params is empty!!!")
+		return
 	}
 	//Import Mnemonic
 	mnemonicSeed, err := importMnemonic(mnemonic)
 	if err != nil {
-		return "", err
+		return
 	}
 	if len(mnemonicSeed) < 2 {
-		return "", errors.New("The mnemonicSeed byte len is two low!!")
+		err = errors.New("The mnemonicSeed byte len is two low!!")
+		return
 	}
 	seedLen = len(mnemonicSeed)
 	masterKeyStr, err := generateMasterkey(mnemonicSeed)
 	if err != nil {
-		return "", err
+		return
 	}
 	// fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
 	masterKeyStr = masterKeyStr + string(mnemonicSeed)
 
 	//Encrpt the masterKey with password
-	encryptMasterkey, err := encryptMastkeyWithPwd(masterKeyStr, password)
+	encryptMasterkey, err = encryptMastkeyWithPwd(masterKeyStr, password)
 	if err != nil {
-		return "", err
+		return
 	}
-	//fmt.Println("According by the mnemonic ,The encrypt masterkey is", encryptMasterkey)
-	return encryptMasterkey, err
+	return
 }
 
-func GenerateBIP44AccountWallet(masterKey string, coinType string, account, change, index int) (address string, err error) {
+func GenerateAddress(masterKey string, coinType string, account, change, index int) (address string, err error) {
 	if (len(masterKey) == 0) || (len(coinType) == 0) {
 		return "", errors.New("some params is empty!!!")
 	}
