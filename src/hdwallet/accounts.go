@@ -46,7 +46,7 @@ func (hd *Hdwallet) mnemonicToSeed() (err error) {
 }
 
 func (hd *Hdwallet) generateMasterkey() (err error) {
-	mk, err = bip32.NewMasterKey(hd.seed)
+	mk, err := bip32.NewMasterKey(hd.seed)
 	hd.masterKey = mk.String()
 	return
 }
