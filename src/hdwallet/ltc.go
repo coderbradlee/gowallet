@@ -4,17 +4,33 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/btcjson"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/txscript"
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-
 	"io/ioutil"
 	"net/http"
 	"strconv"
 )
+
+func (hd *Hdwallet) ltcAddress(private_key *btcec.PrivateKey, child *hdkeychain.ExtendedKey) (address string, err error) {
+	private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
+	if err != nil {
+		return "", "", err
+	}
+	private_str := private_wif.String()
+	address_str, err := child.Address(&ltcAddressNetParams)
+	if err != nil {
+		return "", "", err
+	}
+	address = address_str.String()
+	fmt.Println("The LTC private wif key is ", private_str)
+	fmt.Println("The LTC address is ", address)
+	return
+}
 
 //Send LTC RawTransaction
 func SendLTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error) {

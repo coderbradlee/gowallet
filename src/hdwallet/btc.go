@@ -16,7 +16,14 @@ import (
 	"strconv"
 )
 
-//======Below is for BTC Info============================================================//
+func (hd *Hdwallet) btcAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
+	addressret, err := child.Address(&btcAddressNetParams)
+	if err != nil {
+		return
+	}
+	address = addressret.String()
+	return
+}
 
 //Send BTC RawTransaction
 func SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error) {

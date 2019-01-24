@@ -151,29 +151,12 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	}
 	switch coinType {
 	case 0:
-		addressret, errIn := child.Address(&btcAddressNetParams)
-		if errIn != nil {
-			err = errIn
-			return
-		}
-		address = addressret.String()
-		fmt.Println("The BTC address is ", address)
+		address, err = hd.btcAddress(child)
 	case 60, 61, 63:
 		address, err = hd.ethAddress(child)
 	case 2:
 		//LTC
-		private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
-		if err != nil {
-			return "", "", err
-		}
-		private_str := private_wif.String()
-		address_str, err := child.Address(&ltcAddressNetParams)
-		if err != nil {
-			return "", "", err
-		}
-		address = address_str.String()
-		fmt.Println("The LTC private wif key is ", private_str)
-		fmt.Println("The LTC address is ", address)
+		address, err = hd.ltcAddress(private_key, child)
 	case 3:
 		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
 		private_str := private_wif.String()
@@ -208,12 +191,4 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	}
 	privateKeyStr := child.String()
 	return address, privateKeyStr, nil
-}
-func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
-	ethaddress_key, err := addressforEth(child) //child.AddressforEth()
-	if err != nil {
-		return
-	}
-	address = hex.EncodeToString(ethaddress_key)
-	return
 }
