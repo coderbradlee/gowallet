@@ -30,7 +30,8 @@ var (
 	//0x6356908ACe09268130DEE2b7de643314BBeb3683
 	// mnemonic   = "velvet bid mask thank joke educate edit business advance valley book surround"
 	imtokenmnemonic = "blouse hedgehog during sun vehicle calm panther scene wash grid mimic divorce"
-	ethaddress      = "0xd73eab1b58a8f7936ce5a9eccdd9bad472ab6d28"
+	ethaddress      = "1eff9574401979e2d94c652d9069a6c250d65bb5"
+	btcaddress      = "1QFVGastye8fonetC1VC6MQ16NAUmsJDsz"
 )
 
 //Just for test
@@ -68,70 +69,28 @@ func test() {
 	// 	fmt.Println(private)
 	// 	fmt.Println(address)
 	// }
-	fmt.Printf("\nbtc:")
-	{
-		hd := wallet.NewHdwallet()
-		err := hd.ImportMnemonic(imtokenmnemonic)
-		if err != nil {
-			fmt.Println(err)
-			return
+	fmt.Printf("\nbtc:\n")
+	for i := 0; i < 50; i++ {
+		for j := 0; j < 50; j++ {
+			hd := wallet.NewHdwallet()
+			err := hd.ImportMnemonic(imtokenmnemonic)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(private)
+			fmt.Println(address)
+			if address == btcaddress {
+				return
+			}
 		}
-		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(private)
-		fmt.Println(address)
 	}
-	fmt.Printf("\nbtc:")
-	{
-		hd := wallet.NewHdwallet()
-		err := hd.ImportMnemonic(imtokenmnemonic)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 1)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(private)
-		fmt.Println(address)
-	}
-	fmt.Printf("\nbtc:")
-	{
-		hd := wallet.NewHdwallet()
-		err := hd.ImportMnemonic(imtokenmnemonic)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 1, 0)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(private)
-		fmt.Println(address)
-	}
-	fmt.Printf("\nbtc:")
-	{
-		hd := wallet.NewHdwallet()
-		err := hd.ImportMnemonic(imtokenmnemonic)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 1, 1)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(private)
-		fmt.Println(address)
-	}
+
 	// fmt.Printf("\nltc:")
 	// {
 	// 	hd := wallet.NewHdwallet()
