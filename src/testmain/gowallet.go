@@ -76,7 +76,7 @@ func test() {
 			fmt.Println(err)
 			return
 		}
-		address, private, err := hd.GenerateAddress(0, 0, 0, 0)
+		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -92,7 +92,7 @@ func test() {
 			fmt.Println(err)
 			return
 		}
-		address, private, err := hd.GenerateAddress(2, 0, 0, 0)
+		address, private, err := hd.GenerateAddressWithMnemonic(2, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
