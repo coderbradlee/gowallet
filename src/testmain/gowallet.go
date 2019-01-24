@@ -41,6 +41,7 @@ func test() {
 		}
 		fmt.Println(address)
 	}
+	fmt.Println("\n")
 	{
 		hd := wallet.NewHdwallet()
 		err := hd.ImportMnemonic(imtokenmnemonic)
@@ -49,6 +50,21 @@ func test() {
 			return
 		}
 		address, err := hd.GenerateAddress(60, 0, 0, 0)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(address)
+	}
+	fmt.Println("\n")
+	{
+		hd := wallet.NewHdwallet()
+		err := hd.ImportMnemonic(imtokenmnemonic)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		address, err := hd.GenerateAddress(0, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
