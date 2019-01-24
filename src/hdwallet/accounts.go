@@ -5,7 +5,7 @@ import (
 	// "crypto/sha256"
 	// "crypto/sha512"
 	"encoding/hex"
-	"encoding/json"
+	// "encoding/json"
 	"errors"
 	"fmt"
 	// "github.com/btcsuite/btcd/btcec"
@@ -46,7 +46,8 @@ func (hd *Hdwallet) mnemonicToSeed() (err error) {
 }
 
 func (hd *Hdwallet) generateMasterkey() (err error) {
-	hd.masterKey, err = bip32.NewMasterKey(hd.seed)
+	mk, err = bip32.NewMasterKey(hd.seed)
+	hd.masterKey = mk.String()
 	return
 }
 
