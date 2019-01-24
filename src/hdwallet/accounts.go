@@ -59,22 +59,36 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	// }
 	//Create Mnemonic
 	// seed := random
-	seed, err := bip39.NewEntropy(128)
-	if err != nil {
-		return
-	}
-	mnemonic, err := generateMnemonic(seed)
-	if err != nil {
-		return "", err
-	}
-	fmt.Println("The mnemonic word list is:", mnemonic)
+	// seed, err := bip39.NewEntropy(128)
+	// if err != nil {
+	// 	return
+	// }
+	// seed, err := bip39.NewSeed
+	// mnemonic, err := generateMnemonic(seed)
+	// if err != nil {
+	// 	return "", err
+	// }
+	// fmt.Println("The mnemonic word list is:", mnemonic)
 
-	masterKeyStr, err := generateMasterkey(seed)
-	if err != nil {
-		return "", err
-	}
+	// masterKeyStr, err := generateMasterkey(seed)
+	// if err != nil {
+	// 	return "", err
+	// }
 	//fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
+	entropy, _ := bip39.NewEntropy(256)
+	mnemonic, _ := bip39.NewMnemonic(entropy)
+
+	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
+	seed := bip39.NewSeed(mnemonic, password)
+
+	masterKeyStr, _ := bip32.NewMasterKey(seed)
+	// publicKey := masterKey.PublicKey()
+
+	// Display mnemonic and keys
+	fmt.Println("Mnemonic: ", mnemonic)
+	fmt.Println("Master private key: ", masterKey)
+	// fmt.Println("Master public key: ", publicKey)
 	masterKeyStr = masterKeyStr + string(seed)
 
 	//Encrpt the masterKey with password
@@ -103,23 +117,35 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	//fmt.Println("The Real seed to byte is: #v%", seed)
 
 	// seed := random
-	seed, err := bip39.NewEntropy(128)
-	if err != nil {
-		return
-	}
-	//Create Mnemonic
-	mnemonic, err = generateMnemonic(seed)
-	if err != nil {
-		return
-	}
-	fmt.Println("The mnemonic word list is:", mnemonic)
+	// seed, err := bip39.NewEntropy(128)
+	// if err != nil {
+	// 	return
+	// }
+	// //Create Mnemonic
+	// mnemonic, err = generateMnemonic(seed)
+	// if err != nil {
+	// 	return
+	// }
+	// fmt.Println("The mnemonic word list is:", mnemonic)
 
-	masterKeyStr, err := generateMasterkey(seed)
-	if err != nil {
-		return
-	}
+	// masterKeyStr, err := generateMasterkey(seed)
+	// if err != nil {
+	// 	return
+	// }
 	//fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
+	entropy, _ := bip39.NewEntropy(256)
+	mnemonic, _ := bip39.NewMnemonic(entropy)
+
+	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
+	seed := bip39.NewSeed(mnemonic, password)
+
+	masterKeyStr, _ := bip32.NewMasterKey(seed)
+	// publicKey := masterKey.PublicKey()
+
+	// Display mnemonic and keys
+	fmt.Println("Mnemonic: ", mnemonic)
+	fmt.Println("Master private key: ", masterKeyStr)
 	masterKeyStr = masterKeyStr + string(seed)
 
 	//Encrpt the masterKey with password
