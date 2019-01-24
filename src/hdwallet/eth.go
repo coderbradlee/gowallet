@@ -16,6 +16,22 @@ import (
 	"strings"
 )
 
+func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
+	private_key, err := child.ECPrivKey()
+	fmt.Printf("%x", private_key.PrivateKey.D.Bytes())
+	if err != nil {
+		return
+	}
+	privateKeyBytes := private_key.Serialize()
+	private_str = hex.EncodeToString(privateKeyBytes)
+	ethaddress_key, err := addressforEth(child)
+	if err != nil {
+		return
+	}
+	address = hex.EncodeToString(ethaddress_key)
+	return
+}
+
 //Send ETH/ETC RawTransaction by the privateKey
 //Send ETH/ETC RawTransaction   amount, gasLimit, gasPrice *big.Int
 func SendETHRawTxByPrivateKey(privateKey, nonce, toAddr, amount, gasLimit, gasPrice string, data []byte) (signedParam string, err error) {
@@ -95,19 +111,4 @@ func addressforEth(k *hdkeychain.ExtendedKey) ([]byte, error) {
 	pkPrv := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
 	pkHash := pkPrv[:]
 	return pkHash, nil
-}
-func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
-	private_key, err := child.ECPrivKey()
-
-	if err != nil {
-		return
-	}
-	privateKeyBytes := private_key.Serialize()
-	private_str = hex.EncodeToString(privateKeyBytes)
-	ethaddress_key, err := addressforEth(child)
-	if err != nil {
-		return
-	}
-	address = hex.EncodeToString(ethaddress_key)
-	return
 }
