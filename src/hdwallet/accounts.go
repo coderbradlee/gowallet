@@ -137,6 +137,9 @@ func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index
 	address, private, err = hd.createChangeIndex(drivedChange, index, coinType)
 	return
 }
+func (hd *Hdwallet) Mnemonic() (mnemonic string) {
+	return hd.mnemonic
+}
 func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int, coinType int) (address, privateKey string, err error) {
 	child, err := change.Child((uint32)(index))
 	if err != nil {

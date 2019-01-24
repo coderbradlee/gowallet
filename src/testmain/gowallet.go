@@ -39,6 +39,7 @@ func test() {
 			fmt.Println(err)
 			return
 		}
+		fmt.Println(hd.Mnemonic())
 		fmt.Println(private)
 		fmt.Println(address)
 	}
