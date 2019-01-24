@@ -82,12 +82,12 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
 	seed := bip39.NewSeed(mnemonic, password)
 
-	masterKeyStr, _ := bip32.NewMasterKey(seed)
+	masterKey, _ := bip32.NewMasterKey(seed)
 	// publicKey := masterKey.PublicKey()
-
+	masterKeyStr := masterKey.String()
 	// Display mnemonic and keys
 	fmt.Println("Mnemonic: ", mnemonic)
-	fmt.Println("Master private key: ", masterKey)
+	fmt.Println("Master private key: ", masterKeyStr)
 	// fmt.Println("Master public key: ", publicKey)
 	masterKeyStr = masterKeyStr + string(seed)
 
@@ -140,9 +140,9 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
 	seed := bip39.NewSeed(mnemonic, password)
 
-	masterKeyStr, _ := bip32.NewMasterKey(seed)
+	masterKey, _ := bip32.NewMasterKey(seed)
 	// publicKey := masterKey.PublicKey()
-
+	masterKeyStr := masterKey.String()
 	// Display mnemonic and keys
 	fmt.Println("Mnemonic: ", mnemonic)
 	fmt.Println("Master private key: ", masterKeyStr)
