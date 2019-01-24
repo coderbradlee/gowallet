@@ -145,11 +145,11 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	if err != nil {
 		return
 	}
-	// private_key, err := child.ECPrivKey()
+	private_key, err := child.ECPrivKey()
 
-	// if err != nil {
-	// 	return
-	// }
+	if err != nil {
+		return
+	}
 	switch coinType {
 	case 0:
 		address, privateKey, err = hd.btcAddress(child)
