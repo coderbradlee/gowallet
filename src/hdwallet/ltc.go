@@ -19,12 +19,12 @@ import (
 func (hd *Hdwallet) ltcAddress(private_key *btcec.PrivateKey, child *hdkeychain.ExtendedKey) (address string, err error) {
 	private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
 	if err != nil {
-		return "", "", err
+		return
 	}
 	private_str := private_wif.String()
 	address_str, err := child.Address(&ltcAddressNetParams)
 	if err != nil {
-		return "", "", err
+		return
 	}
 	address = address_str.String()
 	fmt.Println("The LTC private wif key is ", private_str)
