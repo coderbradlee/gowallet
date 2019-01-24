@@ -104,6 +104,10 @@ func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (addre
 		err = errors.New("some params is empty!!!")
 		return
 	}
+	return GenerateAddressWithMnemonic(coinType, account, change, index)
+}
+func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index int) (address string, err error) {
+
 	master_key, err := hdkeychain.NewKeyFromString(hd.masterKey)
 	// var drivedCoinType *hdkeychain.ExtendedKey
 	if err != nil {
@@ -155,8 +159,6 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		address = addressret.String()
 		fmt.Println("The BTC address is ", address)
 	case 60, 61, 63:
-		//Private key
-		fmt.Println("xx")
 		address, err = hd.ethAddress(child)
 	case 2:
 		//LTC
