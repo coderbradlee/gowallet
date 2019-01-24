@@ -104,7 +104,7 @@ func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (addre
 		err = errors.New("some params is empty!!!")
 		return
 	}
-	return GenerateAddressWithMnemonic(coinType, account, change, index)
+	return hd.GenerateAddressWithMnemonic(coinType, account, change, index)
 }
 func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index int) (address string, err error) {
 
