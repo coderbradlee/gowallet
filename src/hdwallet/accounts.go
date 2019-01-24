@@ -8,7 +8,7 @@ import (
 	// "encoding/json"
 	"errors"
 	"fmt"
-	// "github.com/btcsuite/btcd/btcec"
+	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/tyler-smith/go-bip32"
@@ -212,7 +212,7 @@ func (hd *Hdwallet) ethAddress(privateKey *btcec.PrivateKey) (address string, er
 	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
 	ethaddress_key, err := addressforEth(child) //child.AddressforEth()
 	if err != nil {
-		return "", "", err
+		return
 	}
 	address = hex.EncodeToString(ethaddress_key)
 }
