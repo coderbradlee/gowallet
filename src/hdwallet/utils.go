@@ -443,73 +443,73 @@ func byteSliceEqual(a, b []byte) bool {
 }
 
 //用密码对masterkey加密，对加密后的文本在app端保存
-func encryptMastkeyWithPwd(masterKeyStr, passwordStr string) (string, error) {
-	//fmt.Print("The masterkey is->", masterKeyStr)
-	//fmt.Println("--->The Password is ", passwordStr)
-	key := []byte(passwordStr)
-	text := []byte(masterKeyStr)
-	hashKey := sha256.Sum256(key)
-	encryptStr := make([]byte, len(text)+len(hashKey))
+// func encryptMastkeyWithPwd(masterKeyStr, passwordStr string) (string, error) {
+// 	//fmt.Print("The masterkey is->", masterKeyStr)
+// 	//fmt.Println("--->The Password is ", passwordStr)
+// 	key := []byte(passwordStr)
+// 	text := []byte(masterKeyStr)
+// 	hashKey := sha256.Sum256(key)
+// 	encryptStr := make([]byte, len(text)+len(hashKey))
 
-	copy(encryptStr[:len(text)], text[:])
-	copy(encryptStr[len(text):], hashKey[:])
+// 	copy(encryptStr[:len(text)], text[:])
+// 	copy(encryptStr[len(text):], hashKey[:])
 
-	suffix := sha256.Sum256(encryptStr)
-	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
-	prefix, err := encrypt(constEncKey[:], encryptStr)
-	if err != nil {
-		return "", err
-	}
-	ret := make([]byte, len(prefix)+len(suffix))
-	copy(ret[:len(prefix)], prefix[:])
-	copy(ret[len(prefix):], suffix[:])
-	return hex.EncodeToString(ret[:]), nil
-}
+// 	suffix := sha256.Sum256(encryptStr)
+// 	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
+// 	prefix, err := encrypt(constEncKey[:], encryptStr)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	ret := make([]byte, len(prefix)+len(suffix))
+// 	copy(ret[:len(prefix)], prefix[:])
+// 	copy(ret[len(prefix):], suffix[:])
+// 	return hex.EncodeToString(ret[:]), nil
+// }
 
 //用密码对密文解密返回masterkey对应的byte数组
-func decryptMasterkey(encryptMasterkeyStr string) (string, error) {
-	text, err := hex.DecodeString(encryptMasterkeyStr)
-	if err != nil {
-		return "", err
-	}
-	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
-	d_des, err := decrypt(constEncKey[:], text[:len(text)-len(constEncKey)])
-	if err != nil {
-		return "", err
-	}
-	return string(d_des[:len(d_des)-len(constEncKey)-seedLen]), nil
-}
+// func decryptMasterkey(encryptMasterkeyStr string) (string, error) {
+// 	text, err := hex.DecodeString(encryptMasterkeyStr)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
+// 	d_des, err := decrypt(constEncKey[:], text[:len(text)-len(constEncKey)])
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return string(d_des[:len(d_des)-len(constEncKey)-seedLen]), nil
+// }
 
 //用密码对密文解密返回masterkeywithseed对应的byte数组
-func decryptMasterkeyWithSeed(encryptMasterkeyStr string) (string, error) {
-	text, err := hex.DecodeString(encryptMasterkeyStr)
-	if err != nil {
-		return "", err
-	}
-	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
-	d_des, err := decrypt(constEncKey[:], text[:len(text)-len(constEncKey)])
-	if err != nil {
-		return "", err
-	}
-	return string(d_des[:len(d_des)-len(constEncKey)]), nil
-}
+// func decryptMasterkeyWithSeed(encryptMasterkeyStr string) (string, error) {
+// 	text, err := hex.DecodeString(encryptMasterkeyStr)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
+// 	d_des, err := decrypt(constEncKey[:], text[:len(text)-len(constEncKey)])
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return string(d_des[:len(d_des)-len(constEncKey)]), nil
+// }
 
 //用密码对密文解密返回masterkey对应的byte数组
-func decryptSeed(encryptMasterkeyStr string) ([]byte, error) {
-	text, err := hex.DecodeString(encryptMasterkeyStr)
-	var seed []byte
-	if err != nil {
-		return seed, err
-	}
-	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
-	d_des, err := decrypt(constEncKey[:], text[:len(text)-len(constEncKey)])
-	if err != nil {
-		return seed, err
-	}
-	tempSeed := (d_des[len(d_des)-len(constEncKey)-seedLen : len(d_des)-len(constEncKey)])
-	//fmt.Println("The  decryptSeed is #v", tempSeed)
-	return tempSeed, nil
-}
+// func decryptSeed(encryptMasterkeyStr string) ([]byte, error) {
+// 	text, err := hex.DecodeString(encryptMasterkeyStr)
+// 	var seed []byte
+// 	if err != nil {
+// 		return seed, err
+// 	}
+// 	constEncKey := sha256.Sum256([]byte(constEncKeyStr))
+// 	d_des, err := decrypt(constEncKey[:], text[:len(text)-len(constEncKey)])
+// 	if err != nil {
+// 		return seed, err
+// 	}
+// 	tempSeed := (d_des[len(d_des)-len(constEncKey)-seedLen : len(d_des)-len(constEncKey)])
+// 	//fmt.Println("The  decryptSeed is #v", tempSeed)
+// 	return tempSeed, nil
+// }
 
 //用文本来验证密码是否正确
 func CheckPwdIsCorrect(masterKeyStr, passwordStr string) (right bool) {
