@@ -67,7 +67,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	if err != nil {
 		return
 	}
-	masterKeyStr = masterKeyStr + string(seed)
+	masterKeyStr = masterKeyStr + string(mnemonicSeed)
 	mk, err = encryptMastkeyWithPwd(masterKeyStr, password)
 	if err != nil {
 		return
