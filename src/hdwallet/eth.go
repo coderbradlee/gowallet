@@ -16,14 +16,14 @@ import (
 	"strings"
 )
 
-func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
-	private_key, err := child.ECPrivKey()
-	fmt.Printf("%x", private_key.D.Bytes())
-	if err != nil {
-		return
-	}
-	privateKeyBytes := private_key.Serialize()
-	private_str = hex.EncodeToString(privateKeyBytes)
+func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
+	// private_key, err := child.ECPrivKey()
+	// fmt.Printf("%x", private_key.D.Bytes())
+	// if err != nil {
+	// 	return
+	// }
+	// privateKeyBytes := private_key.Serialize()
+	// private_str = hex.EncodeToString(privateKeyBytes) //wif格式的私钥
 	ethaddress_key, err := addressforEth(child)
 	if err != nil {
 		return

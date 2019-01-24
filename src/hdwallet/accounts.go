@@ -140,7 +140,7 @@ func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index
 func (hd *Hdwallet) Mnemonic() (mnemonic string) {
 	return hd.mnemonic
 }
-func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int, coinType int) (address, privateKey string, err error) {
+func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int, coinType int) (address, Sp string, err error) {
 	child, err := change.Child((uint32)(index))
 	if err != nil {
 		return
@@ -150,14 +150,15 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	if err != nil {
 		return
 	}
+	privateKey = fmt.SpPrintf("%x", private_key.D.Bytes())
 	switch coinType {
 	case 0:
-		address, privateKey, err = hd.btcAddress(child)
+		address, err = hd.btcAddress(child)
 	case 60, 61, 63:
-		address, privateKey, err = hd.ethAddress(child)
+		address, err = hd.ethAddress(child)
 	case 2:
 		//LTC
-		address, privateKey, err = hd.ltcAddress(child)
+		address, err = hd.ltcAddress(child)
 	case 3:
 		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
 		private_str := private_wif.String()
