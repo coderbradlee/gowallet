@@ -215,4 +215,5 @@ func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, e
 		return
 	}
 	address = hex.EncodeToString(ethaddress_key)
+	return
 }
