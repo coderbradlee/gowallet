@@ -4,7 +4,7 @@ import (
 	// "crypto/sha1"
 	// "crypto/sha256"
 	// "crypto/sha512"
-	"encoding/hex"
+
 	// "encoding/json"
 	"errors"
 	"fmt"
@@ -95,7 +95,7 @@ func (hd *Hdwallet) ImportMnemonic(mnemonic string) (err error) {
 	return
 }
 
-func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (address string, err error) {
+func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (address, private string, err error) {
 	err = hd.GenerateMnemonicAndMasterKey()
 	if err != nil {
 		return

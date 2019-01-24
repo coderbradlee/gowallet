@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/btcjson"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/txscript"
@@ -16,7 +17,7 @@ import (
 	"strconv"
 )
 
-func (hd *Hdwallet) btcAddress(child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
+func (hd *Hdwallet) btcAddress(private_key *btcec.PrivateKey, child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
 	private_wif, err := btcutil.NewWIF(private_key, &btcAddressNetParams, true)
 	if err != nil {
 		return
