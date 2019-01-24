@@ -106,7 +106,7 @@ func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (addre
 	}
 	return hd.GenerateAddressWithMnemonic(coinType, account, change, index)
 }
-func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index int) (address string, err error) {
+func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index int) (address, private string, err error) {
 
 	master_key, err := hdkeychain.NewKeyFromString(hd.masterKey)
 	// var drivedCoinType *hdkeychain.ExtendedKey
@@ -134,7 +134,7 @@ func (hd *Hdwallet) GenerateAddressWithMnemonic(coinType, account, change, index
 	}
 	//create change Index
 	//index = 0
-	address, _, err = hd.createChangeIndex(drivedChange, index, coinType)
+	address, private, err = hd.createChangeIndex(drivedChange, index, coinType)
 	return
 }
 func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int, coinType int) (address, privateKey string, err error) {
@@ -143,20 +143,18 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		return
 	}
 	private_key, err := child.ECPrivKey()
-	privateKeyBytes := private_key.Serialize()
-	private_str := hex.EncodeToString(privateKeyBytes)
-	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
+
 	if err != nil {
 		return
 	}
 	switch coinType {
 	case 0:
-		address, err = hd.btcAddress(child)
+		address, privateKey, err = hd.btcAddress(private_key, child)
 	case 60, 61, 63:
-		address, err = hd.ethAddress(child)
+		address, privateKey, err = hd.ethAddress(private_key, child)
 	case 2:
 		//LTC
-		address, err = hd.ltcAddress(private_key, child)
+		address, privateKey, err = hd.ltcAddress(private_key, child)
 	case 3:
 		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
 		private_str := private_wif.String()

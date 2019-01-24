@@ -95,8 +95,10 @@ func addressforEth(k *hdkeychain.ExtendedKey) ([]byte, error) {
 	pkHash := pkPrv[:]
 	return pkHash, nil
 }
-func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
-	ethaddress_key, err := addressforEth(child) //child.AddressforEth()
+func (hd *Hdwallet) ethAddress(private_key *btcec.PrivateKey, child *hdkeychain.ExtendedKey) (address, private string, err error) {
+	privateKeyBytes := private_key.Serialize()
+	private_str := hex.EncodeToString(privateKeyBytes)
+	ethaddress_key, err := addressforEth(child)
 	if err != nil {
 		return
 	}

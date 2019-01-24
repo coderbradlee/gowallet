@@ -27,21 +27,22 @@ var (
 //Just for test
 func main() {
 	fmt.Println("imtoken address:", ethaddress)
-	fmt.Println("\n")
+	fmt.Printf("\n")
 	test()
 }
 
 func test() {
 	{
 		hd := wallet.NewHdwallet()
-		address, err := hd.GenerateAddress(60, 0, 0, 0)
+		address, private, err := hd.GenerateAddress(60, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
+		fmt.Println(private)
 		fmt.Println(address)
 	}
-	fmt.Println("\n")
+	fmt.Printf("\n")
 	{
 		hd := wallet.NewHdwallet()
 		err := hd.ImportMnemonic(imtokenmnemonic)
@@ -49,14 +50,15 @@ func test() {
 			fmt.Println(err)
 			return
 		}
-		address, err := hd.GenerateAddressWithMnemonic(60, 0, 0, 0)
+		address, private, err := hd.GenerateAddressWithMnemonic(60, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
+		fmt.Println(private)
 		fmt.Println(address)
 	}
-	fmt.Println("\n")
+	fmt.Printf("\n")
 	{
 		hd := wallet.NewHdwallet()
 		err := hd.ImportMnemonic(imtokenmnemonic)
@@ -64,11 +66,12 @@ func test() {
 			fmt.Println(err)
 			return
 		}
-		address, err := hd.GenerateAddress(0, 0, 0, 0)
+		address, private, err := hd.GenerateAddress(0, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
+		fmt.Println(private)
 		fmt.Println(address)
 	}
 	{
@@ -78,11 +81,12 @@ func test() {
 			fmt.Println(err)
 			return
 		}
-		address, err := hd.GenerateAddress(2, 0, 0, 0)
+		address, private, err := hd.GenerateAddress(2, 0, 0, 0)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
+		fmt.Println(private)
 		fmt.Println(address)
 	}
 }

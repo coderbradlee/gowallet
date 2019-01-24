@@ -16,19 +16,17 @@ import (
 	"strconv"
 )
 
-func (hd *Hdwallet) ltcAddress(private_key *btcec.PrivateKey, child *hdkeychain.ExtendedKey) (address string, err error) {
+func (hd *Hdwallet) ltcAddress(private_key *btcec.PrivateKey, child *hdkeychain.ExtendedKey) (address, private_str string, err error) {
 	private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
 	if err != nil {
 		return
 	}
-	private_str := private_wif.String()
+	private_str = private_wif.String()
 	address_str, err := child.Address(&ltcAddressNetParams)
 	if err != nil {
 		return
 	}
 	address = address_str.String()
-	fmt.Println("The LTC private wif key is ", private_str)
-	fmt.Println("The LTC address is ", address)
 	return
 }
 
