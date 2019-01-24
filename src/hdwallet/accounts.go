@@ -151,7 +151,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 			return
 		}
 		address = addressret.String()
-		fmt.Println("The BTC address is ", addressStr)
+		fmt.Println("The BTC address is ", address)
 	case 60:
 	case 61:
 	case 63:
@@ -206,7 +206,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	privateKeyStr := child.String()
 	return addressStr, privateKeyStr, nil
 }
-func (hd *Hdwallet) ethAddress(privateKey *hdkeychain.ExtendedKey) (address string, err error) {
+func (hd *Hdwallet) ethAddress(privateKey *btcec.PrivateKey) (address string, err error) {
 	privateKeyBytes := private_key.Serialize()
 	private_str := hex.EncodeToString(privateKeyBytes)
 	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
