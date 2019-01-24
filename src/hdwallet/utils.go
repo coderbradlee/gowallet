@@ -537,100 +537,100 @@ func CheckPwdIsCorrect(masterKeyStr, passwordStr string) (right bool) {
 }
 
 //Backup the Mnemonic
-func BackupMnemonic(masterKeyStr string) (mnemonic string, err error) {
-	if len(masterKeyStr) == 0 {
-		return "", errors.New("some params is empty!!!")
-	}
-	seed, err := decryptSeed(masterKeyStr)
-	if err != nil {
-		return "", err
-	}
-	//Create Mnemonic
-	mnemonic, err = generateMnemonic(seed)
-	if err != nil {
-		return "", err
-	}
-	return mnemonic, nil
-}
+// func BackupMnemonic(masterKeyStr string) (mnemonic string, err error) {
+// 	if len(masterKeyStr) == 0 {
+// 		return "", errors.New("some params is empty!!!")
+// 	}
+// 	seed, err := decryptSeed(masterKeyStr)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	//Create Mnemonic
+// 	mnemonic, err = generateMnemonic(seed)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return mnemonic, nil
+// }
 
 //func CheckAuthAndGetPrivateKey(masterKey string, coinType string, account, change, index int) ( privateKey string, err error)
-func CheckAuthAndGetPrivateKey(masterKey string, password string, coinType string, account, change, index int) (privateKey string, err error) {
-	if (len(masterKey) == 0) || (len(password) == 0) || (len(coinType) == 0) {
-		return "", errors.New("some params is empty!!!")
-	}
+// func CheckAuthAndGetPrivateKey(masterKey string, password string, coinType string, account, change, index int) (privateKey string, err error) {
+// 	if (len(masterKey) == 0) || (len(password) == 0) || (len(coinType) == 0) {
+// 		return "", errors.New("some params is empty!!!")
+// 	}
 
-	//Check the Auth
-	right := CheckPwdIsCorrect(masterKey, password)
-	if !right {
-		return "", errors.New("You don't have the Authority to get Pass word!!!")
-	}
-	//Decrypt the masterkey
-	decMasterkey, err := decryptMasterkey(masterKey)
-	if err != nil {
-		return "", err
-	}
-	//fmt.Println("The decrypt masterky is---->", decMasterkey)
-	master_key, err := hdkeychain.NewKeyFromString(decMasterkey)
-	var drivedCoinType *hdkeychain.ExtendedKey
-	if err != nil {
-		return "", err
-	}
+// 	//Check the Auth
+// 	right := CheckPwdIsCorrect(masterKey, password)
+// 	if !right {
+// 		return "", errors.New("You don't have the Authority to get Pass word!!!")
+// 	}
+// 	//Decrypt the masterkey
+// 	decMasterkey, err := decryptMasterkey(masterKey)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	//fmt.Println("The decrypt masterky is---->", decMasterkey)
+// 	master_key, err := hdkeychain.NewKeyFromString(decMasterkey)
+// 	var drivedCoinType *hdkeychain.ExtendedKey
+// 	if err != nil {
+// 		return "", err
+// 	}
 
-	purpose, err := master_key.Child(hardened + 44)
-	if err != nil {
-		return "", err
-	}
+// 	purpose, err := master_key.Child(hardened + 44)
+// 	if err != nil {
+// 		return "", err
+// 	}
 
-	var flag int
-	//Coin type: maybe changed by different coin type
-	if coinType == "BTC" {
-		drivedCoinType, err = purpose.Child(hardened + 0)
-		flag = 0
-	} else if coinType == "ETH" {
-		drivedCoinType, err = purpose.Child(hardened + 60)
-		flag = 1
-	} else if coinType == "ETC" {
-		drivedCoinType, err = purpose.Child(hardened + 61)
-		flag = 1
-	} else if coinType == "ETF" {
-		drivedCoinType, err = purpose.Child(hardened + 62)
-		flag = 1
-	} else if coinType == "LTC" {
-		drivedCoinType, err = purpose.Child(hardened + 2)
-		flag = 2
-	} else if coinType == "DOGE" {
-		drivedCoinType, err = purpose.Child(hardened + 3)
-		flag = 3
-	} else if coinType == "QTUM" {
-		drivedCoinType, err = purpose.Child(hardened + 4)
-		flag = 4
-	} else if coinType == "NULSM" {
-		drivedCoinType, err = purpose.Child(hardened + 6)
-		flag = 5
-	} else {
-		return "", errors.New("The Coin Type is not support!!!")
-	}
-	if err != nil {
-		return "", err
-	}
-	//account
-	drivedAccount, err := drivedCoinType.Child(hardened + (uint32)(account))
-	if err != nil {
-		return "", err
-	}
+// 	var flag int
+// 	//Coin type: maybe changed by different coin type
+// 	if coinType == "BTC" {
+// 		drivedCoinType, err = purpose.Child(hardened + 0)
+// 		flag = 0
+// 	} else if coinType == "ETH" {
+// 		drivedCoinType, err = purpose.Child(hardened + 60)
+// 		flag = 1
+// 	} else if coinType == "ETC" {
+// 		drivedCoinType, err = purpose.Child(hardened + 61)
+// 		flag = 1
+// 	} else if coinType == "ETF" {
+// 		drivedCoinType, err = purpose.Child(hardened + 62)
+// 		flag = 1
+// 	} else if coinType == "LTC" {
+// 		drivedCoinType, err = purpose.Child(hardened + 2)
+// 		flag = 2
+// 	} else if coinType == "DOGE" {
+// 		drivedCoinType, err = purpose.Child(hardened + 3)
+// 		flag = 3
+// 	} else if coinType == "QTUM" {
+// 		drivedCoinType, err = purpose.Child(hardened + 4)
+// 		flag = 4
+// 	} else if coinType == "NULSM" {
+// 		drivedCoinType, err = purpose.Child(hardened + 6)
+// 		flag = 5
+// 	} else {
+// 		return "", errors.New("The Coin Type is not support!!!")
+// 	}
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	//account
+// 	drivedAccount, err := drivedCoinType.Child(hardened + (uint32)(account))
+// 	if err != nil {
+// 		return "", err
+// 	}
 
-	//Change(T/F:1,0)
-	change = 0
-	drivedChange, err := drivedAccount.Child((uint32)(change))
-	if err != nil {
-		return "", err
-	}
-	//create change Index
-	index = 0
-	_, privateKey, err = createChangeIndex(drivedChange, index, flag)
-	return privateKey, err
+// 	//Change(T/F:1,0)
+// 	change = 0
+// 	drivedChange, err := drivedAccount.Child((uint32)(change))
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	//create change Index
+// 	index = 0
+// 	_, privateKey, err = createChangeIndex(drivedChange, index, flag)
+// 	return privateKey, err
 
-}
+// }
 
 //
 func GetHexAddress(qtumAddress string) string {
