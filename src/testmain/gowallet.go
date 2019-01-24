@@ -42,7 +42,7 @@ func test() {
 		fmt.Println(private)
 		fmt.Println(address)
 	}
-	fmt.Printf("\n")
+	fmt.Printf("\neth:")
 	{
 		hd := wallet.NewHdwallet()
 		err := hd.ImportMnemonic(imtokenmnemonic)
@@ -58,7 +58,7 @@ func test() {
 		fmt.Println(private)
 		fmt.Println(address)
 	}
-	fmt.Printf("\n")
+	fmt.Printf("\nbtc:")
 	{
 		hd := wallet.NewHdwallet()
 		err := hd.ImportMnemonic(imtokenmnemonic)
@@ -74,6 +74,7 @@ func test() {
 		fmt.Println(private)
 		fmt.Println(address)
 	}
+	fmt.Printf("\nltc:")
 	{
 		hd := wallet.NewHdwallet()
 		err := hd.ImportMnemonic(imtokenmnemonic)
