@@ -19,6 +19,15 @@ import (
 	"strings"
 )
 
+func (hd *Hdwallet) qtumAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
+	address_str, err := child.Address(&qtumAddressNetParams)
+	if err != nil {
+		return
+	}
+	address = address_str.String()
+	return
+}
+
 ///Send QTUM RawTransaction
 func SendQTUMTokenRawTxByPrivateKey(privateKey string, toAddress string, balance float64, amount string, txFee string, gasLimit int64, gasPrice int64, data string) (signedParam string, err error) {
 	amount = strings.Replace(amount, " ", "", -1)

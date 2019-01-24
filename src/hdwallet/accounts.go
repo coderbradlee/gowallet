@@ -160,31 +160,15 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		//LTC
 		address, err = hd.ltcAddress(child)
 	case 3:
-		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
-		private_str := private_wif.String()
-		address_str, err := child.Address(&dogeAddressNetParams)
-		if err != nil {
-			return "", "", err
-		}
-		address = address_str.String()
-		fmt.Println("The DOGE private wif key is ", private_str)
-		fmt.Println("The DOGE address is ", address)
+		address, err = hd.dogeAddress(child)
 	case 4:
-		//private_wif, err := btcutil.NewWIF(private_key, &qtumAddressNetParams, true)
-		//private_str := private_wif.String()
-		address_str, err := child.Address(&qtumAddressNetParams)
-		if err != nil {
-			return "", "", err
-		}
-		address = address_str.String()
-		//fmt.Println("The QTUM private wif key is ", private_str)
-		fmt.Println("The QTUM address is ", address)
+		address, err = hd.qtumAddress(child)
 	case 6:
 		address = nuls.Address(child)
 		if len(address) <= 0 {
-			return "", "", err
+			err = errors.New("nuls address err")
+			return
 		}
-		fmt.Println("The Nuls address is ", address)
 	default:
 		err = errors.New("not support")
 	}

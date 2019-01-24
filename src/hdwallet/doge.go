@@ -15,6 +15,14 @@ import (
 	"strconv"
 )
 
+func (hd *Hdwallet) dogeAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
+	address_str, err := child.Address(&dogeAddressNetParams)
+	if err != nil {
+		return
+	}
+	address = address_str.String()
+	return
+}
 func GetDOGEBalanceByAddr(address string) (balance string, err error) {
 	// /api/v2/get_address_balance/{NETWORK}/{ADDRESS}[/{MINIMUM CONFIRMATIONS}]
 	//https://chain.so/api/v2/get_address_balance/DOGE/%s
