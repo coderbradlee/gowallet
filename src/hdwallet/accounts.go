@@ -158,7 +158,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	case 61:
 	case 63:
 		//Private key
-		address, err = hd.ethAddress(private_key)
+		address, err = hd.ethAddress(child)
 	case 2:
 		//LTC
 		private_wif, err := btcutil.NewWIF(private_key, &ltcAddressNetParams, true)
