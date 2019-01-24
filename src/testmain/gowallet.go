@@ -70,26 +70,26 @@ func test() {
 	// 	fmt.Println(address)
 	// }
 	fmt.Printf("\nbtc:\n")
-	for i := 0; i < 50; i++ {
-		for j := 0; j < 50; j++ {
-			hd := wallet.NewHdwallet()
-			err := hd.ImportMnemonic(imtokenmnemonic)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			address, private, err := hd.GenerateAddressWithMnemonic(0, 0, i, j)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(private)
-			fmt.Println(address)
-			if address == btcaddress {
-				return
-			}
-		}
+	// for i := 0; i < 50; i++ {
+	// 	for j := 0; j < 50; j++ {
+	hd := wallet.NewHdwallet()
+	err := hd.ImportMnemonic(imtokenmnemonic)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+	address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(private)
+	fmt.Println(address)
+	// if address == btcaddress {
+	// 	return
+	// }
+	// 	}
+	// }
 
 	// fmt.Printf("\nltc:")
 	// {
