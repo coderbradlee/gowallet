@@ -8,7 +8,7 @@ import (
 	// "encoding/json"
 	"errors"
 	"fmt"
-	"github.com/btcsuite/btcd/btcec"
+	// "github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/tyler-smith/go-bip32"
@@ -139,7 +139,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 		return
 	}
 	private_key, err := child.ECPrivKey()
-	privateKeyBytes := privateKey.Serialize()
+	privateKeyBytes := private_key.Serialize()
 	private_str := hex.EncodeToString(privateKeyBytes)
 	fmt.Println("The ETH/ETC privateKeyBytes is ", private_str)
 	if err != nil {
