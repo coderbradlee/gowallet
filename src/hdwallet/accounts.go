@@ -100,7 +100,7 @@ func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (addre
 	if err != nil {
 		return
 	}
-	if (len(hd.masterKey) == 0) || (len(coinType) == 0) {
+	if (len(hd.masterKey) == 0)) {
 		err = errors.New("some params is empty!!!")
 		return
 	}
@@ -113,7 +113,7 @@ func (hd *Hdwallet) GenerateAddress(coinType, account, change, index int) (addre
 	if err != nil {
 		return
 	}
-	drivedCoinType, err := purpose.Child(hardened + coinType)
+	drivedCoinType, err := purpose.Child(uint32(hardened + coinType))
 	if err != nil {
 		return
 	}
@@ -138,7 +138,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	if err != nil {
 		return
 	}
-	private_key, err = child.ECPrivKey()
+	private_key, err := child.ECPrivKey()
 
 	if err != nil {
 		return
