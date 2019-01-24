@@ -76,7 +76,7 @@ func CreateWalletByteRandAndPwd(rand string, password string) (masterKeyWithmnem
 	// }
 	//fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
-	entropy, _ := bip39.NewEntropy(256)
+	entropy, _ := bip39.NewEntropy(128)
 	mnemonic, _ := bip39.NewMnemonic(entropy)
 
 	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
@@ -134,7 +134,7 @@ func CreateNewMnemonicAndMasterKey(rand string, password string) (mnemonic, mk s
 	// }
 	//fmt.Println("The origianl masterky is---->", masterKeyStr)
 	//Add the MasterKeyWith the seed
-	entropy, _ := bip39.NewEntropy(256)
+	entropy, _ := bip39.NewEntropy(128)
 	mnemonic, _ = bip39.NewMnemonic(entropy)
 
 	// Generate a Bip32 HD wallet for the mnemonic and a user supplied password
