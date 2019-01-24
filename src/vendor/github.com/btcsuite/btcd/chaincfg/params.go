@@ -231,8 +231,11 @@ var MainNetParams = Params{
 		{"dnsseed.bluematt.me", true},
 		{"dnsseed.bitcoin.dashjr.org", false},
 		{"seed.bitcoinstats.com", true},
-		{"seed.bitnodes.io", false},
 		{"seed.bitcoin.jonasschnelli.ch", true},
+		{"seed.btc.petertodd.org", true},
+		{"seed.bitcoin.sprovoost.nl", true},
+		{"seed.bitnodes.io", false},
+		{"dnsseed.emzy.de", false},
 	},
 
 	// Chain parameters
