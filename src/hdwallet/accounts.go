@@ -145,19 +145,19 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	if err != nil {
 		return
 	}
-	private_key, err := child.ECPrivKey()
+	// private_key, err := child.ECPrivKey()
 
-	if err != nil {
-		return
-	}
+	// if err != nil {
+	// 	return
+	// }
 	switch coinType {
 	case 0:
-		address, privateKey, err = hd.btcAddress(private_key, child)
+		address, privateKey, err = hd.btcAddress(child)
 	case 60, 61, 63:
-		address, privateKey, err = hd.ethAddress(private_key, child)
+		address, privateKey, err = hd.ethAddress(child)
 	case 2:
 		//LTC
-		address, privateKey, err = hd.ltcAddress(private_key, child)
+		address, privateKey, err = hd.ltcAddress(child)
 	case 3:
 		private_wif, err := btcutil.NewWIF(private_key, &dogeAddressNetParams, true)
 		private_str := private_wif.String()
