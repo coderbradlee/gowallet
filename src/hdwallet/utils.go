@@ -512,29 +512,29 @@ func byteSliceEqual(a, b []byte) bool {
 // }
 
 //用文本来验证密码是否正确
-func CheckPwdIsCorrect(masterKeyStr, passwordStr string) (right bool) {
-	if (len(masterKeyStr) == 0) || (len(passwordStr) == 0) {
-		return false
-	}
-	dec, err := decryptMasterkeyWithSeed(masterKeyStr)
-	if err != nil {
-		return false
-	}
-	d_des := []byte(dec)
-	key := []byte(passwordStr)
-	//text := masterKeyStr
-	text, err := hex.DecodeString(masterKeyStr)
-	if err != nil {
-		return false
-	}
-	hashKey := sha256.Sum256(key)
-	hashstr := make([]byte, len(d_des)+len(hashKey))
-	copy(hashstr[:len(d_des)], d_des[:])
-	copy(hashstr[len(d_des):], hashKey[:])
+// func CheckPwdIsCorrect(masterKeyStr, passwordStr string) (right bool) {
+// 	if (len(masterKeyStr) == 0) || (len(passwordStr) == 0) {
+// 		return false
+// 	}
+// 	dec, err := decryptMasterkeyWithSeed(masterKeyStr)
+// 	if err != nil {
+// 		return false
+// 	}
+// 	d_des := []byte(dec)
+// 	key := []byte(passwordStr)
+// 	//text := masterKeyStr
+// 	text, err := hex.DecodeString(masterKeyStr)
+// 	if err != nil {
+// 		return false
+// 	}
+// 	hashKey := sha256.Sum256(key)
+// 	hashstr := make([]byte, len(d_des)+len(hashKey))
+// 	copy(hashstr[:len(d_des)], d_des[:])
+// 	copy(hashstr[len(d_des):], hashKey[:])
 
-	hash_des := sha256.Sum256(hashstr[:])
-	return byteSliceEqual(text[len(text)-len(hashKey):], hash_des[:])
-}
+// 	hash_des := sha256.Sum256(hashstr[:])
+// 	return byteSliceEqual(text[len(text)-len(hashKey):], hash_des[:])
+// }
 
 //Backup the Mnemonic
 // func BackupMnemonic(masterKeyStr string) (mnemonic string, err error) {
