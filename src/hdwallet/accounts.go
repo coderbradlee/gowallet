@@ -191,6 +191,6 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	if err != nil {
 		return
 	}
-	privateKeyStr := child.String()
-	return address, privateKeyStr, nil
+	// privateKeyStr := child.String()
+	return
 }
