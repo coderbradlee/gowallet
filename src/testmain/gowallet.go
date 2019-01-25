@@ -23,7 +23,6 @@ var (
 	// btc 0地址 12z6UzsA3tjpaeuvA2Zr9jwx19Azz74D6g
 	// 1地址1962gsZ8PoPUYHneFakkCTrukdFMVQ4i4T
 	// 私钥xprv9yrdwPSRnvomqFK4u1y5uW2SaXS2Vnr3pAYTjJjbyRZR8p9BwoadRsCxtgUFdAKeRPbwvGRcCSYMV69nNK4N2kadevJ6L5iQVy1SwGKDTHQ
-	// 公钥BdgvWHN/Uh/K526q/+CdpGwEPZ41SvZHHGSgiSqhFesjErdbo6UnJMIoDOHV94qW8fd2KBW18UG3nTzDwS7a5oArqPtv+2aE9+1bNvCdtYoAx3979N3vbX4Xxn/najTABykXrJDjgpoaXxSo/xTktQ==
 
 	imtokenmnemonic = "inject kidney empty canal shadow pact comfort wife crush horse wife sketch"
 	ethaddress      = "6031564e7b2f5cc33737807b2e58daff870b590b"

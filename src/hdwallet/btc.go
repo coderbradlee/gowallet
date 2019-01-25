@@ -18,16 +18,16 @@ import (
 )
 
 func (hd *Hdwallet) btcAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
-	// private_key, err := child.ECPrivKey()
+	private_key, err := child.ECPrivKey()
 
-	// if err != nil {
-	// 	return
-	// }
-	// private_wif, err := btcutil.NewWIF(private_key, &btcAddressNetParams, true)
-	// if err != nil {
-	// 	return
-	// }
-	// private_str := private_wif.String()
+	if err != nil {
+		return
+	}
+	private_wif, err := btcutil.NewWIF(private_key, &btcAddressNetParams, true)
+	if err != nil {
+		return
+	}
+	private_str := private_wif.String()
 	fmt.Println("wif private:", child.String())
 	addressret, err := child.Address(&btcAddressNetParams)
 	if err != nil {
