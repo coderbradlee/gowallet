@@ -48,17 +48,17 @@ func testipfs() {
 	c := cfg.Config{}
 	priv, pub, err := ci.GenerateKeyPairWithReader(ci.RSA, 1024, rand.Reader)
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	pid, err := peer.IDFromPublicKey(pub)
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	privkeyb, err := priv.Bytes()
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	c.Bootstrap = cfg.DefaultBootstrapAddresses
