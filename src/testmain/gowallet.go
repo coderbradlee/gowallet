@@ -22,10 +22,10 @@ var (
 
 	// btc 0地址 12z6UzsA3tjpaeuvA2Zr9jwx19Azz74D6g
 	// 1地址1962gsZ8PoPUYHneFakkCTrukdFMVQ4i4T
-	// 私钥xprv9yrdwPSRnvomqFK4u1y5uW2SaXS2Vnr3pAYTjJjbyRZR8p9BwoadRsCxtgUFdAKeRPbwvGRcCSYMV69nNK4N2kadevJ6L5iQVy1SwGKDTHQ
+	// 私钥,此私钥与golang生成的不一致，xprv9yrdwPSRnvomqFK4u1y5uW2SaXS2Vnr3pAYTjJjbyRZR8p9BwoadRsCxtgUFdAKeRPbwvGRcCSYMV69nNK4N2kadevJ6L5iQVy1SwGKDTHQ
 
 	// bitcoin的memo 用go包试下
-	// ipfs 生成peerid及私钥
+	// 如何利用助记词 对ipfs 生成peerid及私钥
 	// ipfs的imtoken使用方式
 	imtokenmnemonic = "inject kidney empty canal shadow pact comfort wife crush horse wife sketch"
 	ethaddress      = "6031564e7b2f5cc33737807b2e58daff870b590b"
