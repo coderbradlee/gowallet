@@ -6,6 +6,9 @@ import (
 	// "math/big"
 	// "github.com/tyler-smith/go-bip32"
 	// "github.com/tyler-smith/go-bip39"
+	"crypto/rand"
+	cfg "github.com/ipfs/go-ipfs-config"
+	ci "github.com/libp2p/go-libp2p-crypto"
 )
 
 var (
@@ -39,8 +42,33 @@ func main() {
 	fmt.Println("imtoken address:", ethaddress)
 	fmt.Printf("\n")
 	test()
+	testipfs()
 }
+func testipfs() {
+	c := cfg.Config{}
+	priv, pub, err := ci.GenerateKeyPairWithReader(ci.RSA, 1024, rand.Reader)
+	if err != nil {
+		return nil, err
+	}
 
+	pid, err := peer.IDFromPublicKey(pub)
+	if err != nil {
+		return nil, err
+	}
+
+	privkeyb, err := priv.Bytes()
+	if err != nil {
+		return nil, err
+	}
+
+	c.Bootstrap = cfg.DefaultBootstrapAddresses
+	c.Addresses.Swarm = []string{"/ip4/0.0.0.0/tcp/4001"}
+	c.Identity.PeerID = pid.Pretty()
+
+	c.Identity.PrivKey = base64.StdEncoding.EncodeToString(privkeyb)
+	fmt.Println(c.Identity.PeerID)
+	fmt.Println(c.Identity.PrivKey)
+}
 func test() {
 	// {
 	// 	hd := wallet.NewHdwallet()
