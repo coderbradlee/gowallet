@@ -27,7 +27,7 @@ func (hd *Hdwallet) btcAddress(child *hdkeychain.ExtendedKey) (address string, e
 	if err != nil {
 		return
 	}
-	private_str = private_wif.String()
+	private_str := private_wif.String()
 	fmt.Println("wif private:", private_str)
 	addressret, err := child.Address(&btcAddressNetParams)
 	if err != nil {
