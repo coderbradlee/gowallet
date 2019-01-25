@@ -40,6 +40,7 @@ func main() {
 	testipfs()
 }
 func testipfs() {
+	fmt.Printf("\nipfs:\n")
 	c := cfg.Config{}
 	priv, pub, err := ci.GenerateKeyPairWithReader(ci.RSA, 1024, rand.Reader)
 	if err != nil {
@@ -93,40 +94,45 @@ func test() {
 		fmt.Println(address)
 		fmt.Println(hd.MasterKey())
 	}
-	fmt.Printf("\nbtc:\n")
-	{
-		hd := wallet.NewHdwallet()
-		err := hd.ImportMnemonic(imtokenmnemonic)
-		if err != nil {
-			fmt.Println(err)
-			return
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 2; j++ {
+			fmt.Printf("\nbtc:\n")
+			{
+				hd := wallet.NewHdwallet()
+				err := hd.ImportMnemonic(imtokenmnemonic)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				address, private, err := hd.GenerateAddressWithMnemonic(0, 0, i, j)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				fmt.Println(private)
+				fmt.Println(address)
+				// fmt.Println(hd.MasterKey())
+			}
 		}
-		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(private)
-		fmt.Println(address)
-		// fmt.Println(hd.MasterKey())
 	}
-	fmt.Printf("\nbtc:\n")
-	{
-		hd := wallet.NewHdwallet()
-		err := hd.ImportMnemonic(imtokenmnemonic)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 1)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(private)
-		fmt.Println(address)
-		// fmt.Println(hd.MasterKey())
-	}
+
+	// fmt.Printf("\nbtc:\n")
+	// {
+	// 	hd := wallet.NewHdwallet()
+	// 	err := hd.ImportMnemonic(imtokenmnemonic)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// 	address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 1)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// 	fmt.Println(private)
+	// 	fmt.Println(address)
+	// 	// fmt.Println(hd.MasterKey())
+	// }
 	// fmt.Printf("\nltc:")
 	// {
 	// 	hd := wallet.NewHdwallet()
