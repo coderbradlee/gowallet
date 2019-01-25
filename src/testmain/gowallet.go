@@ -16,7 +16,7 @@ import (
 var (
 	// imtoken测试用例
 	// 助记词 inject kidney empty canal shadow pact comfort wife crush horse wife sketch
-	// ipfs QmWqwovhrZBMmo32BzY83ZMEBQaP7YRMqXNmMc8mgrpzs6", identity.getIpfsId());
+	// ipfs QmWqwovhrZBMmo32BzY83ZMEBQaP7YRMqXNmMc8mgrpzs6
 	// eth 6031564e7b2f5cc33737807b2e58daff870b590b
 	// 私钥 cce64585e3b15a0e4ee601a467e050c9504a0db69a559d7ec416fa25ad3410c2
 
