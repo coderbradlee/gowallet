@@ -9,6 +9,7 @@ import (
 	"crypto/rand"
 	cfg "github.com/ipfs/go-ipfs-config"
 	ci "github.com/libp2p/go-libp2p-crypto"
+	"github.com/libp2p/go-libp2p-peer"
 )
 
 var (
