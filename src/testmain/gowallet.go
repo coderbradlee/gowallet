@@ -7,6 +7,7 @@ import (
 	// "github.com/tyler-smith/go-bip32"
 	// "github.com/tyler-smith/go-bip39"
 	"crypto/rand"
+	"encoding/base64"
 	cfg "github.com/ipfs/go-ipfs-config"
 	ci "github.com/libp2p/go-libp2p-crypto"
 	"github.com/libp2p/go-libp2p-peer"
