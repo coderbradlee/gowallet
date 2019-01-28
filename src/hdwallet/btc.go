@@ -253,8 +253,9 @@ func createRawTransactionNew(fromAddress string, toAddress string, amount float6
 	}
 	////////add memo
 	if memo != "" {
-		script, err := txscript.NullDataScript([]byte(memo))
-		if err != nil {
+		script, errs := txscript.NullDataScript([]byte(memo))
+		if errs != nil {
+			err = errs
 			return
 		}
 		memoOut := wire.NewTxOut(0, script)
