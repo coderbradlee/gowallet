@@ -106,7 +106,7 @@ func testipfs() {
 	c.Identity.PrivKey = base64.StdEncoding.EncodeToString(privkeyb)
 	fmt.Println(c.Identity.PeerID)
 	fmt.Println(c.Identity.PrivKey)
-	private_str = hex.EncodeToString(privkeyb)
+	private_str := hex.EncodeToString(privkeyb)
 	fmt.Println(private_str)
 }
 func test() {
