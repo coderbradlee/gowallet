@@ -8,6 +8,7 @@ import (
 	// "github.com/tyler-smith/go-bip39"
 	"crypto/rand"
 	"encoding/base64"
+	"encoding/hex"
 	cfg "github.com/ipfs/go-ipfs-config"
 	ci "github.com/libp2p/go-libp2p-crypto"
 	"github.com/libp2p/go-libp2p-peer"
@@ -101,10 +102,12 @@ func testipfs() {
 	c.Bootstrap = cfg.DefaultBootstrapAddresses
 	c.Addresses.Swarm = []string{"/ip4/0.0.0.0/tcp/4001"}
 	c.Identity.PeerID = pid.Pretty()
-	fmt.Println(string(privkeyb))
+	// fmt.Println(string(privkeyb))
 	c.Identity.PrivKey = base64.StdEncoding.EncodeToString(privkeyb)
 	fmt.Println(c.Identity.PeerID)
 	fmt.Println(c.Identity.PrivKey)
+	private_str = hex.EncodeToString(privkeyb)
+	fmt.Println(private_str)
 }
 func test() {
 	// {
