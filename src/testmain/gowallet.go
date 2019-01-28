@@ -84,7 +84,7 @@ func testbtcsign() {
 func testipfs() {
 	fmt.Printf("\nipfs:\n")
 	c := cfg.Config{}
-	priv, pub, err := ci.GenerateKeyPairWithReader(ci.Secp256k1, 1024, rand.Reader)
+	priv, pub, err := ci.GenerateKeyPairWithReader(ci.ECDSA, 1024, rand.Reader)
 	if err != nil {
 		return
 	}
