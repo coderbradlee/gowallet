@@ -68,7 +68,7 @@ func testbtcsign() {
 	}
 
 	// SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error)
-	sign, err := wallet.SendBTCRawTxByPrivateKey("1cce15938a41062c2875b62deae13758128314c0ec5ee55180c55a2ee515d659", "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS", 0.001, 0.000003)
+	sign, err := wallet.SendBTCRawTxByPrivateKey("xprvA2veQkqHmgXwTSh9pCfyUPo8SEmpqPgqTBhE8KXQLNf76jbZUCAWT7JsyN3iDWfWFJbt3BqeMigLg5hJEkpNm6WvbmXViRC9zyubgR2eF3T", "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS", 0.001, 0.000003)
 	if err != nil {
 		fmt.Println(err)
 		return
