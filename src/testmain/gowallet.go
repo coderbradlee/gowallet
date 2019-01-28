@@ -101,7 +101,7 @@ func testipfs() {
 	c.Bootstrap = cfg.DefaultBootstrapAddresses
 	c.Addresses.Swarm = []string{"/ip4/0.0.0.0/tcp/4001"}
 	c.Identity.PeerID = pid.Pretty()
-
+	fmt.Println(string(privkeyb))
 	c.Identity.PrivKey = base64.StdEncoding.EncodeToString(privkeyb)
 	fmt.Println(c.Identity.PeerID)
 	fmt.Println(c.Identity.PrivKey)
