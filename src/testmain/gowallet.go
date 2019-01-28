@@ -48,16 +48,27 @@ func testbtcsign() {
 		fmt.Println(err)
 		return
 	}
-	address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
-	if err != nil {
-		fmt.Println(err)
-		return
+	{
+		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(private)
+		fmt.Println(address)
 	}
-	fmt.Println(private)
-	fmt.Println(address)
+	{
+		address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 1)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(private)
+		fmt.Println(address)
+	}
 
 	// SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error)
-	// sign, err := SendBTCRawTxByPrivateKey(private)
+	// sign, err := SendBTCRawTxByPrivateKey("1cce15938a41062c2875b62deae13758128314c0ec5ee55180c55a2ee515d659")
 
 }
 func testipfs() {
