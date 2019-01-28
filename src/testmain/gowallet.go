@@ -40,10 +40,10 @@ var (
 func main() {
 	fmt.Println("imtoken address:", ethaddress)
 	fmt.Printf("\n")
-	testbtcsign()
+	// testbtcsign()
 
 	// test()
-	// testipfs()
+	testipfs()
 }
 func testbtcsign() {
 	hd := wallet.NewHdwallet()
