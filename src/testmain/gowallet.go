@@ -74,7 +74,7 @@ func testbtcsign() {
 
 	// SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error)
 
-	sign, err := wallet.SendBTCRawTxByPrivateKey(btc0, btc1address, 0.001, 0.00004, "testmemobraddddddddddddddddddddddddtestmemobraddddddddddddddddddddddddddddddddddf")
+	sign, err := wallet.SendBTCRawTxByPrivateKey(btc0, btc1address, 0.001, 0.00004, "测试汉字测试汉字测试汉字测试汉字测试汉字测试汉字测试汉字测试汉字测试汉字测试汉字")
 	if err != nil {
 		fmt.Println(err)
 		return
