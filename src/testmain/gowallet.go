@@ -30,6 +30,10 @@ var (
 	imtokenmnemonic = "inject kidney empty canal shadow pact comfort wife crush horse wife sketch"
 	ethaddress      = "6031564e7b2f5cc33737807b2e58daff870b590b"
 	btcaddress      = "12z6UzsA3tjpaeuvA2Zr9jwx19Azz74D6g"
+	btc0            = "xprvA2veQkqHmgXwTSh9pCfyUPo8SEmpqPgqTBhE8KXQLNf76jbZUCAWT7JsyN3iDWfWFJbt3BqeMigLg5hJEkpNm6WvbmXViRC9zyubgR2eF3T"
+	btc0address     = "mhW3n3x8rvB5MmPXsbYDyfAGs8mhw9GGaW"
+	btc1            = "xprvA2veQkqHmgXwWChJWsD7mXphrhjumvLgF2o82dE9UeLGYcHoTYa8hi7A2ndChg8xbkPTEq7277cPL2qPTFLQH4AhRYT7nLqKVRr2Prwej3z"
+	btc1address     = "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS"
 )
 
 //Just for test
@@ -68,10 +72,7 @@ func testbtcsign() {
 	}
 
 	// SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error)
-	btc0 := "xprvA2veQkqHmgXwTSh9pCfyUPo8SEmpqPgqTBhE8KXQLNf76jbZUCAWT7JsyN3iDWfWFJbt3BqeMigLg5hJEkpNm6WvbmXViRC9zyubgR2eF3T"
-	btc0address := "mhW3n3x8rvB5MmPXsbYDyfAGs8mhw9GGaW"
-	btc1 := "xprvA2veQkqHmgXwWChJWsD7mXphrhjumvLgF2o82dE9UeLGYcHoTYa8hi7A2ndChg8xbkPTEq7277cPL2qPTFLQH4AhRYT7nLqKVRr2Prwej3z"
-	btc1address := "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS"
+
 	sign, err := wallet.SendBTCRawTxByPrivateKey(btc0, btc1address, 0.001, 0.000003, "testmemo brad")
 	if err != nil {
 		fmt.Println(err)
