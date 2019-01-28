@@ -38,7 +38,7 @@ func (hd *Hdwallet) btcAddress(child *hdkeychain.ExtendedKey) (address string, e
 }
 
 //Send BTC RawTransaction
-func SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error) {
+func SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64, memo string) (signedParam string, err error) {
 	var signRawTx string
 	if (len(privateKey) == 0) || (len(toAddress) == 0) {
 		return signRawTx, errors.New("some params is empty!!!")
@@ -53,7 +53,7 @@ func SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float6
 	fromAddress := address_str.String()
 	fmt.Println("The BTC send address is ", fromAddress)
 
-	createRawTx, err := createRawTransactionNew(fromAddress, toAddress, amount, txFee)
+	createRawTx, err := createRawTransactionNew(fromAddress, toAddress, amount, txFee, memo)
 	if err != nil {
 		return signRawTx, err
 	}
@@ -84,7 +84,7 @@ func sendBTCRawTxWithChangeByPrv(privateKey string, changeAddress string, toAddr
 }
 
 //The Real Create Raw Transaction without change address
-func createRawTransactionNew(fromAddress string, toAddress string, amount float64, minTxFee float64) (returnauthTx AuthoredTx, err error) {
+func createRawTransactionNew(fromAddress string, toAddress string, amount float64, minTxFee float64, memo string) (returnauthTx AuthoredTx, err error) {
 	//Some Variant
 	authTx := AuthoredTx{}
 	params := btcAddressNetParams
@@ -250,6 +250,15 @@ func createRawTransactionNew(fromAddress string, toAddress string, amount float6
 
 		txOut := wire.NewTxOut(int64(satoshi), pkScript)
 		mtx.AddTxOut(txOut)
+	}
+	////////add memo
+	if memo != "" {
+		script, err := txscript.NullDataScript([]byte(memo))
+		if err != nil {
+			return
+		}
+		memoOut := wire.NewTxOut(0, script)
+		mtx.AddTxOut(memoOut)
 	}
 
 	// Set the Locktime, if given.
