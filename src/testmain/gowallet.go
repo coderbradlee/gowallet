@@ -68,7 +68,11 @@ func testbtcsign() {
 	}
 
 	// SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error)
-	sign, err := wallet.SendBTCRawTxByPrivateKey("xprvA2veQkqHmgXwWChJWsD7mXphrhjumvLgF2o82dE9UeLGYcHoTYa8hi7A2ndChg8xbkPTEq7277cPL2qPTFLQH4AhRYT7nLqKVRr2Prwej3z", "mhW3n3x8rvB5MmPXsbYDyfAGs8mhw9GGaW", 0.001, 0.000003, "testmemo brad")
+	btc0 := "xprvA2veQkqHmgXwTSh9pCfyUPo8SEmpqPgqTBhE8KXQLNf76jbZUCAWT7JsyN3iDWfWFJbt3BqeMigLg5hJEkpNm6WvbmXViRC9zyubgR2eF3T"
+	btc0address := "mhW3n3x8rvB5MmPXsbYDyfAGs8mhw9GGaW"
+	btc1 := "xprvA2veQkqHmgXwWChJWsD7mXphrhjumvLgF2o82dE9UeLGYcHoTYa8hi7A2ndChg8xbkPTEq7277cPL2qPTFLQH4AhRYT7nLqKVRr2Prwej3z"
+	btc1address := "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS"
+	sign, err := wallet.SendBTCRawTxByPrivateKey(btc0, btc1address, 0.001, 0.000003, "testmemo brad")
 	if err != nil {
 		fmt.Println(err)
 		return
