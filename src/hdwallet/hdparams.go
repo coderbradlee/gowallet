@@ -11,7 +11,8 @@ var (
 	accountName = "*"
 	minCfm      = 1
 
-	btcAddressNetParams = chaincfg.MainNetParams
+	// btcAddressNetParams = chaincfg.MainNetParams
+	btcAddressNetParams = chaincfg.TestNet3Params
 
 	ltcAddressNetParams = LtcNetParams
 

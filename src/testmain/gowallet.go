@@ -36,8 +36,29 @@ var (
 func main() {
 	fmt.Println("imtoken address:", ethaddress)
 	fmt.Printf("\n")
-	test()
-	testipfs()
+	testbtcsign()
+
+	// test()
+	// testipfs()
+}
+func testbtcsign() {
+	hd := wallet.NewHdwallet()
+	err := hd.ImportMnemonic(imtokenmnemonic)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	address, private, err := hd.GenerateAddressWithMnemonic(0, 0, 0, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(private)
+	fmt.Println(address)
+
+	// SendBTCRawTxByPrivateKey(privateKey string, toAddress string, amount float64, txFee float64) (signedParam string, err error)
+	// sign, err := SendBTCRawTxByPrivateKey(private)
+
 }
 func testipfs() {
 	fmt.Printf("\nipfs:\n")
