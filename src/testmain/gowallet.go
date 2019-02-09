@@ -76,7 +76,7 @@ func dv(neediv int, result []int) {
 	} else {
 		for i := neediv; i > 1; i /= 2 {
 			newRet := append(result, i)
-			dv(neediv/i, newRet)
+			dv(i, newRet)
 		}
 	}
 }
