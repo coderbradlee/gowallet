@@ -51,6 +51,7 @@ func testfunc() {
 var (
 	coin = []int{1, 2, 5, 10}
 	// results = [...]int{1}
+
 )
 
 func getReward(sum int, result []int) {
@@ -67,32 +68,45 @@ func getReward(sum int, result []int) {
 	}
 
 }
-func dv(final int, result []int) {
+func dv(neediv int, result []int) {
 	length := len(result)
-	sum := 1
-	for i := 0; i < length; i++ {
-		sum *= result[i]
-		fmt.Println(sum)
-		if sum == final {
-			fmt.Println(result)
-			return
-		} else if sum > final {
-			return
-		}
-	}
-	// fmt.Println(length)
-	// fmt.Println(len(result))
-	ap := result[length-1] + 1
-	sum *= ap
-	fmt.Println("add:", sum)
-	if sum > final {
+	if neediv == 1 {
+		fmt.Println(result)
 		return
 	} else {
-		newRet := append(result, ap)
-		dv(final, newRet)
+		for i := neediv; i > 1; i /= 2 {
+			newRet := append(result, i)
+			dv(neediv/i, newRet)
+		}
 	}
-
 }
+
+// func dv(final int, result []int) {
+// 	length := len(result)
+// 	sum := 1
+// 	for i := 0; i < length; i++ {
+// 		sum *= result[i]
+// 		fmt.Println(sum)
+// 		if sum == final {
+// 			fmt.Println(result)
+// 			return
+// 		} else if sum > final {
+// 			return
+// 		}
+// 	}
+// 	// fmt.Println(length)
+// 	// fmt.Println(len(result))
+// 	ap := result[length-1] + 1
+// 	sum *= ap
+// 	fmt.Println("add:", sum)
+// 	if sum > final {
+// 		return
+// 	} else {
+// 		newRet := append(result, ap)
+// 		dv(final, newRet)
+// 	}
+
+// }
 
 //Just for test
 func main() {
