@@ -69,7 +69,7 @@ func getReward(sum int, result []int) {
 
 }
 func dv(neediv int, result []int) {
-	length := len(result)
+	// length := len(result)
 	if neediv == 1 {
 		fmt.Println(result)
 		return
