@@ -45,7 +45,7 @@ func testfunc() {
 	fmt.Println(xx << 1)
 	fmt.Println(yy << 1)
 	fmt.Println(xx >> 1)
-	fmt.println(yy >> 1)
+	fmt.Println(yy >> 1)
 }
 
 //Just for test
