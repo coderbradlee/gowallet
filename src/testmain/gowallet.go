@@ -49,20 +49,20 @@ func testfunc() {
 }
 
 var (
-	coin=[]int{1,2,5,10}
+	coin   = []int{1, 2, 5, 10}
 	result = [...]int{}
 )
- 
-func getReward(sum int,[]int result) {
-	if sum==0{
+
+func getReward(sum int, result []int) {
+	if sum == 0 {
 		fmt.Println(result)
 		return
-	}else if sum<0{
+	} else if sum < 0 {
 		return
-	}else{
-		for i:=0;i<4;i++{
-			result=append(result,coin[i])
-			getReward(sum-coin[i],result)
+	} else {
+		for i := 0; i < 4; i++ {
+			result = append(result, coin[i])
+			getReward(sum-coin[i], result)
 		}
 	}
 
@@ -74,7 +74,7 @@ func main() {
 	fmt.Printf("\n")
 	// testbtcsign()
 	// testfunc()
-	getReward(10,result)
+	getReward(10, result)
 	// test()
 	// testipfs()
 }
