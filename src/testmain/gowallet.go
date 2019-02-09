@@ -61,8 +61,8 @@ func getReward(sum int, result []int) {
 		return
 	} else {
 		for i := 0; i < 4; i++ {
-			result = append(result, coin[i])
-			getReward(sum-coin[i], result)
+			newRet := append(result, coin[i])
+			getReward(sum-coin[i], newRet)
 		}
 	}
 
