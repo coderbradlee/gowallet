@@ -37,12 +37,23 @@ var (
 	btc1address     = "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS"
 )
 
+func testfunc() {
+	var xx uint
+	xx = 16
+	var yy int
+	yy = -16
+	fmt.Println(xx << 1)
+	fmt.println(yy << 1)
+	fmt.Println(xx >> 1)
+	fmt.println(yy >> 1)
+}
+
 //Just for test
 func main() {
 	fmt.Println("imtoken address:", ethaddress)
 	fmt.Printf("\n")
-	testbtcsign()
-
+	// testbtcsign()
+	testfunc()
 	// test()
 	// testipfs()
 }
