@@ -84,6 +84,7 @@ func dv(final int, result []int) {
 	// fmt.Println(len(result))
 	ap := result[length-1] + 1
 	sum *= ap
+	fmt.Println("add:", sum)
 	if sum > final {
 		return
 	} else {
