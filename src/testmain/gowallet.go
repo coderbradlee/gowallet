@@ -67,6 +67,27 @@ func getReward(sum int, result []int) {
 	}
 
 }
+func dv(final int, result []int) {
+	length := len(result)
+	sum := 1
+	for i := 0; i < length; i++ {
+		sum *= result[i]
+		if sum == final {
+			fmt.Println(result)
+			return
+		} else if sum > final {
+			return
+		}
+	}
+	sum *= result[length-1] + 1
+	if sum > final {
+		return
+	} else {
+		newRet := append(result, result[length-1]+1)
+		dv(final, newRet)
+	}
+
+}
 
 //Just for test
 func main() {
