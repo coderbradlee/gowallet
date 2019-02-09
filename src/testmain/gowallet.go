@@ -96,7 +96,8 @@ func main() {
 	// testbtcsign()
 	// testfunc()
 	var results []int
-	getReward(10, results)
+	// getReward(10, results)
+	dv(8, results)
 	// test()
 	// testipfs()
 }
