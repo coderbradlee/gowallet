@@ -72,6 +72,7 @@ func dv(final int, result []int) {
 	sum := 1
 	for i := 0; i < length; i++ {
 		sum *= result[i]
+		fmt.Println(sum)
 		if sum == final {
 			fmt.Println(result)
 			return
