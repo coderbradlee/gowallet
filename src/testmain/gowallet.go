@@ -49,7 +49,7 @@ func testfunc() {
 }
 
 var (
-	coin={1,2,5,10}
+	coin=[]int{1,2,5,10}
 	result = [...]int{}
 )
  
