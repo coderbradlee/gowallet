@@ -79,11 +79,12 @@ func dv(final int, result []int) {
 			return
 		}
 	}
-	sum *= result[length-1] + 1
+	ap := result[length-1] + 1
+	sum *= ap
 	if sum > final {
 		return
 	} else {
-		newRet := append(result, result[length-1]+1)
+		newRet := append(result, ap)
 		dv(final, newRet)
 	}
 
@@ -91,8 +92,8 @@ func dv(final int, result []int) {
 
 //Just for test
 func main() {
-	fmt.Println("imtoken address:", ethaddress)
-	fmt.Printf("\n")
+	// fmt.Println("imtoken address:", ethaddress)
+	// fmt.Printf("\n")
 	// testbtcsign()
 	// testfunc()
 	var results []int
