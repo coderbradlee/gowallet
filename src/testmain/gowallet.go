@@ -48,12 +48,33 @@ func testfunc() {
 	fmt.Println(yy >> 1)
 }
 
+var (
+	coin={1,2,5,10}
+	result = [...]int{}
+)
+ 
+func getReward(sum int,[]int result) {
+	if sum==0{
+		fmt.Println(result)
+		return
+	}else if sum<0{
+		return
+	}else{
+		for i:=0;i<4;i++{
+			result=append(result,coin[i])
+			getReward(sum-coin[i],result)
+		}
+	}
+
+}
+
 //Just for test
 func main() {
 	fmt.Println("imtoken address:", ethaddress)
 	fmt.Printf("\n")
 	// testbtcsign()
-	testfunc()
+	// testfunc()
+	getReward(10,result)
 	// test()
 	// testipfs()
 }
