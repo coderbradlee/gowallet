@@ -49,8 +49,8 @@ func testfunc() {
 }
 
 var (
-	coin   = []int{1, 2, 5, 10}
-	result = [...]int{}
+	coin    = []int{1, 2, 5, 10}
+	results = [...]int{}
 )
 
 func getReward(sum int, result []int) {
@@ -74,7 +74,7 @@ func main() {
 	fmt.Printf("\n")
 	// testbtcsign()
 	// testfunc()
-	getReward(10, result)
+	getReward(10, results)
 	// test()
 	// testipfs()
 }
