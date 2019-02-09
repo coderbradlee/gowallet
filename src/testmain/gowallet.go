@@ -79,8 +79,8 @@ func dv(final int, result []int) {
 			return
 		}
 	}
-	fmt.Println(length)
-	fmt.Println(len(result))
+	// fmt.Println(length)
+	// fmt.Println(len(result))
 	ap := result[length-1] + 1
 	sum *= ap
 	if sum > final {
@@ -98,8 +98,9 @@ func main() {
 	// fmt.Printf("\n")
 	// testbtcsign()
 	// testfunc()
-	var results []int
+	results := []int{1}
 	// getReward(10, results)
+
 	dv(8, results)
 	// test()
 	// testipfs()
