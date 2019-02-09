@@ -50,7 +50,7 @@ func testfunc() {
 
 var (
 	coin    = []int{1, 2, 5, 10}
-	results = [...]int{}
+	results = [...]int{1}
 )
 
 func getReward(sum int, result []int) {
