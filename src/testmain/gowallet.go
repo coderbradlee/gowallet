@@ -74,7 +74,7 @@ func dv(neediv int, result []int) {
 		fmt.Println(result)
 		return
 	} else if neediv == 2 {
-		newRet := append(result, i)
+		newRet := append(result, 2)
 		fmt.Println(result)
 		return
 	} else {
