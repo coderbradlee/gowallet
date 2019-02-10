@@ -102,46 +102,54 @@ func dv(final int, result []int) {
 		}
 	}
 }
-
-// func dv(final int, result []int) {
-// 	length := len(result)
-// 	sum := 1
-// 	for i := 0; i < length; i++ {
-// 		sum *= result[i]
-// 		fmt.Println(sum)
-// 		if sum == final {
-// 			fmt.Println(result)
-// 			return
-// 		} else if sum > final {
-// 			return
-// 		}
-// 	}
-// 	// fmt.Println(length)
-// 	// fmt.Println(len(result))
-// 	ap := result[length-1] + 1
-// 	sum *= ap
-// 	fmt.Println("add:", sum)
-// 	if sum > final {
-// 		return
-// 	} else {
-// 		newRet := append(result, ap)
-// 		dv(final, newRet)
-// 	}
-
-// }
-
-//Just for test
+func merge(array []int){
+	if len(array)<2{
+		return
+	}
+	merged:=mergeSort(left,right)
+}
+func mergeSort(left []int,right []int)(ret []int){
+	leftLength:=len(left)
+	rightLength:=len(right)
+	if leftLength<1||rightLength<1{
+		return
+	}
+	if leftLength==1&&rightLength==1{
+		if left[0]>right[0]{
+			ret=append(ret,right[0])
+			ret=append(ret,left[0])
+		}else{
+			ret=append(ret,left[0])
+			ret=append(ret,right[0])
+		}
+		return
+	}	
+	splitLeft:=leftLength/2
+	splitRight:=rightLength/2
+	leftMerge:=left
+	rightMerge:=right
+	if splitLeft>0{
+		leftMerge=mergeSort(left[:splitLeft],left[splitLeft+1:])
+	}
+	if splitRight>0{
+		rightMerge=mergeSort(right[:splitRight],right[splitRight+1:])
+	}
+	return mergeSort(leftMerge,rightMerge)
+}
 func main() {
 	// fmt.Println("imtoken address:", ethaddress)
 	// fmt.Printf("\n")
 	// testbtcsign()
 	// testfunc()
-	var results []int
+	// var results []int
 	// getReward(10, results)
 
-	dv(8, results)
-	fmt.Println("===================")
-	dv(15, results)
+	to_sort = {3434, 3356, 67, 123,111,890}
+	sorted:=merge(to_sort)
+	fmt.Println(sorted)
+	// dv(8, results)
+	// fmt.Println("===================")
+	// dv(15, results)
 	// dv(16, results)
 	// dv(15, results)
 	// test()
