@@ -172,8 +172,8 @@ func main() {
 	// testfunc()
 	// var results []int
 	// getReward(10, results)
-	left := []int{1, 8, 4}
-	right := []int{2, 20, 33, 10}
+	left := []int{1, 4, 8}
+	right := []int{2, 10, 20, 33}
 	ret := mergeSort(left, right)
 	fmt.Println(ret)
 	// to_sort := []int{3434, 3356, 67, 123, 111, 890}
