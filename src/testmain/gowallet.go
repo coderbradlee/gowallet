@@ -81,7 +81,7 @@ func dv(final int, result []int) {
 	} else {
 		for i := 2; i <= final; i++ {
 			newRet := append(result, i)
-			dv(i, final, newRet)
+			dv(final, newRet)
 		}
 	}
 }
@@ -124,7 +124,7 @@ func main() {
 
 	dv(8, results)
 	dv(16, results)
-	dv(s15, results)
+	dv(15, results)
 	// test()
 	// testipfs()
 }
