@@ -68,8 +68,7 @@ func getReward(sum int, result []int) {
 	}
 
 }
-func dv(neediv, final int, result []int) {
-	// fmt.Println("neediv:", neediv)
+func dv(final int, result []int) {
 	temp := 1
 	for _, v := range result {
 		temp *= v
@@ -123,9 +122,9 @@ func main() {
 	results := []int{1}
 	// getReward(10, results)
 
-	dv(8, 8, results)
-	dv(16, 16, results)
-	dv(15, 15, results)
+	dv(8, results)
+	dv(16, results)
+	dv(s15, results)
 	// test()
 	// testipfs()
 }
