@@ -80,7 +80,7 @@ func dv(neediv, final int, result []int) {
 	} else if temp > final {
 		return
 	} else {
-		for i := neediv; i > 1; i /= 2 {
+		for i := 1; i < neediv; i++ {
 			newRet := append(result, i)
 			dv(i, final, newRet)
 		}
