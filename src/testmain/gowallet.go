@@ -102,11 +102,12 @@ func dv(final int, result []int) {
 		}
 	}
 }
-func merges(array []int) []int {
+func merges(array []int) (ret []int) {
 	if len(array) < 2 {
 		return
 	}
-	return mergeSort(array[:len(array)/2], array[len(array)/2+1:])
+	ret = mergeSort(array[:len(array)/2], array[len(array)/2+1:])
+	return
 }
 func mergeSort(left []int, right []int) (ret []int) {
 	leftLength := len(left)
