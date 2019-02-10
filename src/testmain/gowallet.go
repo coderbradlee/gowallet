@@ -124,6 +124,7 @@ func main() {
 	// getReward(10, results)
 
 	dv(8, 8, results)
+	dv(16, 16, results)
 	// test()
 	// testipfs()
 }
