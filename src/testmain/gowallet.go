@@ -115,34 +115,47 @@ func merges(array []int) (ret []int) {
 	return
 }
 func mergeSort(left []int, right []int) (ret []int) {
-	fmt.Println("left:", left)
-	fmt.Println("right:", right)
-	leftLength := len(left)
-	rightLength := len(right)
-	if leftLength < 1 || rightLength < 1 {
-		return
-	}
-	if leftLength == 1 && rightLength == 1 {
-		if left[0] > right[0] {
-			ret = append(ret, right[0])
-			ret = append(ret, left[0])
-		} else {
-			ret = append(ret, left[0])
-			ret = append(ret, right[0])
+	for i:=0,j:=0;i<len(left)&&j<len(right);{
+		if left[i]<right[j]{
+			ret=append(ret,left[i])
+			i++
+		}else left[i]==right[j]{
+			ret=append(ret,left[i])
+			i++
+			j++
+		}else{
+			ret=append(ret,right[j])
+			j++
 		}
-		return
 	}
-	splitLeft := leftLength / 2
-	splitRight := rightLength / 2
-	leftMerge := left
-	rightMerge := right
-	if splitLeft > 0 {
-		leftMerge = mergeSort(left[:splitLeft], left[splitLeft:])
-	}
-	if splitRight > 0 {
-		rightMerge = mergeSort(right[:splitRight], right[splitRight:])
-	}
-	return mergeSort(leftMerge, rightMerge)
+	// fmt.Println("left:", left)
+	// fmt.Println("right:", right)
+	// leftLength := len(left)
+	// rightLength := len(right)
+	// if leftLength < 1 || rightLength < 1 {
+	// 	return
+	// }
+	// if leftLength == 1 && rightLength == 1 {
+	// 	if left[0] > right[0] {
+	// 		ret = append(ret, right[0])
+	// 		ret = append(ret, left[0])
+	// 	} else {
+	// 		ret = append(ret, left[0])
+	// 		ret = append(ret, right[0])
+	// 	}
+	// 	return
+	// }
+	// splitLeft := leftLength / 2
+	// splitRight := rightLength / 2
+	// leftMerge := left
+	// rightMerge := right
+	// if splitLeft > 0 {
+	// 	leftMerge = mergeSort(left[:splitLeft], left[splitLeft:])
+	// }
+	// if splitRight > 0 {
+	// 	rightMerge = mergeSort(right[:splitRight], right[splitRight:])
+	// }
+	// return mergeSort(leftMerge, rightMerge)
 }
 func main() {
 	// fmt.Println("imtoken address:", ethaddress)
@@ -151,10 +164,13 @@ func main() {
 	// testfunc()
 	// var results []int
 	// getReward(10, results)
-
-	to_sort := []int{3434, 3356, 67, 123, 111, 890}
-	sorted := merges(to_sort)
-	fmt.Println(sorted)
+	left:=[]int{1,8,4}
+	right:=[]int{2,20,33,10}
+	ret:=mergeSort(left,right)
+	fmt.Println(ret)
+	// to_sort := []int{3434, 3356, 67, 123, 111, 890}
+	// sorted := merges(to_sort)
+	// fmt.Println(sorted)
 	// dv(8, results)
 	// fmt.Println("===================")
 	// dv(15, results)
