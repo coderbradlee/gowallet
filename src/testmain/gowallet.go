@@ -115,16 +115,16 @@ func merges(array []int) (ret []int) {
 	return
 }
 func mergeSort(left []int, right []int) (ret []int) {
-	for i,j:=0;i<len(left)&&j<len(right);{
-		if left[i]<right[j]{
-			ret=append(ret,left[i])
+	for i, j := 0; i < len(left) && j < len(right); {
+		if left[i] < right[j] {
+			ret = append(ret, left[i])
 			i++
-		}else left[i]==right[j]{
-			ret=append(ret,left[i])
+		} else if left[i] == right[j] {
+			ret = append(ret, left[i])
 			i++
 			j++
-		}else{
-			ret=append(ret,right[j])
+		} else {
+			ret = append(ret, right[j])
 			j++
 		}
 	}
@@ -164,9 +164,9 @@ func main() {
 	// testfunc()
 	// var results []int
 	// getReward(10, results)
-	left:=[]int{1,8,4}
-	right:=[]int{2,20,33,10}
-	ret:=mergeSort(left,right)
+	left := []int{1, 8, 4}
+	right := []int{2, 20, 33, 10}
+	ret := mergeSort(left, right)
 	fmt.Println(ret)
 	// to_sort := []int{3434, 3356, 67, 123, 111, 890}
 	// sorted := merges(to_sort)
