@@ -106,7 +106,7 @@ func merge(array []int) {
 	if len(array) < 2 {
 		return
 	}
-	merged := mergeSort(left, right)
+	merged := mergeSort(array[:len(array)/2], array[len(array)/2+1:])
 }
 func mergeSort(left []int, right []int) (ret []int) {
 	leftLength := len(left)
