@@ -128,7 +128,7 @@ func main() {
 	// fmt.Printf("\n")
 	// testbtcsign()
 	// testfunc()
-	results := []int{1}
+	var results []int
 	// getReward(10, results)
 
 	dv(8, results)
