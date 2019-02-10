@@ -88,7 +88,7 @@ func dv(final int, result []int) {
 	}
 	if temp == final {
 		numoffinal := existone(final, result)
-		if numoffinal == 1 {
+		if numoffinal == 1 && numofone < 1 {
 			result = append(result, 1)
 		}
 		fmt.Println(result)
