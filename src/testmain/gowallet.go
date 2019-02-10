@@ -106,6 +106,7 @@ func merges(array []int) (ret []int) {
 	fmt.Println("all:", array)
 	length := len(array)
 	if length < 2 {
+		ret = array[0]
 		return
 	} else if length == 2 {
 		ret = mergeSort(array[:1], array[1:])
