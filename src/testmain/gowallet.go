@@ -68,19 +68,21 @@ func getReward(sum int, result []int) {
 	}
 
 }
-func dv(neediv int, result []int) {
-	// length := len(result)
-	if neediv == 1 {
+func dv(neediv, final int, result []int) {
+	fmt.Println("neediv:", neediv)
+	temp := 1
+	for _, v := range result {
+		temp *= v
+	}
+	if temp == final {
 		fmt.Println(result)
 		return
-	} else if neediv == 2 {
-		newRet := append(result, 2)
-		fmt.Println(newRet)
+	} else if temp > final {
 		return
 	} else {
-		for i := neediv; i > 2; i /= 2 {
+		for i := neediv; i > 1; i /= 2 {
 			newRet := append(result, i)
-			dv(i, newRet)
+			dv(i, final, newRet)
 		}
 	}
 }
@@ -121,7 +123,7 @@ func main() {
 	results := []int{1}
 	// getReward(10, results)
 
-	dv(8, results)
+	dv(8, 8, results)
 	// test()
 	// testipfs()
 }
