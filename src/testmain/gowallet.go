@@ -128,6 +128,7 @@ func mergeSort(left []int, right []int) (ret []int) {
 			j++
 		}
 	}
+	return
 	// fmt.Println("left:", left)
 	// fmt.Println("right:", right)
 	// leftLength := len(left)
