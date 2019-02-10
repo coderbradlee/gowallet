@@ -102,39 +102,39 @@ func dv(final int, result []int) {
 		}
 	}
 }
-func merge(array []int){
-	if len(array)<2{
+func merge(array []int) {
+	if len(array) < 2 {
 		return
 	}
-	merged:=mergeSort(left,right)
+	merged := mergeSort(left, right)
 }
-func mergeSort(left []int,right []int)(ret []int){
-	leftLength:=len(left)
-	rightLength:=len(right)
-	if leftLength<1||rightLength<1{
+func mergeSort(left []int, right []int) (ret []int) {
+	leftLength := len(left)
+	rightLength := len(right)
+	if leftLength < 1 || rightLength < 1 {
 		return
 	}
-	if leftLength==1&&rightLength==1{
-		if left[0]>right[0]{
-			ret=append(ret,right[0])
-			ret=append(ret,left[0])
-		}else{
-			ret=append(ret,left[0])
-			ret=append(ret,right[0])
+	if leftLength == 1 && rightLength == 1 {
+		if left[0] > right[0] {
+			ret = append(ret, right[0])
+			ret = append(ret, left[0])
+		} else {
+			ret = append(ret, left[0])
+			ret = append(ret, right[0])
 		}
 		return
-	}	
-	splitLeft:=leftLength/2
-	splitRight:=rightLength/2
-	leftMerge:=left
-	rightMerge:=right
-	if splitLeft>0{
-		leftMerge=mergeSort(left[:splitLeft],left[splitLeft+1:])
 	}
-	if splitRight>0{
-		rightMerge=mergeSort(right[:splitRight],right[splitRight+1:])
+	splitLeft := leftLength / 2
+	splitRight := rightLength / 2
+	leftMerge := left
+	rightMerge := right
+	if splitLeft > 0 {
+		leftMerge = mergeSort(left[:splitLeft], left[splitLeft+1:])
 	}
-	return mergeSort(leftMerge,rightMerge)
+	if splitRight > 0 {
+		rightMerge = mergeSort(right[:splitRight], right[splitRight+1:])
+	}
+	return mergeSort(leftMerge, rightMerge)
 }
 func main() {
 	// fmt.Println("imtoken address:", ethaddress)
@@ -144,8 +144,8 @@ func main() {
 	// var results []int
 	// getReward(10, results)
 
-	to_sort := {3434, 3356, 67, 123,111,890}
-	sorted:=merge(to_sort)
+	to_sort := []int{3434, 3356, 67, 123, 111, 890}
+	sorted := merge(to_sort)
 	fmt.Println(sorted)
 	// dv(8, results)
 	// fmt.Println("===================")
