@@ -69,6 +69,15 @@ func getReward(sum int, result []int) {
 
 }
 func dv(final int, result []int) {
+	numofone := 0
+	for _, v := range result {
+		if v == 1 {
+			numofone++
+		}
+	}
+	if numofone > 1 {
+		return
+	}
 	temp := 1
 	for _, v := range result {
 		temp *= v
@@ -79,7 +88,7 @@ func dv(final int, result []int) {
 	} else if temp > final {
 		return
 	} else {
-		for i := 2; i <= final; i++ {
+		for i := 1; i <= final; i++ {
 			newRet := append(result, i)
 			dv(final, newRet)
 		}
