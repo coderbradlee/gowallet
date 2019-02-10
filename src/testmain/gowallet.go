@@ -181,7 +181,7 @@ func main() {
 	// right := []int{2, 10, 20, 33, 55, 66, 77}
 	// ret := mergeSort(left, right)
 	// fmt.Println(ret)
-	test := []int{2, 9, 4, 10, 3, 20, 5, 33, 1, 88}
+	test := []int{2, 9, 4, 10, 3, 20, 5, 33, 1, 88, 11, 25, 6}
 	ret := merges(test)
 	fmt.Println(ret)
 	// to_sort := []int{3434, 3356, 67, 123, 111, 890}
