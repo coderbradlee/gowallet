@@ -102,7 +102,7 @@ func dv(final int, result []int) {
 		}
 	}
 }
-func merge(array []int) {
+func merges(array []int) {
 	if len(array) < 2 {
 		return
 	}
@@ -145,7 +145,7 @@ func main() {
 	// getReward(10, results)
 
 	to_sort := []int{3434, 3356, 67, 123, 111, 890}
-	sorted := merge(to_sort)
+	sorted := merges(to_sort)
 	fmt.Println(sorted)
 	// dv(8, results)
 	// fmt.Println("===================")
