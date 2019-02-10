@@ -144,7 +144,7 @@ func main() {
 	// var results []int
 	// getReward(10, results)
 
-	to_sort = {3434, 3356, 67, 123,111,890}
+	to_sort := {3434, 3356, 67, 123,111,890}
 	sorted:=merge(to_sort)
 	fmt.Println(sorted)
 	// dv(8, results)
