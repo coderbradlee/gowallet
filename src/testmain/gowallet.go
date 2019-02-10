@@ -69,7 +69,7 @@ func getReward(sum int, result []int) {
 
 }
 func dv(neediv, final int, result []int) {
-	fmt.Println("neediv:", neediv)
+	// fmt.Println("neediv:", neediv)
 	temp := 1
 	for _, v := range result {
 		temp *= v
