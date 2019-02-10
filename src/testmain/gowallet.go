@@ -104,13 +104,17 @@ func dv(final int, result []int) {
 }
 func merges(array []int) (ret []int) {
 	fmt.Println("all:", array)
-	if len(array) < 2 {
+	length := len(array)
+	if length < 2 {
+		return
+	} else if length == 2 {
+		ret = mergeSort(array[0], array[1])
 		return
 	}
-	left := array[:len(array)/2]
-	right := array[len(array)/2:]
-	fmt.Println(left)
-	fmt.Println(right)
+	leftone := array[:len(array)/2]
+	rightone := array[len(array)/2:]
+	left := merges(leftone)
+	right := merges(rightone)
 	ret = mergeSort(left, right)
 	return
 }
@@ -172,9 +176,12 @@ func main() {
 	// testfunc()
 	// var results []int
 	// getReward(10, results)
-	left := []int{1, 4, 8}
-	right := []int{2, 10, 20, 33, 55, 66, 77}
-	ret := mergeSort(left, right)
+	// left := []int{1, 4, 8}
+	// right := []int{2, 10, 20, 33, 55, 66, 77}
+	// ret := mergeSort(left, right)
+	// fmt.Println(ret)
+	test := []int{2, 9, 4, 10, 3, 20, 5, 33, 1, 88}
+	ret := marge(test)
 	fmt.Println(ret)
 	// to_sort := []int{3434, 3356, 67, 123, 111, 890}
 	// sorted := merges(to_sort)
