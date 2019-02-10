@@ -107,7 +107,7 @@ func merges(array []int) (ret []int) {
 	if len(array) < 2 {
 		return
 	}
-	ret = mergeSort(array[:len(array)/2], array[len(array)/2+1:])
+	ret = mergeSort(array[:len(array)/2], array[len(array)/2:])
 	return
 }
 func mergeSort(left []int, right []int) (ret []int) {
@@ -133,10 +133,10 @@ func mergeSort(left []int, right []int) (ret []int) {
 	leftMerge := left
 	rightMerge := right
 	if splitLeft > 0 {
-		leftMerge = mergeSort(left[:splitLeft], left[splitLeft+1:])
+		leftMerge = mergeSort(left[:splitLeft], left[splitLeft:])
 	}
 	if splitRight > 0 {
-		rightMerge = mergeSort(right[:splitRight], right[splitRight+1:])
+		rightMerge = mergeSort(right[:splitRight], right[splitRight:])
 	}
 	return mergeSort(leftMerge, rightMerge)
 }
