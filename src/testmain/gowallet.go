@@ -111,8 +111,8 @@ func merges(array []int) (ret []int) {
 	return
 }
 func mergeSort(left []int, right []int) (ret []int) {
-	fmt.Println(left)
-	fmt.Println(right)
+	// fmt.Println(left)
+	// fmt.Println(right)
 	leftLength := len(left)
 	rightLength := len(right)
 	if leftLength < 1 || rightLength < 1 {
