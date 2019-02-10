@@ -68,17 +68,17 @@ func getReward(sum int, result []int) {
 	}
 
 }
-func existone(result []int) (numofone int) {
+func existone(num int, result []int) (numofone int) {
 	numofone = 0
 	for _, v := range result {
-		if v == 1 {
+		if v == num {
 			numofone++
 		}
 	}
 	return
 }
 func dv(final int, result []int) {
-	numofone := existone(result)
+	numofone := existone(1, result)
 	if numofone > 1 {
 		return
 	}
@@ -87,7 +87,10 @@ func dv(final int, result []int) {
 		temp *= v
 	}
 	if temp == final {
-		// if numofone==0{}
+		numoffinal := existone(final, result)
+		if numoffinal == 1 {
+			result = append(result, 1)
+		}
 		fmt.Println(result)
 		return
 	} else if temp > final {
@@ -137,6 +140,8 @@ func main() {
 	// getReward(10, results)
 
 	dv(8, results)
+	fmt.Println("===================")
+	dv(15, results)
 	// dv(16, results)
 	// dv(15, results)
 	// test()
