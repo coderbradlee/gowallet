@@ -115,7 +115,7 @@ func merges(array []int) (ret []int) {
 	return
 }
 func mergeSort(left []int, right []int) (ret []int) {
-	for i, j := 0; i < len(left) && j < len(right); {
+	for i, j := 0, 0; i < len(left) && j < len(right); {
 		if left[i] < right[j] {
 			ret = append(ret, left[i])
 			i++
