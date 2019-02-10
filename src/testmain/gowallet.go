@@ -130,10 +130,10 @@ func mergeSort(left []int, right []int) (ret []int) {
 		}
 	}
 	if i < len(left) {
-		ret = append(ret, left[i:])
+		ret = append(ret, left[i:]...)
 	}
 	if j < len(right) {
-		ret = append(ret, right[j:])
+		ret = append(ret, right[j:]...)
 	}
 	return
 	// fmt.Println("left:", left)
