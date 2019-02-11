@@ -435,3 +435,21 @@ func combine(choice []int, result []int, num int) {
 		combine(choice, newresult, num-1)
 	}
 }
+func dynamic() {
+	coin := []int{1, 2, 5, 10}
+	var c [101]int //和为i的最小组合的钱币个数
+	c[0] = 0
+	for i := 1; i < 101; i++ {
+		minValue := 100
+		for j, value := range coin {
+			temp := i - coin[j]
+			if temp > =0 {
+				if c[temp] < minValue {
+					minValue = c[temp]
+				}
+			}
+		}
+		c[i] = minValue + 1
+	}
+	fmt.Println(c)
+}
