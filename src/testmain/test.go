@@ -429,7 +429,7 @@ func combine(choice []int, result []int, num int) {
 	} else {
 		start = result[index]
 	}
-	for i := start; i < len(choice); i++ {
+	for i := start + 1; i < len(choice); i++ {
 		newresult := append(result, choice[i])
 		combine(choice, newresult, num-1)
 	}
