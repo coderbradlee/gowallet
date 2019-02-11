@@ -441,8 +441,8 @@ func dynamic() {
 	c[0] = 0
 	for i := 1; i < 101; i++ {
 		minValue := 100
-		for j, value := range coin {
-			temp := i - coin[j]
+		for _, value := range coin {
+			temp := i - value
 			if temp >= 0 {
 				if c[temp] < minValue {
 					minValue = c[temp]
