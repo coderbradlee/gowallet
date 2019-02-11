@@ -368,12 +368,14 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
+	ret = origin
 	for i := 0; i < len(origin); i++ {
 		if origin[i] == elem {
 			ret = append(origin[:i], origin[i+1:]...)
 			return
 		}
 	}
+	return
 }
 func existstring(a string, result []string) bool {
 	for _, v := range result {
