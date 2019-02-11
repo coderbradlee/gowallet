@@ -413,6 +413,7 @@ func combine(choice []int, result []int, num int) {
 	// fmt.Println("result:", result)
 	if num < 1 {
 		fmt.Println(result)
+		counter++
 		return
 	}
 	// if len(result) == num {

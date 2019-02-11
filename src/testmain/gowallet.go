@@ -4,13 +4,16 @@ import (
 // "fmt"
 )
 
+var counter = 0
+
 func main() {
 	var choice []int
-	for i := 0; i < 15; i++ {
+	for i := 0; i < 16; i++ {
 		choice = append(choice, i)
 	}
 	var results []int
 	combine(choice, results, 14)
+	fmt.Println("counter:", counter)
 	// choice := []string{"a", "b", "c", "d", "e"}
 	// {
 	// 	newchoice := rmstring(choice, "a")
