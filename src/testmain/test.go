@@ -402,7 +402,7 @@ func permutate(choice []string, result []string) {
 		if !existstring(result, v) {
 			newresult := append(result, v)
 			newchoice := rmstring(choice, v)
-			fmt.Println("newchoice:", choice)
+			// fmt.Println("newchoice:", choice)
 			permutate(newchoice, newresult)
 			// return
 		}
