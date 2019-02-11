@@ -475,7 +475,9 @@ func (t *TreeNode) BreadthFirstSearch() {
 	}
 	for t.auxList.Len() > 0 {
 		front := t.auxList.Front()
-		front.BreadthFirstSearch()
+		if es, ok := front.(*TreeNode); ok {
+			es.BreadthFirstSearch()
+		}
 		t.auxList.Remove(front)
 	}
 }
