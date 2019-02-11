@@ -9,7 +9,7 @@ func main() {
 	for i := 0; i < 15; i++ {
 		choice = append(choice, i)
 	}
-	var results []string
+	var results []int
 	combine(choice, results, 14)
 	// choice := []string{"a", "b", "c", "d", "e"}
 	// {
