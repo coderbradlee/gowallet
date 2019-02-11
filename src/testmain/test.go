@@ -393,8 +393,8 @@ func permutate(choice []string, result []string) {
 	for _, v := range choice {
 		if !existstring(v, result) {
 			result = append(result, v)
-			choice = rmstring(choice, v)
-			permutate(choice, result)
+			newchoice := rmstring(choice, v)
+			permutate(newchoice, result)
 			// return
 		}
 	}
