@@ -481,11 +481,11 @@ func (t *TreeNode) BreadthFirstSearch() {
 }
 func testbfs() {
 	root := NewTreeNode()
-	root.sons["1"] = second1
-	root.sons["2"] = second2
+
 	second1 := NewTreeNode()
 	second2 := NewTreeNode()
-
+	root.sons["1"] = second1
+	root.sons["2"] = second2
 	third1 := NewTreeNode()
 	third2 := NewTreeNode()
 	third3 := NewTreeNode()
