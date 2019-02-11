@@ -368,6 +368,12 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
+	if len(origin) == 1 {
+		if origin[0] == elem {
+			ret = []string{}
+			return
+		}
+	}
 	ret = origin
 	for i := 0; i < len(origin); i++ {
 		if origin[i] == elem {
