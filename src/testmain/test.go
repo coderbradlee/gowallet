@@ -499,22 +499,23 @@ func testbfs() {
 	second2.sons["6"] = third4
 	root.BreadthFirstSearch()
 }
-func dijkstra() {
-	weight := [][]int{
-		{1000, 5, 8, 1000, 2},
-		{5, 1000, 1, 3, 1000},
-		{8, 1, 1000, 1000, 1000},
-		{1000, 3, 1000, 1000, 7},
-		{1000, 2, 1000, 7, 1000},
-	}
-	used := []bool{false, false, false, false, false}
-	dis := []int{0, 1000, 1000, 1000, 1000}
-	min := 1000
-	for i := 0; i < 5; i++ {
-		for j := 0; j < 5; j++ {
-			if weight[i][j] < min {
-				dis[j]
-			}
-		}
-	}
-}
+
+// func dijkstra() {
+// 	weight := [][]int{
+// 		{1000, 5, 8, 1000, 2},
+// 		{5, 1000, 1, 3, 1000},
+// 		{8, 1, 1000, 1000, 1000},
+// 		{1000, 3, 1000, 1000, 7},
+// 		{1000, 2, 1000, 7, 1000},
+// 	}
+// 	used := []bool{false, false, false, false, false}
+// 	dis := []int{0, 1000, 1000, 1000, 1000}
+// 	min := 1000
+// 	for i := 0; i < 5; i++ {
+// 		for j := 0; j < 5; j++ {
+// 			if weight[i][j] < min {
+// 				dis[j]
+// 			}
+// 		}
+// 	}
+// }

@@ -13,7 +13,7 @@ func main() {
 
 	fmt.Println(":", name)
 	// dynamic()
-	testbfs()
+	// testbfs()
 	// var choice []int
 	// for i := 0; i < 16; i++ {
 	// 	choice = append(choice, i)
