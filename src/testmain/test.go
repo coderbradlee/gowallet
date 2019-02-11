@@ -368,7 +368,10 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
-	ret = origin[:]
+	ret = make([]int, len(origin))
+	// ret = origin
+	// b:=nums[:3:3] //第二个冒号 设置cap的
+	copy(ret, origin[:])
 	for i := 0; i < len(origin); i++ {
 		if origin[i] == elem {
 			ret = append(origin[:i], origin[i+1:]...)
