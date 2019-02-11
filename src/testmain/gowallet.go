@@ -60,7 +60,7 @@ func main() {
 
 	fmt.Println(":", *name)
 	// var Testvar = "iner"
-	fmt.Println(Testvar)
+	fmt.Println(testvar)
 	// dynamic()
 	// testbfs()
 	// var choice []int

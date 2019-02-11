@@ -17,7 +17,7 @@ import (
 	eosecc "github.com/eoscanada/eos-go/ecc"
 )
 
-var Testvar = "bts"
+var testvar = "bts"
 
 //转账交易结构
 type Transfer struct {
