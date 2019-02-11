@@ -8,7 +8,8 @@ var counter = 0
 
 func main() {
 	fmt.Println("--")
-	dynamic()
+	// dynamic()
+	testbfs()
 	// var choice []int
 	// for i := 0; i < 16; i++ {
 	// 	choice = append(choice, i)

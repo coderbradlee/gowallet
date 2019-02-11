@@ -6,6 +6,7 @@ import (
 	// "math/big"
 	// "github.com/tyler-smith/go-bip32"
 	// "github.com/tyler-smith/go-bip39"
+	"container/list"
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/hex"
@@ -452,4 +453,47 @@ func dynamic() {
 		c[i] = minValue + 1
 	}
 	fmt.Println(c)
+}
+
+type TreeNode struct {
+	sons    map[string]TreeNode
+	auxList list.List
+}
+
+func NewTreeNode() (ret *TreeNode) {
+	ret = &TreeNode{
+		sons:    make(map[string]TreeNode),
+		auxList: list.New(),
+	}
+	return
+}
+func (t *TreeNode) BreadthFirstSearch() {
+
+	for k, v := range sons {
+		fmt.Println(k)
+		auxList.PushBack(v)
+	}
+	for auxList.Len() > 0 {
+		front := auxList.Front()
+		front.BreadthFirstSearch()
+		auxList.Remove(front)
+	}
+}
+func testbfs() {
+	root := NewTreeNode()
+	root.sons["1"] = second1
+	root.sons["2"] = second2
+	second1 := NewTreeNode()
+	second2 := NewTreeNode()
+
+	third1 := NewTreeNode()
+	third2 := NewTreeNode()
+	third3 := NewTreeNode()
+	third4 := NewTreeNode()
+
+	second1.sons["3"] = third1
+	second1.sons["4"] = third2
+	second2.sons["5"] = third3
+	second2.sons["6"] = third4
+	root.BreadthFirstSearch()
 }
