@@ -5,8 +5,12 @@ import (
 )
 
 func main() {
-
-	choice := []string{"a", "b", "c", "d", "e"}
+	var choice []int
+	for i := 0; i < 15; i++ {
+		choice = append(choice, i)
+	}
+	combine(choice, 14)
+	// choice := []string{"a", "b", "c", "d", "e"}
 	// {
 	// 	newchoice := rmstring(choice, "a")
 	// 	fmt.Println(newchoice)
