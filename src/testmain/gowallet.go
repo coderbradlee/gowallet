@@ -11,7 +11,7 @@ func main() {
 	var name = flag.String("name", "everyone", "name for test")
 	flag.Parse()
 
-	fmt.Println(":", name)
+	fmt.Println(":", *name)
 	// dynamic()
 	// testbfs()
 	// var choice []int
