@@ -462,7 +462,7 @@ type TreeNode struct {
 
 func NewTreeNode() (ret *TreeNode) {
 	ret = &TreeNode{
-		sons:    make(map[string]TreeNode),
+		sons:    make(map[string]*TreeNode),
 		auxList: list.New(),
 	}
 	return
