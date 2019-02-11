@@ -1,6 +1,7 @@
 package main
 
 import (
+	. "btswallet"
 	"flag"
 	"fmt"
 	"os"
@@ -8,6 +9,7 @@ import (
 )
 
 var counter = 0
+var Testvar = "main"
 
 type sliceValue []string
 
@@ -56,6 +58,8 @@ func main() {
 	fmt.Println(languages)
 
 	fmt.Println(":", *name)
+	var Testvar = "iner"
+	fmt.Println(Testvar)
 	// dynamic()
 	// testbfs()
 	// var choice []int

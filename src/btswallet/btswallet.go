@@ -1,4 +1,4 @@
-package btswallets
+package btswallet
 
 import (
 	"bytes"
@@ -16,6 +16,8 @@ import (
 	eosbtcutil "github.com/eoscanada/eos-go/btcsuite/btcutil"
 	eosecc "github.com/eoscanada/eos-go/ecc"
 )
+
+var Testvar = "bts"
 
 //转账交易结构
 type Transfer struct {
