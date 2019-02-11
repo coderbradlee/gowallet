@@ -382,7 +382,7 @@ func rmstring(origin []string, elem string) (ret []string) {
 			ret = make([]string, length-1)
 			copy(ret[:i], origin[:i])
 			if length-1 > i {
-				copy(ret[i:], origin[i+1:length-1])
+				copy(ret[i+1:], origin[i+1:length-1])
 			}
 			return
 		}
