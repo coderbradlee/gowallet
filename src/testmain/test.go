@@ -398,8 +398,8 @@ func existstring(result []string, a string) bool {
 	return false
 }
 func permutate(choice []string, result []string) {
-	fmt.Println("choice:", choice)
-	fmt.Println("result:", result)
+	// fmt.Println("choice:", choice)
+	// fmt.Println("result:", result)
 	if len(choice) == 0 {
 		fmt.Println(result)
 		return
