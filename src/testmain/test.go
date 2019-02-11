@@ -380,7 +380,7 @@ func rmstring(origin []string, elem string) (ret []string) {
 			// fmt.Println("temp:", temp)
 			// copy(ret, temp[:])
 			copy(ret[:i], origin[:i])
-			if length > 1 {
+			if length-1 > i {
 				copy(ret[i:], origin[i+1:length-1])
 			}
 			return
