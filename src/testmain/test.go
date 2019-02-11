@@ -368,7 +368,7 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
-	ret = make([]int, len(origin))
+	ret = make([]string, len(origin))
 	// ret = origin
 	// b:=nums[:3:3] //第二个冒号 设置cap的
 	copy(ret, origin[:])
