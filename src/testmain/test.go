@@ -368,18 +368,21 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
-	ret = make([]string, len(origin))
+	length := len(origin)
+	ret = make([]string, length)
 	// ret = origin
 	// b:=nums[:3:3] //第二个冒号 设置cap的
 	copy(ret, origin[:])
-	for i := 0; i < len(origin); i++ {
+	for i := 0; i < length; i++ {
 		if origin[i] == elem {
 			// ret = append(origin[:i], origin[i+1:]...)
 			// temp := append(origin[:i], origin[i+1:]...)
 			// fmt.Println("temp:", temp)
 			// copy(ret, temp[:])
 			copy(ret[:i], origin[:i])
-			copy(ret[i:], origin[i+1:len(origin)-1])
+			if length > 1 {
+				copy(ret[i:], origin[i+1:length-1])
+			}
 			return
 		}
 	}
