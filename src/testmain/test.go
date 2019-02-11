@@ -395,7 +395,7 @@ func permutate(choice []string, result []string) {
 			result = append(result, v)
 			choice = rmstring(choice, v)
 			permutate(choice, result)
-			return
+			// return
 		}
 	}
 }
