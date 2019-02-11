@@ -457,7 +457,7 @@ func dynamic() {
 
 type TreeNode struct {
 	sons    map[string]TreeNode
-	auxList list.List
+	auxList *list.List
 }
 
 func NewTreeNode() (ret *TreeNode) {
@@ -469,14 +469,14 @@ func NewTreeNode() (ret *TreeNode) {
 }
 func (t *TreeNode) BreadthFirstSearch() {
 
-	for k, v := range sons {
+	for k, v := range t.sons {
 		fmt.Println(k)
-		auxList.PushBack(v)
+		t.auxList.PushBack(v)
 	}
 	for auxList.Len() > 0 {
-		front := auxList.Front()
+		front := t.auxList.Front()
 		front.BreadthFirstSearch()
-		auxList.Remove(front)
+		t.auxList.Remove(front)
 	}
 }
 func testbfs() {
