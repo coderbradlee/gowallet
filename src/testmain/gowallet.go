@@ -1,12 +1,13 @@
 package main
 
 import (
-// "fmt"
+	"fmt"
 )
 
 var counter = 0
 
 func main() {
+	fmt.Println("--")
 	var choice []int
 	for i := 0; i < 16; i++ {
 		choice = append(choice, i)
