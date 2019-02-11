@@ -411,7 +411,7 @@ func permutate(choice []string, result []string) {
 func combine(choice []int, result []int, num int) {
 	// fmt.Println("choice:", choice)
 	// fmt.Println("result:", result)
-	if num<1{
+	if num < 1 {
 		fmt.Println(result)
 		return
 	}
@@ -430,8 +430,7 @@ func combine(choice []int, result []int, num int) {
 		start = result[index]
 	}
 	for i := start; i < len(choice); i++ {
-		newresult:=append(result,choice[i])
-		combine(choice, newresult,num-1)
-		}
+		newresult := append(result, choice[i])
+		combine(choice, newresult, num-1)
 	}
 }
