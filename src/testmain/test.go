@@ -368,12 +368,17 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
-	length := len(origin)
-	ret = make([]string, length)
+	// length := len(origin)
+	// ret = make([]string, length)
 
-	for i := 0; i < length; i++ {
-		if origin[i] != elem {
-			ret = append(ret, origin[i])
+	// for i := 0; i < length; i++ {
+	// 	if origin[i] != elem {
+	// 		ret = append(ret, origin[i])
+	// 	}
+	// }
+	for _, v := range origin {
+		if v != elem {
+			ret = append(ret, v)
 		}
 	}
 	return
