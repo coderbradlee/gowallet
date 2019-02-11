@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "btswallet"
+	// . "btswallet"
 	"flag"
 	"fmt"
 	"os"
