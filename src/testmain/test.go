@@ -1,7 +1,7 @@
 package main
 
 import (
-	"btswallet"
+	btswallets "btswallet"
 	"fmt"
 	wallet "hdwallet"
 	// "math/big"
@@ -237,7 +237,7 @@ func testipfs() {
 	fmt.Println(private_str)
 }
 func test() {
-	btswallet.GetBtsKey("xx", "tt")
+	btswallets.GetBtsKey("xx", "tt")
 	// {
 	// 	hd := wallet.NewHdwallet()
 	// 	address, private, err := hd.GenerateAddress(60, 0, 0, 0)
