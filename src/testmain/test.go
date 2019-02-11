@@ -377,7 +377,7 @@ func rmstring(origin []string, elem string) (ret []string) {
 	}
 	return
 }
-func existstring(a string, result []string) bool {
+func existstring(result []string, a string) bool {
 	for _, v := range result {
 		if v == a {
 			return true
