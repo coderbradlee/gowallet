@@ -9,7 +9,8 @@ func main() {
 	for i := 0; i < 15; i++ {
 		choice = append(choice, i)
 	}
-	combine(choice, 14)
+	var results []string
+	combine(choice, results, 14)
 	// choice := []string{"a", "b", "c", "d", "e"}
 	// {
 	// 	newchoice := rmstring(choice, "a")
@@ -31,8 +32,8 @@ func main() {
 	// 	newchoice := rmstring(choice, "e")
 	// 	fmt.Println(newchoice)
 	// }
-	var results []string
-	permutate(choice, results)
+	// var results []string
+	// permutate(choice, results)
 	// fmt.Println("imtoken address:", ethaddress)
 	// fmt.Printf("\n")
 	// testbtcsign()
