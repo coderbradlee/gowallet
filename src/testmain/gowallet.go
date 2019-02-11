@@ -5,11 +5,30 @@ import (
 )
 
 func main() {
+
 	choice := []string{"a", "b", "c", "d", "e"}
-	newchoice := rmstring(choice, "a")
-	fmt.Println(newchoice)
-	var results []string
-	permutate(choice, results)
+	{
+		newchoice := rmstring(choice, "a")
+		fmt.Println(newchoice)
+	}
+	{
+		newchoice := rmstring(choice, "b")
+		fmt.Println(newchoice)
+	}
+	{
+		newchoice := rmstring(choice, "c")
+		fmt.Println(newchoice)
+	}
+	{
+		newchoice := rmstring(choice, "d")
+		fmt.Println(newchoice)
+	}
+	{
+		newchoice := rmstring(choice, "e")
+		fmt.Println(newchoice)
+	}
+	// var results []string
+	// permutate(choice, results)
 	// fmt.Println("imtoken address:", ethaddress)
 	// fmt.Printf("\n")
 	// testbtcsign()
