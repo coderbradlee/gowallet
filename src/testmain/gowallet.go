@@ -1,13 +1,17 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 )
 
 var counter = 0
 
 func main() {
-	fmt.Println("--")
+	var name = flag.String("name", "everyone", "name for test")
+	flag.Parse()
+
+	fmt.Println(":", name)
 	// dynamic()
 	testbfs()
 	// var choice []int
