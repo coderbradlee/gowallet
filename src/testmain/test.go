@@ -368,12 +368,6 @@ func test() {
 	// }
 }
 func rmstring(origin []string, elem string) (ret []string) {
-	if len(origin) == 1 {
-		if origin[0] == elem {
-			ret = []string{}
-			return
-		}
-	}
 	ret = origin
 	for i := 0; i < len(origin); i++ {
 		if origin[i] == elem {
@@ -402,6 +396,7 @@ func permutate(choice []string, result []string) {
 		if !existstring(v, result) {
 			newresult := append(result, v)
 			newchoice := rmstring(choice, v)
+			fmt.Println("newchoice:", choice)
 			permutate(newchoice, newresult)
 			// return
 		}
