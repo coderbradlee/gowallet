@@ -1,21 +1,13 @@
 package main
 
 import (
-// "fmt"
-// wallet "hdwallet"
-// // "math/big"
-// // "github.com/tyler-smith/go-bip32"
-// // "github.com/tyler-smith/go-bip39"
-// "crypto/rand"
-// "encoding/base64"
-// "encoding/hex"
-// cfg "github.com/ipfs/go-ipfs-config"
-// ci "github.com/libp2p/go-libp2p-crypto"
-// "github.com/libp2p/go-libp2p-peer"
+	"fmt"
 )
 
 func main() {
 	choice := []string{"a", "b", "c", "d", "e"}
+	newchoice := rmstring(choice, "a")
+	fmt.Println(newchoice)
 	var results []string
 	permutate(choice, results)
 	// fmt.Println("imtoken address:", ethaddress)
