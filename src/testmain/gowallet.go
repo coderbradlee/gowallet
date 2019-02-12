@@ -44,8 +44,10 @@ var counter = 0
 可执行文件名 最后将输出[default is me]
 */
 func main() {
-	fmt.Println("--")
+
 	test()
+
+	fmt.Println("before wait")
 	ch := make(chan int, 0)
 	<-ch
 	// var name = flag.String("name", "everyone", "name for test")
