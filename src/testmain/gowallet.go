@@ -44,23 +44,24 @@ func (s *sliceValue) String() string {
 可执行文件名 最后将输出[default is me]
 */
 func main() {
-	var name = flag.String("name", "everyone", "name for test")
-	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s:\n", "question")
-		flag.PrintDefaults()
-	}
+	test()
+	// var name = flag.String("name", "everyone", "name for test")
+	// flag.Usage = func() {
+	// 	fmt.Fprintf(os.Stderr, "Usage of %s:\n", "question")
+	// 	flag.PrintDefaults()
+	// }
 
+	// // flag.Parse()
+	// var languages []string
+	// flag.Var(newSliceValue([]string{}, &languages), "slice", "I like programming `languages`")
 	// flag.Parse()
-	var languages []string
-	flag.Var(newSliceValue([]string{}, &languages), "slice", "I like programming `languages`")
-	flag.Parse()
 
-	//打印结果slice接收到的值
-	fmt.Println(languages)
+	// //打印结果slice接收到的值
+	// fmt.Println(languages)
 
-	fmt.Println(":", *name)
-	// var Testvar = "iner"
-	fmt.Println(testvar)
+	// fmt.Println(":", *name)
+	// // var Testvar = "iner"
+	// fmt.Println(testvar)
 	// dynamic()
 	// testbfs()
 	// var choice []int

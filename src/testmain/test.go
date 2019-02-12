@@ -39,6 +39,21 @@ var (
 	btc1address     = "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS"
 )
 
+func test() {
+	{
+		arr := make([]int, 5)
+		fmt.Println(len(arr))
+		fmt.Println(cap(arr))
+		fmt.Println(arr)
+	}
+
+	{
+		arr := make([]int, 5, 8)
+		fmt.Println(len(arr))
+		fmt.Println(cap(arr))
+		fmt.Println(arr)
+	}
+}
 func testfunc() {
 	var xx uint
 	xx = 16
