@@ -50,7 +50,7 @@ func test() {
 		}
 		fmt.Println("Sender: close the channel...")
 		close(ch1)
-		ch1 <- 1000
+		// ch1 <- 1000
 	}()
 
 	// 接收方。
@@ -62,8 +62,8 @@ func test() {
 		}
 		fmt.Printf("Receiver: received an element: %v\n", elem)
 	}
-
-	fmt.Println("End.")
+	xx := <-ch1
+	fmt.Println("End.", xx)
 
 	// ch1 := make(chan int, 1)
 	// ch1 <- 1
