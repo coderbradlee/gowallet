@@ -50,6 +50,7 @@ func test() {
 		}
 		fmt.Println("Sender: close the channel...")
 		close(ch1)
+		ch1 <- 1000
 	}()
 
 	// 接收方。
