@@ -16,7 +16,7 @@ type AnimalCategory struct {
 }
 
 func (ac AnimalCategory) String() string {
-	return fmt.Sprintf("%s%s%s%s%s%s%s",
+	return fmt.Sprintf("sdfasfd %s%s%s%s%s%s%s",
 		ac.kingdom, ac.phylum, ac.class, ac.order,
 		ac.family, ac.genus, ac.species)
 }
