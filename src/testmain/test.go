@@ -52,17 +52,30 @@ func getIntChan() <-chan int {
 	close(ch)
 	return ch
 }
+func modify(test [3][]string) (ret [3][]string) {
+	test[1][1] = "jhjjjjjjj"
+	ret = test
+	return
+}
 func test() {
+	complexArray1 := [3][]string{
+		[]string{"d", "e", "f"},
+		[]string{"g", "h", "i"},
+		[]string{"j", "k", "l"},
+	}
+	ret := modify(complexArray1)
+	fmt.Println(complexArray1)
+	fmt.Println(ret)
 	// intChan1 := make(chan int, 3)
 	// SendInt(intChan1)
 	// xx := <-intChan1
 	// fmt.Println(xx)
-	ch := getIntChan()
-	xx := <-ch
-	fmt.Println(xx)
-	ch = nil
-	xx = <-ch
-	fmt.Println(xx)
+	// ch := getIntChan()
+	// xx := <-ch
+	// fmt.Println(xx)
+	// ch = nil
+	// xx = <-ch
+	// fmt.Println(xx)
 	// for xx, ok := range ch {
 	// 	fmt.Println(xx, ":", ok)
 	// }
