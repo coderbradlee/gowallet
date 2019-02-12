@@ -14,6 +14,7 @@ import (
 	cfg "github.com/ipfs/go-ipfs-config"
 	ci "github.com/libp2p/go-libp2p-crypto"
 	"github.com/libp2p/go-libp2p-peer"
+	"time"
 )
 
 var (
@@ -40,30 +41,44 @@ var (
 )
 
 func test() {
-	// 准备好几个通道。
-	intChannels := [3]chan int{
-		make(chan int, 1),
-		make(chan int, 1),
-		make(chan int, 1),
-	}
-	// 随机选择一个通道，并向它发送元素值。
-	index := 0
-	intChannels[index] <- index
-	index = 1
-	intChannels[index] <- index
-	index = 2
-	intChannels[index] <- index
-	// 哪一个通道中有可取的元素值，哪个对应的分支就会被执行。
+	intChan := make(chan int, 1)
+	// 一秒后关闭通道。
+	time.AfterFunc(time.Second, func() {
+		close(intChan)
+	})
 	select {
-	case <-intChannels[0]:
-		fmt.Println("The first candidate case is selected.")
-	case <-intChannels[1]:
-		fmt.Println("The second candidate case is selected.")
-	case elem := <-intChannels[2]:
-		fmt.Printf("The third candidate case is selected, the element is %d.\n", elem)
-	default:
-		fmt.Println("No candidate case is selected!")
+	case _, ok := <-intChan:
+		if !ok {
+			fmt.Println("The candidate case is closed.")
+			break
+		}
+		fmt.Println("The candidate case is selected.")
 	}
+
+	// 准备好几个通道。
+	// intChannels := [3]chan int{
+	// 	make(chan int, 1),
+	// 	make(chan int, 1),
+	// 	make(chan int, 1),
+	// }
+	// // 随机选择一个通道，并向它发送元素值。
+	// index := 0
+	// intChannels[index] <- index
+	// index = 1
+	// intChannels[index] <- index
+	// index = 2
+	// intChannels[index] <- index
+	// // 哪一个通道中有可取的元素值，哪个对应的分支就会被执行。
+	// select {
+	// case <-intChannels[0]:
+	// 	fmt.Println("The first candidate case is selected.")
+	// case <-intChannels[1]:
+	// 	fmt.Println("The second candidate case is selected.")
+	// case elem := <-intChannels[2]:
+	// 	fmt.Printf("The third candidate case is selected, the element is %d.\n", elem)
+	// default:
+	// 	fmt.Println("No candidate case is selected!")
+	// }
 
 }
 func test3() {
