@@ -51,20 +51,19 @@ func NewCat(name string) Cat {
 }
 
 func test() {
-	var chanArray [10]chan struct{}
-	for i := 0; i < 10; i++ {
+	var chanArray [11]chan struct{}
+	for i := 0; i < 11; i++ {
 		chanArray[i] = make(chan struct{}, 0)
 	}
+	chanArray[0] <- struct{}{}
 	for i := 0; i < 10; i++ {
 		go func(j int) {
-			chanArray[j] <- struct{}{}
+			<-chanArray[j]
 			fmt.Println(j)
+			chanArray[j+1] <- struct{}{}
 		}(i)
 	}
-	for i := 0; i < 10; i++ {
-		<-chanArray[i]
-		time.Sleep(time.Nanosecond)
-	}
+
 	// var count uint32
 	// trigger := func(i uint32, fn func()) {
 	// 	for {
