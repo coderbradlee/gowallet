@@ -4,7 +4,7 @@ import (
 	"fmt"
 	// "unsafe"
 	// "sync/atomic"
-	// "time"
+	"time"
 )
 
 type Cat struct {
