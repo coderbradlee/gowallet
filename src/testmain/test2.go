@@ -53,7 +53,7 @@ func test() {
 	fmt.Printf("The cat: %s\n", cat)
 
 	type Pet interface {
-		SetName(name string)
+		// SetName(name string)
 		Name() string
 		Category() string
 		ScientificName() string
