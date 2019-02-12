@@ -53,7 +53,7 @@ func getIntChan() <-chan int {
 	return ch
 }
 func modify(test [3][]string) (ret [3][]string) {
-	test[1][1] = "jhjjjjjjj"
+	test[1]={"1","2","3"}
 	ret = test
 	return
 }
