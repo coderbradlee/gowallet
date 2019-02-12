@@ -49,6 +49,8 @@ func test() {
 	// fmt.Println("---")
 	// 示例2。
 	ch2 := make(chan int, 1)
+	ch2 <- 22
+	fmt.Println("---")
 	elem, ok := <-ch2 // 通道已空，因此这里会造成阻塞。
 	fmt.Println("---", elem, ok)
 	//_, _ = elem, ok
