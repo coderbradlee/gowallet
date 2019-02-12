@@ -6,7 +6,7 @@ import (
 
 // AnimalCategory 代表动物分类学中的基本分类法。
 type AnimalCategory struct {
-	kingdom string
+	Kingdom string
 	phylum  string
 	class   string
 	order   string
@@ -16,9 +16,9 @@ type AnimalCategory struct {
 }
 
 func (ac AnimalCategory) String() string {
-	ac.kingdom = "kindowmmmmmmmm"
+	ac.Kingdom = "kindowmmmmmmmm"
 	return fmt.Sprintf("sdfasfd %s%s%s%s%s%s%s",
-		ac.kingdom, ac.phylum, ac.class, ac.order,
+		ac.Kingdom, ac.phylum, ac.class, ac.order,
 		ac.family, ac.genus, ac.species)
 }
 
@@ -33,5 +33,5 @@ func test() {
 	an := Animal{scientificName: "statw", AnimalCategory: category}
 	fmt.Printf("The animal category: %s\n", an)
 	fmt.Println(an.String())
-	fmt.Println(an.kingdom)
+	fmt.Println(an.Kingdom)
 }
