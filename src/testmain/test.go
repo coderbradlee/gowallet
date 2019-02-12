@@ -41,8 +41,23 @@ var (
 )
 
 func test() {
-	var channels chan int
-	channels <- 1
+	var channels = [3]chan int{
+		nil,
+		make(chan int),
+		nil,
+	}
+	for {
+		select {
+		case channels[0] <- 0:
+			fmt.Println("The first candidate case is selected.")
+		case channels[1] <- 1:
+			fmt.Println("The second candidate case is selected.")
+		case channels[2] <- 2:
+			fmt.Println("The third candidate case is selected")
+		default:
+			fmt.Println("No candidate case is selected!")
+		}
+	}
 
 	// intChan := make(chan int, 1)
 	// // 一秒后关闭通道。
