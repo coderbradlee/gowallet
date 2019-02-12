@@ -50,7 +50,7 @@ func NewCat(name string) Cat {
 
 func test() {
 	// NewCat("little pig").SetName("monster")
-	dog := Cat{"little pig"}
+	dog := Cat{name: "little pig"}
 	dogP := &dog
 	dogPtr := uintptr(unsafe.Pointer(dogP))
 	namePtr := dogPtr + unsafe.Offsetof(dogP.name)
