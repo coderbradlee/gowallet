@@ -1,11 +1,11 @@
 package main
 
 import (
-	. "btswallet"
-	"flag"
+	// . "btswallet"
+	// "flag"
 	"fmt"
-	"os"
-	"strings"
+	// "os"
+	// "strings"
 )
 
 var counter = 0
@@ -44,6 +44,7 @@ func (s *sliceValue) String() string {
 可执行文件名 最后将输出[default is me]
 */
 func main() {
+	fmt.Println("--")
 	test()
 	// var name = flag.String("name", "everyone", "name for test")
 	// flag.Usage = func() {
