@@ -53,7 +53,7 @@ func test() {
 	sign := make(chan struct{}, num)
 
 	for i := 0; i < 10; i++ {
-		go func(int j) {
+		go func(j int) {
 			fmt.Println(j)
 			sign <- struct{}{}
 		}(i)
