@@ -12,7 +12,6 @@ type AnimalCategory struct {
 	family string
 	genus  string
 	species string
-	
 }
 
 func (ac AnimalCategory) String() string {
