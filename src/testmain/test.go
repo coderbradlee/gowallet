@@ -57,7 +57,7 @@ func modify(test [3][]string) (ret [3][]string) {
 	ret = test
 	return
 }
-func test() {
+func test3() {
 	complexArray1 := [3][]string{
 		[]string{"d", "e", "f"},
 		[]string{"g", "h", "i"},
@@ -137,7 +137,7 @@ func test() {
 	// }
 
 }
-func test3() {
+func test4() {
 	{
 		s := []int{1, 2, 3, 4, 5}
 		s1 := make([]int, 5)
