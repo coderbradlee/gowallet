@@ -40,6 +40,15 @@ var (
 )
 
 func test() {
+	ch1 := make(chan int, 3)
+	ch1 <- 2
+	ch1 <- 1
+	ch1 <- 3
+	elem1 := <-ch1
+	fmt.Printf("The first element received from channel ch1: %v\n",
+		elem1)
+}
+func test3() {
 	{
 		s := []int{1, 2, 3, 4, 5}
 		s1 := make([]int, 5)
