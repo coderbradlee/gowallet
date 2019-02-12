@@ -58,8 +58,8 @@ func test() {
 	// fmt.Println("---")
 	// // 示例3。
 	var ch3 chan int
-	ch3 <- 1 // 通道的值为nil，因此这里会造成永久的阻塞！
-	fmt.Println("---")
+	// ch3 <- 1 // 通道的值为nil，因此这里会造成永久的阻塞！
+	// fmt.Println("---")
 	<-ch3 // 通道的值为nil，因此这里会造成永久的阻塞！
 	fmt.Println("---")
 	_ = ch3
