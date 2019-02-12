@@ -15,7 +15,7 @@ type AnimalCategory struct {
 	species string
 }
 
-func (ac AnimalCategory) String() string {
+func (ac *AnimalCategory) String() string {
 	ac.Kingdom = "kindowmmmmmmmm"
 	return fmt.Sprintf("sdfasfd %s%s%s%s%s%s%s",
 		ac.Kingdom, ac.phylum, ac.class, ac.order,
