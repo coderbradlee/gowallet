@@ -59,7 +59,7 @@ func test() {
 				atomic.AddUint32(&count, 1)
 				break
 			}
-			time.Sleep(time.Nanosecond)
+			// time.Sleep(time.Nanosecond)
 		}
 	}
 	for i := uint32(0); i < 10; i++ {
