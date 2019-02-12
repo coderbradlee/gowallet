@@ -40,54 +40,31 @@ var (
 )
 
 func test() {
-
-	ch1 := make(chan int, 3)
-	// 发送方。
-	go func() {
-		for i := 0; i < 10; i++ {
-			fmt.Printf("Sender: sending element %v...\n", i)
-			ch1 <- i
-		}
-		fmt.Println("Sender: close the channel...")
-		close(ch1)
-		// ch1 <- 1000
-	}()
-
-	// 接收方。
-	for {
-		elem, ok := <-ch1
-		if !ok {
-			fmt.Println("Receiver: closed channel")
-			break
-		}
-		fmt.Printf("Receiver: received an element: %v\n", elem)
+	// 准备好几个通道。
+	intChannels := [3]chan int{
+		make(chan int, 1),
+		make(chan int, 1),
+		make(chan int, 1),
 	}
-	xx := <-ch1
-	fmt.Println("End.", xx)
+	// 随机选择一个通道，并向它发送元素值。
+	index := 0
+	intChannels[index] <- index
+	index = 1
+	intChannels[index] <- index
+	index = 2
+	intChannels[index] <- index
+	// 哪一个通道中有可取的元素值，哪个对应的分支就会被执行。
+	select {
+	case <-intChannels[0]:
+		fmt.Println("The first candidate case is selected.")
+	case <-intChannels[1]:
+		fmt.Println("The second candidate case is selected.")
+	case elem := <-intChannels[2]:
+		fmt.Printf("The third candidate case is selected, the element is %d.\n", elem)
+	default:
+		fmt.Println("No candidate case is selected!")
+	}
 
-	// ch1 := make(chan int, 1)
-	// ch1 <- 1
-	// fmt.Println("---")
-	// x := <-ch1
-	// fmt.Println("---", x)
-	// ch1 <- 2 // 通道已满，因此这里会造成阻塞。
-	// fmt.Println("---")
-	// 示例2。
-	// ch2 := make(chan int, 1)
-	// ch2 <- 22
-	// fmt.Println("---")
-	// elem, ok := <-ch2 // 通道已空，因此这里会造成阻塞。
-	// fmt.Println("---", elem, ok)
-	// //_, _ = elem, ok
-	// ch2 <- 1
-	// fmt.Println("---")
-	// // 示例3。
-	var ch3 chan int
-	// ch3 <- 1 // 通道的值为nil，因此这里会造成永久的阻塞！
-	// fmt.Println("---")
-	<-ch3 // 通道的值为nil，因此这里会造成永久的阻塞！
-	fmt.Println("---")
-	_ = ch3
 }
 func test3() {
 	{
