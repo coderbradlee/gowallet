@@ -63,6 +63,7 @@ func test() {
 	}
 	for i := 0; i < 10; i++ {
 		<-chanArray[i]
+		time.Sleep(time.Nanosecond)
 	}
 	// var count uint32
 	// trigger := func(i uint32, fn func()) {
