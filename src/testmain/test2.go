@@ -70,7 +70,7 @@ func test() {
 			trigger(i, fn)
 		}(i)
 	}
-
+	trigger(10, func() {})
 	// NewCat("little pig").SetName("monster")
 	// dog := Cat{name: "little pig"}
 	// dogP := &dog
