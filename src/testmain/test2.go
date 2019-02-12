@@ -5,13 +5,14 @@ import (
 )
 // AnimalCategory 代表动物分类学中的基本分类法。
 type AnimalCategory struct {
-	kingdom string // 界。
-	phylum string // 门。
-	class  string // 纲。
-	order  string // 目。
-	family string // 科。
-	genus  string // 属。
-	species string // 种。
+	kingdom string
+	phylum string
+	class  string
+	order  string
+	family string
+	genus  string
+	species string
+	
 }
 
 func (ac AnimalCategory) String() string {
