@@ -53,7 +53,7 @@ func NewCat(name string) Cat {
 func test() {
 	var chanArray [10]chan struct{}
 	for i := 0; i < 10; i++ {
-		chanArray = make(chan struct{}, 0)
+		chanArray[i] = make(chan struct{}, 0)
 	}
 	for i := 0; i < 10; i++ {
 		go func(j int) {
