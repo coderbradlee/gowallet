@@ -34,4 +34,5 @@ func test() {
 	fmt.Printf("The animal category: %s\n", an)
 	fmt.Println(an.String())
 	fmt.Println(an.Kingdom)
+	fmt.Println(an.species)
 }
