@@ -43,10 +43,22 @@ var (
 func SendInt(ch chan<- int) {
 	ch <- 100
 }
+func getIntChan() <-chan int {
+	num := 5
+	ch := make(chan int, num)
+	for i := 0; i < num; i++ {
+		ch <- i
+	}
+	close(ch)
+	return ch
+}
 func test() {
-	intChan1 := make(chan int, 3)
-	SendInt(intChan1)
-	xx := <-intChan1
+	// intChan1 := make(chan int, 3)
+	// SendInt(intChan1)
+	// xx := <-intChan1
+	// fmt.Println(xx)
+	ch := getIntChan()
+	xx := <-ch
 	fmt.Println(xx)
 	// var channels = [3]chan int{
 	// 	nil,
