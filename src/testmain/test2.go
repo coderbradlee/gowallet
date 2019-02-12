@@ -20,8 +20,16 @@ func (ac AnimalCategory) String() string {
 		ac.kingdom, ac.phylum, ac.class, ac.order,
 		ac.family, ac.genus, ac.species)
 }
+
+type Animal struct {
+	scientificName string
+	AnimalCategory
+}
+
 func test() {
 	category := AnimalCategory{species: "cat"}
-	fmt.Printf("The animal category: %s\n", category)
-	fmt.Println(category)
+
+	an := Animal{scientificName: "statw", AnimalCategory: category}
+	fmt.Printf("The animal category: %s\n", an)
+	fmt.Println(an)
 }
