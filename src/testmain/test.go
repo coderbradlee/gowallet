@@ -46,7 +46,7 @@ func SendInt(ch chan<- int) {
 func getIntChan() <-chan int {
 	num := 5
 	ch := make(chan int, num)
-	for i := 0; i < num; i++ {
+	for i := 10; i < num+10; i++ {
 		ch <- i
 	}
 	close(ch)
