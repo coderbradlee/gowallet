@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"unsafe"
 )
 
 type Cat struct {
@@ -44,7 +45,7 @@ func (cat Cat) String() string {
 		cat.scientificName, cat.category, cat.name)
 }
 func NewCat(name string) Cat {
-	return Cat{name}
+	return Cat{name: name}
 }
 
 func test() {
