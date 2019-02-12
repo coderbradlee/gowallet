@@ -251,7 +251,7 @@ func testipfs() {
 	private_str := hex.EncodeToString(privkeyb)
 	fmt.Println(private_str)
 }
-func test() {
+func test2() {
 	btswallets.GetBtsKey("xx", "tt")
 	// {
 	// 	hd := wallet.NewHdwallet()
