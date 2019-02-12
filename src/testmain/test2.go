@@ -60,6 +60,7 @@ func test() {
 
 	_, ok := interface{}(cat).(Pet)
 	fmt.Printf("Cat implements interface Pet: %v\n", ok)
+	cat.SetName("afafdagaga")
 	_, ok = interface{}(&cat).(Pet)
 	fmt.Printf("*Cat implements interface Pet: %v\n", ok)
 }
