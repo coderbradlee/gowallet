@@ -19,6 +19,7 @@ func New(name, scientificName, category string) Cat {
 }
 
 func (cat *Cat) SetName(name string) {
+	fmt.Println("call setname ")
 	cat.name = name
 }
 
