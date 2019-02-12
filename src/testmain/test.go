@@ -41,18 +41,26 @@ var (
 
 func test() {
 	{
-		arr := make([]int, 5)
-		fmt.Println(len(arr))
-		fmt.Println(cap(arr))
-		fmt.Println(arr)
-	}
+		s3 := []int{1, 2, 3, 4, 5, 6, 7, 8}
+		s4 := s3[3:6]
+		fmt.Printf("The length of s4: %d\n", len(s4))
+		fmt.Printf("The capacity of s4: %d\n", cap(s4))
+		fmt.Printf("The value of s4: %d\n", s4)
 
-	{
-		arr := make([]int, 5, 8)
-		fmt.Println(len(arr))
-		fmt.Println(cap(arr))
-		fmt.Println(arr)
 	}
+	// {
+	// 	arr := make([]int, 5)
+	// 	fmt.Println(len(arr))
+	// 	fmt.Println(cap(arr))
+	// 	fmt.Println(arr)
+	// }
+
+	// {
+	// 	arr := make([]int, 5, 8)
+	// 	fmt.Println(len(arr))
+	// 	fmt.Println(cap(arr))
+	// 	fmt.Println(arr)
+	// }
 }
 func testfunc() {
 	var xx uint
