@@ -41,9 +41,9 @@ var (
 )
 
 func test() {
-	var channels = chan int{nil}
-	channels<-1
-	
+	var channels chan int
+	channels <- 1
+
 	// intChan := make(chan int, 1)
 	// // 一秒后关闭通道。
 	// time.AfterFunc(time.Second, func() {
