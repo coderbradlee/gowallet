@@ -42,7 +42,7 @@ var (
 func test() {
 	{
 		s := []int{1, 2, 3, 4, 5}
-		s1 := make([]int, 5, 5)
+		s1 := make([]int, 5)
 		copy(s1, s)
 		fmt.Println(s)
 		fmt.Println(s1)
