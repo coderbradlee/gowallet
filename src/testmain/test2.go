@@ -49,8 +49,8 @@ func test() {
 	cat.SetName("monster") // (&cat).SetName("monster")
 	fmt.Printf("The cat: %s\n", cat)
 
-	cat.SetNameOfCopy("little pig")
-	fmt.Printf("The cat: %s\n", cat)
+	// cat.SetNameOfCopy("little pig")
+	// fmt.Printf("The cat: %s\n", cat)
 
 	type Pet interface {
 		// SetName(name string)
@@ -59,9 +59,14 @@ func test() {
 		ScientificName() string
 	}
 
-	_, ok := interface{}(cat).(Pet)
-	fmt.Printf("Cat implements interface Pet: %v\n", ok)
-	cat.SetName("afafdagaga")
-	_, ok = interface{}(&cat).(Pet)
-	fmt.Printf("*Cat implements interface Pet: %v\n", ok)
+	// _, ok := interface{}(cat).(Pet)
+	// fmt.Printf("Cat implements interface Pet: %v\n", ok)
+	// cat.SetName("afafdagaga")
+	// _, ok = interface{}(&cat).(Pet)
+	// fmt.Printf("*Cat implements interface Pet: %v\n", ok)
+
+	var pet = cat
+	cat.SetName("aafadgagdafdadfafdadfafdafdafdafafa") // (&cat).SetName("monster")
+	fmt.Printf("The cat: %s\n", cat)
+	fmt.Printf("The cat: %s\n", pet)
 }
