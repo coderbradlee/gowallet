@@ -1,6 +1,8 @@
 package main
 
-import ()
+import (
+	"fmt"
+)
 
 // AnimalCategory 代表动物分类学中的基本分类法。
 type AnimalCategory struct {
