@@ -58,9 +58,14 @@ func test() {
 	// xx := <-intChan1
 	// fmt.Println(xx)
 	ch := getIntChan()
-	for xx, ok := range ch {
-		fmt.Println(xx, ":", ok)
-	}
+	xx := <-ch
+	fmt.Println(xx)
+	ch = nil
+	xx = <-ch
+	fmt.Println(xx)
+	// for xx, ok := range ch {
+	// 	fmt.Println(xx, ":", ok)
+	// }
 	// var channels = [3]chan int{
 	// 	nil,
 	// 	make(chan int),
