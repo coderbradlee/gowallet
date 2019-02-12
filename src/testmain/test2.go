@@ -31,5 +31,6 @@ func test() {
 
 	an := Animal{scientificName: "statw", AnimalCategory: category}
 	fmt.Printf("The animal category: %s\n", an)
-	fmt.Println(an)
+	fmt.Println(an.String())
+
 }
