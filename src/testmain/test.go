@@ -41,8 +41,12 @@ var (
 
 func test() {
 	{
+		s5 := make([]int)
+		fmt.Printf("The capacity of s5: %d\n", cap(s5))
+
 		s6 := make([]int, 0)
 		fmt.Printf("The capacity of s6: %d\n", cap(s6))
+
 		for i := 1; i <= 5; i++ {
 			s6 = append(s6, i)
 			fmt.Printf("s6(%d): len: %d, cap: %d\n", i, len(s6), cap(s6))
