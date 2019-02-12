@@ -52,7 +52,7 @@ func test() {
 	num := 1
 	sign := make(chan struct{}, num)
 
-	for i := 0; i < num; i++ {
+	for i := 0; i < 10; i++ {
 		go func() {
 			fmt.Println(i)
 			sign <- struct{}{}
@@ -63,7 +63,7 @@ func test() {
 	//time.Sleep(time.Millisecond * 500)
 
 	// 办法2。
-	for j := 0; j < num; j++ {
+	for j := 0; j < 10; j++ {
 		<-sign
 	}
 
