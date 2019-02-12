@@ -60,6 +60,8 @@ func test() {
 	ch := getIntChan()
 	xx := <-ch
 	fmt.Println(xx)
+	xx = <-ch
+	fmt.Println(xx)
 	// var channels = [3]chan int{
 	// 	nil,
 	// 	make(chan int),
