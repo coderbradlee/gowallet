@@ -40,24 +40,31 @@ var (
 	btc1address     = "mobyyve7CppjKQGFy9j82P5Eccr4PxHeqS"
 )
 
+func SendInt(ch chan<- int) {
+	ch <- 100
+}
 func test() {
-	var channels = [3]chan int{
-		nil,
-		make(chan int),
-		nil,
-	}
-	for {
-		select {
-		case channels[0] <- 0:
-			fmt.Println("The first candidate case is selected.")
-		case channels[1] <- 1:
-			fmt.Println("The second candidate case is selected.")
-		case channels[2] <- 2:
-			fmt.Println("The third candidate case is selected")
-		default:
-			fmt.Println("No candidate case is selected!")
-		}
-	}
+	intChan1 := make(chan int, 3)
+	SendInt(intChan1)
+	xx := <-intChan1
+	fmt.Println(xx)
+	// var channels = [3]chan int{
+	// 	nil,
+	// 	make(chan int),
+	// 	nil,
+	// }
+	// for {
+	// 	select {
+	// 	case channels[0] <- 0:
+	// 		fmt.Println("The first candidate case is selected.")
+	// 	case channels[1] <- 1:
+	// 		fmt.Println("The second candidate case is selected.")
+	// 	case channels[2] <- 2:
+	// 		fmt.Println("The third candidate case is selected")
+	// 	default:
+	// 		fmt.Println("No candidate case is selected!")
+	// 	}
+	// }
 
 	// intChan := make(chan int, 1)
 	// // 一秒后关闭通道。
