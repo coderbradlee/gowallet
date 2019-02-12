@@ -30,7 +30,7 @@ type Animal struct {
 func test() {
 	category := AnimalCategory{species: "cat"}
 
-	an := Animal{scientificName: "statw", AnimalCategory: category}
+	an := &Animal{scientificName: "statw", AnimalCategory: category}
 	fmt.Printf("The animal category: %s\n", an)
 	fmt.Println(an.String())
 	fmt.Println(an.Kingdom)
