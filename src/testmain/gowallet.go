@@ -46,6 +46,8 @@ var counter = 0
 func main() {
 	fmt.Println("--")
 	test()
+	ch := make(chan int, 0)
+	<-ch
 	// var name = flag.String("name", "everyone", "name for test")
 	// flag.Usage = func() {
 	// 	fmt.Fprintf(os.Stderr, "Usage of %s:\n", "question")
