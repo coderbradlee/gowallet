@@ -53,10 +53,10 @@ func test() {
 	sign := make(chan struct{}, num)
 
 	for i := 0; i < 10; i++ {
-		go func() {
-			fmt.Println(i)
+		go func(int j) {
+			fmt.Println(j)
 			sign <- struct{}{}
-		}()
+		}(i)
 	}
 
 	// 办法1。
