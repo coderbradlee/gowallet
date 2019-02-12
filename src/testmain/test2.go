@@ -16,6 +16,7 @@ type AnimalCategory struct {
 }
 
 func (ac AnimalCategory) String() string {
+	ac.kingdom = "kindowmmmmmmmm"
 	return fmt.Sprintf("sdfasfd %s%s%s%s%s%s%s",
 		ac.kingdom, ac.phylum, ac.class, ac.order,
 		ac.family, ac.genus, ac.species)
@@ -32,5 +33,5 @@ func test() {
 	an := Animal{scientificName: "statw", AnimalCategory: category}
 	fmt.Printf("The animal category: %s\n", an)
 	fmt.Println(an.String())
-
+	fmt.Println(an.kingdom)
 }
