@@ -41,7 +41,7 @@ var (
 
 func test() {
 
-	ch1 := make(chan int, 10)
+	ch1 := make(chan int, 3)
 	// 发送方。
 	go func() {
 		for i := 0; i < 10; i++ {
