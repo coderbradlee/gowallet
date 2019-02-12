@@ -43,12 +43,12 @@ func (cat Cat) String() string {
 	return fmt.Sprintf("%s (category: %s, name: %q)",
 		cat.scientificName, cat.category, cat.name)
 }
-func New(name string) Cat {
+func NewCat(name string) Cat {
 	return Cat{name}
 }
 
 func test() {
-	New("little pig").SetName("monster")
+	NewCat("little pig").SetName("monster")
 
 	// cat := New("little pig", "American Shorthair", "cat")
 	// cat.SetName("monster") // (&cat).SetName("monster")
