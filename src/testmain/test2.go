@@ -49,7 +49,7 @@ func NewCat(name string) Cat {
 }
 
 func test() {
-	num := 10
+	num := 1
 	sign := make(chan struct{}, num)
 
 	for i := 0; i < num; i++ {
