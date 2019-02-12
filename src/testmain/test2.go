@@ -43,30 +43,35 @@ func (cat Cat) String() string {
 	return fmt.Sprintf("%s (category: %s, name: %q)",
 		cat.scientificName, cat.category, cat.name)
 }
+func New(name string) Cat {
+	return Cat{name}
+}
 
 func test() {
-	cat := New("little pig", "American Shorthair", "cat")
-	cat.SetName("monster") // (&cat).SetName("monster")
-	fmt.Printf("The cat: %s\n", cat)
+	New("little pig").SetName("monster")
 
-	// cat.SetNameOfCopy("little pig")
+	// cat := New("little pig", "American Shorthair", "cat")
+	// cat.SetName("monster") // (&cat).SetName("monster")
 	// fmt.Printf("The cat: %s\n", cat)
 
-	type Pet interface {
-		// SetName(name string)
-		Name() string
-		Category() string
-		ScientificName() string
-	}
+	// // cat.SetNameOfCopy("little pig")
+	// // fmt.Printf("The cat: %s\n", cat)
 
-	// _, ok := interface{}(cat).(Pet)
-	// fmt.Printf("Cat implements interface Pet: %v\n", ok)
-	// cat.SetName("afafdagaga")
-	// _, ok = interface{}(&cat).(Pet)
-	// fmt.Printf("*Cat implements interface Pet: %v\n", ok)
+	// type Pet interface {
+	// 	// SetName(name string)
+	// 	Name() string
+	// 	Category() string
+	// 	ScientificName() string
+	// }
 
-	var pet = cat
-	cat.SetName("aafadgagdafdadfafdadfafdafdafdafafa") // (&cat).SetName("monster")
-	fmt.Printf("The cat: %s\n", cat)
-	fmt.Printf("The cat: %s\n", pet)
+	// // _, ok := interface{}(cat).(Pet)
+	// // fmt.Printf("Cat implements interface Pet: %v\n", ok)
+	// // cat.SetName("afafdagaga")
+	// // _, ok = interface{}(&cat).(Pet)
+	// // fmt.Printf("*Cat implements interface Pet: %v\n", ok)
+
+	// var pet = cat
+	// cat.SetName("aafadgagdafdadfafdadfafdafdafdafafa") // (&cat).SetName("monster")
+	// fmt.Printf("The cat: %s\n", cat)
+	// fmt.Printf("The cat: %s\n", pet)
 }
