@@ -49,13 +49,20 @@ func NewCat(name string) Cat {
 }
 
 func test() {
+	for i := 0; i < 10; i++ {
+		go func() {
+			fmt.Println(i)
+		}()
+
+	}
+
 	// NewCat("little pig").SetName("monster")
-	dog := Cat{name: "little pig"}
-	dogP := &dog
-	dogPtr := uintptr(unsafe.Pointer(dogP))
-	namePtr := dogPtr + unsafe.Offsetof(dogP.name)
-	nameP := (*string)(unsafe.Pointer(namePtr))
-	fmt.Println(*nameP)
+	// dog := Cat{name: "little pig"}
+	// dogP := &dog
+	// dogPtr := uintptr(unsafe.Pointer(dogP))
+	// namePtr := dogPtr + unsafe.Offsetof(dogP.name)
+	// nameP := (*string)(unsafe.Pointer(namePtr))
+	// fmt.Println(*nameP)
 	// cat := New("little pig", "American Shorthair", "cat")
 	// cat.SetName("monster") // (&cat).SetName("monster")
 	// fmt.Printf("The cat: %s\n", cat)
