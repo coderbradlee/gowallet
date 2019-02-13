@@ -51,16 +51,20 @@ func NewCat(name string) Cat {
 }
 
 func test() {
-	num := [...]uint8{1, 2, 3, 4, 5, 6}
-	switch uint8(2) {
-	// case num[1], num[2]:
-	// 	fmt.Println("xx")
-	// fallthrough
-	case num[1], num[3]:
-		fmt.Println("yy")
-	default:
-		fmt.Println("default")
-	}
+	fmt.Println("Enter function caller.")
+	panic(errors.New("something wrong")) // 正例。
+	panic(fmt.Println)                   // 反例。
+	fmt.Println("Exit function caller.")
+	// num := [...]uint8{1, 2, 3, 4, 5, 6}
+	// switch uint8(2) {
+	// // case num[1], num[2]:
+	// // 	fmt.Println("xx")
+	// // fallthrough
+	// case num[1], num[3]:
+	// 	fmt.Println("yy")
+	// default:
+	// 	fmt.Println("default")
+	// }
 	// // num := [...]int{1, 2, 3, 4, 5, 6}
 	// num := []int{1, 2, 3, 4, 5, 6}
 	// for i, v := range num {
