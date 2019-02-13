@@ -2,7 +2,7 @@ package gotest
 
 import (
 	"errors"
-	"flag"
+	// "flag"
 	"fmt"
 )
 
