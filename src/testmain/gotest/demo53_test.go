@@ -50,6 +50,9 @@ func TestFail(t *testing.T) {
 	// t.FailNow() // 此调用会让当前的测试立即失败。
 	t.Log("Failed.")
 }
+func Testcc(t *testing.T) {
+	cond()
+}
 func BenchmarkGetPrimes(b *testing.B) {
 	b.StopTimer()
 	time.Sleep(time.Millisecond * 500) // 模拟某个耗时但与被测程序关系不大的操作。
