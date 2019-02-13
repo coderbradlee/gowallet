@@ -51,16 +51,23 @@ func NewCat(name string) Cat {
 }
 
 func test() {
-	// num := [...]int{1, 2, 3, 4, 5, 6}
-	num := []int{1, 2, 3, 4, 5, 6}
-	for i, v := range num {
-		if i == 5 {
-			num[0] += v
-		} else {
-			num[i+1] += v
-		}
+	num:=[...]uint8{1, 2, 3, 4, 5, 6}
+	switch 1+2:{
+	case num[0],num[1]:
+		fmt.Println("xx")
+	default:
+		fmt.Println("default")
 	}
-	fmt.Println(num)
+	// // num := [...]int{1, 2, 3, 4, 5, 6}
+	// num := []int{1, 2, 3, 4, 5, 6}
+	// for i, v := range num {
+	// 	if i == 5 {
+	// 		num[0] += v
+	// 	} else {
+	// 		num[i+1] += v
+	// 	}
+	// }
+	// fmt.Println(num)
 	// num := []int{1, 2, 3, 4, 5, 6}
 	// for i := range num {
 	// 	if i == 3 {
