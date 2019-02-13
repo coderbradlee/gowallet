@@ -59,11 +59,12 @@ func test() {
 	test22()
 }
 func test22() {
-	// defer func() {
-	// 	if p := recover(); p != nil {
-	// 		fmt.Println(p)
-	// 	}
-	// }()
+	defer func() {
+		if p := recover(); p != nil {
+			fmt.Println(p)
+		}
+		panic("panic from defer")
+	}()
 	fmt.Println("Enter function caller.")
 	panic(errors.New("something wrong")) // 正例。
 	// errors.New("something wrong")
