@@ -52,6 +52,11 @@ func NewCat(name string) Cat {
 }
 
 func test() {
+	defer func() {
+		if p := recover(); p != nil {
+			fmt.Println(p)
+		}
+	}()
 	fmt.Println("Enter function caller.")
 	// panic(errors.New("something wrong")) // 正例。
 	errors.New("something wrong")
