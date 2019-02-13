@@ -51,7 +51,11 @@ func NewCat(name string) Cat {
 	return Cat{name: name}
 }
 func test() {
-	test22()
+	defer fmt.Println("first defer")
+	for i := 0; i < 3; i++ {
+		defer fmt.Printf("defer in for [%d]\n", i)
+	}
+	defer fmt.Println("last defer")
 }
 func test22() {
 	defer func() {
