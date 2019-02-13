@@ -45,7 +45,7 @@ func TestIntroduce(t *testing.T) {
 }
 
 func TestFail(t *testing.T) {
-	//t.Fail()
-	t.FailNow() // 此调用会让当前的测试立即失败。
+	t.Fail()
+	// t.FailNow() // 此调用会让当前的测试立即失败。
 	t.Log("Failed.")
 }
