@@ -3,4 +3,4 @@ export GOPATH=$GOPATH:`pwd`/../../
 echo $GOPATH
 # go build -o gowallet .
 # ./gowallet -name test
-go test testmain/gotest
+go test -v testmain/gotest
