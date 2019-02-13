@@ -5,6 +5,7 @@ import (
 	// "unsafe"
 	// "sync/atomic"
 	// "time"
+	"errors"
 )
 
 type Cat struct {
