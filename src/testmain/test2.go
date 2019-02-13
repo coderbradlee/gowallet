@@ -51,9 +51,9 @@ func NewCat(name string) Cat {
 	return Cat{name: name}
 }
 func test() {
-	test2()
+	test22()
 }
-func test2() {
+func test22() {
 	defer func() {
 		if p := recover(); p != nil {
 			fmt.Println(p)
