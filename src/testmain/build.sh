@@ -4,4 +4,4 @@ echo $GOPATH
 # go build -o gowallet .
 # ./gowallet -name test
 go test -v testmain/gotest
-go test -v -bench=. -run=^$ -cpu=1,2,4 -count=1 testmain/gotest #-run=^$表示不测试任何功能函数，
+go test -v -bench=. -run=^$ -cpu=1,2,4 -count=1 -benchmem testmain/gotest #-run=^$表示不测试任何功能函数，
