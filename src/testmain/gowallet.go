@@ -44,7 +44,11 @@ var counter = 0
 可执行文件名 最后将输出[default is me]
 */
 func main() {
-
+	defer func() {
+		if p := recover(); p != nil {
+			fmt.Println(p)
+		}
+	}()
 	test()
 
 	fmt.Println("before wait")

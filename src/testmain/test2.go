@@ -56,13 +56,14 @@ func test() {
 		defer fmt.Printf("defer in for [%d]\n", i)
 	}
 	defer fmt.Println("last defer")
+	test22()
 }
 func test22() {
-	defer func() {
-		if p := recover(); p != nil {
-			fmt.Println(p)
-		}
-	}()
+	// defer func() {
+	// 	if p := recover(); p != nil {
+	// 		fmt.Println(p)
+	// 	}
+	// }()
 	fmt.Println("Enter function caller.")
 	panic(errors.New("something wrong")) // 正例。
 	// errors.New("something wrong")
