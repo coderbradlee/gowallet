@@ -49,3 +49,8 @@ func TestFail(t *testing.T) {
 	// t.FailNow() // 此调用会让当前的测试立即失败。
 	t.Log("Failed.")
 }
+func BenchmarkGetPrimes(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GetPrimes(1000)
+	}
+}
