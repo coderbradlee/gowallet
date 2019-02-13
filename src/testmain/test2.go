@@ -55,6 +55,7 @@ func test() {
 	for i := range num {
 		if num[i] == 3 {
 			num[i] |= i
+			fmt.Println(num[i])
 		}
 		fmt.Println(num)
 	}
