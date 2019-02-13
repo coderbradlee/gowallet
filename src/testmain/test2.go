@@ -67,7 +67,7 @@ func test22() {
 	}()
 	fmt.Println("Enter function caller.")
 	// panic(errors.New("something wrong")) // 正例。
-	// errors.New("something wrong")
+	errors.New("something wrong")
 	// panic(fmt.Println) // 反例。
 	fmt.Println("Exit function caller.")
 	// num := [...]uint8{1, 2, 3, 4, 5, 6}
