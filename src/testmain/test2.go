@@ -52,10 +52,12 @@ func NewCat(name string) Cat {
 
 func test() {
 	num := [...]uint8{1, 2, 3, 4, 5, 6}
-	switch num[1] {
-	case num[1]:
+	switch 2 {
+	case num[1], num[2]:
 		fmt.Println("xx")
-		fallthrough
+		// fallthrough
+	case num[1], num[3]:
+		fmt.Println("yy")
 	default:
 		fmt.Println("default")
 	}
