@@ -61,11 +61,11 @@ func cond() {
 			for mailbox == 1 {
 				sendCond.Wait()
 			}
-			fmt.Printf("sender [%d]: the mailbox is empty.", i)
+			fmt.Printf("[%d]: the mailbox is empty.\n", i)
 			mailbox = 1
-			fmt.Printf("sender [%d]: the letter has been sent.", i)
 			lock.Unlock()
 			recvCond.Signal()
+			fmt.Printf("[%d]: put 1 mail.\n", i)
 		}
 	}(max)
 	go func(max int) { // 用于收信。
@@ -79,16 +79,19 @@ func cond() {
 			for mailbox == 0 {
 				recvCond.Wait()
 			}
-			fmt.Printf("receiver [%d]: the mailbox is full.", j)
+			fmt.Printf("[%d]: the mailbox is full.\n", j)
 			mailbox = 0
-			fmt.Printf("receiver [%d]: the letter has been received.", j)
+
 			lock.RUnlock()
 			sendCond.Signal()
+			fmt.Printf("[%d]: take 1 mail.\n", j)
 		}
 	}(max)
 
 	// <-sign
 	// <-sign
+	ch := make(chan struct{}, 0)
+	<-ch
 }
 
 // func init() {
