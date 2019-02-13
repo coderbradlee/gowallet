@@ -50,8 +50,10 @@ func (cat Cat) String() string {
 func NewCat(name string) Cat {
 	return Cat{name: name}
 }
-
 func test() {
+	test2()
+}
+func test2() {
 	defer func() {
 		if p := recover(); p != nil {
 			fmt.Println(p)
