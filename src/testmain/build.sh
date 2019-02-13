@@ -3,5 +3,5 @@ export GOPATH=$GOPATH:`pwd`/../../
 echo $GOPATH
 # go build -o gowallet .
 # ./gowallet -name test
-go test -v testmain/gotest
-go test -v -bench=. -run=^$ -cpu=1,2,4 -count=1 -benchmem testmain/gotest #-run=^$表示不测试任何功能函数，
+# go test -v -cpu=1,2,4 -count=1 -benchmem -coverprofile=xxxx.out -covermode=count testmain/gotest
+go test -v -bench=. -run=^$ -cpu=1,2,4 -count=1 -benchmem -coverprofile=xxxx.out -covermode=count testmain/gotest #-run=^$表示不测试任何功能函数，
