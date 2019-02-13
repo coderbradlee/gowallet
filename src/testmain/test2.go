@@ -56,6 +56,7 @@ func test() {
 		if num[i] == 3 {
 			num[i] |= i
 		}
+		fmt.Println(num)
 	}
 	fmt.Println(num)
 	// var chanArray [11]chan struct{}
