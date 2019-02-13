@@ -55,7 +55,7 @@ func cond() {
 		// 	sign <- struct{}{}
 		// }()
 		for i := 1; i <= max; i++ {
-			time.Sleep(time.Millisecond * 500)
+			// time.Sleep(time.Millisecond * 500)
 			lock.Lock()
 			fmt.Println("put:", i)
 			for mailbox == 1 {
@@ -73,7 +73,7 @@ func cond() {
 		// 	sign <- struct{}{}
 		// }()
 		for j := 1; j <= max; j++ {
-			time.Sleep(time.Millisecond * 500)
+			// time.Sleep(time.Millisecond * 500)
 			lock.RLock()
 			fmt.Println("take:", j)
 			for mailbox == 0 {
