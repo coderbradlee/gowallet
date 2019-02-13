@@ -53,7 +53,7 @@ func NewCat(name string) Cat {
 func test() {
 	num := []int{1, 2, 3, 4, 5, 6}
 	for i := range num {
-		if num[i] == 3 {
+		if i == 3 {
 			num[i] |= i
 			fmt.Println(num[i])
 		}
