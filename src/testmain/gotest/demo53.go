@@ -68,43 +68,43 @@ func cond() {
 			fmt.Printf("[%d]: put 1 mail.\n", i)
 		}
 	}(max)
-	go func(max int) { // 用于发信。
-		// defer func() {
-		// 	sign <- struct{}{}
-		// }()
-		for i := 1; i <= max; i++ {
-			// time.Sleep(time.Millisecond * 500)
-			lock.Lock()
-			fmt.Println("put:", i+max)
-			for mailbox == 1 {
-				sendCond.Wait()
-			}
-			fmt.Printf("[%d]: the mailbox is empty.\n", i+max)
-			mailbox = 1
-			lock.Unlock()
-			recvCond.Signal()
-			fmt.Printf("[%d]: put 1 mail.\n", i+max)
-		}
-	}(max)
-	go func(max int) { // 用于收信。
-		// defer func() {
-		// 	sign <- struct{}{}
-		// }()
-		for j := 1; j <= max; j++ {
-			// time.Sleep(time.Millisecond * 500)
-			lock.RLock()
-			fmt.Println("take:", j)
-			for mailbox == 0 {
-				recvCond.Wait()
-			}
-			fmt.Printf("[%d]: the mailbox is full.\n", j)
-			mailbox = 0
+	// go func(max int) { // 用于发信。
+	// 	// defer func() {
+	// 	// 	sign <- struct{}{}
+	// 	// }()
+	// 	for i := 1; i <= max; i++ {
+	// 		// time.Sleep(time.Millisecond * 500)
+	// 		lock.Lock()
+	// 		fmt.Println("put:", i+max)
+	// 		for mailbox == 1 {
+	// 			sendCond.Wait()
+	// 		}
+	// 		fmt.Printf("[%d]: the mailbox is empty.\n", i+max)
+	// 		mailbox = 1
+	// 		lock.Unlock()
+	// 		recvCond.Signal()
+	// 		fmt.Printf("[%d]: put 1 mail.\n", i+max)
+	// 	}
+	// }(max)
+	// go func(max int) { // 用于收信。
+	// 	// defer func() {
+	// 	// 	sign <- struct{}{}
+	// 	// }()
+	// 	for j := 1; j <= max; j++ {
+	// 		// time.Sleep(time.Millisecond * 500)
+	// 		lock.RLock()
+	// 		fmt.Println("take:", j)
+	// 		for mailbox == 0 {
+	// 			recvCond.Wait()
+	// 		}
+	// 		fmt.Printf("[%d]: the mailbox is full.\n", j)
+	// 		mailbox = 0
 
-			lock.RUnlock()
-			sendCond.Signal()
-			fmt.Printf("[%d]: take 1 mail.\n", j)
-		}
-	}(max * 2)
+	// 		lock.RUnlock()
+	// 		sendCond.Signal()
+	// 		fmt.Printf("[%d]: take 1 mail.\n", j)
+	// 	}
+	// }(max * 2)
 
 	// <-sign
 	// <-sign
