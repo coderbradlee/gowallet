@@ -33,7 +33,9 @@ func test3forstrings() {
 	fmt.Printf("The length of contents in the builder is %d.\n", builder1.Len())
 	fmt.Println()
 	b := builder1
+	b.WriteString("================================")
 	fmt.Printf("b(%d):\n\"%s\"\n", b.Len(), b.String())
+
 	// 示例3。
 	fmt.Println("Reset the builder ...")
 	builder1.Reset()
