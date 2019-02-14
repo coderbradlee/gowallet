@@ -51,7 +51,8 @@ func main() {
 	}()
 	// test()
 	// someHandler()
-	test3syncpool()
+	// test3syncpool()
+	test3forstrings()
 
 	fmt.Println("before wait")
 	ch := make(chan int, 0)
