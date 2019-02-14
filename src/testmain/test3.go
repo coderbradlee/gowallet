@@ -20,7 +20,8 @@ func someHandler() {
 	//10秒后取消doStuff
 	time.Sleep(10 * time.Second)
 	// cancel()
-
+	node2 := context.WithValue(ctx, "xx", "yy")
+	fmt.Println(node2.Value("xx"))
 }
 func doStuff(ctx context.Context) {
 	for {
