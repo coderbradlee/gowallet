@@ -21,11 +21,19 @@ func test3syncpool() {
 	}
 	pool := sync.Pool{New: newFunc}
 	v1 := pool.Get()
+	fmt.Println(v1)
 	pool.Put(100)
 	pool.Put(200)
 	pool.Put(300)
 	v2 := pool.Get()
 	fmt.Println(v2)
+	runtime.GC()
+	v3 := pool.Get()
+	fmt.Println(v3)
+
+	pool.New = nil
+	v4 := pool.Get()
+	fmt.Println(v4)
 }
 func someHandler() {
 	// ctx, cancel := context.WithCancel(context.Background())
