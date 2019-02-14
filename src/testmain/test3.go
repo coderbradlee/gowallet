@@ -15,7 +15,7 @@ import (
 )
 
 func test3syncpool() {
-	defer debug.SetGCPercent(debug.SetGCPercent(-1))
+	// defer debug.SetGCPercent(debug.SetGCPercent(-1))
 	var count int32
 	newFunc := func() interface{} {
 		return atomic.AddInt32(&count, 1)
