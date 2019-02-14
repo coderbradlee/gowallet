@@ -11,7 +11,33 @@ import (
 )
 
 func TestContext2(t *testing.T) {
-	someHandler()
+	ch := make(chan int, 1)
+	// ch = nil
+	// close(ch)
+
+	go func(ch chan int) {
+		// <-ch
+		ch <- 100
+		fmt.Println("xx")
+	}(ch)
+	time.Sleep(2 * time.Second)
+	close(ch)
+	xx := <-ch
+	fmt.Println(xx)
+	// close(ch)
+	xx = <-ch
+	fmt.Println(xx)
+	// <-ch
+	// // ch <- struct{}{}
+	// // close(ch)
+	// // <-ch
+	// // ch <- struct{}{}
+	// fmt.Println("yy")
+	// ch = nil
+	// ch <- struct{}{}
+	// <-ch
+	// fmt.Println("zz")
+	// someHandler()
 }
 func TestContext(t *testing.T) {
 	type myKey int
@@ -32,8 +58,9 @@ func TestContext(t *testing.T) {
 	node1, cancelFunc1 := context.WithCancel(rootNode)
 	// defer cancelFunc1()
 	cancelFunc1()
-	<-node1.Done()
 	fmt.Println(":", node1.Err())
+	<-node1.Done()
+
 	// 示例1。
 	node2 := context.WithValue(node1, keys[0], values[0])
 	node3 := context.WithValue(node2, keys[1], values[1])
@@ -44,7 +71,8 @@ func TestContext(t *testing.T) {
 	fmt.Printf("The value of the key %v found in the node3: %v\n",
 		keys[2], node3.Value(keys[2]))
 	fmt.Println()
-
+	<-node2.Done()
+	<-node3.Done()
 	// 示例2。
 	node4, _ := context.WithCancel(node3)
 	node5, _ := context.WithTimeout(node4, time.Hour)

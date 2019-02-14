@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	// "unsafe"
-	// "sync/atomic"
+	"sync/atomic"
 	// "time"
 	// "errors"
 	// "flag"
@@ -12,6 +12,15 @@ import (
 	"time"
 )
 
+func test3syncpool() {
+	var count int32
+	newFunc := func() interface{} {
+		return atomic.AddInt32(&count, 1)
+	}
+	pool := sync.Pool{New: newFunc}
+	v1 := pool.Get()
+	fmt.Println(v1)
+}
 func someHandler() {
 	// ctx, cancel := context.WithCancel(context.Background())
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
