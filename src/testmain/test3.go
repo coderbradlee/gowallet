@@ -13,13 +13,18 @@ import (
 )
 
 func test3syncpool() {
+	defer debug.SetGCPercent(debug.SetGCPercent(-1))
 	var count int32
 	newFunc := func() interface{} {
 		return atomic.AddInt32(&count, 1)
 	}
 	pool := sync.Pool{New: newFunc}
 	v1 := pool.Get()
-	fmt.Println(v1)
+	pool.Put(100)
+	pool.Put(200)
+	pool.Put(300)
+	v2 := pool.Get()
+	fmt.Println(v2)
 }
 func someHandler() {
 	// ctx, cancel := context.WithCancel(context.Background())
