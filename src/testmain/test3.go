@@ -28,7 +28,7 @@ func test3syncpool() {
 	pool.Put(300)
 	v2 := pool.Get()
 	fmt.Println(v2)
-	runtime.GC()
+	// runtime.GC()
 	v3 := pool.Get()
 	fmt.Println(v3)
 
