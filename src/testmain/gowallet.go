@@ -49,7 +49,8 @@ func main() {
 			fmt.Println(p)
 		}
 	}()
-	test()
+	// test()
+	someHandler()
 
 	fmt.Println("before wait")
 	// ch := make(chan int, 0)
