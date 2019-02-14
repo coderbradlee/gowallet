@@ -53,8 +53,8 @@ func main() {
 	someHandler()
 
 	fmt.Println("before wait")
-	// ch := make(chan int, 0)
-	// <-ch
+	ch := make(chan int, 0)
+	<-ch
 	// var name = flag.String("name", "everyone", "name for test")
 	// flag.Usage = func() {
 	// 	fmt.Fprintf(os.Stderr, "Usage of %s:\n", "question")
