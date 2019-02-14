@@ -32,11 +32,13 @@ func test3forstrings() {
 	builder1.Grow(10)
 	fmt.Printf("The length of contents in the builder is %d.\n", builder1.Len())
 	fmt.Println()
-
+	b := builder1
+	fmt.Printf("b(%d):\n\"%s\"\n", b.Len(), b.String())
 	// 示例3。
 	fmt.Println("Reset the builder ...")
 	builder1.Reset()
 	fmt.Printf("The third output(%d):\n%q\n", builder1.Len(), builder1.String())
+
 }
 func test3syncpool() {
 	// defer debug.SetGCPercent(debug.SetGCPercent(-1))
