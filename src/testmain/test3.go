@@ -16,10 +16,10 @@ func someHandler() {
 	// ctx, cancel := context.WithCancel(context.Background())
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	go doStuff(ctx)
-
+	cancel()
 	//10秒后取消doStuff
 	time.Sleep(10 * time.Second)
-	cancel()
+	// cancel()
 
 }
 func doStuff(ctx context.Context) {
