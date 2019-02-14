@@ -29,6 +29,7 @@ func test3syncpool() {
 	v2 := pool.Get()
 	fmt.Println(v2)
 	// runtime.GC()
+	time.Sleep(3 * time.Minute)
 	v3 := pool.Get()
 	fmt.Println(v3)
 
