@@ -30,7 +30,7 @@ func test3cpuprofile() {
 	}
 	pprof.StartCPUProfile(f)
 	for i := 0; i < 1000000; i++ {
-		_ := i * i
+		_ = i * i
 	}
 
 	pprof.StopCPUProfile()
