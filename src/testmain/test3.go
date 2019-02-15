@@ -23,7 +23,7 @@ func test3cpuprofile() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	path := filepath.join(dir, "cpuprofile.out")
+	path := filepath.Join(dir, "cpuprofile.out")
 	f, err := os.Create(path)
 	if err != nil {
 		fmt.Println(err)
