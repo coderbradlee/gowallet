@@ -23,18 +23,21 @@ func test3cpuprofile() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	path := filepath.Join(dir, "cpuprofile.out")
+	// path := filepath.Join(dir, "cpuprofile.out")
+	path := filepath.Join(dir, "memprofile.out")
 	f, err := os.Create(path)
 	if err != nil {
 		fmt.Println(err)
 	}
-	pprof.StartCPUProfile(f)
+	// pprof.StartCPUProfile(f)
+	runtime.MemProfileRate = 1
 	for i := 0; i < 100000; i++ {
 		_ = i * i
 		time.Sleep(time.Millisecond)
 	}
 
-	pprof.StopCPUProfile()
+	// pprof.StopCPUProfile()
+	pprof.WriteHeapProfile(f)
 }
 func test3forstrings() {
 
