@@ -8,9 +8,11 @@ import (
 	// "errors"
 	// "flag"
 	"context"
-	// "runtime"
+	"runtime/pprof"
 	// "runtime/debug"
 	"io"
+	"os"
+	"path/filepath"
 	"strings"
 	"sync"
 	"time"
@@ -26,12 +28,12 @@ func test3cpuprofile() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	startCPUProfile(f)
+	pprof.StartCPUProfile(f)
 	for i := 0; i < 1000000; i++ {
 		j := i * i
 	}
 
-	stopCPUProfile()
+	pprof.StopCPUProfile()
 }
 func test3forstrings() {
 
