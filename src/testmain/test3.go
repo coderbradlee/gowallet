@@ -31,7 +31,7 @@ func test3cpuprofile() {
 	pprof.StartCPUProfile(f)
 	for i := 0; i < 1000000; i++ {
 		_ = i * i
-		time.Sleep(time.MilliSecond)
+		time.Sleep(time.Millisecond)
 	}
 
 	pprof.StopCPUProfile()
