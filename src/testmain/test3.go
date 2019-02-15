@@ -29,7 +29,7 @@ func test3cpuprofile() {
 		fmt.Println(err)
 	}
 	pprof.StartCPUProfile(f)
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 100000; i++ {
 		_ = i * i
 		time.Sleep(time.Millisecond)
 	}
