@@ -4,13 +4,39 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
+	"os"
 	"runtime"
 	"strings"
 	"sync"
+	"syscall"
 	"testing"
 	"time"
 )
 
+func TestProcessor(t *testing.T) {
+	p, err := os.FindProcess(7036)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		p.Kill()
+	}
+}
+func TestFile(t *testing.T) {
+	f := os.NewFile(uintptr(syscall.Stderr), "test")
+	f.WriteString("xxxx")
+}
+func TestBuilder(t *testing.T) {
+	src := strings.NewReader("改革开放是我们党的一次伟大觉醒。在改革开放进程中，我们党不断开辟马克思主义发展新境界，创造人类历史上前所未有的发展奇迹。")
+	dst := new(strings.Builder)
+	writenlen, err := io.CopyN(dst, src, 12)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(writenlen)
+		fmt.Println(dst.String())
+	}
+}
 func TestUtf(t *testing.T) {
 	var builder1 strings.Builder
 	builder1.WriteString("A Builder is used to efficiently build a string using Write methods.")
@@ -205,16 +231,18 @@ func TestNoRaceWaitGroupTransitive(t *testing.T) {
 	fmt.Println(y)
 }
 func TestNoRaceWaitGroupPanicRecover(t *testing.T) {
-	var x int
+	var xx int
+	xx = 0
+	fmt.Println(xx)
 	var wg sync.WaitGroup
 	defer func() {
 		err := recover()
 		if err != "sync: negative WaitGroup counter" {
 			t.Fatalf("Unexpected panic: %#v", err)
 		}
-		x = 2
+		xx = 2
 	}()
-	x = 1
+	xx = 1
 	wg.Add(-1)
 }
 func TestNoRaceWaitGroupMultipleWait(t *testing.T) {

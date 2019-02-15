@@ -16,6 +16,23 @@ import (
 	"time"
 )
 
+func test3cpuprofile() {
+	dir, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+	}
+	path := filepath.join(dir, "cpuprofile.out")
+	f, err := os.Create(path)
+	if err != nil {
+		fmt.Println(err)
+	}
+	startCPUProfile(f)
+	for i := 0; i < 1000000; i++ {
+		j := i * i
+	}
+
+	stopCPUProfile()
+}
 func test3forstrings() {
 
 	reader1 := strings.NewReader(

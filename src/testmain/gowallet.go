@@ -52,7 +52,8 @@ func main() {
 	// test()
 	// someHandler()
 	// test3syncpool()
-	test3forstrings()
+	// test3forstrings()
+	test3cpuprofile()
 
 	fmt.Println("before wait")
 	ch := make(chan int, 0)
