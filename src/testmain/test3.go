@@ -89,6 +89,7 @@ func receive(ch1 chan int, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for elem := range ch1 {
 		_ = elem
+		fmt.Println(elem)
 	}
 }
 func test3forstrings() {
