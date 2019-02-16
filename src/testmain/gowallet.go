@@ -6,6 +6,7 @@ import (
 	"fmt"
 	// "os"
 	// "strings"
+	"net/http"
 )
 
 var counter = 0
@@ -54,7 +55,7 @@ func main() {
 	// test3syncpool()
 	// test3forstrings()
 	test3cpuprofile()
-	log.Println(http.ListenAndServe(":80", nil))
+	fmt.Println(http.ListenAndServe(":80", nil))
 
 	fmt.Println("before wait")
 	ch := make(chan int, 0)
