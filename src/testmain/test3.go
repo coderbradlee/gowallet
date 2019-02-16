@@ -11,6 +11,7 @@ import (
 	"runtime/pprof"
 	// "runtime/debug"
 	"io"
+	"math/rand"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -34,17 +35,61 @@ func test3cpuprofile() {
 	// pprof.StartCPUProfile(f)
 	// runtime.MemProfileRate = 1
 	runtime.SetBlockProfileRate(2)
-	ch := make(chan struct{}, 1)
-	for i := 0; i < 100000; i++ {
-		_ = i * i
-		ch <- struct{}{}
-		time.Sleep(time.Millisecond)
-		<-ch
-	}
+	BlockProfile()
+	// ch := make(chan struct{}, 1)
+	// for i := 0; i < 100000; i++ {
+	// 	_ = i * i
+	// 	ch <- struct{}{}
+	// 	time.Sleep(time.Millisecond)
+	// 	<-ch
+	// }
 
 	// pprof.StopCPUProfile()
 	// pprof.WriteHeapProfile(f)
 	pprof.Lookup("block").WriteTo(f, 1)
+}
+
+func BlockProfile() error {
+	max := 100
+	senderNum := max / 2
+	receiverNum := max / 4
+	ch1 := make(chan int, max/4)
+
+	var senderGroup sync.WaitGroup
+	senderGroup.Add(senderNum)
+	repeat := 50000
+	for j := 0; j < senderNum; j++ {
+		go send(ch1, &senderGroup, repeat)
+	}
+
+	go func() {
+		senderGroup.Wait()
+		close(ch1)
+	}()
+
+	var receiverGroup sync.WaitGroup
+	receiverGroup.Add(receiverNum)
+	for j := 0; j < receiverNum; j++ {
+		go receive(ch1, &receiverGroup)
+	}
+	receiverGroup.Wait()
+	return nil
+}
+
+func send(ch1 chan int, wg *sync.WaitGroup, repeat int) {
+	defer wg.Done()
+	time.Sleep(time.Millisecond * 10)
+	for k := 0; k < repeat; k++ {
+		elem := rand.Intn(repeat)
+		ch1 <- elem
+	}
+}
+
+func receive(ch1 chan int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for elem := range ch1 {
+		_ = elem
+	}
 }
 func test3forstrings() {
 
