@@ -34,14 +34,17 @@ func test3cpuprofile() {
 	// pprof.StartCPUProfile(f)
 	// runtime.MemProfileRate = 1
 	runtime.SetBlockProfileRate(2)
+	ch := make(chan struct{}, 1)
 	for i := 0; i < 100000; i++ {
 		_ = i * i
+		ch <- struct{}{}
 		time.Sleep(time.Millisecond)
+		<-ch
 	}
 
 	// pprof.StopCPUProfile()
 	// pprof.WriteHeapProfile(f)
-	pprof.Lookup("block").WriteTo(f, 0)
+	pprof.Lookup("block").WriteTo(f, 1)
 }
 func test3forstrings() {
 
