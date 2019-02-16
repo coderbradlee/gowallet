@@ -12,6 +12,7 @@ import (
 	// "runtime/debug"
 	"io"
 	"math/rand"
+	_ "net/http/pprof"
 	"os"
 	"path/filepath"
 	"runtime"
