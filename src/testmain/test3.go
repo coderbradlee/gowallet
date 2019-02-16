@@ -46,7 +46,7 @@ func test3cpuprofile() {
 
 	// pprof.StopCPUProfile()
 	// pprof.WriteHeapProfile(f)
-	pprof.Lookup("block").WriteTo(f, 1)
+	pprof.Lookup("block").WriteTo(f, 2)
 }
 
 func BlockProfile() error {
