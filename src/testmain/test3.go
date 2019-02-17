@@ -32,7 +32,7 @@ func test3pkh() {
 	addressret, _ := btcutil.NewAddressPubKeyHash(pkHash, &chaincfg.TestNet3Params)
 	fmt.Println(addressret.String())
 	addrbyte := addressret.ScriptAddress()
-	fmt.Println("%x", addrbyte)
+	fmt.Printf("%x\n", addrbyte)
 }
 func test3cpuprofile() {
 	dir, err := os.Getwd()
