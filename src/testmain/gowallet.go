@@ -54,7 +54,8 @@ func main() {
 	// someHandler()
 	// test3syncpool()
 	// test3forstrings()
-	test3cpuprofile()
+	// test3cpuprofile()
+	test333333()
 	fmt.Println(http.ListenAndServe(":80", nil))
 
 	fmt.Println("before wait")
