@@ -28,10 +28,10 @@ func test333333() {
 	test3pkh()
 }
 func test3pkh() {
-
-	// pkHash := btcutil.Hash160([]byte("038cc8c907b29a58b00f8c2590303bfc93c69d773b9da204337678865ee0cafadb"))
+	publickey, _ := hex.DecodeString("038cc8c907b29a58b00f8c2590303bfc93c69d773b9da204337678865ee0cafadb")
+	pkHash := btcutil.Hash160(publickey)
 	// pkHash := []byte("b5407cec767317d41442aab35bad2712626e17ca")
-	pkHash, _ := hex.DecodeString("b5407cec767317d41442aab35bad2712626e17ca")
+	// pkHash, _ := hex.DecodeString("b5407cec767317d41442aab35bad2712626e17ca")
 	fmt.Println(len(pkHash))
 	addressret, err := btcutil.NewAddressPubKeyHash(pkHash, &chaincfg.TestNet3Params)
 	if err != nil {
