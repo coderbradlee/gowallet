@@ -30,7 +30,11 @@ func test3pkh() {
 
 	// pkHash := btcutil.Hash160([]byte("038cc8c907b29a58b00f8c2590303bfc93c69d773b9da204337678865ee0cafadb"))
 	pkHash := []byte("b5407cec767317d41442aab35bad2712626e17ca")
-	addressret, _ := btcutil.NewAddressPubKeyHash(pkHash, &chaincfg.TestNet3Params)
+	addressret, err := btcutil.NewAddressPubKeyHash(pkHash, &chaincfg.TestNet3Params)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	fmt.Println(addressret.String())
 	addrbyte := addressret.ScriptAddress()
 	fmt.Printf("%x\n", addrbyte)
