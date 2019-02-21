@@ -14,6 +14,13 @@ import (
 	"time"
 )
 
+func TestString(t *testing.T) {
+	str := "Hello,世界"
+	fmt.Println(len(str))
+	for i := 0; i < len(str); i++ {
+		fmt.Println(i, ":", str[i])
+	}
+}
 func TestProcessor(t *testing.T) {
 	p, err := os.FindProcess(7036)
 	if err != nil {
