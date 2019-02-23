@@ -15,6 +15,7 @@ import (
 	"github.com/btcsuite/btcutil"
 	"io"
 	"math/rand"
+	"net"
 	_ "net/http/pprof"
 	"os"
 	"path/filepath"
@@ -25,7 +26,8 @@ import (
 )
 
 func test333333() {
-	test3pkh()
+	// test3pkh()
+	testnet()
 }
 func test3pkh() {
 	//公钥的hash160为b5407cec767317d41442aab35bad2712626e17ca，base58为mx3KrUjRzzqYTcsyyvWBiHBncLrrTPXnkV

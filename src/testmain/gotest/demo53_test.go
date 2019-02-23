@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/prashantv/gostub"
 	"io"
 	"os"
 	"runtime"
@@ -15,11 +16,108 @@ import (
 )
 
 func TestString(t *testing.T) {
-	str := "Hello,世界"
-	fmt.Println(len(str))
-	for i := 0; i < len(str); i++ {
-		fmt.Println(i, ":", str[i])
-	}
+	stubs := gostub.Stub(&num, 150)
+	defer stubs.Reset()
+	fmt.Println(num)
+	// testhttp()
+	// testnet()
+	// fmt.Println(runtime.NumCPU())
+	// ch := make(chan int, 1)
+	// go func() {
+	// 	for i := range ch {
+	// 		fmt.Println(":", i)
+	// 	}
+	// 	// for {
+	// 	// 	fmt.Println("flag3")
+	// 	// 	i := <-ch
+	// 	// 	fmt.Println(":", i)
+	// 	// }
+	// }()
+	// for {
+	// 	fmt.Println("flag1")
+	// 	select {
+	// 	case ch <- 0:
+	// 		fmt.Println("0")
+	// 	case ch <- 1:
+	// 		fmt.Println("1")
+	// 	}
+	// 	fmt.Println("flag2")
+	// 	time.Sleep(time.Second)
+	// }
+
+	// ch := make([]chan int, 10)
+	// ch[9] = make(chan int)
+	// go func() {
+	// 	for i, v := range ch {
+	// 		<-v
+	// 		fmt.Println(i, ":")
+	// 	}
+	// }()
+	// for i := 0; i < 9; i++ {
+	// 	ch[i] = make(chan int)
+	// 	go testchan(ch[i])
+	// 	time.Sleep(time.Second * 2)
+	// }
+
+	// var y testinterface
+	// x := &teststruct{7}
+	// y = x
+	// // z := &usestruct{x, 1}
+	// z := &usestruct{x}
+	// z.xx.add()
+	// // fmt.Println(z.xx.x)
+	// x.add()
+	// fmt.Println(x.x)
+	// if v, ok := y.(*teststruct); ok {
+	// 	fmt.Println(v.x)
+	// }
+	// switch y.(type) {
+	// case testinterface:
+	// 	fmt.Println("y.(type)")
+	// default:
+	// 	fmt.Println("default")
+	// }
+	// switch {
+	// case 0 > 0:
+	// 	fmt.Println("0")
+	// case 1 < 0:
+	// 	fmt.Println("1")
+	// case 2 > 0:
+	// 	fmt.Println("2")
+	// default:
+	// 	fmt.Println("default")
+	// }
+	// ret := returefunc()
+	// fmt.Println(ret)
+	// sli1 := []int{1, 2, 3, 4, 5}
+	// sli2 := []int{6, 7, 8}
+	// // copy(sli1, sli2)
+	// copy(sli2, sli1)
+	// fmt.Println(sli1)
+	// fmt.Println(sli2)
+
+	// sli := []int{1, 2, 3, 4}
+	// fmt.Println(len(sli), ":", cap(sli))
+	// sli = append(sli, 5, 6, 7)
+	// fmt.Println(len(sli), ":", cap(sli))
+	// ano := sli[:9]
+	// fmt.Println(len(ano), ":", cap(ano))
+	// arr := [5]int{1, 2, 3, 4, 5}
+	// modify := func(arr [5]int) {
+	// 	arr[0] = 1000
+	// 	fmt.Println(arr)
+	// }
+	// modify(arr)
+	// fmt.Println(arr)
+
+	// str := "Hello, 世界"
+	// fmt.Println(len(str))
+	// for i := 0; i < len(str); i++ {
+	// 	fmt.Println(i, ":", str[i])
+	// }
+	// for i := range str {
+	// 	fmt.Println(i)
+	// }
 }
 func TestProcessor(t *testing.T) {
 	p, err := os.FindProcess(7036)

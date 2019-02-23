@@ -10,10 +10,87 @@ import (
 	"time"
 	// "io"
 	// "os"
+	"bytes"
+	"io"
+	"net"
+	"net/http"
 	"reflect"
 	"sync/atomic"
 )
 
+var num = 100
+
+func testhttp() {
+	resp, err := http.Head("https://www.baidu.com")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(resp)
+}
+func testnet() {
+
+	conn, err := net.Dial("tcp", "sina.com:80")
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer conn.Close()
+	n, err := conn.Write([]byte("GET / HTTP/1.0\r\n\r\n"))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("write:", n)
+	result := bytes.NewBuffer(nil)
+	var buf [512]byte
+	for {
+		n, err := conn.Read(buf[:])
+		result.Write(buf[:n])
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			fmt.Println(err)
+			return
+		}
+	}
+	fmt.Println(result.String())
+	fmt.Println(string(result.Bytes()))
+}
+func testchan(x chan<- int) {
+	// time.Sleep(time.Second * 2)
+	x <- 1
+	// fmt.Println("te")
+
+}
+
+type testinterface interface {
+	add()
+}
+type teststruct struct {
+	x int
+}
+
+func (a *teststruct) add() {
+	a.x += a.x
+}
+
+type usestruct struct {
+	xx testinterface
+	// testinterface
+	// *teststruct
+	// x int
+}
+
+func returefunc() int {
+	if true {
+		return 0
+	} else {
+		return 1
+	}
+}
 func someHandler() {
 	// ctx, cancel := context.WithCancel(context.Background())
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
