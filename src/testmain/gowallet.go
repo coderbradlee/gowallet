@@ -4,9 +4,6 @@ import (
 	// . "btswallet"
 	// "flag"
 	"fmt"
-	// "os"
-	// "strings"
-	"net/http"
 )
 
 var counter = 0
@@ -50,15 +47,23 @@ func main() {
 			fmt.Println(p)
 		}
 	}()
+	x := 1
+	fmt.Println(x)     //prints 1
+	{
+		fmt.Println(x) //prints 1
+		x := 2
+		fmt.Println(x) //prints 2
+	}
+	fmt.Println(x)
 	// test()
 	// someHandler()
 	// test3syncpool()
 	// test3forstrings()
 	// test3cpuprofile()
-	test333333()
-	fmt.Println(http.ListenAndServe(":80", nil))
-
-	fmt.Println("before wait")
+	//test333333()
+	//fmt.Println(http.ListenAndServe(":80", nil))
+	//
+	//fmt.Println("before wait")
 	ch := make(chan int, 0)
 	<-ch
 	// var name = flag.String("name", "everyone", "name for test")
