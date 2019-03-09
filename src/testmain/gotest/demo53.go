@@ -14,13 +14,86 @@ import (
 	"io"
 	"net"
 	"net/http"
+	"net/rpc"
 	"reflect"
 	"sync/atomic"
 )
 
+type Args struct {
+	A int
+	B int
+}
+type Arith int
+
+func (a Arith) Add(args Args, result *int) (err error) {
+	*result = args.A + args.B
+	return
+}
+func testrpc() {
+	ari := new(Arith)
+	rpc.Register(ari)
+	rpc.HandleHTTP()
+	lis, err := net.Listen("tcp", ":1234")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	go http.Serve(lis, nil)
+
+	cli, err := rpc.DialHTTP("tcp", "127.0.0.1:1234")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	{
+		var reply int
+		a := Args{1, 2}
+		err = cli.Call("Arith.Add", a, &reply)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(reply)
+	}
+	{
+		var reply int
+		a := Args{3, 4}
+		retchan := cli.Go("Arith.Add", a, &reply, nil)
+		what := <-retchan.Done
+		fmt.Println(what.Error)
+
+		fmt.Println(reply)
+	}
+}
+
 var num = 100
 
+func redirectFunc(req *http.Request, via []*http.Request) error {
+	fmt.Println("redi:", req)
+	return nil
+}
 func testhttp() {
+	client := &http.Client{CheckRedirect: redirectFunc}
+	resp, err := client.Get("http://www.baidu.com")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(resp)
+
+	fmt.Println("change roundtrip:")
+
+}
+
+type myTransport struct {
+	http.Transport
+}
+
+func (t *myTransport) roundtrip(req *http.Request) (resp *http.Response, err error) {
+	fmt.Println("my trip:")
+	return
+}
+func testhttp2() {
 	resp, err := http.Head("https://www.baidu.com")
 	if err != nil {
 		fmt.Println(err)
