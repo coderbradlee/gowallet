@@ -34,7 +34,8 @@ func printMemStats() {
 }
 func TestAll(ti *testing.T) {
 	printMemStats()
-
+	runtime.GC()
+	printMemStats()
 	initMap()
 	runtime.GC()
 	printMemStats()
