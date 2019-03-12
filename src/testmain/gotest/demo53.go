@@ -155,6 +155,7 @@ type usestruct struct {
 	// testinterface
 	// *teststruct
 	// x int
+	xxy map[string]int
 }
 
 func returefunc() int {
