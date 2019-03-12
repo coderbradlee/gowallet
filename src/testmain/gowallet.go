@@ -70,6 +70,7 @@ func runcmd(cmds []*exec.Cmd)(pid string,err error){
 			return
 		}
 		readBuff.Write(writeBuff.Bytes())
+		writeBuff.Reset()
 	}
 	pid=writeBuff.String()
 	return
