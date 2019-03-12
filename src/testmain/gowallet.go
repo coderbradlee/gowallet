@@ -119,7 +119,7 @@ func main() {
 	wg.Add(2)
 	go func() {
 		for s:=range sig{
-			fmt.Print(s)
+			fmt.Print("ssss:",s)
 		}
 		fmt.Println("done sig")
 		wg.Done()
