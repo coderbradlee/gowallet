@@ -77,7 +77,7 @@ func sendsignal(){
 		exec.Command("ps","aux"),
 		exec.Command("grep","gowallet"),
 		exec.Command("grep","-v","grep"),
-		exec.Command("awk","{print $2}"),
+		exec.Command("awk","'{print $2}'"),
 	}
 	pid,err:=runcmd(cmds)
 	if err!=nil{
