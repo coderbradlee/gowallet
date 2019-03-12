@@ -44,11 +44,12 @@ var counter = 0
 */
 func main() {
 	sig:=make(chan os.Signal,1)
-	sigs:=[]os.Signal{syscall.SIGINT,syscall.SIGQUIT}
+	sigs:=[]os.Signal{syscall.SIGKILL,syscall.SIGQUIT}
 	signal.Notify(sig,sigs...)
 	for s:=range sig{
 		fmt.Print(s)
 	}
+	signal.Stop(sig)
 	//defer func() {
 	//	if p := recover(); p != nil {
 	//		fmt.Println(p)
