@@ -52,6 +52,7 @@ func runcmd(cmds []*exec.Cmd)(pid string,err error){
 	//if err!=nil{
 	//	return
 	//}
+	fmt.Println("runcmd")
 	var readBuff bytes.Buffer
 	var writeBuff bytes.Buffer
 	for i,v:=range cmds{
