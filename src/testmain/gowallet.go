@@ -48,7 +48,7 @@ var counter = 0
 可执行文件名 -slice="java,go"  最后将输出[java,go]
 可执行文件名 最后将输出[default is me]
 */
-func runcmd(cmds []*exec.Cmd)(pid string,err error){
+func runcmd(cmds []*exec.Cmd)(pids []string,err error){
 	//reader,writer,err:=os.Pipe()
 	//if err!=nil{
 	//	return
@@ -74,10 +74,10 @@ func runcmd(cmds []*exec.Cmd)(pid string,err error){
 		writeBuff.Reset()
 	}
 	temp:=readBuff.String()
-	pids:=strings.Split(temp,"\n")
-	if len(pids)>0{
-		pid=pids[0]
-	}
+	pids=strings.Split(temp,"\n")
+	//if len(pids)>0{
+	//	pid=pids[0]
+	//}
 	return
 }
 func sendsignal(){
@@ -88,21 +88,23 @@ func sendsignal(){
 		exec.Command("grep","-v","grep"),
 		exec.Command("awk","{print $2}"),
 	}
-	pid,err:=runcmd(cmds)
+	pids,err:=runcmd(cmds)
 	if err!=nil{
 		return
 	}
-	fmt.Println("pid:",pid)
-	p,err:=strconv.Atoi(pid)
-	if err!=nil{
-		return
-	}
-	fmt.Println("p:",p)
-	proc,err:=os.FindProcess(p)
-	err=proc.Signal(syscall.SIGINT)
-	if err!=nil{
-		fmt.Println("sendsignal:",err)
-		return
+	fmt.Println("pid:",pids)
+	for _,pid:=range pids{
+		p,err:=strconv.Atoi(pid)
+		if err!=nil{
+			return
+		}
+		fmt.Println("p:",p)
+		proc,err:=os.FindProcess(p)
+		err=proc.Signal(syscall.SIGINT)
+		if err!=nil{
+			fmt.Println("sendsignal:",err)
+			return
+		}
 	}
 }
 func main() {
