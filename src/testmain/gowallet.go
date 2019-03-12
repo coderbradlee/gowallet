@@ -1,10 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
+	"os/exec"
 	"os/signal"
+	"strconv"
+	"sync"
 	"syscall"
+	"time"
 )
 
 var counter = 0
@@ -42,14 +47,79 @@ var counter = 0
 可执行文件名 -slice="java,go"  最后将输出[java,go]
 可执行文件名 最后将输出[default is me]
 */
+func runcmd(cmds []*exec.Cmd)(pid string,err error){
+	//reader,writer,err:=os.Pipe()
+	//if err!=nil{
+	//	return
+	//}
+	var readBuff bytes.Buffer
+	var writeBuff bytes.Buffer
+	for i,v:=range cmds{
+		if i>0{
+			v.Stdin=&readBuff
+		}
+		v.Stdout=&writeBuff
+		if err=v.Start();err!=nil{
+			return
+		}
+		if err=v.Wait();err!=nil{
+			return
+		}
+	}
+	pid=writeBuff.String()
+	return
+}
+func sendsignal(){
+	time.Sleep(time.Second*10)
+	cmds:=[]*exec.Cmd{
+		exec.Command("ps","aux"),
+		exec.Command("grep","gowallet"),
+		exec.Command("grep","-v","grep"),
+		exec.Command("awk","{print $2}"),
+	}
+	pid,err:=runcmd(cmds)
+	if err!=nil{
+		return
+	}
+	fmt.Println("pid:",pid)
+	p,err:=strconv.Atoi(pid)
+
+	proc,err:=os.FindProcess(p)
+	err=proc.Signal(syscall.SIGINT)
+	if err!=nil{
+		return
+	}
+}
 func main() {
 	sig:=make(chan os.Signal,1)
-	sigs:=[]os.Signal{syscall.SIGKILL,syscall.SIGQUIT}
+	sigs:=[]os.Signal{syscall.SIGINT,syscall.SIGQUIT}
 	signal.Notify(sig,sigs...)
-	for s:=range sig{
-		fmt.Print(s)
-	}
-	signal.Stop(sig)
+
+	sig2:=make(chan os.Signal,1)
+	sigs2:=[]os.Signal{syscall.SIGINT}
+	signal.Notify(sig2,sigs2...)
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go func() {
+		for s:=range sig{
+			fmt.Print(s)
+		}
+		fmt.Println("done sig")
+		wg.Done()
+	}()
+	go func() {
+		for s:=range sig2{
+			fmt.Print(s)
+		}
+		fmt.Println("done sig2")
+		wg.Done()
+	}()
+	time.Sleep(time.Second)
+	signal.Stop(sig2)
+	close(sig2)
+	go sendsignal()
+	wg.Wait()
+	//signal.Stop(sig)
 	//defer func() {
 	//	if p := recover(); p != nil {
 	//		fmt.Println(p)
