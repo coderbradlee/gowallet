@@ -94,7 +94,10 @@ func sendsignal(){
 	}
 	fmt.Println("pid:",pid)
 	p,err:=strconv.Atoi(pid)
-
+	if err!=nil{
+		return
+	}
+	fmt.Println("p:",p)
 	proc,err:=os.FindProcess(p)
 	err=proc.Signal(syscall.SIGINT)
 	if err!=nil{
