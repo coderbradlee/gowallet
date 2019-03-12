@@ -1,9 +1,10 @@
 package main
 
 import (
-	// . "btswallet"
-	// "flag"
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 var counter = 0
@@ -42,19 +43,25 @@ var counter = 0
 可执行文件名 最后将输出[default is me]
 */
 func main() {
-	defer func() {
-		if p := recover(); p != nil {
-			fmt.Println(p)
-		}
-	}()
-	x := 1
-	fmt.Println(x)     //prints 1
-	{
-		fmt.Println(x) //prints 1
-		x := 2
-		fmt.Println(x) //prints 2
+	sig:=make(chan os.Signal,1)
+	sigs:=[]os.Signal{syscall.SIGINT,syscall.SIGQUIT}
+	signal.Notify(sig,sigs...)
+	for s:=range sig{
+		fmt.Print(s)
 	}
-	fmt.Println(x)
+	//defer func() {
+	//	if p := recover(); p != nil {
+	//		fmt.Println(p)
+	//	}
+	//}()
+	//x := 1
+	//fmt.Println(x)     //prints 1
+	//{
+	//	fmt.Println(x) //prints 1
+	//	x := 2
+	//	fmt.Println(x) //prints 2
+	//}
+	//fmt.Println(x)
 	// test()
 	// someHandler()
 	// test3syncpool()
