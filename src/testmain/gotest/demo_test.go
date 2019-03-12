@@ -16,26 +16,7 @@ import (
 	//"sync"
 )
 
-type testinterface interface {
-	xx(int)
-	yy(int)
-	print()
-}
-type teststruct struct {
-	i int
-}
-func (t *teststruct)xx(v int){
-	t.i=v
-}
-func (t teststruct)yy(v int){
-	t.i=v
-}
-func (t teststruct)print(){
-	fmt.Println(t.i)
-}
-type ttstruct struct {
-	*teststruct
-}
+
 func TestAll2(ti *testing.T) {
 	cmd0:=exec.Command("echo","-n","xxx")
 	if err:=cmd0.Start();err!=nil{
