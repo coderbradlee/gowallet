@@ -100,7 +100,7 @@ func sendsignal(){
 		}
 		fmt.Println("p:",p)
 		proc,err:=os.FindProcess(p)
-		err=proc.Signal(syscall.SIGINT)
+		err=proc.Signal(syscall.SIGKILL)
 		if err!=nil{
 			fmt.Println("sendsignal:",err)
 			return
