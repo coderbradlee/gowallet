@@ -74,7 +74,7 @@ func runcmd(cmds []*exec.Cmd)(pid string,err error){
 		writeBuff.Reset()
 	}
 	temp:=readBuff.String()
-	pids:=strings.Split(temp,"\r\n")
+	pids:=strings.Split(temp,"\n")
 	if len(pids)>0{
 		pid=pids[0]
 	}
