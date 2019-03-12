@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"os/signal"
 	"strconv"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
@@ -72,7 +73,11 @@ func runcmd(cmds []*exec.Cmd)(pid string,err error){
 		readBuff.Write(writeBuff.Bytes())
 		writeBuff.Reset()
 	}
-	pid=readBuff.String()
+	temp:=readBuff.String()
+	pids:=strings.Split(temp,"\r\n")
+	if len(pids)>0{
+		pid=pids[0]
+	}
 	return
 }
 func sendsignal(){
