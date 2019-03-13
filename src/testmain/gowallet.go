@@ -113,7 +113,7 @@ func handleConn(conn net.Conn){
 	for{
 		conn.SetDeadline(time.Now().Add(time.Second*10))
 		readBytes,isprefix,err:=reader.ReadLine()
-		if !isprefix{
+		if isprefix{
 			fmt.Println("server read end")
 			break
 		}
@@ -167,7 +167,7 @@ func client(){
 		fmt.Println("client write:",n)
 		reader:=bufio.NewReader(conn)
 		content,isprefix,err:=reader.ReadLine()
-		if !isprefix{
+		if isprefix{
 			fmt.Println("client end read")
 			break
 		}
