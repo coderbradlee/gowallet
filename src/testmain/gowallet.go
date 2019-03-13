@@ -121,7 +121,7 @@ func handleConn(conn net.Conn){
 			fmt.Println("server read end:",string(readBytes))
 
 			var buffer bytes.Buffer
-			buffer.Write(readBytes[:len(readBytes)-1])
+			buffer.Write(readBytes[:len(readBytes)])
 			buffer.WriteByte('\n')
 			n,err:=conn.Write(buffer.Bytes())
 			if err!=nil{
