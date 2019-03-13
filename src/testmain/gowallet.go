@@ -112,9 +112,13 @@ func handleConn(conn net.Conn){
 	defer conn.Close()
 	for{
 		conn.SetDeadline(time.Now().Add(time.Second*10))
-		readBytes,_,err:=reader.ReadLine()
+		readBytes,isprefix,err:=reader.ReadLine()
+		if !isprefix{
+			fmt.Println("server read end")
+			break
+		}
 		if err!=nil{
-			fmt.Println(err)
+			fmt.Println("server error:",err)
 			break
 		}
 		var buffer bytes.Buffer
@@ -122,7 +126,7 @@ func handleConn(conn net.Conn){
 		buffer.WriteByte('\n')
 		n,err:=conn.Write(buffer.Bytes())
 		if err!=nil{
-			fmt.Println(err)
+			fmt.Println("server error:",err)
 			break
 		}
 		fmt.Println("server write:",n)
@@ -138,7 +142,7 @@ func server(){
 	for{
 		conn,err:=listener.Accept()
 		if err!=nil{
-			fmt.Println(err)
+			fmt.Println("server error:",err)
 			break
 		}
 		go handleConn(conn)
@@ -153,7 +157,7 @@ func client(){
 	defer conn.Close()
 	for {
 		var buffer bytes.Buffer
-		buffer.Write([]byte{1,2,3})
+		buffer.Write([]byte("string test"))
 		buffer.WriteByte('\n')
 		n,err:=conn.Write(buffer.Bytes())
 		if err!=nil{
@@ -162,7 +166,11 @@ func client(){
 		}
 		fmt.Println("client write:",n)
 		reader:=bufio.NewReader(conn)
-		content,_,err:=reader.ReadLine()
+		content,isprefix,err:=reader.ReadLine()
+		if !isprefix{
+			fmt.Println("client end read")
+			break
+		}
 		if err!=nil{
 			fmt.Println("client read:",err)
 			break
