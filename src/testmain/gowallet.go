@@ -1,14 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
+	"net"
 	"os"
 	"os/exec"
-	"os/signal"
 	"strconv"
 	"strings"
-	"sync"
 	"syscall"
 	"time"
 )
@@ -107,35 +107,101 @@ func sendsignal(){
 		}
 	}
 }
+func handleConn(conn net.Conn){
+	reader:=bufio.NewReader(conn)
+	defer conn.Close()
+	for{
+		conn.SetDeadline(time.Now().Add(time.Second*10))
+		readBytes,_,err:=reader.ReadLine()
+		if err!=nil{
+			fmt.Println(err)
+			break
+		}
+		var buffer bytes.Buffer
+		buffer.Write(readBytes[:len(readBytes)-1])
+		buffer.WriteByte('\n')
+		n,err:=conn.Write(buffer.Bytes())
+		if err!=nil{
+			fmt.Println(err)
+			break
+		}
+		fmt.Println("server write:",n)
+	}
+}
+func server(){
+	listener,err:=net.Listen("tcp","127.0.0.1:80")
+	if err!=nil{
+		fmt.Println(err)
+		return
+	}
+	defer listener.Close()
+	for{
+		conn,err:=listener.Accept()
+		if err!=nil{
+			fmt.Println(err)
+			break
+		}
+		go handleConn(conn)
+	}
+}
+func client(){
+	conn,err:=net.DialTimeout("tcp","127.0.0.1:80",time.Second*2)
+	if err!=nil{
+		fmt.Println("client conn:",err)
+		return
+	}
+	defer conn.Close()
+	for {
+		var buffer bytes.Buffer
+		buffer.Write([]byte{1,2,3})
+		buffer.WriteByte('\n')
+		n,err:=conn.Write(buffer.Bytes())
+		if err!=nil{
+			fmt.Println("client write:",err)
+			break
+		}
+		fmt.Println("client write:",n)
+		reader:=bufio.NewReader(conn)
+		content,_,err:=reader.ReadLine()
+		if err!=nil{
+			fmt.Println("client read:",err)
+			break
+		}
+		fmt.Println("client read:",string(content))
+	}
+}
 func main() {
-	sig:=make(chan os.Signal,1)
-	sigs:=[]os.Signal{syscall.SIGINT,syscall.SIGQUIT}
-	signal.Notify(sig,sigs...)
-
-	sig2:=make(chan os.Signal,1)
-	sigs2:=[]os.Signal{syscall.SIGINT}
-	signal.Notify(sig2,sigs2...)
-	var wg sync.WaitGroup
-	wg.Add(2)
-	go func() {
-		for s:=range sig{
-			fmt.Print("ssss:",s)
-		}
-		fmt.Println("done sig")
-		wg.Done()
-	}()
-	go func() {
-		for s:=range sig2{
-			fmt.Print(s)
-		}
-		fmt.Println("done sig2")
-		wg.Done()
-	}()
+	go server()
 	time.Sleep(time.Second)
-	signal.Stop(sig2)
-	close(sig2)
-	go sendsignal()
-	wg.Wait()
+	go client()
+	//sig:=make(chan os.Signal,1)
+	//sigs:=[]os.Signal{syscall.SIGINT,syscall.SIGQUIT}
+	//signal.Notify(sig,sigs...)
+	//
+	//sig2:=make(chan os.Signal,1)
+	//sigs2:=[]os.Signal{syscall.SIGINT}
+	//signal.Notify(sig2,sigs2...)
+	//var wg sync.WaitGroup
+	//wg.Add(2)
+	//go func() {
+	//	for s:=range sig{
+	//		fmt.Print("ssss:",s)
+	//	}
+	//	fmt.Println("done sig")
+	//	wg.Done()
+	//}()
+	//go func() {
+	//	for s:=range sig2{
+	//		fmt.Print(s)
+	//	}
+	//	fmt.Println("done sig2")
+	//	wg.Done()
+	//}()
+	//time.Sleep(time.Second)
+	//signal.Stop(sig2)
+	//close(sig2)
+	//go sendsignal()
+	//wg.Wait()
 	//signal.Stop(sig)
 	//defer func() {
 	//	if p := recover(); p != nil {
