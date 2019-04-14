@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../solidity-by-example/remove-from-array.sol">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../solidity-by-example/send-eth.sol">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hdwallet/eth.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/core/chain_makers_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-293">
+              <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../solidity-by-example/sha3.sol">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../solidity-by-example/tail-recursion.sol">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../solidity-by-example/tuple.sol">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>hiter</find>
+      <find>makemap(</find>
+      <find>x</find>
+      <find>x.</find>
+      <find>waitg</find>
+      <find>loadpo</find>
+      <find>load(</find>
+      <find>waitgr</find>
+      <find>setoverflow</find>
+      <find>incrnoverflow</find>
+      <find>hashGrow</find>
+      <find>GOMAXPROCS</find>
+      <find>10000</find>
+      <find>thread</find>
+      <find>maxthread</find>
+      <find>maxmcount</find>
+      <find>gomaxpro</find>
+      <find>gomaxprocs</find>
+      <find>newprocs</find>
+      <find>cpu</find>
+      <find>kecc</find>
+      <find>makea</find>
+      <find>types.NewTransaction</find>
+    </findStrings>
+    <dirStrings>
+      <dir>E:\work\goroot\src\runtime</dir>
+      <dir>E:\work\goroot\src</dir>
+      <dir>E:\work\gowallet</dir>
+      <dir>E:\work\gowallet\src\vendor</dir>
+    </dirStrings>
+  </component>
+  <component name="GOROOT" path="E:\work\goroot" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/testmain/gotest/demo53_test.go" />
+        <option value="$PROJECT_DIR$/src/testmain/gotest/demo53.go" />
+        <option value="$PROJECT_DIR$/../goroot/src/runtime/map.go" />
+        <option value="$PROJECT_DIR$/src/testmain/build.sh" />
+        <option value="$PROJECT_DIR$/src/testmain/test3.go" />
+        <option value="$PROJECT_DIR$/src/testmain/gowallet.go" />
+        <option value="$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-return.sol" />
+        <option value="$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-of-strings.sol" />
+        <option value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+        <option value="$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-passing.sol" />
+        <option value="$PROJECT_DIR$/../solidity-by-example/basic-token-unannotated.sol" />
+        <option value="$PROJECT_DIR$/../solidity-by-example/basic-token-annotated.sol" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
+    <option name="y" value="101" />
+    <option name="width" value="1346" />
+    <option name="height" value="647" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Test.TestAll8 in demo_test.go">
+    <configuration name="TestAll4 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+      <pattern value="^TestAll4$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAll5 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+      <pattern value="^TestAll5$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAll6 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+      <pattern value="^TestAll6$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAll7 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+      <pattern value="^TestAll7$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAll8 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+      <pattern value="^TestAll8$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestAll8 in demo_test.go" />
+        <item itemvalue="Go Test.TestAll7 in demo_test.go" />
+        <item itemvalue="Go Test.TestAll6 in demo_test.go" />
+        <item itemvalue="Go Test.TestAll5 in demo_test.go" />
+        <item itemvalue="Go Test.TestAll4 in demo_test.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 22m 07s.xml">
+      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 33m 13s.xml">
+      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 35m 10s.xml">
+      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 36m 35s.xml">
+      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 04m 20s.xml">
+      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 08m 02s.xml">
+      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 09m 46s.xml">
+      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 12m 03s.xml">
+      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll8_in_demo_test_go - 2019.04.03 at 18h 55m 16s.xml">
+      <configuration name="TestAll8 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAll8_in_demo_test_go - 2019.04.03 at 18h 56m 47s.xml">
+      <configuration name="TestAll8 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="73" width="1382" height="703" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26717559" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41328412" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.53321034" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32844037" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24466464" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32844037" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Run" order="7" visible="true" weight="0.39816514" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.53394496" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/testmain/gowallet.go</url>
+          <line>235</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go</url>
+          <line>293</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/type.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="375" column="24" selection-start-line="375" selection-start-column="18" selection-end-line="375" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/slice.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/map.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="966" column="5" lean-forward="true" selection-start-line="966" selection-start-column="5" selection-end-line="966" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/context/context.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5486">
+          <caret line="229" column="5" selection-start-line="229" selection-start-column="5" selection-end-line="229" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/time/time.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23298" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/sync/atomic/doc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="47" column="94" selection-start-line="47" selection-start-column="94" selection-end-line="47" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/time/sleep.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/sync/atomic/example_test.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/container/heap/heap.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-71">
+          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/reflect/type.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug/stubs.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug/garbage.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="131" column="11" selection-start-line="131" selection-start-column="11" selection-end-line="131" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/atomic_ppc64x.s">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/atomic_mipsx.s">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/chan_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug/garbage_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4290">
+          <caret line="190" column="29" lean-forward="true" selection-start-line="190" selection-start-column="29" selection-end-line="190" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/os/os_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="2219" column="4" lean-forward="true" selection-start-line="2219" selection-start-column="4" selection-end-line="2219" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/runtime2.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="612" column="67" selection-start-line="612" selection-start-column="57" selection-end-line="612" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/proc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1572">
+          <caret line="3970" column="22" selection-start-line="3970" selection-start-column="16" selection-end-line="3970" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/cmd/go/internal/cfg/cfg.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/cmd/clef/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/array-return.sol" />
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/array-passing.sol" />
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/array-of-strings.sol" />
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-of-strings.sol" />
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/arrayofstrings.go" />
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/accounts/abi/argument.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="92" column="51" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/accounts/abi/abi.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="86" column="33" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/BaiduNetdiskDownload/解压密码.html" />
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/accounts/abi/bind/base.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="117" column="23" selection-start-line="119" selection-start-column="45" selection-end-line="119" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/arraypassing.go" />
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-passing.sol" />
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/before/array-delete.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!block;n#TestAll2#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/arraydeletepassing.go" />
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/arrayreturn.go" />
+    <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-return.sol" />
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/basic-token-annotated.sol" />
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/basic-token-unannotated.sol" />
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/iotexproject/iotex-core/action/protocol/execution/testdata/erc20.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1188" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/call-other-contract.sol" />
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/call-dynamic.sol" />
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/remove-from-array.sol">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/sha3.sol">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/tail-recursion.sol">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/tuple.sol">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/send-eth.sol">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/core/chain_makers_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-293">
+          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hdwallet/eth.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
