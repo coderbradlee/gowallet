@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/gowallet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gowallet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/test3.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/test3.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,16 +16,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../solidity-by-example/remove-from-array.sol">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../solidity-by-example/send-eth.sol">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hdwallet/eth.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
@@ -33,9 +30,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testmain/test3.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="36" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="n#!!block;n#TestAll2#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testmain/test.go">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="205" column="9" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
+              <folding>
+                <element signature="e#14#114#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/core/chain_makers_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-293">
+            <state relative-caret-position="1012">
               <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
             </state>
           </provider>
@@ -102,14 +136,14 @@
         <option value="$PROJECT_DIR$/src/testmain/gotest/demo53.go" />
         <option value="$PROJECT_DIR$/../goroot/src/runtime/map.go" />
         <option value="$PROJECT_DIR$/src/testmain/build.sh" />
-        <option value="$PROJECT_DIR$/src/testmain/test3.go" />
-        <option value="$PROJECT_DIR$/src/testmain/gowallet.go" />
         <option value="$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-return.sol" />
         <option value="$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-of-strings.sol" />
-        <option value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
         <option value="$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-passing.sol" />
         <option value="$PROJECT_DIR$/../solidity-by-example/basic-token-unannotated.sol" />
         <option value="$PROJECT_DIR$/../solidity-by-example/basic-token-annotated.sol" />
+        <option value="$PROJECT_DIR$/src/testmain/test3.go" />
+        <option value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+        <option value="$PROJECT_DIR$/src/testmain/gowallet.go" />
       </list>
     </option>
   </component>
@@ -144,7 +178,14 @@
               <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="gowallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="testmain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="testmain" type="462c0819:PsiDirectoryNode" />
+              <item name="gotest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -176,17 +217,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestAll8 in demo_test.go">
-    <configuration name="TestAll4 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="gowallet" />
-      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
-      <framework value="gotest" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
-      <pattern value="^TestAll4$" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Test.TestAll9 in demo_test.go">
     <configuration name="TestAll5 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="gowallet" />
       <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
@@ -227,58 +258,68 @@
       <pattern value="^TestAll8$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestAll9 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
+      <pattern value="^TestAll9$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestAll9 in demo_test.go" />
         <item itemvalue="Go Test.TestAll8 in demo_test.go" />
         <item itemvalue="Go Test.TestAll7 in demo_test.go" />
         <item itemvalue="Go Test.TestAll6 in demo_test.go" />
         <item itemvalue="Go Test.TestAll5 in demo_test.go" />
-        <item itemvalue="Go Test.TestAll4 in demo_test.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 22m 07s.xml">
-      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 09h 47m 47s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 33m 13s.xml">
-      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 09h 49m 20s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 35m 10s.xml">
-      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 09h 50m 08s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll6_in_demo_test_go - 2019.04.02 at 11h 36m 35s.xml">
-      <configuration name="TestAll6 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 09m 02s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 04m 20s.xml">
-      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 43m 50s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 08m 02s.xml">
-      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 44m 28s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 09m 46s.xml">
-      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 45m 04s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll7_in_demo_test_go - 2019.04.03 at 11h 12m 03s.xml">
-      <configuration name="TestAll7 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 46m 04s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll8_in_demo_test_go - 2019.04.03 at 18h 55m 16s.xml">
-      <configuration name="TestAll8 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 47m 16s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestAll8_in_demo_test_go - 2019.04.03 at 18h 56m 47s.xml">
-      <configuration name="TestAll8 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestAll9_in_demo_test_go - 2019.05.06 at 10h 52m 29s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="73" width="1382" height="703" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26717559" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26647145" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.41328412" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4122807" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.53321034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -288,6 +329,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32844037" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="make" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -323,39 +365,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/testmain/gowallet.go</url>
-          <line>235</line>
+          <line>257</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go</url>
-          <line>293</line>
+          <line>335</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/type.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="375" column="24" selection-start-line="375" selection-start-column="18" selection-end-line="375" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/slice.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/map.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="966" column="5" lean-forward="true" selection-start-line="966" selection-start-column="5" selection-end-line="966" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../goroot/src/context/context.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5486">
@@ -514,16 +535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#TestAll2#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/arraydeletepassing.go" />
     <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/arrayreturn.go" />
     <entry file="file://$PROJECT_DIR$/../gosmartcontract/iotexsolidity/array-return.sol" />
@@ -539,6 +550,16 @@
     <entry file="file://$PROJECT_DIR$/../solidity-by-example/remove-from-array.sol">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../solidity-by-example/send-eth.sol">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/core/chain_makers_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../solidity-by-example/sha3.sol">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -548,20 +569,39 @@
     <entry file="file://$PROJECT_DIR$/../solidity-by-example/tuple.sol">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../solidity-by-example/send-eth.sol">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/core/chain_makers_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-293">
-          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hdwallet/eth.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/test3.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="36" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!block;n#TestAll2#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/test.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="205" column="9" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
+          <folding>
+            <element signature="e#14#114#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

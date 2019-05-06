@@ -21,6 +21,48 @@ import (
 	"context"
 )
 
+type KeyNotFoundError struct {
+	Name string
+}
+
+func (e KeyNotFoundError) Error() string {
+	return fmt.Errorf("taildb: key %q not found", e.Name).Error()
+}
+func retError() error {
+	return KeyNotFoundError{"test"}
+}
+func passArrayByValue(arr [3]int) {
+	arr = [3]int{}
+}
+func TestAll9(t *testing.T) {
+	arr := [3]int{1, 2, 3}
+	passArrayByValue(arr)
+	fmt.Println(arr)
+	//golang_arr := []int{1, 2, 3, 4, 5}
+	//fmt.Println(golang_arr)
+	//golang_arr2 := []int{4: -1}
+	//fmt.Println(golang_arr2)
+	//fmt.Println(retError())
+	//arr := make([]int, 0)
+	//arr = append(arr, 1, 2, 3, 4)
+	//arr1 := arr
+	//fmt.Println(arr)
+	//fmt.Println(arr1)
+	//arr[0] = 10
+	//fmt.Println("///////////////")
+	//fmt.Println(arr)
+	//fmt.Println(arr1)
+	//funcarr := func(arr []int) (ret []int) {
+	//	arr[0] = 100
+	//	return arr
+	//}
+	//arr2 := funcarr(arr[:2])
+	//fmt.Println("///////////////")
+	//fmt.Println(arr)
+	//fmt.Println(arr1)
+	//fmt.Println(arr2)
+
+}
 func TestAll8(t *testing.T) {
 
 	for i := 0; i < 100; i++ {

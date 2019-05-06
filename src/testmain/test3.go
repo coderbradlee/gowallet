@@ -25,9 +25,16 @@ import (
 	"time"
 )
 
-func test333333() {
-	// test3pkh()
-	//testnet()
+func Test() {
+	arr := make([]int, 0)
+	arr = append(arr, 1, 2, 3, 4)
+	arr1 := arr
+	fmt.Println(arr)
+	fmt.Println(arr1)
+	arr[0] = 10
+	fmt.Println("///////////////")
+	fmt.Println(arr)
+	fmt.Println(arr1)
 }
 func test3pkh() {
 	//公钥的hash160为b5407cec767317d41442aab35bad2712626e17ca，base58为mx3KrUjRzzqYTcsyyvWBiHBncLrrTPXnkV

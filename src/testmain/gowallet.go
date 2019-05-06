@@ -4,9 +4,11 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 	"syscall"
@@ -48,7 +50,7 @@ var counter = 0
 可执行文件名 -slice="java,go"  最后将输出[java,go]
 可执行文件名 最后将输出[default is me]
 */
-func runcmd(cmds []*exec.Cmd)(pids []string,err error){
+func runcmd(cmds []*exec.Cmd) (pids []string, err error) {
 	//reader,writer,err:=os.Pipe()
 	//if err!=nil{
 	//	return
@@ -56,104 +58,104 @@ func runcmd(cmds []*exec.Cmd)(pids []string,err error){
 	fmt.Println("runcmd")
 	var readBuff bytes.Buffer
 	var writeBuff bytes.Buffer
-	for i,v:=range cmds{
-		fmt.Println("runcmd:",i)
+	for i, v := range cmds {
+		fmt.Println("runcmd:", i)
 		fmt.Println(readBuff.String())
 		fmt.Println(writeBuff.String())
-		if i>0{
-			v.Stdin=&readBuff
+		if i > 0 {
+			v.Stdin = &readBuff
 		}
-		v.Stdout=&writeBuff
-		if err=v.Start();err!=nil{
+		v.Stdout = &writeBuff
+		if err = v.Start(); err != nil {
 			return
 		}
-		if err=v.Wait();err!=nil{
+		if err = v.Wait(); err != nil {
 			return
 		}
 		readBuff.Write(writeBuff.Bytes())
 		writeBuff.Reset()
 	}
-	temp:=readBuff.String()
-	pids=strings.Split(temp,"\n")
+	temp := readBuff.String()
+	pids = strings.Split(temp, "\n")
 	//if len(pids)>0{
 	//	pid=pids[0]
 	//}
 	return
 }
-func sendsignal(){
-	time.Sleep(time.Second*10)
-	cmds:=[]*exec.Cmd{
-		exec.Command("ps","aux"),
-		exec.Command("grep","gowallet"),
-		exec.Command("grep","-v","grep"),
-		exec.Command("awk","{print $2}"),
+func sendsignal() {
+	time.Sleep(time.Second * 10)
+	cmds := []*exec.Cmd{
+		exec.Command("ps", "aux"),
+		exec.Command("grep", "gowallet"),
+		exec.Command("grep", "-v", "grep"),
+		exec.Command("awk", "{print $2}"),
 	}
-	pids,err:=runcmd(cmds)
-	if err!=nil{
+	pids, err := runcmd(cmds)
+	if err != nil {
 		return
 	}
-	fmt.Println("pid:",pids)
-	for _,pid:=range pids{
-		p,err:=strconv.Atoi(pid)
-		if err!=nil{
+	fmt.Println("pid:", pids)
+	for _, pid := range pids {
+		p, err := strconv.Atoi(pid)
+		if err != nil {
 			return
 		}
-		fmt.Println("p:",p)
-		proc,err:=os.FindProcess(p)
-		err=proc.Signal(syscall.SIGKILL)
-		if err!=nil{
-			fmt.Println("sendsignal:",err)
+		fmt.Println("p:", p)
+		proc, err := os.FindProcess(p)
+		err = proc.Signal(syscall.SIGKILL)
+		if err != nil {
+			fmt.Println("sendsignal:", err)
 			return
 		}
 	}
 }
-func handleConn(conn net.Conn){
-	reader:=bufio.NewReader(conn)
+func handleConn(conn net.Conn) {
+	reader := bufio.NewReader(conn)
 	defer conn.Close()
-	for{
-		conn.SetDeadline(time.Now().Add(time.Second*10))
-		readBytes,isprefix,err:=reader.ReadLine()
-		if err!=nil{
-			fmt.Println("server error:",err)
+	for {
+		conn.SetDeadline(time.Now().Add(time.Second * 10))
+		readBytes, isprefix, err := reader.ReadLine()
+		if err != nil {
+			fmt.Println("server error:", err)
 			break
 		}
-		if !isprefix{
-			fmt.Println("server read end:",string(readBytes))
+		if !isprefix {
+			fmt.Println("server read end:", string(readBytes))
 
 			var buffer bytes.Buffer
 			buffer.Write(readBytes[:len(readBytes)])
 			buffer.WriteByte('\n')
-			n,err:=conn.Write(buffer.Bytes())
-			if err!=nil{
-				fmt.Println("server error:",err)
+			n, err := conn.Write(buffer.Bytes())
+			if err != nil {
+				fmt.Println("server error:", err)
 				break
 			}
-			fmt.Println("server write:",n)
+			fmt.Println("server write:", n)
 
 			break
 		}
 	}
 }
-func server(){
-	listener,err:=net.Listen("tcp","127.0.0.1:80")
-	if err!=nil{
+func server() {
+	listener, err := net.Listen("tcp", "127.0.0.1:80")
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer listener.Close()
-	for{
-		conn,err:=listener.Accept()
-		if err!=nil{
-			fmt.Println("server error:",err)
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			fmt.Println("server error:", err)
 			break
 		}
 		go handleConn(conn)
 	}
 }
-func client(){
-	conn,err:=net.DialTimeout("tcp","127.0.0.1:80",time.Second*2)
-	if err!=nil{
-		fmt.Println("client conn:",err)
+func client() {
+	conn, err := net.DialTimeout("tcp", "127.0.0.1:80", time.Second*2)
+	if err != nil {
+		fmt.Println("client conn:", err)
 		return
 	}
 	defer conn.Close()
@@ -161,30 +163,50 @@ func client(){
 		var buffer bytes.Buffer
 		buffer.Write([]byte("string test\n"))
 		//buffer.WriteByte('\n')
-		n,err:=conn.Write(buffer.Bytes())
-		if err!=nil{
-			fmt.Println("client write:",err)
+		n, err := conn.Write(buffer.Bytes())
+		if err != nil {
+			fmt.Println("client write:", err)
 			break
 		}
-		fmt.Println("client write:",n)
-		reader:=bufio.NewReader(conn)
-		content,isprefix,err:=reader.ReadLine()
-		if err!=nil{
-			fmt.Println("client read:",err)
+		fmt.Println("client write:", n)
+		reader := bufio.NewReader(conn)
+		content, isprefix, err := reader.ReadLine()
+		if err != nil {
+			fmt.Println("client read:", err)
 			break
 		}
-		if !isprefix{
-			fmt.Println("client end read:",string(content))
+		if !isprefix {
+			fmt.Println("client end read:", string(content))
 
 			break
 		}
 
 	}
 }
+func f() {
+	container := make([]int, 8)
+	log.Println("> loop.")
+	// slice会动态扩容，用它来做堆内存的申请
+	for i := 0; i < 32*1000*1000; i++ {
+		container = append(container, i)
+	}
+	log.Println("< loop.")
+	// container在f函数执行完毕后不再使用
+}
+func test() {
+	log.Println("start.")
+	f()
+
+	log.Println("force gc.")
+	runtime.GC() // 调用强制gc函数
+
+	log.Println("done.")
+}
 func main() {
-	go server()
-	time.Sleep(time.Second)
-	go client()
+	test()
+	//go server()
+	//time.Sleep(time.Second)
+	//go client()
 	//sig:=make(chan os.Signal,1)
 	//sigs:=[]os.Signal{syscall.SIGINT,syscall.SIGQUIT}
 	//signal.Notify(sig,sigs...)
