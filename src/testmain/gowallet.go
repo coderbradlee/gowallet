@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"net/http"
 	"os"
 	"os/exec"
 	"runtime"
@@ -218,6 +219,9 @@ func test() {
 			traceMemStats()
 			time.Sleep(10 * time.Second)
 		}
+	}()
+	go func() {
+		log.Println(http.ListenAndServe("0.0.0.0:10000", nil))
 	}()
 }
 func main() {

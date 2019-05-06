@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testmain/gowallet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gowallet.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="220" column="7" selection-start-line="220" selection-start-column="7" selection-end-line="220" selection-end-column="7" />
+            <state relative-caret-position="397">
+              <caret line="223" column="7" selection-start-line="223" selection-start-column="7" selection-end-line="223" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -290,7 +289,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/testmain/gowallet.go</url>
-          <line>275</line>
+          <line>278</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -522,8 +521,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="220" column="7" selection-start-line="220" selection-start-column="7" selection-end-line="220" selection-end-column="7" />
+        <state relative-caret-position="397">
+          <caret line="223" column="7" selection-start-line="223" selection-start-column="7" selection-end-line="223" selection-end-column="7" />
         </state>
       </provider>
     </entry>
