@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testmain/gowallet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gowallet.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testmain/test3.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/test3.go" afterDir="false" />
-    </list>
+    <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +52,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="4312">
               <caret line="205" column="9" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
               <folding>
                 <element signature="e#14#114#0" expanded="true" />
@@ -179,13 +174,6 @@
               <item name="gowallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="testmain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="testmain" type="462c0819:PsiDirectoryNode" />
-              <item name="gotest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -312,7 +300,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="73" width="1382" height="703" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26647145" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -597,7 +584,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="4312">
           <caret line="205" column="9" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
           <folding>
             <element signature="e#14#114#0" expanded="true" />
