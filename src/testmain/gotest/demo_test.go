@@ -3,12 +3,12 @@ package gotest
 import (
 	"container/heap"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"math"
 	"math/big"
 	"reflect"
 	"sort"
-
 	//"runtime"
 
 	//"math/rand"
@@ -34,10 +34,57 @@ func retError() error {
 func passArrayByValue(arr [3]int) {
 	arr = [3]int{}
 }
+func decodeAddress(data [][32]byte, num int) ([][]byte, error) {
+	fmt.Println(len(data))
+	if len(data) != 2*num {
+		return nil, errors.New("the length of address array is not as expected")
+	}
+	//keys := [][]byte{}
+	//for i := 0; i < num; i++ {
+	//	key := append(data[2*i][:], data[2*i+1][:9]...)
+	//	keys = append(keys, key)
+	//}
+	//
+	//return keys, nil
+	return nil, nil
+}
 func TestAll9(t *testing.T) {
-	arr := [3]int{1, 2, 3}
-	passArrayByValue(arr)
-	fmt.Println(arr)
+	fmt.Println(1&1 != 0)
+	//tt := time.Now()
+	//fmt.Println(tt.String())
+	//fmt.Println(tt.UnixNano())
+	//
+	//t2 := time.Unix(0, tt.UnixNano())
+	//fmt.Println(t2.String())
+	//fmt.Println(t2.UnixNano())
+	//sync := func(x uint64) error {
+	//	defer fmt.Println(x)
+	//	fmt.Println("2")
+	//	return nil
+	//}
+	//
+	//fmt.Println("1")
+	//sync(3)
+	//fmt.Println("4")
+	//f := big.NewInt(1)
+	//ff := f.Mul(f, big.NewInt(10)).Div(f, big.NewInt(5))
+	//fmt.Println(ff.Text(10))
+	//d1 := [32]byte{1}
+	//d2 := [32]byte{2}
+	//data := [][32]byte{d1, d2}
+	//_, err := decodeAddress(data, 2)
+	//fmt.Println(err)
+	//big1 := big.NewInt(10)
+	//big2 := big1
+	//fmt.Println(big1)
+	//fmt.Println(big2)
+	//big1.SetString("20", 10)
+	//fmt.Println(big1)
+	//fmt.Println(big2)
+
+	//arr := [3]int{1, 2, 3}
+	//passArrayByValue(arr)
+	//fmt.Println(arr)
 	//golang_arr := []int{1, 2, 3, 4, 5}
 	//fmt.Println(golang_arr)
 	//golang_arr2 := []int{4: -1}
