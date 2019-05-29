@@ -4,13 +4,13 @@ import (
 	//"runtime"
 
 	"fmt"
+	"github.com/ethereum/go-ethereum/ethdb"
 	"io/ioutil"
 
 	"github.com/ethereum/go-ethereum/common"
 	//"os"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/ethdb/leveldb"
 	"github.com/ethereum/go-ethereum/trie"
 )
 
@@ -19,7 +19,7 @@ func TestAll(t *testing.T) {
 	if err != nil {
 		panic(fmt.Sprintf("can't create temporary directory: %v", err))
 	}
-	diskdb, err := leveldb.New(dir, 256, 0, "")
+	diskdb, err := ethdb.NewLDBDatabase(dir, 0, 0)
 	if err != nil {
 		panic(fmt.Sprintf("can't create temporary database: %v", err))
 	}
