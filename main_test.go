@@ -29,7 +29,8 @@ func TestAll(t *testing.T) {
 	updateString(tr, "123456", "asdfasdfasdfasdfasdfasdfasdfasdf")
 	root, _ := tr.Commit(nil)
 	tr, _ = trie.New(root, db)
-	_, err = tr.TryGet([]byte("120000"))
+	v, err := tr.TryGet([]byte("120000"))
+	fmt.Println(string(v))
 	if err != nil {
 		t.Errorf("Unexpected error: %v", err)
 	}
