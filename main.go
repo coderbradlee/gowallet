@@ -39,14 +39,20 @@ package main
 //	log.Fatal(http.ListenAndServe(":8080", nil))
 //}
 import (
+	"fmt"
 	"net/http"
 	_ "net/http/pprof"
+	"time"
 )
 
 func main() {
 	go func() {
 		http.ListenAndServe(":8088", nil)
 	}()
+	for i := 0; i < 100; i++ {
+		time.Sleep(time.Second)
+		fmt.Println(":", i)
+	}
 	ch := make(chan string)
 	<-ch
 }
