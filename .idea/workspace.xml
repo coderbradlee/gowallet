@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/main_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo53.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo532_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo53_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,12 +19,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main_test.go">
+        <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="-5">
+              <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+              <folding>
+                <element signature="e#1005#1038#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,6 +59,7 @@
       <find>kecc</find>
       <find>makea</find>
       <find>types.NewTransaction</find>
+      <find>test(</find>
     </findStrings>
     <dirStrings>
       <dir>E:\work\goroot\src\runtime</dir>
@@ -75,17 +86,17 @@
         <option value="$PROJECT_DIR$/../solidity-by-example/basic-token-annotated.sol" />
         <option value="$PROJECT_DIR$/src/testmain/test3.go" />
         <option value="$PROJECT_DIR$/src/testmain/gowallet.go" />
+        <option value="$PROJECT_DIR$/main_test.go" />
         <option value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
         <option value="$PROJECT_DIR$/main.go" />
-        <option value="$PROJECT_DIR$/main_test.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1454" />
-    <option name="y" value="116" />
+    <option name="x" value="1128" />
+    <option name="y" value="90" />
     <option name="width" value="1364" />
-    <option name="height" value="694" />
+    <option name="height" value="687" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -95,6 +106,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -102,11 +114,28 @@
               <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="gowallet" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="testmain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="testmain" type="462c0819:PsiDirectoryNode" />
+              <item name="gotest" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -120,7 +149,7 @@
     <property name="go.vgo.advertise" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -134,7 +163,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestAll in github.com/lzxm160/gowallet">
+  <component name="RunManager" selected="Go Test.TestAll9 in demo_test.go">
+    <configuration name="Test in github.com/lzxm160/gowallet" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gowallet" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/lzxm160/gowallet" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestAll in github.com/lzxm160/gowallet" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="gowallet" />
       <working_directory value="$PROJECT_DIR$" />
@@ -144,16 +184,6 @@
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestAll$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestAll6 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="gowallet" />
-      <working_directory value="$PROJECT_DIR$/src/testmain/gotest" />
-      <framework value="gotest" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/src/testmain/gotest/demo_test.go" />
-      <pattern value="^TestAll6$" />
       <method v="2" />
     </configuration>
     <configuration name="TestAll7 in demo_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -188,18 +218,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestAll in github.com/lzxm160/gowallet" />
         <item itemvalue="Go Test.TestAll9 in demo_test.go" />
+        <item itemvalue="Go Test.Test in github.com/lzxm160/gowallet" />
+        <item itemvalue="Go Test.TestAll in github.com/lzxm160/gowallet" />
         <item itemvalue="Go Test.TestAll8 in demo_test.go" />
         <item itemvalue="Go Test.TestAll7 in demo_test.go" />
-        <item itemvalue="Go Test.TestAll6 in demo_test.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestAll9_in_demo_test_go - 2019.05.21 at 14h 42m 29s.xml">
-      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="TestAll9_in_demo_test_go - 2019.05.21 at 14h 43m 41s.xml">
       <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
@@ -227,12 +254,15 @@
     <history-entry file="TestAll9_in_demo_test_go - 2019.05.28 at 08h 29m 53s.xml">
       <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
+    <history-entry file="TestAll9_in_demo_test_go - 2019.06.19 at 13h 24m 49s.xml">
+      <configuration name="TestAll9 in demo_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="73" width="1456" height="835" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28612718" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3034682" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -292,16 +322,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go</url>
-          <line>382</line>
+          <line>385</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug/stubs.go" />
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug/garbage.go" />
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/atomic_ppc64x.s" />
     <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/atomic_mipsx.s" />
     <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/chan_test.go" />
     <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug/garbage_test.go" />
@@ -406,30 +433,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!block;n#TestAll2#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testmain/gowallet.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding>
-            <element signature="e#14#153#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -455,10 +462,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://E:/tools/v2ray-windows-64/config.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo53.go" />
     <entry file="file://$PROJECT_DIR$/main_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="110">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="20" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo53_test.go" />
+    <entry file="file://$PROJECT_DIR$/src/testmain/gotest/demo_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="44" column="19" lean-forward="true" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding>
+            <element signature="n#!!block;n#TestAll2#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding>
+            <element signature="e#1005#1038#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
