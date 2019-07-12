@@ -39,18 +39,14 @@ package main
 //	log.Fatal(http.ListenAndServe(":8080", nil))
 //}
 import (
-	"os"
-	"runtime/trace"
+	"net/http"
+	_ "net/http/pprof"
 )
 
 func main() {
-	trace.Start(os.Stderr)
-	defer trace.Stop()
-
-	ch := make(chan string)
 	go func() {
-		ch <- "EDDYCJY"
+		http.ListenAndServe(":8088", nil)
 	}()
-
+	ch := make(chan string)
 	<-ch
 }
