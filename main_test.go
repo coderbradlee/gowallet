@@ -20,6 +20,10 @@ func Test(t *testing.T) {
 	data, _ := hex.DecodeString("7261756c6c656e6368616978")
 	fmt.Println(len(data))
 	fmt.Println(data)
+
+	xx, _ := hex.DecodeString("DRoute.Capital")
+	fmt.Println(len(xx))
+	fmt.Println(xx)
 	//err := error(ErrorTyped{errors.New("an error occurred")})
 	//err = errors.Wrap(err, "wrapped")
 	//
