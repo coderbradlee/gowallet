@@ -21,7 +21,7 @@ func Test(t *testing.T) {
 	fmt.Println(len(data))
 	fmt.Println(data)
 
-	xx, _ := hex.DecodeString("DRoute.Capital")
+	xx := hex.EncodeToString([]byte("DRoute.Capital"))
 	fmt.Println(len(xx))
 	fmt.Println(xx)
 	//err := error(ErrorTyped{errors.New("an error occurred")})
