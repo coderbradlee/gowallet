@@ -3,7 +3,6 @@ package main
 import (
 	//"runtime"
 
-	"encoding/hex"
 	"fmt"
 	"io/ioutil"
 
@@ -17,13 +16,19 @@ import (
 )
 
 func Test(t *testing.T) {
-	data, _ := hex.DecodeString("7261756c6c656e6368616978")
-	fmt.Println(len(data))
-	fmt.Println(data)
+	s := []int{0, 1, 2, 3, 4, 5, 6}
+	s = s[:4]
+	i := 5
+	_ = s[:i] // line 22: bounds check
+	_ = s[i:] // line 23: bounds check, not smart enough?
 
-	xx := hex.EncodeToString([]byte("DRoute.Capital"))
-	fmt.Println(len(xx))
-	fmt.Println(xx)
+	//data, _ := hex.DecodeString("7261756c6c656e6368616978")
+	//fmt.Println(len(data))
+	//fmt.Println(data)
+	//
+	//xx := hex.EncodeToString([]byte("DRoute.Capital"))
+	//fmt.Println(len(xx))
+	//fmt.Println(xx)
 	//err := error(ErrorTyped{errors.New("an error occurred")})
 	//err = errors.Wrap(err, "wrapped")
 	//
