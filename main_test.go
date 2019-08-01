@@ -15,12 +15,26 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 )
 
+func readDir(dir string) (uint64, error) {
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		return 0, err
+	}
+
+	for _, file := range files {
+		fmt.Println(file.Name())
+	}
+	return 0, nil
+}
 func Test(t *testing.T) {
-	s := []int{0, 1, 2, 3, 4, 5, 6}
-	s = s[:4]
-	i := 5
-	_ = s[:i] // line 22: bounds check
-	_ = s[i:] // line 23: bounds check, not smart enough?
+	x, err := readDir(".")
+	fmt.Println(x, ":", err)
+
+	//s := []int{0, 1, 2, 3, 4, 5, 6}
+	//s = s[:4]
+	//i := 5
+	//_ = s[:i] // line 22: bounds check
+	//_ = s[i:] // line 23: bounds check, not smart enough?
 
 	//data, _ := hex.DecodeString("7261756c6c656e6368616978")
 	//fmt.Println(len(data))
