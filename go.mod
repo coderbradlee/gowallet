@@ -5,6 +5,7 @@ go 1.12
 require (
 	github.com/OneOfOne/xxhash v1.2.5 // indirect
 	github.com/allegro/bigcache v1.2.0 // indirect
+	github.com/boltdb/bolt v1.3.1
 	github.com/dgryski/go-sip13 v0.0.0-20190329191031-25c5027a8c7b // indirect
 	github.com/ethereum/go-ethereum v1.8.27
 	github.com/gogo/protobuf v1.2.1 // indirect
