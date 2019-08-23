@@ -1,0 +1,345 @@
+package test
+
+import (
+	"fmt"
+	"testing"
+)
+
+//func readDir(dir, model string) (uint64, error) {
+//	files, err := ioutil.ReadDir(dir)
+//	if err != nil {
+//		return 0, err
+//	}
+//	maxN := uint64(0)
+//	for _, file := range files {
+//		name := file.Name()
+//		lens := len(name)
+//		if lens < 11 || !strings.Contains(name, model) {
+//			continue
+//		}
+//		num := name[lens-11 : lens-3]
+//		n, err := strconv.Atoi(num)
+//		if err != nil {
+//			continue
+//		}
+//		if uint64(n) > maxN {
+//			maxN = uint64(n)
+//		}
+//	}
+//	return maxN + 1, nil
+////}
+//var coin = [4]int{1, 2, 5, 10}
+//var count = 0
+//
+//func get(result, current int, path []int) {
+//	if current > result {
+//		return
+//	} else if current == result {
+//		fmt.Println(path)
+//		count++
+//		return
+//	}
+//	for i := 0; i < 4; i++ {
+//		p := make([]int, len(path))
+//		copy(p, path)
+//		p = append(p, coin[i])
+//		get(result, current+coin[i], p)
+//	}
+//}
+//
+//var needPermutate = []int{1, 2, 3, 4, 5}
+
+//func permutate(result []int, left []int) {
+//	if len(result) >= 5 {
+//		fmt.Println(result)
+//		count++
+//		return
+//	}
+//
+//	for i, v := range left {
+//		leftC := make([]int, len(left)-1)
+//		//if i == 0 {
+//		//	copy(leftC, left[1:])
+//		//} else if i == len(left) {
+//		//	copy(leftC, left[:len(left)-1])
+//		//}
+//		if i == len(left)-1 {
+//			copy(leftC, left[:len(left)-1])
+//		} else {
+//			copy(leftC, left[:i])
+//			copy(leftC[i:], left[i+1:])
+//		}
+//
+//		resultC := make([]int, len(result))
+//		copy(resultC, result)
+//		resultC = append(resultC, v)
+//
+//		permutate(resultC, leftC)
+//	}
+//
+//}
+//func combine(result []int, left []int, m int) {
+//	if len(result) >= m {
+//		fmt.Println(result)
+//		count++
+//		return
+//	}
+//
+//	var index int
+//	if len(result)-1 < 0 {
+//		index = -1
+//	} else {
+//		lastElems := result[len(result)-1]
+//		for i, v := range needPermutate {
+//			if lastElems == v {
+//				index = i
+//			}
+//		}
+//	}
+//
+//	if index >= len(needPermutate)-1 {
+//		return
+//	}
+//	fmt.Println("index:", index)
+//	temp := left[index+1:]
+//	for _, v := range temp {
+//		fmt.Println("v:", v)
+//		leftC := make([]int, len(left))
+//		//if i == 0 {
+//		//	copy(leftC, left[1:])
+//		//} else if i == len(left) {
+//		//	copy(leftC, left[:len(left)-1])
+//		//}
+//
+//		copy(leftC, left[:])
+//
+//		resultC := make([]int, len(result))
+//		copy(resultC, result)
+//		resultC = append(resultC, v)
+//
+//		combine(resultC, leftC, m)
+//	}
+//
+//}
+func combineCollect(all []int, collect [][]int, result []int, left []int, m int) {
+	if len(result) >= m {
+		ret := make([]int, len(result))
+		copy(ret, result)
+		collect = append(collect, ret)
+		count++
+		return
+	}
+
+	var index int
+	if len(result)-1 < 0 {
+		index = -1
+	} else {
+		lastElems := result[len(result)-1]
+		for i, v := range all {
+			if lastElems == v {
+				index = i
+			}
+		}
+	}
+
+	if index >= len(all)-1 {
+		return
+	}
+	fmt.Println("index:", index)
+	temp := left[index+1:]
+	for _, v := range temp {
+		fmt.Println("v:", v)
+		leftC := make([]int, len(left))
+		copy(leftC, left[:])
+
+		resultC := make([]int, len(result))
+		copy(resultC, result)
+		resultC = append(resultC, v)
+
+		combineCollect(all, collect, resultC, leftC, m)
+	}
+
+}
+
+//func caculate() (ret int) {
+//	//10个人中抽取1个一等奖，2个二等奖，3个三等奖
+//
+//	ret = 1
+//	for i := 10; i >= 5; i-- {
+//		ret *= i
+//	}
+//	ret = ret / 12
+//	return ret
+//}
+func combine2(people []int, first, second, third int) {
+	sum := first + second + third
+	result := make([]int, 0)
+	sumResult := make([][]int, 0)
+	combineCollect(people, sumResult, result, people, sum)
+	for _, v := range sumResult {
+		fmt.Println(v)
+	}
+}
+
+func TestXx(t *testing.T) {
+	//cac := caculate()
+	//fmt.Println(cac)
+
+	people := make([]int, 0)
+	for i := 0; i < 10; i++ {
+		people = append(people, i)
+	}
+	first := 1
+	second := 2
+	third := 3
+	combine2(people, first, second, third)
+	fmt.Println(count)
+	//result := make([]int, 0)
+	//permutate(result, needPermutate)
+	//fmt.Println(count)
+	//result := make([]int, 0)
+	//combine(result, needPermutate, 2)
+	//fmt.Println(count)
+	//path := make([]int, 0)
+	//get(10, 0, path)
+	//fmt.Println(count)
+	//fmt.Println((^(-5)))
+	//vals := make([]int, 5)
+	//fmt.Println("Capacity was:", cap(vals))
+	//for i := 0; i < 5; i++ {
+	//	vals = append(vals, i)
+	//	fmt.Println("Capacity is now:", cap(vals))
+	//}
+	//fmt.Println(vals)
+	//var vals []int
+	//for i := 0; i < 5; i++ {
+	//	vals = append(vals, i)
+	//	fmt.Println("The length of our slice is:", len(vals))
+	//	fmt.Println("The capacity of our slice is:", cap(vals))
+	//}
+	//// Add a new item to our array
+	//vals = append(vals, 123)
+	//fmt.Println("The length of our slice is:", len(vals))
+	//fmt.Println("The capacity of our slice is:", cap(vals))
+	//// Accessing items is the same as an array
+	//fmt.Println(vals[5])
+	//fmt.Println(vals[2])
+	//xx := make([]byte, 0, 4)
+	//fmt.Printf("%p\n", &xx)
+	//xx = append(xx, 1)
+	//fmt.Printf("%p\n", &xx)
+	//xx = append(xx, 2)
+	//fmt.Printf("%p\n", &xx)
+	//xx = append(xx, 3)
+	//fmt.Printf("%p\n", &xx)
+	//xx = append(xx, 4)
+	//fmt.Printf("%p\n", &xx)
+	//xx = append(xx, 5)
+	//fmt.Printf("%p\n", &xx)
+	//
+	//fmt.Println(xx)
+	//type cachedNode struct {
+	//	size uint16 // Byte size of the useful cached data
+	//
+	//	parents  uint32            // Number of live nodes referencing this one
+	//	children map[uint32]uint16 // External children referenced by this node
+	//
+	//	flushPrev uint32 // Previous node in the flush-list
+	//	flushNext uint32 // Next node in the flush-list
+	//}
+	//
+	//var xx map[uint32]uint16
+	//var cachedNodeSize = int(reflect.TypeOf(xx).Size())
+	//fmt.Println(cachedNodeSize)
+	//v := uint32(10)
+	//
+	//id := atomic.AddUint32(&v, 1)
+	//fmt.Println(id)
+	//fmt.Printf("%x\n", strconv.AppendUint(nil, uint64(id), 10))
+
+	//var a interface{}
+	//a = 100
+	//y := reflect.ValueOf(a)
+	//fmt.Println(y)
+	//x, err := readDir(".", "chain")
+	//fmt.Println(x, ":", err)
+	//name := "chain" + fmt.Sprintf("-%08d", x) + ".db"
+	//fmt.Println(name)
+	//d := time.Duration(3) * time.Second
+	//tt := time.NewTicker(d)
+	//defer tt.Stop()
+	//for {
+	//	select {
+	//	case <-tt.C:
+	//		fmt.Println("start")
+	//		time.Sleep(time.Second * 10)
+	//		fmt.Println("end")
+	//	}
+	//}
+	//testbolt()
+	//testhex()
+	//x, _ := big.NewInt(0).SetString("000000000000000000000000000000000000000006765c7931c049c6289c0000", 16)
+	//fmt.Println(x.Text(10))
+}
+
+//func testhex() {
+//	data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
+//	hb, _ := hex.DecodeString(data)
+//	out := crypto.Keccak256(hb)
+//	fmt.Println(hex.EncodeToString(out))
+//}
+//func testbolt() error {
+//	db, err := bolt.Open("my.db", 0600, &bolt.Options{Timeout: 1 * time.Second})
+//	defer db.Close()
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	err = db.Update(func(tx *bolt.Tx) error {
+//		b, err := tx.CreateBucketIfNotExists([]byte("MyBucket"))
+//		if err != nil {
+//			return err
+//		}
+//		bytes := make([]byte, 8)
+//		binary.BigEndian.PutUint64(bytes, 10)
+//		key := append([]byte("1111"), bytes...)
+//		err = b.Put(key, []byte("10"))
+//
+//		binary.BigEndian.PutUint64(bytes, 100)
+//		key = append([]byte("1111"), bytes...)
+//		err = b.Put(key, []byte("100"))
+//		binary.BigEndian.PutUint64(bytes, 1000)
+//		key = append([]byte("1111"), bytes...)
+//		err = b.Put(key, []byte("1000"))
+//		binary.BigEndian.PutUint64(bytes, 10000)
+//		key = append([]byte("1111"), bytes...)
+//		err = b.Put(key, []byte("10000"))
+//		binary.BigEndian.PutUint64(bytes, 100000)
+//		key = append([]byte("1111"), bytes...)
+//		err = b.Put(key, []byte("100000"))
+//
+//		//if err = tx.Commit(); err != nil {
+//		//	return err
+//		//}
+//
+//		return nil
+//	})
+//	db.View(func(tx *bolt.Tx) error {
+//		c := tx.Bucket([]byte("MyBucket")).Cursor()
+//		bytess := make([]byte, 8)
+//		binary.BigEndian.PutUint64(bytess, 100000)
+//		max := append([]byte("1111"), bytess...)
+//		for k, v := c.Seek(max); k != nil && bytes.Compare(k, max) <= 0; k, v = c.Prev() {
+//			key := binary.BigEndian.Uint64(k[4:])
+//			fmt.Printf("%d: %s\n", key, v)
+//		}
+//		return nil
+//	})
+//	return err
+//}
+
+//func BenchmarkOsStat(b *testing.B) {
+//	for i := 0; i < b.N; i++ {
+//		f, _ := os.Stat("chain.db")
+//		f.Size()
+//	}
+//}
