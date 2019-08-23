@@ -204,12 +204,14 @@ func TestXx(t *testing.T) {
 	hb, _ := hex.DecodeString(data)
 	out := crypto.Keccak256(hb)
 	fmt.Println(hex.EncodeToString(out))
+	encodeString1 := base64.StdEncoding.EncodeToString(out)
+	fmt.Println(encodeString1)
 
 	data = "0000000000000000000000000ddfc506136fb7c050cc2e9511eccd81b15e74260000000000000000000000000000000000000000000000000000000000000004"
 	hb, _ = hex.DecodeString(data)
-	out = crypto.Keccak256(hb)
-	fmt.Println(hex.EncodeToString(out))
-	encodeString2 := base64.StdEncoding.EncodeToString(out)
+	out2 := crypto.Keccak256(hb)
+	fmt.Println(hex.EncodeToString(out2))
+	encodeString2 := base64.StdEncoding.EncodeToString(out2)
 	fmt.Println(encodeString2)
 
 	//input := []byte("b4ecb247a6d3d67eed0ceddcfdc31b865baf1deba46a5c92b8adb649df8bba50")
