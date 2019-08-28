@@ -18,8 +18,7 @@ func sigDel() {
 
 	go func() {
 		sig := <-sigs
-		fmt.Println()
-		fmt.Println(sig)
+		fmt.Println("sig:", sig)
 	}()
 }
 func main() {
