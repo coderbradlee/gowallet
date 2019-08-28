@@ -44,6 +44,12 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+		tcpConn, ok := c.(*net.TCPConn)
+		if !ok {
+			//error handle
+			panic(err)
+		}
+		tcpConn.SetLinger(0)
 		log.Println("get conn", c.RemoteAddr())
 		go func() {
 			go func() {
