@@ -2,14 +2,11 @@ package test
 
 import (
 	"encoding/base64"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"log"
 	"math/big"
 	"testing"
-
-	"github.com/ethereum/go-ethereum/crypto"
 )
 
 func combineCollect(collect *[][]int, result []int, all []int, m int) {
@@ -200,27 +197,27 @@ func TestJson(t *testing.T) {
 	fmt.Println(string(json))
 }
 func TestXx(t *testing.T) {
-	data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
-	hb, _ := hex.DecodeString(data)
-	out := crypto.Keccak256(hb)
-	fmt.Println(hex.EncodeToString(out))
-	encodeString1 := base64.StdEncoding.EncodeToString(out)
-	fmt.Println(encodeString1)
+	//data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
+	//hb, _ := hex.DecodeString(data)
+	//out := crypto.Keccak256(hb)
+	//fmt.Println(hex.EncodeToString(out))
+	//encodeString1 := base64.StdEncoding.EncodeToString(out)
+	//fmt.Println(encodeString1)
+	//
+	//data = "0000000000000000000000000ddfc506136fb7c050cc2e9511eccd81b15e74260000000000000000000000000000000000000000000000000000000000000004"
+	//hb, _ = hex.DecodeString(data)
+	//out2 := crypto.Keccak256(hb)
+	//fmt.Println(hex.EncodeToString(out2))
+	//encodeString2 := base64.StdEncoding.EncodeToString(out2)
+	//fmt.Println(encodeString2)
 
-	data = "0000000000000000000000000ddfc506136fb7c050cc2e9511eccd81b15e74260000000000000000000000000000000000000000000000000000000000000004"
-	hb, _ = hex.DecodeString(data)
-	out2 := crypto.Keccak256(hb)
-	fmt.Println(hex.EncodeToString(out2))
-	encodeString2 := base64.StdEncoding.EncodeToString(out2)
-	fmt.Println(encodeString2)
-
-	//input := []byte("b4ecb247a6d3d67eed0ceddcfdc31b865baf1deba46a5c92b8adb649df8bba50")
-	input, _ := hex.DecodeString("a4c248d840bab7ecdbde059148a289021ce154661b3107da67474e2bfa4238e8")
+	input := []byte("804031")
+	//input, _ := hex.DecodeString("a4c248d840bab7ecdbde059148a289021ce154661b3107da67474e2bfa4238e8")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
 	fmt.Println(encodeString)
 
-	decodeBytes, err := base64.StdEncoding.DecodeString("pMJI2EC6t+zb3gWRSKKJAhzhVGYbMQfaZ0dOK/pCOOg=")
+	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MzFjMDQ5YzYyODljMDAwMA==")
 	if err != nil {
 		fmt.Println(err)
 	}

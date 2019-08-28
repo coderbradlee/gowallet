@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/main_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/main_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/main_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="213" column="59" selection-start-line="213" selection-start-column="59" selection-end-line="213" selection-end-column="59" />
+            <state relative-caret-position="596">
+              <caret line="219" column="145" selection-start-line="219" selection-start-column="145" selection-end-line="219" selection-end-column="145" />
               <folding>
                 <element signature="e#14#97#0" expanded="true" />
                 <element signature="n#!!block;n#combineCollect#0" />
@@ -26,6 +27,30 @@
                 <element signature="n#!!block;n#min#0" />
                 <element signature="n#!!block;n#distance#0" />
                 <element signature="n#!!block;n#constructMatrix#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/server/server.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="89" column="37" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="37" />
+              <folding>
+                <element signature="e#14#102#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/client/client.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+              <folding>
+                <element signature="e#14#95#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,6 +116,8 @@
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/main_test.go" />
         <option value="$PROJECT_DIR$/test/main_test.go" />
+        <option value="$PROJECT_DIR$/test/server/server.go" />
+        <option value="$PROJECT_DIR$/test/client/client.go" />
       </list>
     </option>
   </component>
@@ -124,6 +151,18 @@
               <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="gowallet" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gowallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gowallet" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -224,34 +263,34 @@
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 16h 35m 41s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 22m 33s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 16h 52m 18s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 23m 05s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 17h 02m 04s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 23m 25s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 17h 04m 44s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 24m 00s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 17h 09m 55s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 24m 24s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 17h 28m 50s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 25m 00s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 18h 00m 31s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 26m 10s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 18h 04m 23s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 26m 32s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.21 at 18h 08m 38s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 27m 19s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.22 at 15h 46m 46s.xml">
+    <history-entry file="TestXx_in_github_com_lzxm160_gowallet_test - 2019.08.26 at 18h 27m 47s.xml">
       <configuration name="TestXx in github.com/lzxm160/gowallet/test" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
@@ -268,7 +307,7 @@
     <frame x="1358" y="73" width="1456" height="835" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25289017" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25289017" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -335,8 +374,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/proc.go" />
-    <entry file="file://$PROJECT_DIR$/../goroot/src/cmd/go/internal/cfg/cfg.go" />
     <entry file="file://$PROJECT_DIR$/../goroot/src/runtime/debug.go" />
     <entry file="file://$PROJECT_DIR$/src/vendor/github.com/ethereum/go-ethereum/cmd/clef/main.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -516,8 +553,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/main_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="213" column="59" selection-start-line="213" selection-start-column="59" selection-end-line="213" selection-end-column="59" />
+        <state relative-caret-position="596">
+          <caret line="219" column="145" selection-start-line="219" selection-start-column="145" selection-end-line="219" selection-end-column="145" />
           <folding>
             <element signature="e#14#97#0" expanded="true" />
             <element signature="n#!!block;n#combineCollect#0" />
@@ -527,6 +564,26 @@
             <element signature="n#!!block;n#min#0" />
             <element signature="n#!!block;n#distance#0" />
             <element signature="n#!!block;n#constructMatrix#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/client/client.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+          <folding>
+            <element signature="e#14#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/server/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="89" column="37" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="37" />
+          <folding>
+            <element signature="e#14#102#0" expanded="true" />
           </folding>
         </state>
       </provider>
