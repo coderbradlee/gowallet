@@ -14,7 +14,7 @@ import (
 func sigDel() {
 	sigs := make(chan os.Signal, 1)
 
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM, syscall.SIGPIPE)
+	signal.Notify(sigs, syscall.SIGPIPE)
 
 	go func() {
 		sig := <-sigs
