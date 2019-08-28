@@ -69,6 +69,7 @@ func main() {
 				}
 			}()
 			if close == "close" {
+				time.Sleep(time.Second * 3)
 				if err := c.Close(); err != nil {
 					panic(err)
 				}
