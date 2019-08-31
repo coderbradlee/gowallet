@@ -196,6 +196,44 @@ func TestJson(t *testing.T) {
 
 	fmt.Println(string(json))
 }
+
+var coin = []int{2, 3, 7}
+
+func minCount(sum int) (ret int) {
+	fmt.Println("sum:", sum)
+	if sum < 0 {
+		return -1
+	}
+	if sum == 0 {
+		return 0
+	}
+	rets := [3]int{}
+	for index, c := range coin {
+		m := minCount(sum - c)
+		if m < 0 {
+			continue
+		}
+
+		rets[index] = m + 1
+		fmt.Println(rets[index])
+	}
+
+	for _, r := range rets {
+		if r != 0 {
+			ret = r
+			break
+		}
+	}
+	for _, r := range rets {
+		if r != 0 && r < ret {
+			ret = r
+		}
+	}
+	return
+}
+func TestDongtaiguihua(t *testing.T) {
+	fmt.Println(minCount(20))
+}
 func TestXx(t *testing.T) {
 	//data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
 	//hb, _ := hex.DecodeString(data)
