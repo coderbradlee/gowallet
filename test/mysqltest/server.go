@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -27,7 +26,7 @@ func main() {
 			log.Fatal("Begin() - ", err)
 		}
 
-		if _, err := stmt.Exec(time.Now().Unix()); err != nil {
+		if _, err := stmt.Exec(i); err != nil {
 			log.Fatal("Exec() - ", err)
 		}
 
