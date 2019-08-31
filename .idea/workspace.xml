@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="" />
+    <list default="true" id="5755a69a-920b-4037-b0f6-f0af452d9458" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/test/mysqltest/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/mysqltest/server.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/mysqltest/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+            <state relative-caret-position="567">
+              <caret line="41" column="14" lean-forward="true" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
               <folding>
                 <element signature="e#14#99#0" expanded="true" />
               </folding>
@@ -588,8 +590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/mysqltest/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+        <state relative-caret-position="567">
+          <caret line="41" column="14" lean-forward="true" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
           <folding>
             <element signature="e#14#99#0" expanded="true" />
           </folding>

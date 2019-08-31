@@ -15,10 +15,10 @@ func main() {
 		log.Fatal("Open() - ", err)
 	}
 
-	stmt, err := db.Prepare("insert into `test` (`create_at`) values (?)")
-	if err != nil {
-		log.Fatal("Prepare() - ", err)
-	}
+	//stmt, err := db.Prepare("insert into `test` (`create_at`) values (?)")
+	//if err != nil {
+	//	log.Fatal("Prepare() - ", err)
+	//}
 
 	for i := 0; i < 10; i++ {
 		tx, err := db.Begin()
@@ -26,7 +26,7 @@ func main() {
 			log.Fatal("Begin() - ", err)
 		}
 
-		if _, err := stmt.Exec(i); err != nil {
+		if _, err := tx.Exec("insert into `test` (`create_at`) values (?)",i); err != nil {
 			log.Fatal("Exec() - ", err)
 		}
 
@@ -38,6 +38,6 @@ func main() {
 		fmt.Scanln()
 	}
 
-	stmt.Close()
+	//stmt.Close()
 	db.Close()
 }
