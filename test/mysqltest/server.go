@@ -26,7 +26,7 @@ func main() {
 			log.Fatal("Begin() - ", err)
 		}
 
-		if _, err := tx.Exec("insert into `test` (`create_at`) values (?)",i); err != nil {
+		if _, err := tx.Exec("insert into `test` (`create_at`) values (?)", i); err != nil {
 			log.Fatal("Exec() - ", err)
 		}
 
