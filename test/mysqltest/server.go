@@ -34,13 +34,26 @@ func main() {
 		//log.Println("Press ENTER")
 		//fmt.Scanln()
 	}
-	for i := 0; i < 10; i++ {
+	//for i := 0; i < 10; i++ {
+	//	if _, err := tx.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+	//		log.Println("Exec() - ", err)
+	//	}
+	//}
+	//for i := 8; i < 20; i++ {
+	//	if _, err := tx.Exec("INSERT IGNORE into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+	//		log.Println("Exec() - ", err)
+	//	}
+	//	if i == 10 {
+	//		if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
+	//			log.Println("Exec() - ", err)
+	//		}
+	//	}
+	//}
+	//if err := tx.Commit(); err != nil {
+	//	log.Fatal("Commit() - ", err)
+	//}
+	for i := 0; i < 20; i++ {
 		if _, err := tx.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-			log.Println("Exec() - ", err)
-		}
-	}
-	for i := 8; i < 20; i++ {
-		if _, err := tx.Exec("INSERT IGNORE into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 			log.Println("Exec() - ", err)
 		}
 		if i == 10 {
@@ -48,11 +61,9 @@ func main() {
 				log.Println("Exec() - ", err)
 			}
 		}
+		//log.Println("Press ENTER")
+		//fmt.Scanln()
 	}
-	//if err := tx.Commit(); err != nil {
-	//	log.Fatal("Commit() - ", err)
-	//}
-
 	if err := tx.Rollback(); err != nil {
 		log.Fatal("Rollback() - ", err)
 	}
