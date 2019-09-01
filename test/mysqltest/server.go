@@ -35,7 +35,7 @@ func main() {
 		}
 	}
 	for i := 8; i < 20; i++ {
-		if _, err := tx.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+		if _, err := tx.Exec("INSERT IGNORE into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 			log.Println("Exec() - ", err)
 		}
 	}
