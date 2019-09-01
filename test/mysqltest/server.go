@@ -34,9 +34,9 @@ func main() {
 			log.Println("Exec() - ", err)
 		}
 	}
-	if err := tx.Commit(); err != nil {
-		log.Fatal("Commit() - ", err)
-	}
+	//if err := tx.Commit(); err != nil {
+	//	log.Fatal("Commit() - ", err)
+	//}
 	if err := tx.Rollback(); err != nil {
 		log.Fatal("Rollback() - ", err)
 	}
