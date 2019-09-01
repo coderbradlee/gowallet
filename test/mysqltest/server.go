@@ -42,6 +42,9 @@ func main() {
 	//if err := tx.Commit(); err != nil {
 	//	log.Fatal("Commit() - ", err)
 	//}
+	if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
+		log.Println("Exec() - ", err)
+	}
 	if err := tx.Rollback(); err != nil {
 		log.Fatal("Rollback() - ", err)
 	}
