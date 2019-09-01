@@ -22,15 +22,20 @@ func main() {
 	if err != nil {
 		log.Fatal("Begin() - ", err)
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 20; i++ {
 		if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 			log.Println("Exec() - ", err)
 		}
 		//log.Println("Press ENTER")
 		//fmt.Scanln()
 	}
+	for i := 0; i < 10; i++ {
+		if _, err := tx.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+			log.Println("Exec() - ", err)
+		}
+	}
 	for i := 8; i < 20; i++ {
-		if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+		if _, err := tx.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 			log.Println("Exec() - ", err)
 		}
 	}
