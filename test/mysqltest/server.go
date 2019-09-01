@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -19,25 +18,25 @@ func main() {
 	//if err != nil {
 	//	log.Fatal("Prepare() - ", err)
 	//}
-
-	for i := 0; i < 10; i++ {
-		tx, err := db.Begin()
-		if err != nil {
-			log.Fatal("Begin() - ", err)
-		}
-
-		if _, err := tx.Exec("insert into `test` (`create_at`) values (?)", i); err != nil {
-			log.Fatal("Exec() - ", err)
-		}
-
-		if err := tx.Commit(); err != nil {
-			log.Fatal("Commit() - ", err)
-		}
-
-		log.Println("Press ENTER")
-		fmt.Scanln()
+	tx, err := db.Begin()
+	if err != nil {
+		log.Fatal("Begin() - ", err)
 	}
-
+	for i := 0; i < 10; i++ {
+		if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+			log.Println("Exec() - ", err)
+		}
+		//log.Println("Press ENTER")
+		//fmt.Scanln()
+	}
+	for i := 8; i < 20; i++ {
+		if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+			log.Println("Exec() - ", err)
+		}
+	}
+	if err := tx.Commit(); err != nil {
+		log.Fatal("Commit() - ", err)
+	}
 	//stmt.Close()
 	db.Close()
 }
