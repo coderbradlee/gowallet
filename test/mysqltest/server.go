@@ -37,6 +37,9 @@ func main() {
 	if err := tx.Commit(); err != nil {
 		log.Fatal("Commit() - ", err)
 	}
+	if err := tx.Rollback(); err != nil {
+		log.Fatal("Rollback() - ", err)
+	}
 	//stmt.Close()
 	db.Close()
 }
