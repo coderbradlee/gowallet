@@ -34,4 +34,4 @@ require (
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
 
-replace go.etcd.io/bbolt => github.com/lzxm160/bbolt v1.0.3
+replace go.etcd.io/bbolt => github.com/lzxm160/bbolt v1.0.4
