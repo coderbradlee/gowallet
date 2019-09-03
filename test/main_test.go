@@ -116,7 +116,7 @@ func testopenfile() {
 	err = syscall.Flock(int(xx.Fd()), flag|syscall.LOCK_NB)
 	fmt.Println(err)
 
-	xx2, err := os.OpenFile("./xx", os.O_RDONLY, 0666)
+	xx2, err := os.OpenFile("./xx", os.O_RDWR, 0666)
 	fmt.Println(xx2, ":", err)
 }
 func TestXx(t *testing.T) {
