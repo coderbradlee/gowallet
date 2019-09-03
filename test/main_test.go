@@ -2,9 +2,10 @@ package test
 
 import (
 	"fmt"
+	"golang.org/x/net/ipv4"
+	"net"
 	"testing"
-
-	bolt "go.etcd.io/bbolt"
+	"time"
 )
 
 func testDijkstra() {
@@ -105,20 +106,170 @@ func dijkstra(weight [9][9]float64, mw map[int]float64, settledWei map[int]float
 	dijkstra(weight, mw, settledWei)
 
 }
+
+type TokenType string
+type Token interface {
+	Type() TokenType
+	Lexeme() string
+}
+
+type Match struct {
+	toktype TokenType
+	lexeme  string
+}
+
+type IntegerConstant struct {
+	Match
+	value uint64
+}
+
+func (m *Match) Type() TokenType {
+	return m.toktype
+}
+
+func (m *Match) Lexeme() string {
+	return m.lexeme
+}
+
+func (i *IntegerConstant) Value() uint64 {
+	return i.value
+}
+
+type Pet struct {
+	name string
+}
+
+type Dog struct {
+	Pet
+	Breed string
+}
+
+func (p *Pet) Speak() string {
+	return fmt.Sprintf("my name is %v", p.name)
+}
+
+func (p *Pet) Name() string {
+	return p.name
+}
+
+func (d *Dog) Speak2() string {
+	return fmt.Sprintf("%v and I am a %v", d.Speak(), d.Breed)
+}
+func testudp() {
+	go func() {
+		time.Sleep(time.Second * 2)
+		sip := net.ParseIP("127.0.0.1")
+		srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 0}
+		dstAddr := &net.UDPAddr{IP: sip, Port: 9981}
+		conn, err := net.DialUDP("udp", srcAddr, dstAddr)
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer conn.Close()
+		conn.Write([]byte("hello"))
+		fmt.Printf("<%s>\n", conn.RemoteAddr())
+
+		data := make([]byte, 1024)
+		n, err := conn.Read(data)
+		fmt.Printf("read %s from <%s>\n", data[:n], conn.RemoteAddr())
+	}()
+	listener, err := net.ListenUDP("udp", &net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 9981})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("Local: <%s> \n", listener.LocalAddr().String())
+	//data := make([]byte, 1024)
+	//remoteAddr := &net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 19982}
+	for {
+		//n, err := listener.Read(data)
+		//if err != nil {
+		//	fmt.Printf("error during read: %s", err)
+		//}
+		//fmt.Printf(" %s\n", data[:n])
+		//n, remoteAddr, err := listener.ReadFromUDP(data)
+		//if err != nil {
+		//	fmt.Printf("error during read: %s", err)
+		//}
+		//
+		//fmt.Printf("<%s> %s\n", remoteAddr, data[:n])
+		//_, err = listener.WriteToUDP([]byte("world"), remoteAddr)
+		//if err != nil {
+		//	fmt.Printf(err.Error())
+		//}
+		_, err = listener.Write([]byte("hello"))
+		if err != nil {
+			fmt.Println("server write:", err.Error())
+			break
+		}
+	}
+}
+func testmulti() {
+	//1. 得到一个interface
+	en4, err := net.InterfaceByName("eth0")
+	if err != nil {
+		fmt.Println(err)
+	}
+	group := net.IPv4(224, 0, 0, 250)
+	//2. bind一个本地地址
+	c, err := net.ListenPacket("udp4", "0.0.0.0:1024")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer c.Close()
+	//3.
+	p := ipv4.NewPacketConn(c)
+	if err := p.JoinGroup(en4, &net.UDPAddr{IP: group}); err != nil {
+		fmt.Println(err)
+	}
+	//4.更多的控制
+	if err := p.SetControlMessage(ipv4.FlagDst, true); err != nil {
+		fmt.Println(err)
+	}
+	//5.接收消息
+	b := make([]byte, 1500)
+	for {
+		n, cm, src, err := p.ReadFrom(b)
+		if err != nil {
+			fmt.Println(err)
+		}
+		if cm.Dst.IsMulticast() {
+			if cm.Dst.Equal(group) {
+				fmt.Printf("received: %s from <%s>\n", b[:n], src)
+				n, err = p.WriteTo([]byte("world"), cm, src)
+				if err != nil {
+					fmt.Println(err)
+				}
+			} else {
+				fmt.Println("Unknown group")
+				continue
+			}
+		}
+	}
+}
 func testopenfile() {
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(db)
-	opt := bolt.Options{
-		ReadOnly: true,
-	}
-	db, err = bolt.Open("my.db", 0600, &opt)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(db)
+	d := Dog{Pet: Pet{name: "spot"}, Breed: "pointer"}
+	fmt.Println(d.Name())
+	fmt.Println(d.Speak2())
+	fmt.Println(d.name)
+	//t := IntegerConstant{Match{"xx", "wizard"}, 2}
+	//fmt.Println(t.Type(), t.Lexeme(), t.Value())
+	//x := Token(t)
+	//fmt.Println(x.Type(), x.Lexeme())
+
+	//db, err := bolt.Open("my.db", 0600, nil)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//fmt.Println(db)
+	//opt := bolt.Options{
+	//	ReadOnly: true,
+	//}
+	//db, err = bolt.Open("my.db", 0600, &opt)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//fmt.Println(db)
 
 	//xx, err := os.OpenFile("./xx", os.O_RDWR|os.O_CREATE, 0666)
 	//fmt.Println(xx, ":", err)
@@ -135,5 +286,7 @@ func testopenfile() {
 }
 func TestXx(t *testing.T) {
 	//testDijkstra()
-	testopenfile()
+	//testopenfile()
+	//testudp()
+	testmulti
 }
