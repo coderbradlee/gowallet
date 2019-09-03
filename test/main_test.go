@@ -207,7 +207,7 @@ func testudp() {
 }
 func testmulti() {
 	//1. 得到一个interface
-	en4, err := net.InterfaceByName("en4")
+	en4, err := net.InterfaceByName("eth0")
 	if err != nil {
 		fmt.Println(err)
 	}
