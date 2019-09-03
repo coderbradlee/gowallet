@@ -33,3 +33,5 @@ require (
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
+
+replace go.etcd.io/bbolt => https://github.com/lzxm160/bbolt v1.0.0
