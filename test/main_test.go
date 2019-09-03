@@ -301,7 +301,7 @@ func testopenfile() {
 func testbroard() {
 	go func() {
 		time.Sleep(time.Second * 2)
-		ip := net.ParseIP("172.17.255.255")
+		ip := net.ParseIP("172.24.14.255")
 		srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 0}
 		dstAddr := &net.UDPAddr{IP: ip, Port: 9981}
 		conn, err := net.ListenUDP("udp", srcAddr)
@@ -317,7 +317,7 @@ func testbroard() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Printf("read %s from <%s>\n", data[:n], conn.RemoteAddr())
+		fmt.Printf("client read %s from <%s>\n", data[:n], conn.RemoteAddr().String())
 	}()
 	listener, err := net.ListenUDP("udp", &net.UDPAddr{IP: net.IPv4zero, Port: 9981})
 	if err != nil {
@@ -342,6 +342,5 @@ func TestXx(t *testing.T) {
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
-	//testmulti()
-	testbroard()
+	testmulti()
 }
