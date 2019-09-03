@@ -342,5 +342,5 @@ func TestXx(t *testing.T) {
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
-	testmulti()
+	testbroard()
 }
