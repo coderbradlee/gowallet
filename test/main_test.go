@@ -226,7 +226,7 @@ func testmulti() {
 	}
 	group := net.IPv4(224, 0, 0, 250)
 	//2. bind一个本地地址
-	c, err := net.ListenPacket("udp4", "0.0.0.0:9981")
+	c, err := net.ListenPacket("udp4", "0.0.0.0:1024")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -298,9 +298,50 @@ func testopenfile() {
 	//xx2, err := os.OpenFile("./xx", os.O_RDWR, 0666)
 	//fmt.Println(xx2, ":", err)
 }
+func testbroard() {
+	go func() {
+		time.Sleep(time.Second * 2)
+		ip := net.ParseIP("172.17.255.255")
+		srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 0}
+		dstAddr := &net.UDPAddr{IP: ip, Port: 9981}
+		conn, err := net.ListenUDP("udp", srcAddr)
+		if err != nil {
+			fmt.Println(err)
+		}
+		n, err := conn.WriteToUDP([]byte("hello"), dstAddr)
+		if err != nil {
+			fmt.Println(err)
+		}
+		data := make([]byte, 1024)
+		n, _, err = conn.ReadFrom(data)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("read %s from <%s>\n", data[:n], conn.RemoteAddr())
+	}()
+	listener, err := net.ListenUDP("udp", &net.UDPAddr{IP: net.IPv4zero, Port: 9981})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("Local: <%s> \n", listener.LocalAddr().String())
+	data := make([]byte, 1024)
+	for {
+		n, remoteAddr, err := listener.ReadFromUDP(data)
+		if err != nil {
+			fmt.Printf("error during read: %s", err)
+		}
+		fmt.Printf("<%s> %s\n", remoteAddr, data[:n])
+		_, err = listener.WriteToUDP([]byte("world"), remoteAddr)
+		if err != nil {
+			fmt.Printf(err.Error())
+		}
+	}
+}
 func TestXx(t *testing.T) {
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
-	testmulti()
+	//testmulti()
+	testbroard()
 }
