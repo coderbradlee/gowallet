@@ -2,9 +2,9 @@ package test
 
 import (
 	"fmt"
-	"os"
-	"syscall"
 	"testing"
+
+	bolt "go.etcd.io/bbolt"
 )
 
 func testDijkstra() {
@@ -106,18 +106,30 @@ func dijkstra(weight [9][9]float64, mw map[int]float64, settledWei map[int]float
 
 }
 func testopenfile() {
-	xx, err := os.OpenFile("./xx", os.O_RDWR|os.O_CREATE, 0666)
-	fmt.Println(xx, ":", err)
+	db, err := bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(db)
 
-	//flag := syscall.LOCK_SH
-	flag := syscall.LOCK_EX
+	db, err = bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(db)
 
-	// Otherwise attempt to obtain an exclusive lock.
-	err = syscall.Flock(int(xx.Fd()), flag|syscall.LOCK_NB)
-	fmt.Println(err)
-
-	xx2, err := os.OpenFile("./xx", os.O_RDWR, 0666)
-	fmt.Println(xx2, ":", err)
+	//xx, err := os.OpenFile("./xx", os.O_RDWR|os.O_CREATE, 0666)
+	//fmt.Println(xx, ":", err)
+	//
+	////flag := syscall.LOCK_SH
+	//flag := syscall.LOCK_EX
+	//
+	//// Otherwise attempt to obtain an exclusive lock.
+	//err = syscall.Flock(int(xx.Fd()), flag|syscall.LOCK_NB)
+	//fmt.Println(err)
+	//
+	//xx2, err := os.OpenFile("./xx", os.O_RDWR, 0666)
+	//fmt.Println(xx2, ":", err)
 }
 func TestXx(t *testing.T) {
 	//testDijkstra()
