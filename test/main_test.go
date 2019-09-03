@@ -206,6 +206,19 @@ func testudp() {
 	}
 }
 func testmulti() {
+	go func() {
+		time.Sleep(time.Second * 3)
+		ip := net.ParseIP("224.0.0.250")
+		srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 0}
+		dstAddr := &net.UDPAddr{IP: ip, Port: 9981}
+		conn, err := net.DialUDP("udp", srcAddr, dstAddr)
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer conn.Close()
+		conn.Write([]byte("hello"))
+		fmt.Printf("<%s>\n", conn.RemoteAddr())
+	}()
 	//1. 得到一个interface
 	en4, err := net.InterfaceByName("eth0")
 	if err != nil {
@@ -213,7 +226,7 @@ func testmulti() {
 	}
 	group := net.IPv4(224, 0, 0, 250)
 	//2. bind一个本地地址
-	c, err := net.ListenPacket("udp4", "0.0.0.0:1024")
+	c, err := net.ListenPacket("udp4", "0.0.0.0:9981")
 	if err != nil {
 		fmt.Println(err)
 	}
