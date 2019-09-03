@@ -109,8 +109,8 @@ func testopenfile() {
 	xx, err := os.OpenFile("./xx", os.O_RDWR|os.O_CREATE, 0666)
 	fmt.Println(xx, ":", err)
 
-	flag := syscall.LOCK_SH
-	//flag = syscall.LOCK_EX
+	//flag := syscall.LOCK_SH
+	flag := syscall.LOCK_EX
 
 	// Otherwise attempt to obtain an exclusive lock.
 	err = syscall.Flock(int(xx.Fd()), flag|syscall.LOCK_NB)
