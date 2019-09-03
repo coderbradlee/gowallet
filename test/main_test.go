@@ -2,10 +2,11 @@ package test
 
 import (
 	"fmt"
-	"golang.org/x/net/ipv4"
 	"net"
 	"testing"
 	"time"
+
+	"golang.org/x/net/ipv4"
 )
 
 func testDijkstra() {
@@ -206,7 +207,7 @@ func testudp() {
 }
 func testmulti() {
 	//1. 得到一个interface
-	en4, err := net.InterfaceByName("eth0")
+	en4, err := net.InterfaceByName("en4")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -288,5 +289,5 @@ func TestXx(t *testing.T) {
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
-	testmulti
+	testmulti()
 }
