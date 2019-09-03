@@ -1,327 +1,125 @@
 package test
 
 import (
-	"encoding/base64"
-	"encoding/json"
 	"fmt"
-	"log"
-	"math/big"
+	"os"
+	"syscall"
 	"testing"
 )
 
-func combineCollect(collect *[][]int, result []int, all []int, m int) {
-	if len(result) >= m {
-		ret := make([]int, len(result))
-		copy(ret, result)
-		temp := *collect
-		temp = append(temp, ret)
-		*collect = temp
-		//count++
+func testDijkstra() {
+	var name = make(map[string]int)
+	name["s"] = 0
+	name["a"] = 1
+	name["b"] = 2
+	name["c"] = 3
+	name["d"] = 4
+	name["e"] = 5
+	name["f"] = 6
+	name["g"] = 7
+	name["h"] = 8
+	var index = make(map[int]string)
+	index[0] = "s"
+	index[1] = "a"
+	index[2] = "b"
+	index[3] = "c"
+	index[4] = "d"
+	index[5] = "e"
+	index[6] = "f"
+	index[7] = "g"
+	index[8] = "h"
+
+	var weight [9][9]float64
+
+	for i := 0; i < 9; i++ {
+		for j := 0; j < 9; j++ {
+			if i == j {
+				weight[i][j] = 0
+			} else {
+				weight[i][j] = 1000
+			}
+		}
+	}
+	weight[name["s"]][name["a"]] = 0.5
+	weight[name["s"]][name["b"]] = 0.3
+	weight[name["s"]][name["c"]] = 0.2
+	weight[name["s"]][name["d"]] = 0.4
+
+	weight[name["a"]][name["e"]] = 0.3
+
+	weight[name["b"]][name["a"]] = 0.2
+	weight[name["b"]][name["f"]] = 0.1
+
+	weight[name["c"]][name["f"]] = 0.4
+	weight[name["c"]][name["h"]] = 0.8
+
+	weight[name["d"]][name["c"]] = 0.1
+	weight[name["d"]][name["h"]] = 0.6
+
+	weight[name["e"]][name["g"]] = 0.1
+
+	weight[name["f"]][name["e"]] = 0.1
+	weight[name["f"]][name["h"]] = 0.2
+
+	weight[name["h"]][name["g"]] = 0.4
+	//settled := make(map[int]int)
+	settledWei := make(map[int]float64)
+	mw := make(map[int]float64)
+	for i := 0; i < 9; i++ {
+		mw[i] = weight[name["s"]][i]
+	}
+	dijkstra(weight, mw, settledWei)
+	//for k, v := range settled {
+	//	fmt.Println(k, ":", v)
+	//}
+	for k, v := range settledWei {
+		fmt.Printf("%s:%0.2f ", index[k], v)
+	}
+	fmt.Println()
+}
+func dijkstra(weight [9][9]float64, mw map[int]float64, settledWei map[int]float64) {
+	//if len(settledWei) >= 9 {
+	//	return
+	//}
+	if len(mw) == 0 {
 		return
 	}
-
-	var index int
-	if len(result)-1 < 0 {
-		index = -1
-	} else {
-		lastElems := result[len(result)-1]
-		for i, v := range all {
-			if lastElems == v {
-				index = i
-			}
+	minDis := 1000.0
+	node := 0
+	// 找出距离最小的节点
+	for k, v := range mw {
+		if v < minDis {
+			minDis = v
+			node = k
 		}
 	}
-
-	if index >= len(all)-1 {
-		return
-	}
-	//fmt.Println("index:", index)
-	temp := all[index+1:]
-	for _, v := range temp {
-		//fmt.Println("v:", v)
-		resultC := make([]int, len(result))
-		copy(resultC, result)
-		resultC = append(resultC, v)
-
-		combineCollect(collect, resultC, all, m)
-	}
-
-}
-func combine2(people []int, first, second, third int) {
-	sum := first + second + third
-	result := make([]int, 0)
-	sumResult := make([][]int, 0)
-	combineCollect(&sumResult, result, people, sum)
-	fmt.Println(len(sumResult))
-	for _, v := range sumResult {
-		//fmt.Println(v)
-		sumR1 := make([][]int, 0)
-		result1 := make([]int, 0)
-		combineCollect(&sumR1, result1, v, first)
-		for _, v1 := range sumR1 {
-			result2 := make([]int, 0)
-			a := vSubv1(v, v1)
-			sumR2 := make([][]int, 0)
-			combineCollect(&sumR2, result2, a, second)
-			for _, v2 := range sumR2 {
-				if len(v2) < second {
-					continue
-				}
-				b := vSubv1(v2, v1)
-				if len(b) < second {
-					continue
-				}
-				v1plusv2 := append(v1, v2...)
-				//fmt.Println("v1plusv2:", v1plusv2)
-				bb := vSubv1(v, v1plusv2)
-				newRet := append(v1plusv2, bb...)
-				fmt.Println(newRet)
-				count++
-			}
+	// update min weight
+	for k, v := range mw {
+		if v > mw[node]+weight[node][k] {
+			mw[k] = mw[node] + weight[node][k]
 		}
 	}
-}
-func vSubv1(all []int, except []int) []int {
-	newRet := make([]int, 0)
-	for _, v := range all {
-		exist := false
-		for _, e := range except {
-			if v == e {
-				exist = true
-			}
-		}
-		if !exist {
-			newRet = append(newRet, v)
-		}
-	}
-	return newRet
-}
+	settledWei[node] = minDis
+	delete(mw, node)
 
-var count int
-
-func combineCollect2(collect *[][]int, result []int, all []int, m int) {
-	if len(result) >= m {
-		ret := make([]int, len(result))
-		copy(ret, result)
-		temp := *collect
-		temp = append(temp, ret)
-		*collect = temp
-		//count++
-		return
-	}
-	var index int
-	if len(result)-1 < 0 {
-		index = -1
-	} else {
-		lastElems := result[len(result)-1]
-		for i, v := range all {
-			if lastElems == v {
-				index = i
-			}
-		}
-	}
-
-	if index >= len(all)-1 {
-		return
-	}
-	//fmt.Println("index:", index)
-	temp := all[index+1:]
-	for _, v := range temp {
-		//fmt.Println("v:", v)
-		resultC := make([]int, len(result))
-		copy(resultC, result)
-		resultC = append(resultC, v)
-
-		combineCollect(collect, resultC, all, m)
-	}
+	dijkstra(weight, mw, settledWei)
 
 }
-func min(x, y, z int) (m int) {
-	m = x
-	if m > y {
-		m = y
-	}
-	if m > z {
-		m = z
-	}
-	return
-}
-func distance(a, b byte) int {
-	if a == b {
-		return 0
-	}
-	return 1
-}
-func constructMatrix(rows, cols int) [][]int {
-	m := make([][]int, rows)
-	for i := 0; i < rows; i++ {
-		m[i] = make([]int, cols)
-	}
-	return m
-}
-func dynamic() {
-	a := "mouse"
-	b := "mousse"
-	row := len(b)
-	column := len(a)
-	m := constructMatrix(row, column)
-	m[0][0] = 0
-	for i := 0; i < row; i++ {
-		for j := 0; j < column; j++ {
-			if i == 0 && j > 0 {
-				m[i][j] = j
-			}
-			if i > 0 && j == 0 {
-				m[i][j] = i
-			}
-			if i > 0 && j > 0 {
-				m[i][j] = min(m[i-1][j-1]+distance(a[j], b[i]), m[i-1][j]+1, m[i][j-1]+1)
-			}
-			fmt.Printf("%d ", m[i][j])
-			if j >= column-1 {
-				fmt.Printf("\n")
-			}
-		}
-	}
-}
-func TestJson(t *testing.T) {
-	data := struct {
-		Xx [][]byte
-	}{[][]byte{{1}}}
+func testopenfile() {
+	xx, err := os.OpenFile("./xx", os.O_RDWR|os.O_CREATE, 0666)
+	fmt.Println(xx, ":", err)
 
-	json, err := json.Marshal(data)
-	if err != nil {
-		log.Fatal(err)
-	}
+	flag := syscall.LOCK_SH
+	//flag = syscall.LOCK_EX
 
-	fmt.Println(string(json))
-}
+	// Otherwise attempt to obtain an exclusive lock.
+	err = syscall.Flock(int(xx.Fd()), flag|syscall.LOCK_NB)
+	fmt.Println(err)
 
-var coin = []int{2, 3, 7}
-
-func minCount(sum int) (ret int) {
-	fmt.Println("sum:", sum)
-	if sum < 0 {
-		return -1
-	}
-	if sum == 0 {
-		return 0
-	}
-	rets := [3]int{}
-	for index, c := range coin {
-		m := minCount(sum - c)
-		if m < 0 {
-			continue
-		}
-
-		rets[index] = m + 1
-		fmt.Println(rets[index])
-	}
-
-	for _, r := range rets {
-		if r != 0 {
-			ret = r
-			break
-		}
-	}
-	for _, r := range rets {
-		if r != 0 && r < ret {
-			ret = r
-		}
-	}
-	return
-}
-func TestDongtaiguihua(t *testing.T) {
-	fmt.Println(minCount(20))
+	xx2, err := os.OpenFile("./xx", os.O_RDONLY, 0666)
+	fmt.Println(xx2, ":", err)
 }
 func TestXx(t *testing.T) {
-	//data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
-	//hb, _ := hex.DecodeString(data)
-	//out := crypto.Keccak256(hb)
-	//fmt.Println(hex.EncodeToString(out))
-	//encodeString1 := base64.StdEncoding.EncodeToString(out)
-	//fmt.Println(encodeString1)
-	//
-	//data = "0000000000000000000000000ddfc506136fb7c050cc2e9511eccd81b15e74260000000000000000000000000000000000000000000000000000000000000004"
-	//hb, _ = hex.DecodeString(data)
-	//out2 := crypto.Keccak256(hb)
-	//fmt.Println(hex.EncodeToString(out2))
-	//encodeString2 := base64.StdEncoding.EncodeToString(out2)
-	//fmt.Println(encodeString2)
-
-	input := []byte("804031")
-	//input, _ := hex.DecodeString("a4c248d840bab7ecdbde059148a289021ce154661b3107da67474e2bfa4238e8")
-	// 演示base64编码
-	encodeString := base64.StdEncoding.EncodeToString(input)
-	fmt.Println(encodeString)
-
-	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MzFjMDQ5YzYyODljMDAwMA==")
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(string(decodeBytes))
-	x, _ := big.NewInt(0).SetString(string(decodeBytes), 16)
-	fmt.Println(x.Text(10))
-	//dynamic()
-	//fmt.Println(min(1, 2, 3))
-	//testall := []int{1, 2, 3, 4, 5}
-	//exc := []int{2, 4}
-	//ret := vSubv1(testall, exc)
-	//fmt.Println(ret)
-	//people := make([]int, 0)
-	//for i := 0; i < 10; i++ {
-	//	people = append(people, i)
-	//}
-	//first := 1
-	//second := 2
-	//third := 3
-	////combine2(people, first, second, third)
-	//collect := make([][]int, 0)
-	//result := make([]int, 0)
-	//combineCollect2(&collect, result, people, first)
-	//combineCollect2(&collect, result, people, second)
-	//combineCollect2(&collect, result, people, third)
-	//
-	//fmt.Println(count)
-	//for _, v := range collect {
-	//	fmt.Println(v)
-	//}
-}
-func TestSliceof(t *testing.T) {
-	//var s [][]string
-	//for i := 0; i < 10; i++ {
-	//	sl := make([]string, 0, 5)
-	//	for j := 0; j < 5; j++ {
-	//		sl = append(sl, "a")
-	//	}
-	//	s = append(s, sl)
-	//}
-	//fmt.Println(s)
-	//xx(s)
-	//fmt.Println(s)
-	//s = append(s, []string{"zzzz", "zzzz", "zzzz", "zzzz", "zzzz"})
-	//fmt.Println(s)
-
-	xx(nil)
-}
-func xx(input [][]string) {
-	slice := make([]int, 2, 30)
-	for i := 0; i < len(slice); i++ {
-		slice[i] = i
-	}
-
-	fmt.Printf("slice %v %p \n", slice, slice)
-
-	ret := changeSlice(&slice)
-	fmt.Printf("slice %v %p, ret %v %p\n", slice, slice, ret, ret)
-
-	ret[1] = -1111
-
-	fmt.Printf("slice %v %p, ret %v %p\n", slice, slice, ret, ret)
-}
-func changeSlice(s *[]int) []int {
-	ss := *s
-	ss = append(ss, 3)
-	*s = ss
-	return ss
+	//testDijkstra()
+	testopenfile()
 }

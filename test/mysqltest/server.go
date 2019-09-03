@@ -7,6 +7,11 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+//CREATE TABLE `test`  (
+//`create_at` smallint(255) NULL DEFAULT NULL,
+//`id` int(11) NOT NULL,
+//PRIMARY KEY (`id`) USING BTREE
+//)
 func main() {
 	//sql.Open(s.driverName, s.connectStr+s.dbName+"?autocommit=false")
 	db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
