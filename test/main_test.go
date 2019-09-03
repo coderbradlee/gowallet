@@ -329,12 +329,12 @@ func testbroard() {
 	for {
 		n, remoteAddr, err := listener.ReadFromUDP(data)
 		if err != nil {
-			fmt.Printf("error during read: %s", err)
+			fmt.Println("error during read: ", err)
 		}
-		fmt.Printf("<%s> %s\n", remoteAddr, data[:n])
+		fmt.Printf("server read: <%s> %s\n", remoteAddr, data[:n])
 		_, err = listener.WriteToUDP([]byte("world"), remoteAddr)
 		if err != nil {
-			fmt.Printf(err.Error())
+			fmt.Println(err.Error())
 		}
 	}
 }
