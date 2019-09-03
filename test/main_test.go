@@ -317,7 +317,7 @@ func testbroard() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Printf("client read %s from <%s>\n", data[:n], conn.RemoteAddr().String())
+		fmt.Printf("client read %s from <%v>\n", data[:n], conn.RemoteAddr())
 	}()
 	listener, err := net.ListenUDP("udp", &net.UDPAddr{IP: net.IPv4zero, Port: 9981})
 	if err != nil {
