@@ -300,7 +300,7 @@ func testopenfile() {
 }
 func testbroard() {
 	go func() {
-		time.Sleep(time.Second * 2)
+		time.Sleep(time.Second * 4)
 		ip := net.ParseIP("172.24.14.255")
 		srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 0}
 		dstAddr := &net.UDPAddr{IP: ip, Port: 9981}
