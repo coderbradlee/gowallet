@@ -27,15 +27,22 @@ func main() {
 	if err != nil {
 		log.Fatal("Begin() - ", err)
 	}
+	tx2, err := db.Begin()
+	if err != nil {
+		log.Fatal("Begin() - ", err)
+	}
 	for i := 0; i < 20; i++ {
-		if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-			log.Println("Exec() - ", err)
-		}
-		if i == 10 {
-			if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
+		if i%2 == 0 {
+			if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 				log.Println("Exec() - ", err)
 			}
 		}
+
+		//if i == 10 {
+		//	if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
+		//		log.Println("Exec() - ", err)
+		//	}
+		//}
 		//log.Println("Press ENTER")
 		//fmt.Scanln()
 	}
@@ -58,19 +65,25 @@ func main() {
 	//	log.Fatal("Commit() - ", err)
 	//}
 	for i := 0; i < 20; i++ {
-		if _, err := tx.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-			log.Println("Exec() - ", err)
-		}
-		if i == 10 {
-			if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
+		if i%2 != 0 {
+			if _, err := tx2.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 				log.Println("Exec() - ", err)
 			}
 		}
+
+		//if i == 10 {
+		//	if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
+		//		log.Println("Exec() - ", err)
+		//	}
+		//}
 		//log.Println("Press ENTER")
 		//fmt.Scanln()
 	}
-	if err := tx.Rollback(); err != nil {
-		log.Fatal("Rollback() - ", err)
+	if err := tx.Commit(); err != nil {
+		log.Fatal("tx.Commit()", err)
+	}
+	if err := tx2.Commit(); err != nil {
+		log.Fatal("tx2.Commit()", err)
 	}
 	//stmt.Close()
 	db.Close()
