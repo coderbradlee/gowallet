@@ -23,17 +23,14 @@ func main() {
 	//if err != nil {
 	//	log.Fatal("Prepare() - ", err)
 	//}
-	tx, err := db.Begin()
-	if err != nil {
-		log.Fatal("Begin() - ", err)
-	}
-	tx2, err := db.Begin()
-	if err != nil {
-		log.Fatal("Begin() - ", err)
-	}
+
 	go func() {
 		for i := 0; i < 20; i++ {
 			if i%2 == 0 {
+				tx, err := db.Begin()
+				if err != nil {
+					log.Fatal("Begin() - ", err)
+				}
 				if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 					log.Println("Exec() - ", err)
 				}
@@ -73,6 +70,10 @@ func main() {
 	go func() {
 		for i := 0; i < 20; i++ {
 			if i%2 != 0 {
+				tx2, err := db.Begin()
+				if err != nil {
+					log.Fatal("Begin() - ", err)
+				}
 				if _, err := tx2.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 					log.Println("Exec() - ", err)
 				}
