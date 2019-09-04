@@ -21,7 +21,7 @@ func main() {
 	//}
 
 	go func() {
-		for i := 0; i < 20; i++ {
+		for i := 0; i < 200000; i++ {
 			//if i%2 == 0 {
 			db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
 			if err != nil {
@@ -71,7 +71,7 @@ func main() {
 	//	log.Fatal("Commit() - ", err)
 	//}
 	go func() {
-		for i := 0; i < 20; i++ {
+		for i := 0; i < 200000; i++ {
 			//if i%2 != 0 {
 			db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
 			if err != nil {
