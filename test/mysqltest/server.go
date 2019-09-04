@@ -31,8 +31,10 @@ func main() {
 			if err != nil {
 				log.Fatal("Begin() - ", err)
 			}
-			if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-				log.Println("Exec() - ", err)
+			for j := 0; j < 20; j++ {
+				if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, j); err != nil {
+					log.Println("Exec() - ", err)
+				}
 			}
 			if err := tx.Commit(); err != nil {
 				log.Fatal("tx.Commit()", err)
@@ -79,9 +81,12 @@ func main() {
 			if err != nil {
 				log.Fatal("Begin() - ", err)
 			}
-			if _, err := tx2.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-				log.Println("Exec() - ", err)
+			for j := 0; j < 20; j++ {
+				if _, err := tx2.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, j); err != nil {
+					log.Println("Exec() - ", err)
+				}
 			}
+
 			if err := tx2.Commit(); err != nil {
 				log.Fatal("tx.Commit()", err)
 			}
