@@ -14,10 +14,6 @@ import (
 //)
 func main() {
 	//sql.Open(s.driverName, s.connectStr+s.dbName+"?autocommit=false")
-	db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
-	if err != nil {
-		log.Fatal("Open() - ", err)
-	}
 
 	//stmt, err := db.Prepare("insert into `test` (`create_at`) values (?)")
 	//if err != nil {
@@ -27,6 +23,10 @@ func main() {
 	go func() {
 		for i := 0; i < 20; i++ {
 			if i%2 == 0 {
+				db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
+				if err != nil {
+					log.Fatal("Open() - ", err)
+				}
 				tx, err := db.Begin()
 				if err != nil {
 					log.Fatal("Begin() - ", err)
@@ -37,6 +37,7 @@ func main() {
 				if err := tx.Commit(); err != nil {
 					log.Fatal("tx.Commit()", err)
 				}
+				db.Close()
 			}
 
 			//if i == 10 {
@@ -70,6 +71,10 @@ func main() {
 	go func() {
 		for i := 0; i < 20; i++ {
 			if i%2 != 0 {
+				db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
+				if err != nil {
+					log.Fatal("Open() - ", err)
+				}
 				tx2, err := db.Begin()
 				if err != nil {
 					log.Fatal("Begin() - ", err)
@@ -80,6 +85,7 @@ func main() {
 				if err := tx2.Commit(); err != nil {
 					log.Fatal("tx.Commit()", err)
 				}
+				db.Close()
 			}
 
 			//if i == 10 {
@@ -99,5 +105,5 @@ func main() {
 	//	log.Fatal("tx2.Commit()", err)
 	//}
 	//stmt.Close()
-	db.Close()
+	//db.Close()
 }
