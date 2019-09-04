@@ -22,23 +22,23 @@ func main() {
 
 	go func() {
 		for i := 0; i < 20; i++ {
-			if i%2 == 0 {
-				db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
-				if err != nil {
-					log.Fatal("Open() - ", err)
-				}
-				tx, err := db.Begin()
-				if err != nil {
-					log.Fatal("Begin() - ", err)
-				}
-				if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-					log.Println("Exec() - ", err)
-				}
-				if err := tx.Commit(); err != nil {
-					log.Fatal("tx.Commit()", err)
-				}
-				db.Close()
+			//if i%2 == 0 {
+			db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
+			if err != nil {
+				log.Fatal("Open() - ", err)
 			}
+			tx, err := db.Begin()
+			if err != nil {
+				log.Fatal("Begin() - ", err)
+			}
+			if _, err := tx.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+				log.Println("Exec() - ", err)
+			}
+			if err := tx.Commit(); err != nil {
+				log.Fatal("tx.Commit()", err)
+			}
+			db.Close()
+			//}
 
 			//if i == 10 {
 			//	if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
@@ -70,23 +70,23 @@ func main() {
 	//}
 	go func() {
 		for i := 0; i < 20; i++ {
-			if i%2 != 0 {
-				db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
-				if err != nil {
-					log.Fatal("Open() - ", err)
-				}
-				tx2, err := db.Begin()
-				if err != nil {
-					log.Fatal("Begin() - ", err)
-				}
-				if _, err := tx2.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
-					log.Println("Exec() - ", err)
-				}
-				if err := tx2.Commit(); err != nil {
-					log.Fatal("tx.Commit()", err)
-				}
-				db.Close()
+			//if i%2 != 0 {
+			db, err := sql.Open("mysql", "root:123456@tcp(192.168.146.140:3306)/analytics"+"?autocommit=false")
+			if err != nil {
+				log.Fatal("Open() - ", err)
 			}
+			tx2, err := db.Begin()
+			if err != nil {
+				log.Fatal("Begin() - ", err)
+			}
+			if _, err := tx2.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+				log.Println("Exec() - ", err)
+			}
+			if err := tx2.Commit(); err != nil {
+				log.Fatal("tx.Commit()", err)
+			}
+			db.Close()
+			//}
 
 			//if i == 10 {
 			//	if _, err := tx.Exec("CREATE TABLE IF NOT EXISTS test3 (epoch_number DECIMAL(65, 0) NOT NULL, voted_token DECIMAL(65,0) NOT NULL)"); err != nil {
