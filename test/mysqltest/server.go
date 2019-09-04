@@ -66,7 +66,7 @@ func main() {
 	//}
 	for i := 0; i < 20; i++ {
 		if i%2 != 0 {
-			if _, err := tx2.Exec("insert into `test2` (`id`,`create_at`) values (?,?)", i, i); err != nil {
+			if _, err := tx2.Exec("insert into `test` (`id`,`create_at`) values (?,?)", i, i); err != nil {
 				log.Println("Exec() - ", err)
 			}
 		}
