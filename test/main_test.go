@@ -441,7 +441,7 @@ func testopenfile() {
 	err = db.Update(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte("MyBucket")).Cursor()
 		for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
-			if bytes.Compare(k, []byte("124")) > 0 {
+			if bytes.Compare(k[3:], []byte("124")) > 0 {
 				fmt.Println(string(k))
 				tx.Bucket([]byte("MyBucket")).Delete(k)
 			}
