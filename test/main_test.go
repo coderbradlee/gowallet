@@ -410,10 +410,37 @@ func testopenfile() {
 	})
 	fmt.Println(err)
 	prefix := []byte("one")
+	needDelete := [][]byte{}
 	err = db.Batch(func(tx *bolt.Tx) error {
 		c := tx.Bucket([]byte("MyBucket")).Cursor()
 		for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
 			fmt.Println(string(k))
+			if bytes.Compare(k[:], []byte("124")) > 0 {
+				//db.Delete(k)
+				temp := make([]byte, len(k))
+				copy(temp, k)
+				needDelete = append(needDelete, temp)
+			}
+
+		}
+		return nil
+	})
+	fmt.Println(err)
+	err = db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("MyBucket"))
+		for _, v := range needDelete {
+			fmt.Println("delete:", string(v))
+			if err := b.Delete(v); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	fmt.Println(err)
+	err = db.View(func(tx *bolt.Tx) error {
+		c := tx.Bucket([]byte("bucket")).Cursor()
+		for k, v := c.Last(); k != nil; k, v = c.Prev() {
+			fmt.Println(string(k), ":", string(v))
 		}
 		return nil
 	})
