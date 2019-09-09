@@ -394,8 +394,17 @@ func testopenfile() {
 			return fmt.Errorf("create bucket: %s", err)
 		}
 		err = b.Put([]byte("one123"), []byte("zhangsan"))
+		if err != nil {
+			return err
+		}
 		err = b.Put([]byte("one124"), []byte("zhangsan1"))
+		if err != nil {
+			return err
+		}
 		err = b.Put([]byte("one125"), []byte("zhangsan2"))
+		if err != nil {
+			return err
+		}
 		err = b.Put([]byte("one126"), []byte("zhangsan3"))
 		return err
 	})
