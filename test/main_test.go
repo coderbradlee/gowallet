@@ -1,13 +1,10 @@
 package test
 
 import (
-	"bytes"
 	"encoding/base64"
 	"fmt"
 	"math/big"
 	"testing"
-
-	"github.com/boltdb/bolt"
 )
 
 //
@@ -355,7 +352,7 @@ func testxx() {
 	//encodeString2 := base64.StdEncoding.EncodeToString(out2)
 	//fmt.Println(encodeString2)
 
-	input := []byte("917770")
+	input := []byte("919761")
 	//input, _ := hex.DecodeString("70a082310000000000000000000000006356908ace09268130dee2b7de643314bbeb3683")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
@@ -374,98 +371,99 @@ func testxx() {
 	//y := big.NewInt(0).SetBytes(h)
 	//fmt.Println(y.Text(10))
 }
-func testopenfile() {
-	//db, err := bolt.Open("my.db", 0600, nil)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//fmt.Println(db)
-	//opt := bolt.Options{
-	//	//ReadOnly: true,
-	//}
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(db)
-	err = db.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucket([]byte("MyBucket"))
-		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
-		}
-		err = b.Put([]byte("one123"), []byte("zhangsan"))
-		if err != nil {
-			return err
-		}
-		err = b.Put([]byte("one124"), []byte("zhangsan1"))
-		if err != nil {
-			return err
-		}
-		err = b.Put([]byte("one125"), []byte("zhangsan2"))
-		if err != nil {
-			return err
-		}
-		err = b.Put([]byte("one126"), []byte("zhangsan3"))
-		return err
-	})
-	fmt.Println(err)
-	prefix := []byte("one")
-	//needDelete := [][]byte{}
-	//err = db.Batch(func(tx *bolt.Tx) error {
-	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
-	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
-	//		fmt.Println(string(k))
-	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
-	//			//db.Delete(k)
-	//			//temp := make([]byte, len(k))
-	//			//copy(temp, k)
-	//			//needDelete = append(needDelete, temp)
-	//
-	//		}
-	//
-	//	}
-	//	return nil
-	//})
-	////fmt.Println(err)
-	//err = db.Update(func(tx *bolt.Tx) error {
-	//	b := tx.Bucket([]byte("MyBucket"))
-	//	for _, v := range needDelete {
-	//		fmt.Println("delete:", string(v))
-	//		if err := b.Delete(v); err != nil {
-	//			return err
-	//		}
-	//	}
-	//	return nil
-	//})
 
-	err = db.Update(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte("MyBucket")).Cursor()
-		for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
-			if bytes.Compare(k[3:], []byte("124")) > 0 {
-				fmt.Println(string(k))
-				tx.Bucket([]byte("MyBucket")).Delete(k)
-			}
-		}
-		return nil
-	})
-	fmt.Println(err)
-	err = db.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("MyBucket")).Cursor()
-		for k, v := c.Last(); k != nil; k, v = c.Prev() {
-			fmt.Println(string(k), ":", string(v))
-		}
-		return nil
-	})
-	fmt.Println(err)
-}
+//func testopenfile() {
+//	//db, err := bolt.Open("my.db", 0600, nil)
+//	//if err != nil {
+//	//	fmt.Println(err)
+//	//}
+//	//fmt.Println(db)
+//	//opt := bolt.Options{
+//	//	//ReadOnly: true,
+//	//}
+//	db, err := bolt.Open("my.db", 0600, nil)
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(db)
+//	err = db.Update(func(tx *bolt.Tx) error {
+//		b, err := tx.CreateBucket([]byte("MyBucket"))
+//		if err != nil {
+//			return fmt.Errorf("create bucket: %s", err)
+//		}
+//		err = b.Put([]byte("one123"), []byte("zhangsan"))
+//		if err != nil {
+//			return err
+//		}
+//		err = b.Put([]byte("one124"), []byte("zhangsan1"))
+//		if err != nil {
+//			return err
+//		}
+//		err = b.Put([]byte("one125"), []byte("zhangsan2"))
+//		if err != nil {
+//			return err
+//		}
+//		err = b.Put([]byte("one126"), []byte("zhangsan3"))
+//		return err
+//	})
+//	fmt.Println(err)
+//	prefix := []byte("one")
+//	//needDelete := [][]byte{}
+//	//err = db.Batch(func(tx *bolt.Tx) error {
+//	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
+//	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
+//	//		fmt.Println(string(k))
+//	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
+//	//			//db.Delete(k)
+//	//			//temp := make([]byte, len(k))
+//	//			//copy(temp, k)
+//	//			//needDelete = append(needDelete, temp)
+//	//
+//	//		}
+//	//
+//	//	}
+//	//	return nil
+//	//})
+//	////fmt.Println(err)
+//	//err = db.Update(func(tx *bolt.Tx) error {
+//	//	b := tx.Bucket([]byte("MyBucket"))
+//	//	for _, v := range needDelete {
+//	//		fmt.Println("delete:", string(v))
+//	//		if err := b.Delete(v); err != nil {
+//	//			return err
+//	//		}
+//	//	}
+//	//	return nil
+//	//})
+//
+//	err = db.Update(func(tx *bolt.Tx) error {
+//		b := tx.Bucket([]byte("MyBucket")).Cursor()
+//		for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
+//			if bytes.Compare(k[3:], []byte("124")) > 0 {
+//				fmt.Println(string(k))
+//				tx.Bucket([]byte("MyBucket")).Delete(k)
+//			}
+//		}
+//		return nil
+//	})
+//	fmt.Println(err)
+//	err = db.View(func(tx *bolt.Tx) error {
+//		c := tx.Bucket([]byte("MyBucket")).Cursor()
+//		for k, v := c.Last(); k != nil; k, v = c.Prev() {
+//			fmt.Println(string(k), ":", string(v))
+//		}
+//		return nil
+//	})
+//	fmt.Println(err)
+//}
 func TestXx(t *testing.T) {
 	//testyy()
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
 	//testbroard()
-	//testxx()
-	testopenfile()
+	testxx()
+	//testopenfile()
 }
 func testyy() {
 	indexHeightKey := append([]byte{1}, 2)
