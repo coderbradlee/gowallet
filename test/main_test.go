@@ -375,15 +375,15 @@ func testxx() {
 	//fmt.Println(y.Text(10))
 }
 func testopenfile() {
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(db)
+	//db, err := bolt.Open("my.db", 0600, nil)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//fmt.Println(db)
 	//opt := bolt.Options{
 	//	//ReadOnly: true,
 	//}
-	db, err = bolt.Open("my.db", 0600, nil)
+	db, err := bolt.Open("my.db", 0600, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
