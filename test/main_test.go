@@ -380,10 +380,10 @@ func testopenfile() {
 		fmt.Println(err)
 	}
 	fmt.Println(db)
-	opt := bolt.Options{
-		//ReadOnly: true,
-	}
-	db, err = bolt.Open("my.db", 0600, &opt)
+	//opt := bolt.Options{
+	//	//ReadOnly: true,
+	//}
+	db, err = bolt.Open("my.db", 0600, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
