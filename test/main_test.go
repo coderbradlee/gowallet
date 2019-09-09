@@ -438,7 +438,7 @@ func testopenfile() {
 	})
 	fmt.Println(err)
 	err = db.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("bucket")).Cursor()
+		c := tx.Bucket([]byte("MyBucket")).Cursor()
 		for k, v := c.Last(); k != nil; k, v = c.Prev() {
 			fmt.Println(string(k), ":", string(v))
 		}
