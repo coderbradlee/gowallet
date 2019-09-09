@@ -410,28 +410,39 @@ func testopenfile() {
 	})
 	fmt.Println(err)
 	prefix := []byte("one")
-	needDelete := [][]byte{}
-	err = db.Batch(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("MyBucket")).Cursor()
-		for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
-			fmt.Println(string(k))
-			if bytes.Compare(k[3:], []byte("124")) > 0 {
-				//db.Delete(k)
-				temp := make([]byte, len(k))
-				copy(temp, k)
-				needDelete = append(needDelete, temp)
-			}
+	//needDelete := [][]byte{}
+	//err = db.Batch(func(tx *bolt.Tx) error {
+	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
+	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
+	//		fmt.Println(string(k))
+	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
+	//			//db.Delete(k)
+	//			//temp := make([]byte, len(k))
+	//			//copy(temp, k)
+	//			//needDelete = append(needDelete, temp)
+	//
+	//		}
+	//
+	//	}
+	//	return nil
+	//})
+	////fmt.Println(err)
+	//err = db.Update(func(tx *bolt.Tx) error {
+	//	b := tx.Bucket([]byte("MyBucket"))
+	//	for _, v := range needDelete {
+	//		fmt.Println("delete:", string(v))
+	//		if err := b.Delete(v); err != nil {
+	//			return err
+	//		}
+	//	}
+	//	return nil
+	//})
 
-		}
-		return nil
-	})
-	fmt.Println(err)
 	err = db.Update(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte("MyBucket"))
-		for _, v := range needDelete {
-			fmt.Println("delete:", string(v))
-			if err := b.Delete(v); err != nil {
-				return err
+		b := tx.Bucket([]byte("MyBucket")).Cursor()
+		for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
+			if bytes.Compare(k, []byte("124")) > 0 {
+				tx.Bucket([]byte("MyBucket")).Delete(k)
 			}
 		}
 		return nil
