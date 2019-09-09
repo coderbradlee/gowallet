@@ -415,7 +415,7 @@ func testopenfile() {
 		c := tx.Bucket([]byte("MyBucket")).Cursor()
 		for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
 			fmt.Println(string(k))
-			if bytes.Compare(k[:], []byte("124")) > 0 {
+			if bytes.Compare(k[3:], []byte("124")) > 0 {
 				//db.Delete(k)
 				temp := make([]byte, len(k))
 				copy(temp, k)
