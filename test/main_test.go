@@ -393,12 +393,13 @@ func testopenfile() {
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
-		b.Put([]byte("one123"), []byte("zhangsan"))
-		b.Put([]byte("one124"), []byte("zhangsan1"))
-		b.Put([]byte("one125"), []byte("zhangsan2"))
-		b.Put([]byte("one126"), []byte("zhangsan3"))
-		return nil
+		err = b.Put([]byte("one123"), []byte("zhangsan"))
+		err = b.Put([]byte("one124"), []byte("zhangsan1"))
+		err = b.Put([]byte("one125"), []byte("zhangsan2"))
+		err = b.Put([]byte("one126"), []byte("zhangsan3"))
+		return err
 	})
+	fmt.Println(err)
 	prefix := []byte("one")
 	err = db.Batch(func(tx *bolt.Tx) error {
 		c := tx.Bucket([]byte("MyBucket")).Cursor()
