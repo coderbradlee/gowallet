@@ -1,14 +1,15 @@
 package test
 
 import (
-	"bytes"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 	"math/big"
+	"sort"
 	"testing"
+	"time"
 
-	"github.com/boltdb/bolt"
+	"github.com/ethereum/go-ethereum/crypto"
 )
 
 //
@@ -349,20 +350,20 @@ func testxx() {
 	//encodeString1 := base64.StdEncoding.EncodeToString(out)
 	//fmt.Println(encodeString1)
 	//
-	//data = "0000000000000000000000000ddfc506136fb7c050cc2e9511eccd81b15e74260000000000000000000000000000000000000000000000000000000000000004"
-	//hb, _ = hex.DecodeString(data)
-	//out2 := crypto.Keccak256(hb)
-	//fmt.Println(hex.EncodeToString(out2))
+	data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
+	hb, _ := hex.DecodeString(data)
+	out2 := crypto.Keccak256(hb)
+	fmt.Println(hex.EncodeToString(out2))
 	//encodeString2 := base64.StdEncoding.EncodeToString(out2)
 	//fmt.Println(encodeString2)
 
-	input := []byte("928020")
-	//input, _ := hex.DecodeString("70a082310000000000000000000000006356908ace09268130dee2b7de643314bbeb3683")
+	input := []byte("io1eana2t400zc0mzg9duptscke43p48rpr9d6say")
+	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
 	fmt.Println(encodeString)
 
-	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MzFjMDQ5YzYyODljMDAwMA==")
+	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MjNkZjkzMTI4MTM4MDAwMA==")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -375,104 +376,185 @@ func testxx() {
 	y := big.NewInt(0).SetBytes(h)
 	fmt.Println(y.Text(10))
 }
-
-func testopenfile() {
-	//db, err := bolt.Open("my.db", 0600, nil)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//fmt.Println(db)
-	//opt := bolt.Options{
-	//	//ReadOnly: true,
-	//}
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(db)
-	err = db.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucket([]byte("MyBucket"))
-		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
-		}
-		err = b.Put([]byte("one123"), []byte("zhangsan"))
-		if err != nil {
-			return err
-		}
-		err = b.Put([]byte("one124"), []byte("zhangsan1"))
-		if err != nil {
-			return err
-		}
-		err = b.Put([]byte("one125"), []byte("zhangsan2"))
-		if err != nil {
-			return err
-		}
-		err = b.Put([]byte("one126"), []byte("zhangsan3"))
-		return err
-	})
-	fmt.Println(err)
-	prefix := []byte("one")
-	//needDelete := [][]byte{}
-	//err = db.Batch(func(tx *bolt.Tx) error {
-	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
-	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
-	//		fmt.Println(string(k))
-	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
-	//			//db.Delete(k)
-	//			//temp := make([]byte, len(k))
-	//			//copy(temp, k)
-	//			//needDelete = append(needDelete, temp)
-	//
-	//		}
-	//
-	//	}
-	//	return nil
-	//})
-	////fmt.Println(err)
-	//err = db.Update(func(tx *bolt.Tx) error {
-	//	b := tx.Bucket([]byte("MyBucket"))
-	//	for _, v := range needDelete {
-	//		fmt.Println("delete:", string(v))
-	//		if err := b.Delete(v); err != nil {
-	//			return err
-	//		}
-	//	}
-	//	return nil
-	//})
-
-	err = db.Update(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte("MyBucket")).Cursor()
-		for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
-			if bytes.Compare(k[3:], []byte("124")) > 0 {
-				fmt.Println(string(k))
-				tx.Bucket([]byte("MyBucket")).Delete(k)
-			}
-		}
-		return nil
-	})
-	fmt.Println(err)
-	err = db.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("MyBucket")).Cursor()
-		for k, v := c.Last(); k != nil; k, v = c.Prev() {
-			fmt.Println(string(k), ":", string(v))
-		}
-		return nil
-	})
-	fmt.Println(err)
-}
 func TestXx(t *testing.T) {
 	//testyy()
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
 	//testbroard()
-	//testxx()
-	testopenfile()
+	testxx()
+	//testopenfile()
+	//fmt.Println(tt)
+	//time.Sleep(time.Second * 3)
+}
+
+//func testopenfile() {
+//	//db, err := bolt.Open("my.db", 0600, nil)
+//	//if err != nil {
+//	//	fmt.Println(err)
+//	//}
+//	//fmt.Println(db)
+//	//opt := bolt.Options{
+//	//	//ReadOnly: true,
+//	//}
+//	db, err := bolt.Open("my.db", 0600, nil)
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(db)
+//	err = db.Update(func(tx *bolt.Tx) error {
+//		b, err := tx.CreateBucket([]byte("MyBucket"))
+//		if err != nil {
+//			return fmt.Errorf("create bucket: %s", err)
+//		}
+//		err = b.Put([]byte("one123"), []byte("zhangsan"))
+//		if err != nil {
+//			return err
+//		}
+//		err = b.Put([]byte("one124"), []byte("zhangsan1"))
+//		if err != nil {
+//			return err
+//		}
+//		err = b.Put([]byte("one125"), []byte("zhangsan2"))
+//		if err != nil {
+//			return err
+//		}
+//		err = b.Put([]byte("one126"), []byte("zhangsan3"))
+//		return err
+//	})
+//	fmt.Println(err)
+//	prefix := []byte("one")
+//	//needDelete := [][]byte{}
+//	//err = db.Batch(func(tx *bolt.Tx) error {
+//	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
+//	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
+//	//		fmt.Println(string(k))
+//	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
+//	//			//db.Delete(k)
+//	//			//temp := make([]byte, len(k))
+//	//			//copy(temp, k)
+//	//			//needDelete = append(needDelete, temp)
+//	//
+//	//		}
+//	//
+//	//	}
+//	//	return nil
+//	//})
+//	////fmt.Println(err)
+//	//err = db.Update(func(tx *bolt.Tx) error {
+//	//	b := tx.Bucket([]byte("MyBucket"))
+//	//	for _, v := range needDelete {
+//	//		fmt.Println("delete:", string(v))
+//	//		if err := b.Delete(v); err != nil {
+//	//			return err
+//	//		}
+//	//	}
+//	//	return nil
+//	//})
+//
+//	err = db.Update(func(tx *bolt.Tx) error {
+//		b := tx.Bucket([]byte("MyBucket")).Cursor()
+//		for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
+//			if bytes.Compare(k[3:], []byte("124")) > 0 {
+//				fmt.Println(string(k))
+//				tx.Bucket([]byte("MyBucket")).Delete(k)
+//			}
+//		}
+//		return nil
+//	})
+//	fmt.Println(err)
+//	err = db.View(func(tx *bolt.Tx) error {
+//		c := tx.Bucket([]byte("MyBucket")).Cursor()
+//		for k, v := c.Last(); k != nil; k, v = c.Prev() {
+//			fmt.Println(string(k), ":", string(v))
+//		}
+//		return nil
+//	})
+//	fmt.Println(err)
+//}
+
+var tt bool
+
+func calledbyyy() {
+	time.Sleep(time.Second * 1)
+	fmt.Println("calledbyyy start:", tt)
+	tt = true
+	fmt.Println("calledbyyy end:", tt)
+
+}
+
+var y []byte
+
+func testx(in []byte) {
+	y = in
+	fmt.Println(y)
 }
 func testyy() {
-	indexHeightKey := append([]byte{1}, 2)
-	fmt.Println(indexHeightKey)
-	indexHeightKey2 := append(indexHeightKey, 3)
-	fmt.Println(indexHeightKey)
-	fmt.Println(indexHeightKey2)
+	x := []byte{1, 2, 3}
+	fmt.Println(x)
+	testx(x)
+	fmt.Println(x)
+	x[0] = 20
+	fmt.Println(x)
+	fmt.Println(y)
+
+	//fmt.Println("start:", tt)
+	//tt = false
+	//if !tt {
+	//	defer func() {
+	//		tt = true
+	//		fmt.Println("defer called")
+	//	}()
+	//}
+	//go calledbyyy()
+	//
+	//fmt.Println("end:", tt)
+
+	//p := make(PairList, 5)
+	//p[0] = Pair{"10", 10}
+	//p[1] = Pair{"4", 4}
+	//p[2] = Pair{"2", 2}
+	//p[3] = Pair{"3", 3}
+	//p[4] = Pair{"8", 8}
+	//fmt.Println(p)
+	//sort.Sort(p)
+	//fmt.Println(p)
+	//var xx []int
+	//xx = append(xx, 1)
+	//xx = append(xx, 2)
+	//fmt.Println(xx)
+	//xx := make([]string, 0)
+	//xx = append(xx, "11")
+	//xx = append(xx, "22")
+	//fmt.Println(xx)
+	//xx = append(xx[:1], xx[2:]...)
+	//fmt.Println(xx)
+	//indexHeightKey := append([]byte{1}, 2)
+	//fmt.Println(indexHeightKey)
+	//indexHeightKey2 := append(indexHeightKey, 3)
+	//fmt.Println(indexHeightKey)
+	//fmt.Println(indexHeightKey2)
+}
+
+type Pair struct {
+	Key   string
+	Value int
+}
+
+// A slice of Pairs that implements sort.Interface to sort by Value.
+type PairList []Pair
+
+func (p PairList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+func (p PairList) Len() int           { return len(p) }
+func (p PairList) Less(i, j int) bool { return p[i].Value < p[j].Value }
+
+// A function to turn a map into a PairList, then sort and return it.
+func sortMapByValue(m map[string]int) PairList {
+	p := make(PairList, len(m))
+	i := 0
+	for k, v := range m {
+		p[i] = Pair{k, v}
+	}
+	sort.Sort(p)
+	return p
 }
