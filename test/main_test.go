@@ -354,8 +354,8 @@ func testxx() {
 	hb, _ := hex.DecodeString(data)
 	out2 := crypto.Keccak256(hb)
 	fmt.Println(hex.EncodeToString(out2))
-	//encodeString2 := base64.StdEncoding.EncodeToString(out2)
-	//fmt.Println(encodeString2)
+	encodeString2 := base64.StdEncoding.EncodeToString(out2)
+	fmt.Println(encodeString2)
 
 	input := []byte("io1eana2t400zc0mzg9duptscke43p48rpr9d6say")
 	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
