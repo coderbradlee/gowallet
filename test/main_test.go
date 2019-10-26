@@ -437,6 +437,8 @@ func testopenfile() {
 		fmt.Println(k, ":", v)
 		k, v = c.Seek([]byte{2})
 		fmt.Println(k, ":", v)
+		k, v = c.Seek([]byte{3})
+		fmt.Println(k, ":", v)
 		k, v = c.Seek([]byte{10})
 		fmt.Println(k, ":", v)
 		k, v = c.Seek([]byte{12})

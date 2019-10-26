@@ -16,6 +16,6 @@ require (
 	github.com/prometheus/client_golang v1.0.0
 	github.com/sirupsen/logrus v1.4.2 // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
-	go.etcd.io/bbolt v1.3.3 // indirect
+	go.etcd.io/bbolt v1.3.2
 	golang.org/x/tools v0.0.0-20190529010454-aa71c3f32488 // indirect
 )
