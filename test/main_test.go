@@ -2,6 +2,7 @@ package test
 
 import (
 	"encoding/base64"
+	"encoding/binary"
 	"encoding/hex"
 	"fmt"
 	"math/big"
@@ -403,22 +404,27 @@ func testopenfile() {
 	fmt.Println(db)
 	err = db.Update(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucket([]byte("MyBucket"))
+
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
-		err = b.Put([]byte{1}, []byte("1"))
+		bytes := make([]byte, 8)
+		binary.BigEndian.PutUint64(bytes, 1)
+		err = b.Put(bytes, []byte("1"))
 		if err != nil {
 			return err
 		}
-		err = b.Put([]byte{10}, []byte("10"))
+		binary.BigEndian.PutUint64(bytes, 10)
+		err = b.Put(bytes, []byte("10"))
 		if err != nil {
 			return err
 		}
+		binary.BigEndian.PutUint64(bytes, 100)
 		//err = b.Put([]byte{100}, []byte("zhangsan2"))
 		//if err != nil {
 		//	return err
 		//}
-		err = b.Put([]byte{100}, []byte("100"))
+		err = b.Put(bytes, []byte("100"))
 		return err
 	})
 	err = db.View(func(tx *bolt.Tx) error {
