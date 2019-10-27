@@ -375,6 +375,19 @@ func testxx() {
 
 	y := big.NewInt(0).SetBytes(h)
 	fmt.Println(y.Text(10))
+
+	CurrIndex := []byte{255, 255, 255, 255, 255, 255, 255, 255}
+	maxuint64 := big.NewInt(0).SetBytes(CurrIndex)
+	fmt.Println(maxuint64.Text(10))
+	fmt.Println(^uint64(0))
+	//fmt.Println(uint64(0) - 1)
+	for i := uint64(0); i >= 0; i-- {
+		fmt.Println(i)
+		if i != 0 {
+			fmt.Println(i)
+			break
+		}
+	}
 }
 func TestXx(t *testing.T) {
 	//testyy()
@@ -389,22 +402,23 @@ func TestXx(t *testing.T) {
 }
 
 func testopenfile() {
-	//db, err := bolt.Open("my.db", 0600, nil)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//fmt.Println(db)
-	//opt := bolt.Options{
-	//	//ReadOnly: true,
-	//}
+	db, err := bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(db)
 	db, err := bolt.Open("my.db", 0600, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(db)
 	err = db.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucket([]byte("MyBucket"))
+		b, err := tx.CreateBucket([]byte("MyBucket11111"))
 
+		if err != nil {
+			return fmt.Errorf("create bucket: %s", err)
+		}
+		b, err = tx.CreateBucket([]byte("MyBucket22222"))
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
@@ -428,80 +442,94 @@ func testopenfile() {
 		return err
 	})
 	err = db.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("MyBucket")).Cursor()
-		//for k, v := c.Last(); k != nil; k, v = c.Prev() {
-		//	fmt.Println(string(k), ":", string(v))
-		//}
-		//return nil
-		k, v := c.Seek([]byte{1})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{2})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{3})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{10})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{12})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{50})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{100})
-		fmt.Println(k, ":", v)
-		k, v = c.Seek([]byte{200})
-		fmt.Println(k, ":", v)
+		if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
+			fmt.Println(string(name))
+			return nil
+		}); err != nil {
+			fmt.Println(err)
+		}
 		return nil
 	})
 
-	//fmt.Println(err)
-	//prefix := []byte("one")
-	//needDelete := [][]byte{}
-	//err = db.Batch(func(tx *bolt.Tx) error {
-	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
-	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
-	//		fmt.Println(string(k))
-	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
-	//			//db.Delete(k)
-	//			//temp := make([]byte, len(k))
-	//			//copy(temp, k)
-	//			//needDelete = append(needDelete, temp)
-	//
-	//		}
-	//
-	//	}
-	//	return nil
-	//})
-	////fmt.Println(err)
-	//err = db.Update(func(tx *bolt.Tx) error {
-	//	b := tx.Bucket([]byte("MyBucket"))
-	//	for _, v := range needDelete {
-	//		fmt.Println("delete:", string(v))
-	//		if err := b.Delete(v); err != nil {
-	//			return err
-	//		}
-	//	}
-	//	return nil
-	//})
+	fmt.Println(err)
 
-	//err = db.Update(func(tx *bolt.Tx) error {
-	//	b := tx.Bucket([]byte("MyBucket")).Cursor()
-	//	for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
-	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
-	//			fmt.Println(string(k))
-	//			tx.Bucket([]byte("MyBucket")).Delete(k)
-	//		}
-	//	}
-	//	return nil
-	//})
-	//fmt.Println(err)
-	//err = db.View(func(tx *bolt.Tx) error {
-	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
-	//	for k, v := c.Last(); k != nil; k, v = c.Prev() {
-	//		fmt.Println(string(k), ":", string(v))
-	//	}
-	//	return nil
-	//})
-	//fmt.Println(err)
 }
+
+//	err = db.View(func(tx *bolt.Tx) error {
+//		c := tx.Bucket([]byte("MyBucket")).Cursor()
+//		//for k, v := c.Last(); k != nil; k, v = c.Prev() {
+//		//	fmt.Println(string(k), ":", string(v))
+//		//}
+//		//return nil
+//		k, v := c.Seek([]byte{1}) //1
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{2}) //10
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{3}) //10
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{10}) //10
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{12}) //100
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{50}) //100
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{100}) //100
+//		fmt.Println(k, ":", v)
+//		k, v = c.Seek([]byte{200}) //kong
+//		fmt.Println(k, ":", v)
+//		return nil
+//	})
+//
+//	//fmt.Println(err)
+//	//prefix := []byte("one")
+//	//needDelete := [][]byte{}
+//	//err = db.Batch(func(tx *bolt.Tx) error {
+//	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
+//	//	for k, _ := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = c.Next() {
+//	//		fmt.Println(string(k))
+//	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
+//	//			//db.Delete(k)
+//	//			//temp := make([]byte, len(k))
+//	//			//copy(temp, k)
+//	//			//needDelete = append(needDelete, temp)
+//	//
+//	//		}
+//	//
+//	//	}
+//	//	return nil
+//	//})
+//	////fmt.Println(err)
+//	//err = db.Update(func(tx *bolt.Tx) error {
+//	//	b := tx.Bucket([]byte("MyBucket"))
+//	//	for _, v := range needDelete {
+//	//		fmt.Println("delete:", string(v))
+//	//		if err := b.Delete(v); err != nil {
+//	//			return err
+//	//		}
+//	//	}
+//	//	return nil
+//	//})
+//
+//	//err = db.Update(func(tx *bolt.Tx) error {
+//	//	b := tx.Bucket([]byte("MyBucket")).Cursor()
+//	//	for k, _ := b.Seek(prefix); bytes.HasPrefix(k, prefix); k, _ = b.Next() {
+//	//		if bytes.Compare(k[3:], []byte("124")) > 0 {
+//	//			fmt.Println(string(k))
+//	//			tx.Bucket([]byte("MyBucket")).Delete(k)
+//	//		}
+//	//	}
+//	//	return nil
+//	//})
+//	//fmt.Println(err)
+//	//err = db.View(func(tx *bolt.Tx) error {
+//	//	c := tx.Bucket([]byte("MyBucket")).Cursor()
+//	//	for k, v := c.Last(); k != nil; k, v = c.Prev() {
+//	//		fmt.Println(string(k), ":", string(v))
+//	//	}
+//	//	return nil
+//	//})
+//	//fmt.Println(err)
+//}
 
 var tt bool
 
