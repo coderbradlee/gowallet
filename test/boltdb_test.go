@@ -94,6 +94,6 @@ func testopenfile() {
 		return nil
 	})
 	for _, k := range allKey {
-		fmt.Println(k)
+		fmt.Println(string(k))
 	}
 }
