@@ -2,14 +2,11 @@ package test
 
 import (
 	"encoding/base64"
-	"encoding/binary"
 	"encoding/hex"
 	"fmt"
 	"math/big"
 	"testing"
 	"time"
-
-	bolt "go.etcd.io/bbolt"
 )
 
 //
@@ -357,13 +354,13 @@ func testxx() {
 	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
 	//fmt.Println(encodeString2)
 
-	input := []byte("40")
+	input := []byte("83")
 	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
 	fmt.Println(encodeString)
 
-	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MzFjMDQ5YzYyODljMDAwMA==")
+	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5M2ZhMTAwNzlkMDAwMDAwMA==")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -388,6 +385,9 @@ func testxx() {
 			break
 		}
 	}
+	for i := uint8(0); i < 0; i++ {
+		fmt.Println("wahttttat")
+	}
 }
 func TestXx(t *testing.T) {
 	//testyy()
@@ -395,66 +395,66 @@ func TestXx(t *testing.T) {
 	//testopenfile()
 	//testudp()
 	//testbroard()
-	//testxx()
-	testopenfile()
+	testxx()
+	//testopenfile()
 	//fmt.Println(tt)
 	//time.Sleep(time.Second * 3)
 }
 
-func testopenfile() {
-	//db, err := bolt.Open("my.db", 0600, nil)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//fmt.Println(db)
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(db)
-	err = db.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucket([]byte("MyBucket11111"))
-
-		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
-		}
-		b, err = tx.CreateBucket([]byte("MyBucket22222"))
-		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
-		}
-		bytes := make([]byte, 8)
-		binary.BigEndian.PutUint64(bytes, 1)
-		err = b.Put(bytes, []byte("1"))
-		if err != nil {
-			return err
-		}
-		binary.BigEndian.PutUint64(bytes, 10)
-		err = b.Put(bytes, []byte("10"))
-		if err != nil {
-			return err
-		}
-		binary.BigEndian.PutUint64(bytes, 100)
-		//err = b.Put([]byte{100}, []byte("zhangsan2"))
-		//if err != nil {
-		//	return err
-		//}
-		err = b.Put(bytes, []byte("100"))
-		return err
-	})
-	err = db.View(func(tx *bolt.Tx) error {
-		if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
-			fmt.Println(string(name))
-			return nil
-		}); err != nil {
-			fmt.Println(err)
-		}
-		return nil
-	})
-
-	fmt.Println(err)
-
-}
-
+//func testopenfile() {
+//	//db, err := bolt.Open("my.db", 0600, nil)
+//	//if err != nil {
+//	//	fmt.Println(err)
+//	//}
+//	//fmt.Println(db)
+//	db, err := bolt.Open("my.db", 0600, nil)
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(db)
+//	err = db.Update(func(tx *bolt.Tx) error {
+//		b, err := tx.CreateBucket([]byte("MyBucket11111"))
+//
+//		if err != nil {
+//			return fmt.Errorf("create bucket: %s", err)
+//		}
+//		b, err = tx.CreateBucket([]byte("MyBucket22222"))
+//		if err != nil {
+//			return fmt.Errorf("create bucket: %s", err)
+//		}
+//		bytes := make([]byte, 8)
+//		binary.BigEndian.PutUint64(bytes, 1)
+//		err = b.Put(bytes, []byte("1"))
+//		if err != nil {
+//			return err
+//		}
+//		binary.BigEndian.PutUint64(bytes, 10)
+//		err = b.Put(bytes, []byte("10"))
+//		if err != nil {
+//			return err
+//		}
+//		binary.BigEndian.PutUint64(bytes, 100)
+//		//err = b.Put([]byte{100}, []byte("zhangsan2"))
+//		//if err != nil {
+//		//	return err
+//		//}
+//		err = b.Put(bytes, []byte("100"))
+//		return err
+//	})
+//	err = db.View(func(tx *bolt.Tx) error {
+//		if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
+//			fmt.Println(string(name))
+//			return nil
+//		}); err != nil {
+//			fmt.Println(err)
+//		}
+//		return nil
+//	})
+//
+//	fmt.Println(err)
+//
+//}
+//
 //	err = db.View(func(tx *bolt.Tx) error {
 //		c := tx.Bucket([]byte("MyBucket")).Cursor()
 //		//for k, v := c.Last(); k != nil; k, v = c.Prev() {
