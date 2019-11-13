@@ -18,11 +18,11 @@ func testopenfile() {
 	}
 	//fmt.Println(db)
 	err = db.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucket([]byte("MyBucket11111"))
+		b, err := tx.CreateBucket([]byte("MyBucket1111111"))
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
-		b, err = tx.CreateBucket([]byte("MyBucket22222"))
+		b, err = tx.CreateBucket([]byte("MyBucket2222222"))
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
