@@ -1,6 +1,7 @@
 package test
 
 import (
+	"bytes"
 	"fmt"
 	"testing"
 
@@ -60,7 +61,10 @@ func testopenfile() {
 	})
 	err = db.View(func(tx *bolt.Tx) error {
 		if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
-			fmt.Println(string(name))
+
+			if bytes.HasPrefix(name, []byte("MyBucket")) {
+				fmt.Println(string(name))
+			}
 			return nil
 		}); err != nil {
 			fmt.Println(err)
