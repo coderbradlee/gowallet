@@ -1,7 +1,6 @@
 package test
 
 import (
-	"encoding/binary"
 	"fmt"
 	"testing"
 
@@ -17,10 +16,9 @@ func testopenfile() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(db)
+	//fmt.Println(db)
 	err = db.Update(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucket([]byte("MyBucket11111"))
-
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
@@ -32,23 +30,32 @@ func testopenfile() {
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
-		bytes := make([]byte, 8)
-		binary.BigEndian.PutUint64(bytes, 1)
-		err = b.Put(bytes, []byte("1"))
+		b, err = tx.CreateBucket([]byte("YYYYYYYYYYYYYYYYYYY"))
 		if err != nil {
-			return err
+			return fmt.Errorf("create bucket: %s", err)
 		}
-		binary.BigEndian.PutUint64(bytes, 10)
-		err = b.Put(bytes, []byte("10"))
+		b, err = tx.CreateBucket([]byte("MyBucket333333333"))
 		if err != nil {
-			return err
+			return fmt.Errorf("create bucket: %s", err)
 		}
-		binary.BigEndian.PutUint64(bytes, 100)
-		//err = b.Put([]byte{100}, []byte("zhangsan2"))
+		fmt.Println(b)
+		//bytes := make([]byte, 8)
+		//binary.BigEndian.PutUint64(bytes, 1)
+		//err = b.Put(bytes, []byte("1"))
 		//if err != nil {
 		//	return err
 		//}
-		err = b.Put(bytes, []byte("100"))
+		//binary.BigEndian.PutUint64(bytes, 10)
+		//err = b.Put(bytes, []byte("10"))
+		//if err != nil {
+		//	return err
+		//}
+		//binary.BigEndian.PutUint64(bytes, 100)
+		////err = b.Put([]byte{100}, []byte("zhangsan2"))
+		////if err != nil {
+		////	return err
+		////}
+		//err = b.Put(bytes, []byte("100"))
 		return err
 	})
 	err = db.View(func(tx *bolt.Tx) error {
