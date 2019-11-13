@@ -354,7 +354,7 @@ func testxx() {
 	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
 	//fmt.Println(encodeString2)
 
-	input := []byte("83")
+	input := []byte("58")
 	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
@@ -396,6 +396,15 @@ func TestXx(t *testing.T) {
 	//testudp()
 	//testbroard()
 	testxx()
+	//for i := uint64(10); i >= 1; i-- {
+	//	fmt.Println(i)
+	//}
+	actDetailList := make([]int, 0, 10)
+	for i := 0; i < 10; i++ {
+		actDetailList = append(actDetailList, i)
+	}
+	fmt.Println(actDetailList)
+	testfmt()
 	//testopenfile()
 	//fmt.Println(tt)
 	//time.Sleep(time.Second * 3)
