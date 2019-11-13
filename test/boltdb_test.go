@@ -28,6 +28,10 @@ func testopenfile() {
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
+		b, err = tx.CreateBucket([]byte("xxxxxxxxxxx"))
+		if err != nil {
+			return fmt.Errorf("create bucket: %s", err)
+		}
 		bytes := make([]byte, 8)
 		binary.BigEndian.PutUint64(bytes, 1)
 		err = b.Put(bytes, []byte("1"))
