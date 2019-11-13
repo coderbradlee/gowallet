@@ -28,7 +28,7 @@ func testopenfile() {
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
-		b, err = tx.CreateBucket([]byte("xxxxxxxxxxx"))
+		b, err = tx.CreateBucket([]byte("Xxxxxxxxxxx"))
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
 		}
