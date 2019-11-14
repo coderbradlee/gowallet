@@ -1,8 +1,8 @@
 package test
 
 import (
+	"context"
 	"encoding/base64"
-	"encoding/hex"
 	"fmt"
 	"math/big"
 	"testing"
@@ -354,40 +354,40 @@ func testxx() {
 	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
 	//fmt.Println(encodeString2)
 
-	input := []byte("58")
+	input := []byte("io1aqluejheje6rhr62lhtnpr5x9rgra3rq4fjllk")
 	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
 	fmt.Println(encodeString)
 
-	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5M2ZhMTAwNzlkMDAwMDAwMA==")
+	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MzFjMDQ5YzYyODljMDAwMA==")
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(string(decodeBytes))
 	x, _ := big.NewInt(0).SetString(string(decodeBytes), 16)
 	fmt.Println(x.Text(10))
-
-	h, _ := hex.DecodeString("000000000000000000000000000000000000000006765c7915fedc5ed9d40000")
-
-	y := big.NewInt(0).SetBytes(h)
-	fmt.Println(y.Text(10))
-
-	CurrIndex := []byte{255, 255, 255, 255, 255, 255, 255, 255}
-	maxuint64 := big.NewInt(0).SetBytes(CurrIndex)
-	fmt.Println(maxuint64.Text(10))
-	fmt.Println(^uint64(0))
-	//fmt.Println(uint64(0) - 1)
-	for i := uint64(0); i >= 0; i-- {
-		fmt.Println(i)
-		if i != 0 {
-			fmt.Println(i)
-			break
-		}
-	}
-	for i := uint8(0); i < 0; i++ {
-		fmt.Println("wahttttat")
-	}
+	//
+	//h, _ := hex.DecodeString("000000000000000000000000000000000000000006765c7915fedc5ed9d40000")
+	//
+	//y := big.NewInt(0).SetBytes(h)
+	//fmt.Println(y.Text(10))
+	//
+	//CurrIndex := []byte{255, 255, 255, 255, 255, 255, 255, 255}
+	//maxuint64 := big.NewInt(0).SetBytes(CurrIndex)
+	//fmt.Println(maxuint64.Text(10))
+	//fmt.Println(^uint64(0))
+	////fmt.Println(uint64(0) - 1)
+	//for i := uint64(0); i >= 0; i-- {
+	//	fmt.Println(i)
+	//	if i != 0 {
+	//		fmt.Println(i)
+	//		break
+	//	}
+	//}
+	//for i := uint8(0); i < 0; i++ {
+	//	fmt.Println("wahttttat")
+	//}
 }
 func TestXx(t *testing.T) {
 	//testyy()
@@ -396,15 +396,29 @@ func TestXx(t *testing.T) {
 	//testudp()
 	//testbroard()
 	testxx()
+	ctx := context.Background()
+	d := time.Duration(10) * time.Second
+	tt := time.NewTicker(d)
+	defer tt.Stop()
+	for {
+		select {
+		case <-tt.C:
+			fmt.Println("Prune run ", time.Now().String())
+			time.Sleep(15 * time.Second)
+		case <-ctx.Done():
+			fmt.Println("Prune exit")
+			return
+		}
+	}
 	//for i := uint64(10); i >= 1; i-- {
 	//	fmt.Println(i)
 	//}
-	actDetailList := make([]int, 0, 10)
-	for i := 0; i < 10; i++ {
-		actDetailList = append(actDetailList, i)
-	}
-	fmt.Println(actDetailList)
-	testfmt()
+	//actDetailList := make([]int, 0, 10)
+	//for i := 0; i < 10; i++ {
+	//	actDetailList = append(actDetailList, i)
+	//}
+	//fmt.Println(actDetailList)
+	//testfmt()
 	//testopenfile()
 	//fmt.Println(tt)
 	//time.Sleep(time.Second * 3)

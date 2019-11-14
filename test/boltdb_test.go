@@ -11,7 +11,21 @@ import (
 func TestYY(t *testing.T) {
 	testopenfile()
 }
-
+func GetBucketByPrefix(namespace []byte, db *bolt.DB) ([][]byte, error) {
+	allKey := make([][]byte, 0)
+	err := db.View(func(tx *bolt.Tx) error {
+		if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
+			if bytes.HasPrefix(name, namespace) {
+				allKey = append(allKey, name)
+			}
+			return nil
+		}); err != nil {
+			return err
+		}
+		return nil
+	})
+	return allKey, err
+}
 func testopenfile() {
 	db, err := bolt.Open("my.db", 0600, nil)
 	if err != nil {
@@ -40,6 +54,11 @@ func testopenfile() {
 			return fmt.Errorf("create bucket: %s", err)
 		}
 		fmt.Println(b)
+		ret, err := GetBucketByPrefix([]byte("MyBucket"), db)
+		fmt.Println(err)
+		for _, key := range ret {
+			fmt.Println(string(key))
+		}
 		//bytes := make([]byte, 8)
 		//binary.BigEndian.PutUint64(bytes, 1)
 		//err = b.Put(bytes, []byte("1"))
@@ -59,18 +78,18 @@ func testopenfile() {
 		//err = b.Put(bytes, []byte("100"))
 		return err
 	})
-	err = db.View(func(tx *bolt.Tx) error {
-		if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
-
-			if bytes.HasPrefix(name, []byte("MyBucket")) {
-				fmt.Println(string(name))
-			}
-			return nil
-		}); err != nil {
-			fmt.Println(err)
-		}
-		return nil
-	})
+	//err = db.View(func(tx *bolt.Tx) error {
+	//	if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
+	//
+	//		if bytes.HasPrefix(name, []byte("MyBucket")) {
+	//			fmt.Println(string(name))
+	//		}
+	//		return nil
+	//	}); err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	return nil
+	//})
 	//
 	//fmt.Println(err)
 	//err = db.Update(func(tx *bolt.Tx) error {
