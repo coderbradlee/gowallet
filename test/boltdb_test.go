@@ -55,7 +55,7 @@ func testopenfile() {
 		}
 		fmt.Println(b)
 		ret, err := GetBucketByPrefix([]byte("MyBucket"), db)
-		fmt.Println(err)
+		fmt.Println("err", err, ":len(ret):", len(ret))
 		for _, key := range ret {
 			fmt.Println(string(key))
 		}
