@@ -31,7 +31,7 @@ func testopenfile() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	//fmt.Println(db)
+	fmt.Println(db)
 	err = db.Update(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucket([]byte("MyBucket1111111"))
 		if err != nil {
@@ -54,11 +54,7 @@ func testopenfile() {
 			return fmt.Errorf("create bucket: %s", err)
 		}
 		fmt.Println(b)
-		ret, err := GetBucketByPrefix([]byte("MyBucket"), db)
-		fmt.Println("err", err, ":len(ret):", len(ret))
-		for _, key := range ret {
-			fmt.Println(string(key))
-		}
+
 		//bytes := make([]byte, 8)
 		//binary.BigEndian.PutUint64(bytes, 1)
 		//err = b.Put(bytes, []byte("1"))
@@ -78,6 +74,11 @@ func testopenfile() {
 		//err = b.Put(bytes, []byte("100"))
 		return err
 	})
+	ret, err := GetBucketByPrefix([]byte("MyBucket"), db)
+	fmt.Println("err", err, ":len(ret):", len(ret))
+	for _, key := range ret {
+		fmt.Println(string(key))
+	}
 	//err = db.View(func(tx *bolt.Tx) error {
 	//	if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
 	//
