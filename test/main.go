@@ -1,11 +1,5 @@
 package test
 
-import (
-	"fmt"
-	"log"
-)
+func main() {
 
-func testfmt() {
-	fmt.Println("fmt")
-	log.Println("log")
 }

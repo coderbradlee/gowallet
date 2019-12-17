@@ -15,7 +15,7 @@ import (
 	"github.com/tyler-smith/go-bip39"
 	// "golang.org/x/crypto/pbkdf2"
 	// "golang.org/x/crypto/scrypt"
-	"hdwallet/nuls"
+	"github.com/lzxm160/gowallet/src/hdwallet/nuls"
 )
 
 type Hdwallet struct {

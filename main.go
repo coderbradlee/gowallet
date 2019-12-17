@@ -1,58 +1,69 @@
 package main
 
-//
-//import (
-//	"log"
-//	"net/http"
-//
-//	"github.com/prometheus/client_golang/prometheus"
-//	"github.com/prometheus/client_golang/prometheus/promhttp"
-//)
-//
-//var (
-//	cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{
-//		Name: "cpu_temperature_celsius",
-//		Help: "Current temperature of the CPU.",
-//	})
-//	hdFailures = prometheus.NewCounterVec(
-//		prometheus.CounterOpts{
-//			Name: "hd_errors_total",
-//			Help: "Number of hard-disk errors.",
-//		},
-//		[]string{"device"},
-//	)
-//)
-//
-//func init() {
-//	// Metrics have to be registered to be exposed:
-//	prometheus.MustRegister(cpuTemp)
-//	prometheus.MustRegister(hdFailures)
-//}
-//
-//func main() {
-//	cpuTemp.Set(65.3)
-//	hdFailures.With(prometheus.Labels{"device": "/dev/sda"}).Inc()
-//
-//	// The Handler function provides a default handler to expose metrics
-//	// via an HTTP server. "/metrics" is the usual endpoint for that.
-//	http.Handle("/metrics", promhttp.Handler())
-//	log.Fatal(http.ListenAndServe(":8080", nil))
-//}
 import (
 	"fmt"
-	"net/http"
-	_ "net/http/pprof"
+	"os"
 	"time"
+
+	"github.com/lzxm160/gowallet/src/hdwallet"
 )
 
 func main() {
-	go func() {
-		http.ListenAndServe(":8088", nil)
-	}()
-	for i := 0; i < 100; i++ {
-		time.Sleep(time.Second)
-		fmt.Println(":", i)
+	f, err := os.Create("output.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-	ch := make(chan string)
-	<-ch
+	defer f.Close()
+	//l, err := f.WriteString("Hello World")
+	//if err != nil {
+	//	fmt.Println(err)
+	//	f.Close()
+	//	return
+	//}
+	for {
+		hd := hdwallet.Hdwallet{}
+		addr, pri, err := hd.GenerateAddress(0, 0, 0, 0)
+		if err == nil {
+			continue
+		}
+		fmt.Println("btc:", addr)
+		balance, err := hdwallet.GetBTCBalanceByAddr(addr)
+		if err == nil {
+			continue
+		}
+		if balance != "0" {
+			f.WriteString(addr + ":" + pri + ":" + balance)
+		}
+
+		/////////
+		addr, pri, err = hd.GenerateAddress(2, 0, 0, 0)
+		if err == nil {
+			continue
+		}
+		fmt.Println("ltc:", addr)
+		balance, err = hdwallet.GetLTCBalanceByAddr(addr)
+		if err == nil {
+			continue
+		}
+		if balance != "0" {
+			f.WriteString(addr + ":" + pri + ":" + balance)
+		}
+		///////////////////
+		//addr, pri, err = hd.GenerateAddress(60, 0, 0, 0)
+		//if err == nil {
+		//	continue
+		//}
+		//fmt.Println("eth:", addr)
+		//
+		//balance, err = hdwallet.(addr)
+		//if err == nil {
+		//	continue
+		//}
+		//if balance != "0" {
+		//	f.WriteString(addr + ":" + pri + ":" + balance)
+		//}
+		time.Sleep(time.Millisecond * 100)
+	}
+
 }

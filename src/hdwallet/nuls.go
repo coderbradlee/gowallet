@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+
 	"github.com/btcsuite/btcutil/hdkeychain"
-	"hdwallet/nuls"
+	"github.com/lzxm160/gowallet/src/hdwallet/nuls"
 )
 
 //Nuls转账
