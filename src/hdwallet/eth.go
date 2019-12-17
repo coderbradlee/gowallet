@@ -130,7 +130,7 @@ func GetBalance(addr string) (balance string, err error) {
 	//"result": "0x0234c8a3397aab58" // 158972490234375000
 	//}
 	url := "https://mainnet.infura.io/v3/33d5efb02b384213b386b08b324cdaaa"
-	res, err := doPost(url, "eth_getBalance", []string{addr, "latest"})
+	res, err := doPost(url, "eth_getBalance", []string{"0x" + addr, "latest"})
 	if err != nil {
 		fmt.Println("dopost:", err)
 		return
