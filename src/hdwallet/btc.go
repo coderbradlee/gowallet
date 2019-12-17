@@ -511,9 +511,10 @@ func loadBtcUnspentByAddress(address string) (chainUnspent ChainUnspentInfo, err
 	} else {
 		_url = fmt.Sprintf("https://chain.so/api/v2/get_tx_unspent/BTCTEST/%s", address)
 	}
-
+	jar, err := cookiejar.New(nil)
 	client := &http.Client{
 		Timeout: requestTimeout,
+		Jar:     jar,
 	}
 	resp, err := client.Get(_url)
 	if err != nil {
@@ -588,8 +589,10 @@ func getBtcExtendBalance(address string) (balance string, err error) {
 	if btcAddressNetParams.Name == "mainnet" {
 		_url = fmt.Sprintf("https://blockchain.info/q/addressbalance/%s", address)
 	}
+	jar, err := cookiejar.New(nil)
 	client := &http.Client{
 		Timeout: requestTimeout,
+		Jar:     jar,
 	}
 	resp, err := client.Get(_url)
 	if err != nil {
