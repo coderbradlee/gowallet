@@ -339,7 +339,7 @@ func GetLTCBalanceByAddr(address string) (balance string, err error) {
 	if err != nil {
 		return
 	}
-	//fmt.Println("The get Balance info is ", string(bs))
+	fmt.Println("LTC The get Balance info is ", string(bs))
 	err = json.Unmarshal(bs, &rest)
 	if err != nil {
 		//fmt.Println("There are some errors:", err)
