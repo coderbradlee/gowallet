@@ -1,9 +1,10 @@
 package hdwallet
 
 import (
+	"time"
+
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/wire"
-	"time"
 )
 
 var (
@@ -11,8 +12,8 @@ var (
 	accountName = "*"
 	minCfm      = 1
 
-	// btcAddressNetParams = chaincfg.MainNetParams
-	btcAddressNetParams = chaincfg.TestNet3Params
+	btcAddressNetParams = chaincfg.MainNetParams
+	//btcAddressNetParams = chaincfg.TestNet3Params
 
 	ltcAddressNetParams = LtcNetParams
 
