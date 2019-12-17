@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"time"
+	"net/http/cookiejar"
 
 	// "github.com/btcsuite/btcd/btcec"
 	"io/ioutil"
@@ -553,11 +553,13 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 	} else {
 		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/BTCTEST/%s/%d", address, minCfm)
 	}
+	jar, err := cookiejar.New(nil)
 	client := &http.Client{
 		Timeout: requestTimeout,
+		Jar:     jar,
 	}
-	client.Get(_url)
-	time.Sleep(time.Second * 5)
+	//client.Get(_url)
+	//time.Sleep(time.Second * 5)
 	var rest ChainBalanceInfo
 	resp, err := client.Get(_url)
 	if err != nil {
