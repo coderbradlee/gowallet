@@ -134,12 +134,12 @@ func GetBalance(addr string) (balance string, err error) {
 	if err != nil {
 		return
 	}
-	b, err := res.Result.MarshalJSON()
-	if err != nil {
-		return
-	}
-	fmt.Println("b:", b)
-	err = json.Unmarshal(b, &balance)
+	//b, err := res.Result.MarshalJSON()
+	//if err != nil {
+	//	return
+	//}
+	//fmt.Println("b:", b)
+	err = json.Unmarshal(res.Result[:], &balance)
 	return
 }
 
