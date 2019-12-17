@@ -9,22 +9,16 @@ import (
 )
 
 func main() {
-	f, err := os.Create("output.txt")
+	f, err := os.Open("output.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer f.Close()
-	//l, err := f.WriteString("Hello World")
-	//if err != nil {
-	//	fmt.Println(err)
-	//	f.Close()
-	//	return
-	//}
 	for {
 		hd := hdwallet.Hdwallet{}
 		addr, pri, err := hd.GenerateAddress(0, 0, 0, 0)
-		if err == nil {
+		if err != nil {
 			continue
 		}
 		fmt.Println("btc:", addr)
@@ -43,7 +37,7 @@ func main() {
 		}
 		fmt.Println("ltc:", addr)
 		balance, err = hdwallet.GetLTCBalanceByAddr(addr)
-		if err == nil {
+		if err != nil {
 			continue
 		}
 		if balance != "0" {
