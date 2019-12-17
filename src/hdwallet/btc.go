@@ -5,16 +5,17 @@ import (
 	"errors"
 	"fmt"
 	// "github.com/btcsuite/btcd/btcec"
+	"io/ioutil"
+	"math/big"
+	"net/http"
+	"strconv"
+
 	"github.com/btcsuite/btcd/btcjson"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/txscript"
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	"io/ioutil"
-	"math/big"
-	"net/http"
-	"strconv"
 )
 
 func (hd *Hdwallet) btcAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
@@ -546,7 +547,7 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 	}
 	var _url string
 	if btcAddressNetParams.Name == "mainnet" {
-		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/BTC/%s/%d", address, minCfm)
+		_url = fmt.Sprintf("https://sochain.com/api/v2/get_address_balance/BTC/%s/%d", address, minCfm)
 	} else {
 		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/BTCTEST/%s/%d", address, minCfm)
 	}
