@@ -138,6 +138,7 @@ func GetBalance(addr string) (balance string, err error) {
 	if err != nil {
 		return
 	}
+	fmt.Println("b:", b)
 	err = json.Unmarshal(b, &balance)
 	return
 }
