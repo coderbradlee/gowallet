@@ -4,16 +4,19 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http/cookiejar"
+
 	// "github.com/btcsuite/btcd/btcec"
+	"io/ioutil"
+	"net/http"
+	"strconv"
+
 	"github.com/btcsuite/btcd/btcjson"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/txscript"
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	"io/ioutil"
-	"net/http"
-	"strconv"
 )
 
 func (hd *Hdwallet) ltcAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
@@ -322,8 +325,10 @@ func GetLTCBalanceByAddr(address string) (balance string, err error) {
 	} else {
 		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/LTCTEST/%s/%d", address, minCfm)
 	}
+	jar, err := cookiejar.New(nil)
 	client := &http.Client{
 		Timeout: requestTimeout,
+		Jar:     jar,
 	}
 	var rest ChainBalanceInfo
 	resp, err := client.Get(_url)
@@ -334,7 +339,7 @@ func GetLTCBalanceByAddr(address string) (balance string, err error) {
 	if err != nil {
 		return
 	}
-	fmt.Println("The get Balance info is ", string(bs))
+	//fmt.Println("The get Balance info is ", string(bs))
 	err = json.Unmarshal(bs, &rest)
 	if err != nil {
 		//fmt.Println("There are some errors:", err)
