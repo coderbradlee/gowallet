@@ -1,7 +1,6 @@
 package test
 
 import (
-	"context"
 	"encoding/base64"
 	"fmt"
 	"math/big"
@@ -354,13 +353,13 @@ func testxx() {
 	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
 	//fmt.Println(encodeString2)
 
-	input := []byte("io1aqluejheje6rhr62lhtnpr5x9rgra3rq4fjllk")
+	input := []byte("23")
 	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
 	fmt.Println(encodeString)
 
-	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5MzFjMDQ5YzYyODljMDAwMA==")
+	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5M2ZhMTAwNzlkMDAwMDAwMA==")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -389,27 +388,42 @@ func testxx() {
 	//	fmt.Println("wahttttat")
 	//}
 }
+func testttt() bool {
+	fmt.Println("testtttttt")
+	return true
+}
+func testdefer() {
+	defer fmt.Println(testttt())
+	fmt.Println("testdefer")
+}
 func TestXx(t *testing.T) {
+	testdefer()
 	//testyy()
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
 	//testbroard()
 	testxx()
-	ctx := context.Background()
-	d := time.Duration(10) * time.Second
-	tt := time.NewTicker(d)
-	defer tt.Stop()
-	for {
-		select {
-		case <-tt.C:
-			fmt.Println("Prune run ", time.Now().String())
-			time.Sleep(15 * time.Second)
-		case <-ctx.Done():
-			fmt.Println("Prune exit")
-			return
-		}
-	}
+	//tag := []byte("123")
+	//key := []byte("456")
+	//k := make([]byte, len(tag)+len(key))
+	//copy(k, tag)
+	//k = append(k, key...)
+	//fmt.Println(string(k))
+	//ctx := context.Background()
+	//d := time.Duration(10) * time.Second
+	//tt := time.NewTicker(d)
+	//defer tt.Stop()
+	//for {
+	//	select {
+	//	case <-tt.C:
+	//		fmt.Println("Prune run ", time.Now().String())
+	//		time.Sleep(15 * time.Second)
+	//	case <-ctx.Done():
+	//		fmt.Println("Prune exit")
+	//		return
+	//	}
+	//}
 	//for i := uint64(10); i >= 1; i-- {
 	//	fmt.Println(i)
 	//}
