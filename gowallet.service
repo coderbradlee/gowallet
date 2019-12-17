@@ -1,0 +1,15 @@
+[Unit]
+Description=gowallet node
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/root/gowallet
+Environment="XDG_RUNTIME_DIR=/root"
+WorkingDirectory=/root
+PrivateTmp=true
+Restart=on-failure
+RestartSec=10
+User=root
+[Install]
+WantedBy=multi-user.target
