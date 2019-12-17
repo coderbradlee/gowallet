@@ -599,7 +599,7 @@ func getBtcExtendBalance(address string) (balance string, err error) {
 	if err != nil {
 		return
 	}
-	fmt.Println("The Btc get Balance info is ", string(bs))
+	//fmt.Println("The Btc get Balance info is ", string(bs))
 	balanceValue, err := strconv.ParseFloat(string(bs), 10)
 	btc := balanceValue / (100 * 1000 * 1000)
 	retBalance := fmt.Sprintf("%.8f", btc)

@@ -1,19 +1,25 @@
 package hdwallet
 
 import (
+	"bytes"
 	"crypto/ecdsa"
 	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
+	"net/http"
+
 	// "github.com/btcsuite/btcd/btcec"
+	"math/big"
+	"strconv"
+	"strings"
+
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
-	"math/big"
-	"strconv"
-	"strings"
 )
 
 func (hd *Hdwallet) ethAddress(child *hdkeychain.ExtendedKey) (address string, err error) {
@@ -111,4 +117,67 @@ func addressforEth(k *hdkeychain.ExtendedKey) ([]byte, error) {
 	pkPrv := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
 	pkHash := pkPrv[:]
 	return pkHash, nil
+}
+
+func GetBalance(addr string) (balance string, err error) {
+	// Request
+	//	curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"],"id":1}'
+	//
+	//// Result
+	//{
+	//"id":1,
+	//"jsonrpc": "2.0",
+	//"result": "0x0234c8a3397aab58" // 158972490234375000
+	//}
+	url := "https://mainnet.infura.io/v3/33d5efb02b384213b386b08b324cdaaa"
+	res, err := doPost(url, "eth_getBalance", []string{addr, "latest"})
+	if err != nil {
+		return
+	}
+	b, err := res.Result.MarshalJSON()
+	if err != nil {
+		return
+	}
+	err = json.Unmarshal(b, &balance)
+	return
+}
+
+func doPost(url string, method string, params interface{}) (*JSONRpcResp, error) {
+	client := &http.Client{
+		Timeout: requestTimeout,
+	}
+	jsonReq := map[string]interface{}{"jsonrpc": "2.0", "method": method, "params": params, "id": 0}
+	data, _ := json.Marshal(jsonReq)
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
+
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+
+	req.Header.Set("Content-Length", (string)(len(data)))
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var rpcResp *JSONRpcResp
+	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
+	if err != nil {
+		return nil, err
+	}
+	if rpcResp.Error != nil {
+		return nil, errors.New(rpcResp.Error["message"].(string))
+	}
+	return rpcResp, err
+}
+
+type JSONRpcResp struct {
+	Id      *json.RawMessage       `json:"id,omitempty"`
+	Result  *json.RawMessage       `json:"result,omitempty"`
+	Error   map[string]interface{} `json:"error,omitempty"`
+	Jsonrpc string                 `json:"jsonrpc,omitempty"`
 }

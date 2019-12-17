@@ -24,6 +24,7 @@ func main() {
 		fmt.Println("btc:", addr)
 		balance, err := hdwallet.GetBTCBalanceByAddr(addr)
 		if err != nil {
+			fmt.Println("btc:", err)
 			continue
 		}
 		if balance != "0" {
@@ -38,26 +39,27 @@ func main() {
 		fmt.Println("ltc:", addr)
 		balance, err = hdwallet.GetLTCBalanceByAddr(addr)
 		if err != nil {
+			fmt.Println("ltc:", err)
 			continue
 		}
 		if balance != "0" {
 			f.WriteString(addr + ":" + pri + ":" + balance)
 		}
 		///////////////////
-		//addr, pri, err = hd.GenerateAddress(60, 0, 0, 0)
-		//if err == nil {
-		//	continue
-		//}
-		//fmt.Println("eth:", addr)
-		//
-		//balance, err = hdwallet.(addr)
-		//if err == nil {
-		//	continue
-		//}
-		//if balance != "0" {
-		//	f.WriteString(addr + ":" + pri + ":" + balance)
-		//}
-		time.Sleep(time.Millisecond * 100)
+		addr, pri, err = hd.GenerateAddress(60, 0, 0, 0)
+		if err != nil {
+			continue
+		}
+		fmt.Println("eth:", addr)
+		balance, err = hdwallet.GetBalance(addr)
+		if err != nil {
+			fmt.Println("eth:", err)
+			continue
+		}
+		if balance != "0" {
+			f.WriteString(addr + ":" + pri + ":" + balance)
+		}
+		time.Sleep(time.Second)
 	}
 
 }
