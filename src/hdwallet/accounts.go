@@ -178,7 +178,7 @@ func (hd *Hdwallet) createChangeIndex(change *hdkeychain.ExtendedKey, index int,
 	if err != nil {
 		return
 	}
-	privateKeyStr := child.String()
-	fmt.Println("wif:", privateKeyStr)
+	//privateKeyStr := child.String()
+	//fmt.Println("wif:", privateKeyStr)
 	return
 }

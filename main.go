@@ -29,7 +29,7 @@ func main() {
 		}
 		fmt.Println("btc:", addr)
 		balance, err := hdwallet.GetBTCBalanceByAddr(addr)
-		if err == nil {
+		if err != nil {
 			continue
 		}
 		if balance != "0" {
@@ -38,7 +38,7 @@ func main() {
 
 		/////////
 		addr, pri, err = hd.GenerateAddress(2, 0, 0, 0)
-		if err == nil {
+		if err != nil {
 			continue
 		}
 		fmt.Println("ltc:", addr)
