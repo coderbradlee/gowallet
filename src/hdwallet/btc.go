@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"time"
+
 	// "github.com/btcsuite/btcd/btcec"
 	"io/ioutil"
 	"math/big"
@@ -554,6 +556,8 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 	client := &http.Client{
 		Timeout: requestTimeout,
 	}
+	client.Get(_url)
+	time.Sleep(time.Second * 5)
 	var rest ChainBalanceInfo
 	resp, err := client.Get(_url)
 	if err != nil {
