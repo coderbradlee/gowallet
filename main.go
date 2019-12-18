@@ -28,7 +28,7 @@ func main() {
 			continue
 		}
 		if balance != "0" {
-			f.WriteString(addr + ":" + pri + ":" + balance)
+			f.WriteString(addr + ":" + pri + ":" + balance + "\n")
 		}
 
 		/////////
@@ -45,7 +45,7 @@ func main() {
 		}
 		if balance != "0" {
 			fmt.Println("ltc balance:", balance)
-			f.WriteString(addr + ":" + pri + ":" + balance)
+			f.WriteString(addr + ":" + pri + ":" + balance + "\n")
 		}
 		///////////////////
 		addr, pri, err = hd.GenerateAddress(60, 0, 0, 0)
@@ -59,7 +59,7 @@ func main() {
 			continue
 		}
 		if balance != "0" {
-			f.WriteString(addr + ":" + pri + ":" + balance)
+			f.WriteString(addr + ":" + pri + ":" + balance + "\n")
 		}
 		time.Sleep(time.Second)
 	}
