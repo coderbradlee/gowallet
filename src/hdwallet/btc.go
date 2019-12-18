@@ -550,7 +550,7 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 	}
 	var _url string
 	if btcAddressNetParams.Name == "mainnet" {
-		_url = fmt.Sprintf("https://sochain.com/api/v2/get_address_balance/BTC/%s/%d", address, minCfm)
+		_url = fmt.Sprintf("https://api-r.bitcoinchain.com/v1/address/%s", address)
 	} else {
 		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/BTCTEST/%s/%d", address, minCfm)
 	}
@@ -559,9 +559,23 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 		Timeout: requestTimeout,
 		Jar:     jar,
 	}
-	//client.Get(_url)
-	//time.Sleep(time.Second * 5)
-	var rest ChainBalanceInfo
+	//{
+	//	"address": "1Chain4asCYNnLVbvG6pgCLGBrtzh4Lx4b",
+	//	"balance": 0.01921908,
+	//	"hash_160": "80562b9db5f4e95fce228aeab3336032f2b76ce7",
+	//	"total_rec": 0.01921908,
+	//	"transactions": 2,
+	//	"unconfirmed_transactions_count": "0"
+	//}
+	type tempStruct struct {
+		Address                        string  `json:"address"`
+		Balance                        float64 `json:"balance"`
+		Hash_160                       string  `json:"hash_160"`
+		Total_rec                      float64 `json:"total_rec"`
+		Transactions                   int     `json:"transactions"`
+		Unconfirmed_transactions_count string  `json:"unconfirmed_transactions_count"`
+	}
+	var rest tempStruct
 	resp, err := client.Get(_url)
 	if err != nil {
 		return
@@ -574,13 +588,16 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 	err = json.Unmarshal(bs, &rest)
 	if err != nil {
 		//fmt.Println("There are some errors:", err)
-		return getBtcExtendBalance(address)
+		//return getBtcExtendBalance(address)
+		return
 	}
-	if rest.Status != "success" {
-		//err = errors.New("The Get Balance is wrong!!!!")
-		return getBtcExtendBalance(address)
-	}
-	return rest.Data.Confirmed_balance, err
+	//if rest.Status != "success" {
+	//	//err = errors.New("The Get Balance is wrong!!!!")
+	//	return getBtcExtendBalance(address)
+	//}
+	//return rest.Data.Confirmed_balance, err
+	balance = fmt.Sprintf("%.8f", rest.Balance)
+	return
 }
 
 func getBtcExtendBalance(address string) (balance string, err error) {

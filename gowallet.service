@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/root/gowallet
-Environment="XDG_RUNTIME_DIR=/root"
-WorkingDirectory=/root
+ExecStart=/home/ubuntu/gowallet
+Environment="XDG_RUNTIME_DIR=/home/ubuntu"
+WorkingDirectory=/home/ubuntu
 PrivateTmp=true
 Restart=on-failure
 RestartSec=10
