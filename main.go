@@ -44,6 +44,7 @@ func main() {
 			continue
 		}
 		if balance != "0" {
+			fmt.Println("ltc balance:", balance)
 			f.WriteString(addr + ":" + pri + ":" + balance)
 		}
 		///////////////////
