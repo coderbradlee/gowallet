@@ -37,7 +37,8 @@ func main() {
 			continue
 		}
 		fmt.Println("ltc:", addr)
-		balance, err = hdwallet.GetLTCBalanceByAddr(addr)
+		//balance, err = hdwallet.GetLTCBalanceByAddr(addr)
+		balance, err = hdwallet.GetLTCBalanceByAddr("LZ43jcFdxNVpJWJ6o3neYEsnqEGxQTsP9M")
 		if err != nil {
 			fmt.Println("ltc:", err)
 			continue
