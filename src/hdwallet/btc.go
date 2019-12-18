@@ -575,7 +575,7 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 		Transactions                   int     `json:"transactions"`
 		Unconfirmed_transactions_count string  `json:"unconfirmed_transactions_count"`
 	}
-	var rest tempStruct
+	var rest = make([]tempStruct, 0)
 	resp, err := client.Get(_url)
 	if err != nil {
 		return
@@ -596,7 +596,7 @@ func GetBTCBalanceByAddr(address string) (balance string, err error) {
 	//	return getBtcExtendBalance(address)
 	//}
 	//return rest.Data.Confirmed_balance, err
-	balance = fmt.Sprintf("%.8f", rest.Balance)
+	balance = fmt.Sprintf("%.8f", rest[0].Balance)
 	return
 }
 
