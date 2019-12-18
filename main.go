@@ -43,7 +43,7 @@ func main() {
 			fmt.Println("ltc:", err)
 			continue
 		}
-		if balance != "0" || balance != "" {
+		if balance != "0" && balance != "" {
 			fmt.Println("ltc balance:", balance)
 			f.WriteString(addr + ":" + pri + ":" + balance + "\n")
 		}
