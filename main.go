@@ -27,7 +27,7 @@ func main() {
 			fmt.Println("btc:", err)
 			continue
 		}
-		if balance != "0" {
+		if balance != "0.00000000" {
 			f.WriteString(addr + ":" + pri + ":" + balance + "\n")
 		}
 
@@ -58,7 +58,7 @@ func main() {
 			fmt.Println("eth:", err)
 			continue
 		}
-		if balance != "0" {
+		if balance != "0x0" {
 			f.WriteString(addr + ":" + pri + ":" + balance + "\n")
 		}
 		time.Sleep(time.Second)
