@@ -322,7 +322,7 @@ func GetLTCBalanceByAddr(address string) (balance string, err error) {
 	//https://chain.so/api/v2/get_address_balance/LTC/%s/%d
 	var _url string
 	if ltcAddressNetParams.Name == "mainnet" {
-		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/LTC/%s/%d", address, minCfm)
+		_url = fmt.Sprintf("https://ltc-chain.api.btc.com/v3/address/%s/unspent", address)
 	} else {
 		_url = fmt.Sprintf("https://chain.so/api/v2/get_address_balance/LTCTEST/%s/%d", address, minCfm)
 	}
@@ -331,7 +331,40 @@ func GetLTCBalanceByAddr(address string) (balance string, err error) {
 		Timeout: requestTimeout,
 		Jar:     jar,
 	}
-	var rest ChainBalanceInfo
+	type tlist struct {
+		Tx_hash       string `json:"tx_hash,omitempty"`
+		Tx_output_n   int    `json:"tx_output_n,omitempty"`
+		Tx_output_n2  int    `json:"tx_output_n2,omitempty"`
+		Value         int    `json:"value,omitempty"`
+		Confirmations int    `json:"confirmations,omitempty"`
+	}
+	type tempStruct2 struct {
+		Total_count int     `json:"total_count,omitempty"`
+		Page        int     `json:"page,omitempty"`
+		Pagesize    int     `json:"pagesize,omitempty"`
+		List        []tlist `json:"list,omitempty"`
+	}
+	type tempStruct struct {
+		Data    tempStruct2 `json:"data,omitempty"`
+		Err_no  int         `json:"err_no,omitempty"`
+		Err_msg string      `json:"err_msg,omitempty"`
+	}
+
+	//	{
+	//		"total_count": 12874,
+	//		"page": 1,
+	//		"pagesize": 50,
+	//		"list": [
+	//	{
+	//		"tx_hash": "17329ae013c65efcb9b7bde9ea00ad9bb6c5ad3a0c1afc1d1d300f0c8dc327f8",
+	//		"tx_output_n": 0,
+	//		"tx_output_n2": 0,
+	//		"value": 1253272832,
+	//		"confirmations": 104
+	//	}
+	//]
+	//	},
+	var rest tempStruct
 	resp, err := client.Get(_url)
 	if err != nil {
 		return
@@ -344,15 +377,19 @@ func GetLTCBalanceByAddr(address string) (balance string, err error) {
 	err = json.Unmarshal(bs, &rest)
 	if err != nil {
 		//fmt.Println("There are some errors:", err)
-		return getLtcExtendBalance(address)
+		//return getLtcExtendBalance(address)
+		return
 	}
-	if rest.Status != "success" {
-		//err = errors.New("The Get Balance is wrong!!!!")
-		return getLtcExtendBalance(address)
-	}
+	//if rest.Status != "success" {
+	//	//err = errors.New("The Get Balance is wrong!!!!")
+	//	return getLtcExtendBalance(address)
+	//}
 	//fmt.Println("The balance is #v%", rest.Data.Confirmed_balance)
 	//balance, _ := strconv.ParseFloat(rest.Data.Confirmed_balance, 64)
-	return rest.Data.Confirmed_balance, err
+	if rest.Err_no == 0 {
+		balance = fmt.Sprintf("%d", rest.Data.Total_count)
+	}
+	return
 }
 
 func getLtcExtendBalance(address string) (balance string, err error) {
