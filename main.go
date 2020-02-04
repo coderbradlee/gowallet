@@ -56,7 +56,7 @@ func generateAddress() error {
 		if err != nil {
 			continue
 		}
-		fmt.Println("btc:", addr)
+		fmt.Println("btc:", addr, ",table:", coint)
 
 		if _, err = stmt.Exec(pri, "btc", addr, time.Now().Unix()); err != nil {
 			fmt.Println(err)
