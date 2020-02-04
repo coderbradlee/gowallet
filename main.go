@@ -10,8 +10,10 @@ import (
 )
 
 const (
-	table_name = "coin"
-	creation   = "CREATE TABLE IF NOT EXISTS %s (id INTEGER PRIMARY KEY AUTOINCREMENT, private TEXT UNIQUE, cointype TEXT,address TEXT,balance TEXT, time TIMESTAMP)"
+	table_name = "table_name"
+	creation   = "CREATE TABLE IF NOT EXISTS %s (id INTEGER PRIMARY KEY AUTOINCREMENT)"
+	selectSql  = "select max(id) from %s"
+	cointable  = "CREATE TABLE IF NOT EXISTS %s (id INTEGER PRIMARY KEY AUTOINCREMENT, private TEXT UNIQUE, cointype TEXT,address TEXT,balance TEXT, time TIMESTAMP)"
 	insert     = "INSERT OR REPLACE INTO %s (private, cointype, address,time) VALUES (?, ?, ?,?)"
 )
 
@@ -20,9 +22,15 @@ func generateAddress() error {
 	if err != nil {
 		return err
 	}
+	// create table to record coin'table count
 	if _, err = sqlDB.Exec(fmt.Sprintf(creation, table_name)); err != nil {
 		return err
 	}
+	ret, err := sqlDB.Exec(fmt.Sprintf(selectSql, table_name))
+	if err != nil {
+		return err
+	}
+	fmt.Println(ret)
 	stmt, err := sqlDB.Prepare(fmt.Sprintf(insert, table_name))
 	if err != nil {
 		return err
@@ -59,6 +67,7 @@ func generateAddress() error {
 			fmt.Println(err)
 			continue
 		}
+		time.Sleep(time.Millisecond * 100)
 	}
 
 }
