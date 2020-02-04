@@ -17,6 +17,7 @@ require (
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
+	github.com/mattn/go-sqlite3 v1.11.0
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/stretchr/testify v1.3.0 // indirect
