@@ -38,7 +38,7 @@ func generateAddress() error {
 		name = 1
 	}
 	fmt.Println(name)
-	coint := fmt.Sprintf("%d", name)
+	coint := "coin_" + fmt.Sprintf("%d", name)
 	if _, err = sqlDB.Exec(fmt.Sprintf(cointable, coint)); err != nil {
 		return err
 	}
