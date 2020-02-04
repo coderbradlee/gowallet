@@ -2,6 +2,7 @@ package test
 
 import (
 	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"math/big"
 	"testing"
@@ -353,7 +354,7 @@ func testxx() {
 	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
 	//fmt.Println(encodeString2)
 
-	input := []byte("23")
+	input := []byte("18160ddd")
 	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
 	// 演示base64编码
 	encodeString := base64.StdEncoding.EncodeToString(input)
@@ -397,13 +398,16 @@ func testdefer() {
 	fmt.Println("testdefer")
 }
 func TestXx(t *testing.T) {
-	testdefer()
+	//testdefer()
 	//testyy()
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
 	//testbroard()
 	testxx()
+	te := []byte{1, 2, 3}
+	fmt.Println(fmt.Sprintf("%x", te))
+	fmt.Println(hex.EncodeToString(te))
 	//tag := []byte("123")
 	//key := []byte("456")
 	//k := make([]byte, len(tag)+len(key))
