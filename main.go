@@ -20,7 +20,7 @@ func generateAddress() error {
 	if err != nil {
 		return err
 	}
-	if _, err = sqlDB.Exec(creation); err != nil {
+	if _, err = sqlDB.Exec(fmt.Sprintf(creation, table_name)); err != nil {
 		return err
 	}
 	stmt, err := sqlDB.Prepare(fmt.Sprintf(insert, table_name))
