@@ -32,9 +32,10 @@ func generateAddress() error {
 	}
 	defer stmt.Close()
 	var name int
-	err = stmt.QueryRow("0").Scan(&name)
+	err = stmt.QueryRow("1").Scan(&name)
 	if err != nil {
 		fmt.Println(err)
+		return err
 	}
 	fmt.Println(name)
 	coint := fmt.Sprintf("%s", name)
