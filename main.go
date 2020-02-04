@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"reflect"
 	"time"
 
 	"github.com/lzxm160/gowallet/src/hdwallet"
@@ -30,7 +31,7 @@ func generateAddress() error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(ret)
+	fmt.Println(reflect.TypeOf(ret))
 	stmt, err := sqlDB.Prepare(fmt.Sprintf(insert, table_name))
 	if err != nil {
 		return err
