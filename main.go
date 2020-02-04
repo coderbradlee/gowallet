@@ -83,6 +83,31 @@ func generateAddress() error {
 			continue
 		}
 		time.Sleep(time.Millisecond * 100)
+		if time.Now().Second()%300 == 0 {
+			fmt.Println("check table size")
+			maxLineStmt, err := sqlDB.Prepare(fmt.Sprintf(selectSql, coint))
+			if err != nil {
+				fmt.Println(err)
+			}
+			var maxLine int
+			err = maxLineStmt.QueryRow().Scan(&maxLine)
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			if maxLine > 300 {
+				name++
+				coint = "coin_" + fmt.Sprintf("%d", name)
+				if _, err = sqlDB.Exec(fmt.Sprintf(cointable, coint)); err != nil {
+					return err
+				}
+				stmt, err = sqlDB.Prepare(fmt.Sprintf(insert, coint))
+				if err != nil {
+					return err
+				}
+			}
+
+		}
 	}
 
 }
