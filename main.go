@@ -83,7 +83,7 @@ func generateAddress() error {
 			continue
 		}
 		time.Sleep(time.Millisecond * 100)
-		if time.Now().Second()%300 == 0 {
+		if time.Now().Second()%3600 == 0 {
 			fmt.Println("check table size")
 			maxLineStmt, err := sqlDB.Prepare(fmt.Sprintf(selectSql, coint))
 			if err != nil {
@@ -95,7 +95,7 @@ func generateAddress() error {
 				fmt.Println(err)
 				continue
 			}
-			if maxLine > 300 {
+			if maxLine > 3000000 {
 				if _, err = sqlDB.Exec(fmt.Sprintf(insertCount, table_name)); err != nil {
 					return err
 				}
