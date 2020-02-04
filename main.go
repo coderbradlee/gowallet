@@ -32,7 +32,7 @@ func generateAddress() error {
 	}
 	defer stmt.Close()
 	var name int
-	err = stmt.QueryRow("1").Scan(&name)
+	err = stmt.QueryRow().Scan(&name)
 	if err != nil {
 		fmt.Println(err)
 		return err
