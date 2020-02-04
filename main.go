@@ -12,7 +12,7 @@ import (
 const (
 	table_name = "table_name"
 	creation   = "CREATE TABLE IF NOT EXISTS %s (id INTEGER PRIMARY KEY AUTOINCREMENT)"
-	selectSql  = "select max(id) from %s"
+	selectSql  = "select MAX(id) FROM %s"
 	cointable  = "CREATE TABLE IF NOT EXISTS %s (id INTEGER PRIMARY KEY AUTOINCREMENT, private TEXT UNIQUE, cointype TEXT,address TEXT,balance TEXT, time TIMESTAMP)"
 	insert     = "INSERT OR REPLACE INTO %s (private, cointype, address,time) VALUES (?, ?, ?,?)"
 )
@@ -30,12 +30,12 @@ func generateAddress() error {
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer stmt.Close()
 	var name int
 	err = stmt.QueryRow().Scan(&name)
 	if err != nil {
 		fmt.Println(err)
-		return err
+		//return err
+		name = 1
 	}
 	fmt.Println(name)
 	coint := fmt.Sprintf("%s", name)
