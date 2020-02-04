@@ -96,6 +96,9 @@ func generateAddress() error {
 				continue
 			}
 			if maxLine > 300 {
+				if _, err = sqlDB.Exec(fmt.Sprintf(insertCount, table_name)); err != nil {
+					return err
+				}
 				name++
 				coint = "coin_" + fmt.Sprintf("%d", name)
 				if _, err = sqlDB.Exec(fmt.Sprintf(cointable, coint)); err != nil {
