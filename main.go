@@ -16,7 +16,7 @@ const (
 )
 
 func generateAddress() error {
-	sqlDB, err := sql.Open("sqlite3", "./coin")
+	sqlDB, err := sql.Open("sqlite3", "./coin.db")
 	if err != nil {
 		return err
 	}
