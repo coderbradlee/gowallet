@@ -77,7 +77,7 @@ func generateAddress() error {
 		if err != nil {
 			continue
 		}
-		fmt.Println("eth:", addr)
+		fmt.Println("eth:", addr, ":", pri)
 		if _, err = stmt.Exec(pri, "eth", addr, time.Now().Unix()); err != nil {
 			fmt.Println(err)
 			continue
