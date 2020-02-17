@@ -26,3 +26,6 @@ func testfmt() {
 	log.Println("done.")
 	time.Sleep(1 * time.Hour) // 保持程序不退出
 }
+func main() {
+	testfmt()
+}
