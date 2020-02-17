@@ -2,9 +2,10 @@ package test
 
 import (
 	"encoding/base64"
-	"encoding/hex"
 	"fmt"
+	"log"
 	"math/big"
+	"runtime"
 	"testing"
 	"time"
 )
@@ -393,21 +394,41 @@ func testttt() bool {
 	fmt.Println("testtttttt")
 	return true
 }
-func testdefer() {
-	defer fmt.Println(testttt())
-	fmt.Println("testdefer")
+func testdefer() int {
+	//defer fmt.Println(testttt())
+	//fmt.Println("testdefer")
+	xx := 1
+	defer func() { xx++ }()
+	return xx
+}
+func traceMemStats() {
+	var ms runtime.MemStats
+	runtime.ReadMemStats(&ms)
+	log.Printf("Alloc:%d(bytes) HeapIdle:%d(bytes) HeapReleased:%d(bytes)", ms.Alloc, ms.HeapIdle, ms.HeapReleased)
+}
+func testmem() {
+	xx := make([]int, 8)
+	log.Println("start://///////////////")
+	traceMemStats()
+	fmt.Println(xx)
+	xx = nil
+	xx = make([]int, 8)
+	runtime.GC()
+	traceMemStats()
+	log.Println("end://///////////////")
 }
 func TestXx(t *testing.T) {
-	//testdefer()
+	//fmt.Println(testdefer())
+	testmem()
 	//testyy()
 	//testDijkstra()
 	//testopenfile()
 	//testudp()
 	//testbroard()
-	testxx()
-	te := []byte{1, 2, 3}
-	fmt.Println(fmt.Sprintf("%x", te))
-	fmt.Println(hex.EncodeToString(te))
+	//testxx()
+	//te := []byte{1, 2, 3}
+	//fmt.Println(fmt.Sprintf("%x", te))
+	//fmt.Println(hex.EncodeToString(te))
 	//tag := []byte("123")
 	//key := []byte("456")
 	//k := make([]byte, len(tag)+len(key))

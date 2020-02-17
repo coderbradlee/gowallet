@@ -1,14 +1,5 @@
 package test
 
-//
-//import (
-//	"bytes"
-//	"fmt"
-//	"testing"
-//
-//	bolt "go.etcd.io/bbolt"
-//)
-//
 //func TestYY(t *testing.T) {
 //	testopenfile()
 //}
@@ -32,29 +23,35 @@ package test
 //	if err != nil {
 //		fmt.Println(err)
 //	}
+//
 //	fmt.Println(db)
 //	err = db.Update(func(tx *bolt.Tx) error {
-//		b, err := tx.CreateBucket([]byte("MyBucket1111111"))
+//		bucket, err := tx.CreateBucketIfNotExists([]byte("xxx"))
 //		if err != nil {
-//			return fmt.Errorf("create bucket: %s", err)
+//			return err
 //		}
-//		b, err = tx.CreateBucket([]byte("MyBucket2222222"))
-//		if err != nil {
-//			return fmt.Errorf("create bucket: %s", err)
-//		}
-//		b, err = tx.CreateBucket([]byte("Xxxxxxxxxxx"))
-//		if err != nil {
-//			return fmt.Errorf("create bucket: %s", err)
-//		}
-//		b, err = tx.CreateBucket([]byte("YYYYYYYYYYYYYYYYYYY"))
-//		if err != nil {
-//			return fmt.Errorf("create bucket: %s", err)
-//		}
-//		b, err = tx.CreateBucket([]byte("MyBucket333333333"))
-//		if err != nil {
-//			return fmt.Errorf("create bucket: %s", err)
-//		}
-//		fmt.Println(b)
+//		return bucket.Put([]byte("key"), []byte("value"))
+//		//b, err := tx.CreateBucket([]byte("MyBucket1111111"))
+//		//if err != nil {
+//		//	return fmt.Errorf("create bucket: %s", err)
+//		//}
+//		//b, err = tx.CreateBucket([]byte("MyBucket2222222"))
+//		//if err != nil {
+//		//	return fmt.Errorf("create bucket: %s", err)
+//		//}
+//		//b, err = tx.CreateBucket([]byte("Xxxxxxxxxxx"))
+//		//if err != nil {
+//		//	return fmt.Errorf("create bucket: %s", err)
+//		//}
+//		//b, err = tx.CreateBucket([]byte("YYYYYYYYYYYYYYYYYYY"))
+//		//if err != nil {
+//		//	return fmt.Errorf("create bucket: %s", err)
+//		//}
+//		//b, err = tx.CreateBucket([]byte("MyBucket333333333"))
+//		//if err != nil {
+//		//	return fmt.Errorf("create bucket: %s", err)
+//		//}
+//		//fmt.Println(b)
 //
 //		//bytes := make([]byte, 8)
 //		//binary.BigEndian.PutUint64(bytes, 1)
@@ -75,11 +72,11 @@ package test
 //		//err = b.Put(bytes, []byte("100"))
 //		return err
 //	})
-//	ret, err := GetBucketByPrefix([]byte("MyBucket"), db)
-//	fmt.Println("err", err, ":len(ret):", len(ret))
-//	for _, key := range ret {
-//		fmt.Println(string(key))
-//	}
+//	//ret, err := GetBucketByPrefix([]byte("MyBucket"), db)
+//	//fmt.Println("err", err, ":len(ret):", len(ret))
+//	//for _, key := range ret {
+//	//	fmt.Println(string(key))
+//	//}
 //	//err = db.View(func(tx *bolt.Tx) error {
 //	//	if err := tx.ForEach(func(name []byte, b *bolt.Bucket) error {
 //	//
