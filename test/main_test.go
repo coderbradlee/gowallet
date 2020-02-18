@@ -419,9 +419,7 @@ func testmem() {
 	traceMemStats()
 	log.Println("end://///////////////")
 }
-func Benck() {
-	sk, err := crypto.GenerateKey()
-}
+
 func BenchmarkHello(b *testing.B) {
 	sk, err := crypto.GenerateKey()
 	if err != nil {
