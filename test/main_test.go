@@ -435,13 +435,13 @@ func BenchmarkHello(b *testing.B) {
 	if err != nil {
 		panic(err)
 	}
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_, err = crypto.Sign(hash, sk)
-		if err != nil {
-			panic(err)
-		}
-	}
+	//b.ResetTimer()
+	//for i := 0; i < b.N; i++ {
+	//	_, err = crypto.Sign(hash, sk)
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		ret := crypto.VerifySignature(pk, hash, signed[:len(signed)-1])
