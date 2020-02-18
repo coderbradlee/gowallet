@@ -437,7 +437,7 @@ func BenchmarkHello(b *testing.B) {
 	}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_, err = crypto.Sign([]byte("xxxxxxx"), sk)
+		_, err = crypto.Sign(hash, sk)
 		if err != nil {
 			panic(err)
 		}
