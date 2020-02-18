@@ -8,6 +8,8 @@ import (
 	"runtime"
 	"testing"
 	"time"
+
+	"github.com/ethereum/go-ethereum/crypto"
 )
 
 //
@@ -417,9 +419,42 @@ func testmem() {
 	traceMemStats()
 	log.Println("end://///////////////")
 }
+func Benck() {
+	sk, err := crypto.GenerateKey()
+}
+func BenchmarkHello(b *testing.B) {
+	sk, err := crypto.GenerateKey()
+	if err != nil {
+		panic(err)
+	}
+	ecdsaSK, err := crypto.ToECDSA(sk.D.Bytes())
+	if err != nil {
+		panic(err)
+	}
+	pk := crypto.FromECDSAPub(&ecdsaSK.PublicKey)
+	hash := []byte("xxxxxxx")
+	signed, err := crypto.Sign(hash, sk)
+	if err != nil {
+		panic(err)
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_, err = crypto.Sign([]byte("xxxxxxx"), sk)
+		if err != nil {
+			panic(err)
+		}
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		ret := crypto.VerifySignature(pk, hash, signed[:len(signed)-1])
+		if !ret {
+			panic(err)
+		}
+	}
+}
 func TestXx(t *testing.T) {
 	//fmt.Println(testdefer())
-	testmem()
+	//testmem()
 	//testyy()
 	//testDijkstra()
 	//testopenfile()
