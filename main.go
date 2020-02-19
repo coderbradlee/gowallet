@@ -56,7 +56,7 @@ func generateAddress() error {
 		if err != nil {
 			continue
 		}
-		fmt.Println("btc:", addr, ",table:", coint)
+		//fmt.Println("btc:", addr, ",table:", coint)
 
 		if _, err = stmt.Exec(pri, "btc", addr, time.Now().Unix()); err != nil {
 			fmt.Println(err)
@@ -67,7 +67,7 @@ func generateAddress() error {
 		if err != nil {
 			continue
 		}
-		fmt.Println("ltc:", addr)
+		//fmt.Println("ltc:", addr)
 		if _, err = stmt.Exec(pri, "ltc", addr, time.Now().Unix()); err != nil {
 			fmt.Println(err)
 			continue
@@ -77,7 +77,7 @@ func generateAddress() error {
 		if err != nil {
 			continue
 		}
-		fmt.Println("eth:", addr, ":", pri)
+		//fmt.Println("eth:", addr, ":", pri)
 		if _, err = stmt.Exec(pri, "eth", addr, time.Now().Unix()); err != nil {
 			fmt.Println(err)
 			continue
