@@ -1,15 +1,9 @@
 package test
 
 import (
-	"encoding/base64"
 	"fmt"
-	"log"
-	"math/big"
-	"runtime"
 	"testing"
 	"time"
-
-	"github.com/ethereum/go-ethereum/crypto"
 )
 
 //
@@ -342,115 +336,122 @@ import (
 //		}
 //	}
 //}
-func testxx() {
-	//data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
-	//hb, _ := hex.DecodeString(data)
-	//out := crypto.Keccak256(hb)
-	//fmt.Println(hex.EncodeToString(out))
-	//encodeString1 := base64.StdEncoding.EncodeToString(out)
-	//fmt.Println(encodeString1)
-	//
-	//data := "000000000000000000000000cf67d52eaf78b0fd89056f02b862d9ac43538c230000000000000000000000000000000000000000000000000000000000000000"
-	//hb, _ := hex.DecodeString(data)
-	//out2 := crypto.Keccak256(hb)
-	//fmt.Println(hex.EncodeToString(out2))
-	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
-	//fmt.Println(encodeString2)
-
-	input := []byte("18160ddd")
-	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
-	// 演示base64编码
-	encodeString := base64.StdEncoding.EncodeToString(input)
-	fmt.Println(encodeString)
-
-	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5M2ZhMTAwNzlkMDAwMDAwMA==")
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(string(decodeBytes))
-	x, _ := big.NewInt(0).SetString(string(decodeBytes), 16)
-	fmt.Println(x.Text(10))
-	//
-	//h, _ := hex.DecodeString("000000000000000000000000000000000000000006765c7915fedc5ed9d40000")
-	//
-	//y := big.NewInt(0).SetBytes(h)
-	//fmt.Println(y.Text(10))
-	//
-	//CurrIndex := []byte{255, 255, 255, 255, 255, 255, 255, 255}
-	//maxuint64 := big.NewInt(0).SetBytes(CurrIndex)
-	//fmt.Println(maxuint64.Text(10))
-	//fmt.Println(^uint64(0))
-	////fmt.Println(uint64(0) - 1)
-	//for i := uint64(0); i >= 0; i-- {
-	//	fmt.Println(i)
-	//	if i != 0 {
-	//		fmt.Println(i)
-	//		break
-	//	}
-	//}
-	//for i := uint8(0); i < 0; i++ {
-	//	fmt.Println("wahttttat")
-	//}
-}
-func testttt() bool {
-	fmt.Println("testtttttt")
-	return true
-}
-func testdefer() int {
-	//defer fmt.Println(testttt())
-	//fmt.Println("testdefer")
-	xx := 1
-	defer func() { xx++ }()
-	return xx
-}
-func traceMemStats() {
-	var ms runtime.MemStats
-	runtime.ReadMemStats(&ms)
-	log.Printf("Alloc:%d(bytes) HeapIdle:%d(bytes) HeapReleased:%d(bytes)", ms.Alloc, ms.HeapIdle, ms.HeapReleased)
-}
-func testmem() {
-	xx := make([]int, 8)
-	log.Println("start://///////////////")
-	traceMemStats()
-	fmt.Println(xx)
-	xx = nil
-	xx = make([]int, 8)
-	runtime.GC()
-	traceMemStats()
-	log.Println("end://///////////////")
-}
-
-func BenchmarkHello(b *testing.B) {
-	sk, err := crypto.GenerateKey()
-	if err != nil {
-		panic(err)
-	}
-	ecdsaSK, err := crypto.ToECDSA(sk.D.Bytes())
-	if err != nil {
-		panic(err)
-	}
-	pk := crypto.FromECDSAPub(&ecdsaSK.PublicKey)
-	hash := []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32}
-	signed, err := crypto.Sign(hash, sk)
-	if err != nil {
-		panic(err)
-	}
-	//b.ResetTimer()
-	//for i := 0; i < b.N; i++ {
-	//	_, err = crypto.Sign(hash, sk)
-	//	if err != nil {
-	//		panic(err)
-	//	}
-	//}
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		ret := crypto.VerifySignature(pk, hash, signed[:len(signed)-1])
-		if !ret {
-			panic(err)
+//func testxx() {
+//	//data := "0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004"
+//	//hb, _ := hex.DecodeString(data)
+//	//out := crypto.Keccak256(hb)
+//	//fmt.Println(hex.EncodeToString(out))
+//	//encodeString1 := base64.StdEncoding.EncodeToString(out)
+//	//fmt.Println(encodeString1)
+//	//
+//	//data := "000000000000000000000000cf67d52eaf78b0fd89056f02b862d9ac43538c230000000000000000000000000000000000000000000000000000000000000000"
+//	//hb, _ := hex.DecodeString(data)
+//	//out2 := crypto.Keccak256(hb)
+//	//fmt.Println(hex.EncodeToString(out2))
+//	//encodeString2 := base64.StdEncoding.EncodeToString([]byte(hex.EncodeToString(out2)))
+//	//fmt.Println(encodeString2)
+//
+//	input := []byte("18160ddd")
+//	//input, _ := hex.DecodeString("0000000000000000000000006356908ace09268130dee2b7de643314bbeb36830000000000000000000000000000000000000000000000000000000000000004")
+//	// 演示base64编码
+//	encodeString := base64.StdEncoding.EncodeToString(input)
+//	fmt.Println(encodeString)
+//
+//	decodeBytes, err := base64.StdEncoding.DecodeString("MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2NzY1Yzc5M2ZhMTAwNzlkMDAwMDAwMA==")
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(string(decodeBytes))
+//	x, _ := big.NewInt(0).SetString(string(decodeBytes), 16)
+//	fmt.Println(x.Text(10))
+//	//
+//	//h, _ := hex.DecodeString("000000000000000000000000000000000000000006765c7915fedc5ed9d40000")
+//	//
+//	//y := big.NewInt(0).SetBytes(h)
+//	//fmt.Println(y.Text(10))
+//	//
+//	//CurrIndex := []byte{255, 255, 255, 255, 255, 255, 255, 255}
+//	//maxuint64 := big.NewInt(0).SetBytes(CurrIndex)
+//	//fmt.Println(maxuint64.Text(10))
+//	//fmt.Println(^uint64(0))
+//	////fmt.Println(uint64(0) - 1)
+//	//for i := uint64(0); i >= 0; i-- {
+//	//	fmt.Println(i)
+//	//	if i != 0 {
+//	//		fmt.Println(i)
+//	//		break
+//	//	}
+//	//}
+//	//for i := uint8(0); i < 0; i++ {
+//	//	fmt.Println("wahttttat")
+//	//}
+//}
+//func testttt() bool {
+//	fmt.Println("testtttttt")
+//	return true
+//}
+//func testdefer() int {
+//	//defer fmt.Println(testttt())
+//	//fmt.Println("testdefer")
+//	xx := 1
+//	defer func() { xx++ }()
+//	return xx
+//}
+//func traceMemStats() {
+//	var ms runtime.MemStats
+//	runtime.ReadMemStats(&ms)
+//	log.Printf("Alloc:%d(bytes) HeapIdle:%d(bytes) HeapReleased:%d(bytes)", ms.Alloc, ms.HeapIdle, ms.HeapReleased)
+//}
+//func testmem() {
+//	xx := make([]int, 8)
+//	log.Println("start://///////////////")
+//	traceMemStats()
+//	fmt.Println(xx)
+//	xx = nil
+//	xx = make([]int, 8)
+//	runtime.GC()
+//	traceMemStats()
+//	log.Println("end://///////////////")
+//}
+//
+//func BenchmarkHello(b *testing.B) {
+//	sk, err := crypto.GenerateKey()
+//	if err != nil {
+//		panic(err)
+//	}
+//	ecdsaSK, err := crypto.ToECDSA(sk.D.Bytes())
+//	if err != nil {
+//		panic(err)
+//	}
+//	pk := crypto.FromECDSAPub(&ecdsaSK.PublicKey)
+//	hash := []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32}
+//	signed, err := crypto.Sign(hash, sk)
+//	if err != nil {
+//		panic(err)
+//	}
+//	//b.ResetTimer()
+//	//for i := 0; i < b.N; i++ {
+//	//	_, err = crypto.Sign(hash, sk)
+//	//	if err != nil {
+//	//		panic(err)
+//	//	}
+//	//}
+//	b.ResetTimer()
+//	for i := 0; i < b.N; i++ {
+//		ret := crypto.VerifySignature(pk, hash, signed[:len(signed)-1])
+//		if !ret {
+//			panic(err)
+//		}
+//	}
+//}
+func TestXx(t *testing.T) {
+	for {
+		//fmt.Println(time.Now().Unix())
+		if time.Now().Unix()%3600 == 0 {
+			fmt.Println("xxxx")
 		}
 	}
-}
-func TestXx(t *testing.T) {
+
 	//fmt.Println(testdefer())
 	//testmem()
 	//testyy()
@@ -626,68 +627,68 @@ func TestXx(t *testing.T) {
 //	//fmt.Println(err)
 //}
 
-var tt bool
+//var tt bool
 
-func calledbyyy() {
-	time.Sleep(time.Second * 1)
-	fmt.Println("calledbyyy start:", tt)
-	tt = true
-	fmt.Println("calledbyyy end:", tt)
+//func calledbyyy() {
+//	time.Sleep(time.Second * 1)
+//	fmt.Println("calledbyyy start:", tt)
+//	tt = true
+//	fmt.Println("calledbyyy end:", tt)
+//
+//}
+//
+//var y []byte
+//
+//func testx(in []byte) {
+//	y = in
+//	fmt.Println(y)
+//}
+//func testyy() {
+//	x := []byte{1, 2, 3}
+//	fmt.Println(x)
+//	testx(x)
+//	fmt.Println(x)
+//	x[0] = 20
+//	fmt.Println(x)
+//	fmt.Println(y)
 
-}
+//fmt.Println("start:", tt)
+//tt = false
+//if !tt {
+//	defer func() {
+//		tt = true
+//		fmt.Println("defer called")
+//	}()
+//}
+//go calledbyyy()
+//
+//fmt.Println("end:", tt)
 
-var y []byte
-
-func testx(in []byte) {
-	y = in
-	fmt.Println(y)
-}
-func testyy() {
-	x := []byte{1, 2, 3}
-	fmt.Println(x)
-	testx(x)
-	fmt.Println(x)
-	x[0] = 20
-	fmt.Println(x)
-	fmt.Println(y)
-
-	//fmt.Println("start:", tt)
-	//tt = false
-	//if !tt {
-	//	defer func() {
-	//		tt = true
-	//		fmt.Println("defer called")
-	//	}()
-	//}
-	//go calledbyyy()
-	//
-	//fmt.Println("end:", tt)
-
-	//p := make(PairList, 5)
-	//p[0] = Pair{"10", 10}
-	//p[1] = Pair{"4", 4}
-	//p[2] = Pair{"2", 2}
-	//p[3] = Pair{"3", 3}
-	//p[4] = Pair{"8", 8}
-	//fmt.Println(p)
-	//sort.Sort(p)
-	//fmt.Println(p)
-	//var xx []int
-	//xx = append(xx, 1)
-	//xx = append(xx, 2)
-	//fmt.Println(xx)
-	//xx := make([]string, 0)
-	//xx = append(xx, "11")
-	//xx = append(xx, "22")
-	//fmt.Println(xx)
-	//xx = append(xx[:1], xx[2:]...)
-	//fmt.Println(xx)
-	//indexHeightKey := append([]byte{1}, 2)
-	//fmt.Println(indexHeightKey)
-	//indexHeightKey2 := append(indexHeightKey, 3)
-	//fmt.Println(indexHeightKey)
-	//fmt.Println(indexHeightKey2)
-}
+//p := make(PairList, 5)
+//p[0] = Pair{"10", 10}
+//p[1] = Pair{"4", 4}
+//p[2] = Pair{"2", 2}
+//p[3] = Pair{"3", 3}
+//p[4] = Pair{"8", 8}
+//fmt.Println(p)
+//sort.Sort(p)
+//fmt.Println(p)
+//var xx []int
+//xx = append(xx, 1)
+//xx = append(xx, 2)
+//fmt.Println(xx)
+//xx := make([]string, 0)
+//xx = append(xx, "11")
+//xx = append(xx, "22")
+//fmt.Println(xx)
+//xx = append(xx[:1], xx[2:]...)
+//fmt.Println(xx)
+//indexHeightKey := append([]byte{1}, 2)
+//fmt.Println(indexHeightKey)
+//indexHeightKey2 := append(indexHeightKey, 3)
+//fmt.Println(indexHeightKey)
+//fmt.Println(indexHeightKey2)
+//}
 
 //type Pair struct {
 //	Key   string
