@@ -11,7 +11,7 @@ func TestXx(t *testing.T) {
 	if !ok {
 		fmt.Println("!ok")
 	}
-	weightedAmount, acc := amount.Mul(amount, big.NewFloat(1.06)).Int(nil)
+	weightedAmount, acc := amount.Mul(amount, big.NewFloat(1.0000000022006)).Int(nil)
 	fmt.Println(weightedAmount.String(), acc)
 	//xx := make(map[string]*big.Int)
 	//xx["xx"] = big.NewInt(10)
