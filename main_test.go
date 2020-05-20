@@ -4,31 +4,26 @@ import (
 	//"runtime"
 
 	"fmt"
-	"io/ioutil"
-
-	"github.com/ethereum/go-ethereum/ethdb"
-
-	"github.com/ethereum/go-ethereum/common"
 	//"os"
 	"testing"
-
-	"github.com/ethereum/go-ethereum/trie"
 )
 
-func readDir(dir string) (uint64, error) {
-	files, err := ioutil.ReadDir(dir)
-	if err != nil {
-		return 0, err
-	}
-
-	for _, file := range files {
-		fmt.Println(file.Name())
-	}
-	return 0, nil
-}
-func Test(t *testing.T) {
-	x, err := readDir(".")
-	fmt.Println(x, ":", err)
+//func readDir(dir string) (uint64, error) {
+//	files, err := ioutil.ReadDir(dir)
+//	if err != nil {
+//		return 0, err
+//	}
+//
+//	for _, file := range files {
+//		fmt.Println(file.Name())
+//	}
+//	return 0, nil
+//}
+func TestXx(t *testing.T) {
+	var h uint64
+	fmt.Println(h)
+	//x, err := readDir(".")
+	//fmt.Println(x, ":", err)
 
 	//s := []int{0, 1, 2, 3, 4, 5, 6}
 	//s = s[:4]
@@ -57,27 +52,27 @@ func Test(t *testing.T) {
 	//}
 }
 func TestAll(t *testing.T) {
-	dir, err := ioutil.TempDir("", "trie-bench")
-	if err != nil {
-		panic(fmt.Sprintf("can't create temporary directory: %v", err))
-	}
-	diskdb, err := ethdb.NewLDBDatabase(dir, 0, 0)
-	if err != nil {
-		panic(fmt.Sprintf("can't create temporary database: %v", err))
-	}
-	db := trie.NewDatabase(diskdb)
-	tr, err := trie.New(common.Hash{}, db)
-	updateString(tr, "120000", "qwerqwerqwerqwerqwerqwerqwerqwer")
-	updateString(tr, "123456", "asdfasdfasdfasdfasdfasdfasdfasdf")
-	root, _ := tr.Commit(nil)
-	tr, _ = trie.New(root, db)
-	v, err := tr.TryGet([]byte("120000"))
-	fmt.Println(string(v))
-	if err != nil {
-		t.Errorf("Unexpected error: %v", err)
-	}
+	//dir, err := ioutil.TempDir("", "trie-bench")
+	//if err != nil {
+	//	panic(fmt.Sprintf("can't create temporary directory: %v", err))
+	//}
+	//diskdb, err := ethdb.NewLDBDatabase(dir, 0, 0)
+	//if err != nil {
+	//	panic(fmt.Sprintf("can't create temporary database: %v", err))
+	//}
+	//db := trie.NewDatabase(diskdb)
+	//tr, err := trie.New(common.Hash{}, db)
+	//updateString(tr, "120000", "qwerqwerqwerqwerqwerqwerqwerqwer")
+	//updateString(tr, "123456", "asdfasdfasdfasdfasdfasdfasdfasdf")
+	//root, _ := tr.Commit(nil)
+	//tr, _ = trie.New(root, db)
+	//v, err := tr.TryGet([]byte("120000"))
+	//fmt.Println(string(v))
+	//if err != nil {
+	//	t.Errorf("Unexpected error: %v", err)
+	//}
 }
 
-func updateString(tr *trie.Trie, k, v string) {
-	tr.Update([]byte(k), []byte(v))
-}
+//func updateString(tr *trie.Trie, k, v string) {
+//	tr.Update([]byte(k), []byte(v))
+//}

@@ -6,6 +6,7 @@ require (
 	github.com/OneOfOne/xxhash v1.2.5 // indirect
 	github.com/dgryski/go-sip13 v0.0.0-20190329191031-25c5027a8c7b // indirect
 	github.com/ethereum/go-ethereum v1.8.27
+	github.com/golang/protobuf v1.3.1
 	github.com/iotexproject/iotex-core v0.9.0 // indirect
 	github.com/iotexproject/iotex-proto v0.2.5
 	github.com/kisielk/errcheck v1.2.0 // indirect
@@ -16,6 +17,7 @@ require (
 	github.com/prometheus/client_golang v1.0.0
 	github.com/sirupsen/logrus v1.4.2 // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
+	github.com/stretchr/testify v1.3.0
 	go.etcd.io/bbolt v1.3.2
 	golang.org/x/tools v0.0.0-20190529010454-aa71c3f32488 // indirect
 )
